@@ -1,10 +1,9 @@
 import React, { useState, useEffect, useCallback, memo } from "react"
-import { Github, Linkedin, Mail, ExternalLink, Instagram, Sparkles } from "lucide-react"
+import { Shield, Linkedin, Mail, ExternalLink, Github, ShieldCheck } from "lucide-react"
 import { DotLottieReact } from '@lottiefiles/dotlottie-react'
 import AOS from 'aos'
 import 'aos/dist/aos.css'
 
-// Memoized Components
 const StatusBadge = memo(() => (
   <div className="inline-block animate-float lg:mx-0" data-aos="zoom-in" data-aos-delay="400">
     <div className="relative group">
@@ -25,14 +24,14 @@ const MainTitle = memo(() => (
       <span className="relative inline-block">
         <span className="absolute -inset-2 bg-gradient-to-r from-[#6366f1] to-[#a855f7] blur-2xl opacity-20"></span>
         <span className="relative bg-gradient-to-r from-white via-blue-100 to-purple-200 bg-clip-text text-transparent">
-          Frontend
+          Cybersecurity
         </span>
       </span>
       <br />
       <span className="relative inline-block mt-2">
         <span className="absolute -inset-2 bg-gradient-to-r from-[#6366f1] to-[#a855f7] blur-2xl opacity-20"></span>
         <span className="relative bg-gradient-to-r from-[#6366f1] to-[#a855f7] bg-clip-text text-transparent">
-          Developer
+          Analyst
         </span>
       </span>
     </h1>
@@ -88,12 +87,12 @@ const SocialLink = memo(({ icon: Icon, link }: SocialLinkProps) => (
 const TYPING_SPEED = 100;
 const ERASING_SPEED = 50;
 const PAUSE_DURATION = 2000;
-const WORDS = ["Network & Telecom Student", "Tech Enthusiast"];
-const TECH_STACK = ["React", "Javascript", "Node.js", "Tailwind"];
+const WORDS = ["Blue Team Specialist", "Security Analyst", "Threat Hunter"];
+const TECH_STACK = ["SIEM", "Threat Intel", "Network Security", "Incident Response"];
 const SOCIAL_LINKS = [
   { icon: Github, link: "https://github.com/EkiZR" },
   { icon: Linkedin, link: "https://www.linkedin.com/in/ekizr/" },
-  { icon: Instagram, link: "https://www.instagram.com/ekizr_/?hl=id" }
+  { icon: Shield, link: "https://tryhackme.com/p/yourusername" }
 ];
 
 const Home = () => {
@@ -149,8 +148,9 @@ const Home = () => {
     return () => clearTimeout(timeout);
   }, [handleTyping]);
 
+  // Update Lottie animation source to a security-themed animation
   const lottieOptions = {
-    src: "https://lottie.host/58753882-bb6a-49f5-a2c0-950eda1e135a/NLbpVqGegK.lottie",
+    src: "https://lottie.host/58753882-bb6a-49f5-a2c0-950eda1e135a/NLbpVqGegK.lottie", // You might want to update this to a security-themed animation
     loop: true,
     autoplay: true,
     rendererSettings: {
@@ -190,7 +190,7 @@ const Home = () => {
                 <p className="text-base md:text-lg text-gray-400 max-w-xl leading-relaxed font-light"
                   data-aos="fade-up"
                   data-aos-delay="1000">
-                  Menciptakan Website Yang Inovatif, Fungsional, dan User-Friendly untuk Solusi Digital.
+                  Specializing in blue team operations, threat detection, and incident response. Protecting digital assets through proactive security measures and continuous monitoring.
                 </p>
 
                 {/* Tech Stack */}
@@ -202,7 +202,7 @@ const Home = () => {
 
                 {/* CTA Buttons */}
                 <div className="flex flex-row gap-3 w-full justify-start" data-aos="fade-up" data-aos-delay="1400">
-                  <CTAButton href="#Portofolio" text="Projects" icon={ExternalLink} />
+                  <CTAButton href="#Portfolio" text="Projects" icon={ExternalLink} />
                   <CTAButton href="#Contact" text="Contact" icon={Mail} />
                 </div>
 
