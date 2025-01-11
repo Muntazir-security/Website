@@ -31,7 +31,7 @@ const MainTitle = memo(() => (
       <span className="relative inline-block mt-2">
         <span className="absolute -inset-2 bg-gradient-to-r from-[#6366f1] to-[#a855f7] blur-2xl opacity-20"></span>
         <span className="relative bg-gradient-to-r from-[#6366f1] to-[#a855f7] bg-clip-text text-transparent">
-          Analyst
+          Engineer
         </span>
       </span>
     </h1>
@@ -90,8 +90,8 @@ const PAUSE_DURATION = 2000;
 const WORDS = ["Blue Team Specialist", "Security Analyst", "Threat Hunter"];
 const TECH_STACK = ["SIEM", "Threat Intel", "Network Security", "Incident Response"];
 const SOCIAL_LINKS = [
-  { icon: Github, link: "https://github.com/EkiZR" },
-  { icon: Linkedin, link: "https://www.linkedin.com/in/ekizr/" },
+  { icon: Github, link: "https://github.com/muntazir-security" },
+  { icon: Linkedin, link: "https://www.linkedin.com/in/muntazir-security/" },
   { icon: Shield, link: "https://tryhackme.com/p/yourusername" }
 ];
 
