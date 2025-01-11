@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import WelcomeScreen from '../components/WelcomeScreen';
+import Home from './Home';
 
 const Index = () => {
   const [showWelcome, setShowWelcome] = useState(true);
@@ -8,13 +9,7 @@ const Index = () => {
     <div className="min-h-screen bg-[#030014]">
       <WelcomeScreen onLoadingComplete={() => setShowWelcome(false)} />
       
-      {!showWelcome && (
-        <div className="flex items-center justify-center min-h-screen">
-          <h1 className="text-4xl font-bold text-white">
-            Your Portfolio Content Here
-          </h1>
-        </div>
-      )}
+      {!showWelcome && <Home />}
     </div>
   );
 };
