@@ -1,15 +1,19 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import WelcomeScreen from '../components/WelcomeScreen';
-import Home from './Home';
 
 const Index = () => {
   const [showWelcome, setShowWelcome] = useState(true);
+  const navigate = useNavigate();
+
+  const handleLoadingComplete = () => {
+    setShowWelcome(false);
+    navigate('/home');
+  };
 
   return (
     <div className="min-h-screen bg-[#030014]">
-      <WelcomeScreen onLoadingComplete={() => setShowWelcome(false)} />
-      
-      {!showWelcome && <Home />}
+      <WelcomeScreen onLoadingComplete={handleLoadingComplete} />
     </div>
   );
 };
