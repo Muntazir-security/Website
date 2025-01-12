@@ -1,9 +1,9 @@
 import React, { useEffect, memo, useMemo } from "react"
 import { FileText, Code, Award, Globe, ArrowUpRight, Sparkles } from "lucide-react"
+import { LucideIcon } from "lucide-react"
 import AOS from 'aos'
 import 'aos/dist/aos.css'
 
-// Memoized Components
 const Header = memo(() => (
   <div className="text-center lg:mb-8 mb-2 px-[5%]">
     <div className="inline-block relative group">
@@ -68,7 +68,17 @@ const ProfileImage = memo(() => (
   </div>
 ));
 
-const StatCard = memo(({ icon: Icon, color, value, label, description, animation }) => (
+// Add TypeScript interface for StatCard props
+interface StatCardProps {
+  icon: LucideIcon;
+  color: string;
+  value: number;
+  label: string;
+  description: string;
+  animation: string;
+}
+
+const StatCard = memo(({ icon: Icon, color, value, label, description, animation }: StatCardProps) => (
   <div data-aos={animation} data-aos-duration={1300} className="relative group">
     <div className="relative z-10 bg-gray-900/50 backdrop-blur-lg rounded-2xl p-6 border border-white/10 overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-2xl h-full flex flex-col justify-between">
       <div className={`absolute -z-10 inset-0 bg-gradient-to-br ${color} opacity-10 group-hover:opacity-20 transition-opacity duration-300`}></div>
