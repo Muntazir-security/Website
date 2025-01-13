@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Share2, User, Mail, MessageSquare, Send, Phone, MapPin, Clock, HelpCircle } from "lucide-react";
+import { Phone, Mail, MessageSquare, Send, MapPin, Clock, HelpCircle } from "lucide-react";
 import {
   Accordion,
   AccordionContent,
@@ -152,12 +152,11 @@ const ContactPage = () => {
                 Fill out the form below and I'll get back to you soon.
               </p>
             </div>
-            <Share2 className="w-8 h-8 text-[#6366f1] opacity-50" />
+            <MessageSquare className="w-8 h-8 text-[#6366f1] opacity-50" />
           </div>
 
           <form onSubmit={handleSubmit} className="space-y-6">
             <div className="relative group">
-              <User className="absolute left-4 top-4 w-5 h-5 text-gray-400 group-focus-within:text-[#6366f1] transition-colors" />
               <input
                 type="text"
                 name="name"
@@ -165,12 +164,11 @@ const ContactPage = () => {
                 value={formData.name}
                 onChange={handleChange}
                 disabled={isSubmitting}
-                className="w-full p-4 pl-12 bg-white/10 rounded-xl border border-white/20 placeholder-gray-500 text-white focus:outline-none focus:ring-2 focus:ring-[#6366f1]/30 transition-all duration-300 hover:border-[#6366f1]/30 disabled:opacity-50"
+                className="w-full p-4 pl-4 bg-white/10 rounded-xl border border-white/20 placeholder-gray-500 text-white focus:outline-none focus:ring-2 focus:ring-[#6366f1]/30 transition-all duration-300 hover:border-[#6366f1]/30 disabled:opacity-50"
                 required
               />
             </div>
             <div className="relative group">
-              <Mail className="absolute left-4 top-4 w-5 h-5 text-gray-400 group-focus-within:text-[#6366f1] transition-colors" />
               <input
                 type="email"
                 name="email"
@@ -178,19 +176,18 @@ const ContactPage = () => {
                 value={formData.email}
                 onChange={handleChange}
                 disabled={isSubmitting}
-                className="w-full p-4 pl-12 bg-white/10 rounded-xl border border-white/20 placeholder-gray-500 text-white focus:outline-none focus:ring-2 focus:ring-[#6366f1]/30 transition-all duration-300 hover:border-[#6366f1]/30 disabled:opacity-50"
+                className="w-full p-4 pl-4 bg-white/10 rounded-xl border border-white/20 placeholder-gray-500 text-white focus:outline-none focus:ring-2 focus:ring-[#6366f1]/30 transition-all duration-300 hover:border-[#6366f1]/30 disabled:opacity-50"
                 required
               />
             </div>
             <div className="relative group">
-              <MessageSquare className="absolute left-4 top-4 w-5 h-5 text-gray-400 group-focus-within:text-[#6366f1] transition-colors" />
               <textarea
                 name="message"
                 placeholder="Your Message"
                 value={formData.message}
                 onChange={handleChange}
                 disabled={isSubmitting}
-                className="w-full h-32 resize-none p-4 pl-12 bg-white/10 rounded-xl border border-white/20 placeholder-gray-500 text-white focus:outline-none focus:ring-2 focus:ring-[#6366f1]/30 transition-all duration-300 hover:border-[#6366f1]/30 disabled:opacity-50"
+                className="w-full h-32 resize-none p-4 pl-4 bg-white/10 rounded-xl border border-white/20 placeholder-gray-500 text-white focus:outline-none focus:ring-2 focus:ring-[#6366f1]/30 transition-all duration-300 hover:border-[#6366f1]/30 disabled:opacity-50"
                 required
               />
             </div>
