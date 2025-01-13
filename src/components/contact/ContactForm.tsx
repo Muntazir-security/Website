@@ -34,8 +34,8 @@ const ContactForm = () => {
       await new Promise((resolve) => setTimeout(resolve, 2000));
       
       Swal.fire({
-        title: "Success!",
-        text: "Your message has been sent successfully!",
+        title: "Message Sent!",
+        text: "We'll get back to you soon.",
         icon: "success",
         confirmButtonColor: "hsl(var(--primary))",
         timer: 2000,
@@ -49,8 +49,8 @@ const ContactForm = () => {
       });
     } catch (error) {
       Swal.fire({
-        title: "Error!",
-        text: "Something went wrong. Please try again later.",
+        title: "Oops!",
+        text: "Something went wrong. Please try again.",
         icon: "error",
         confirmButtonColor: "hsl(var(--primary))",
       });
@@ -60,9 +60,9 @@ const ContactForm = () => {
   };
 
   return (
-    <div className="relative">
-      <div className="absolute inset-0 bg-gradient-to-r from-primary/10 to-primary/5 rounded-3xl blur-3xl" />
-      <div className="relative bg-card/30 backdrop-blur-xl rounded-3xl p-8 shadow-xl border border-primary/10">
+    <div className="relative group">
+      <div className="absolute inset-0 bg-gradient-to-r from-primary/20 via-primary/10 to-transparent rounded-3xl blur-xl transition-all duration-500 group-hover:blur-2xl" />
+      <div className="relative bg-background/40 backdrop-blur-xl rounded-3xl p-8 border border-primary/10 transition-all duration-300 group-hover:border-primary/20">
         <form onSubmit={handleSubmit} className="space-y-6">
           <div className="space-y-2">
             <input
@@ -102,7 +102,7 @@ const ContactForm = () => {
           <button
             type="submit"
             disabled={isSubmitting}
-            className="w-full bg-primary text-primary-foreground rounded-xl p-4 font-medium flex items-center justify-center gap-2 transition-all duration-300 hover:opacity-90 disabled:opacity-50"
+            className="w-full bg-primary/90 hover:bg-primary text-primary-foreground rounded-xl p-4 font-medium flex items-center justify-center gap-2 transition-all duration-300 disabled:opacity-50"
           >
             <Send className="w-5 h-5" />
             {isSubmitting ? "Sending..." : "Send Message"}
