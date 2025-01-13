@@ -12,30 +12,32 @@ const ContactPage = () => {
   }, []);
 
   return (
-    <div className="min-h-screen py-10 px-4 sm:px-6 lg:px-8">
-      <div className="text-center mb-12">
-        <h2
-          data-aos="fade-down"
-          data-aos-duration="1000"
-          className="text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#6366f1] to-[#a855f7]"
-        >
-          Get in Touch
-        </h2>
-        <p
-          data-aos="fade-up"
-          data-aos-duration="1100"
-          className="mt-4 text-gray-400 max-w-2xl mx-auto"
-        >
-          Have a question or want to work together? I'd love to hear from you.
-        </p>
-      </div>
-
-      <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12">
-        <div data-aos="fade-right" data-aos-duration="1200">
-          <ContactForm />
+    <div className="min-h-screen bg-gradient-to-b from-background to-background/80 py-20 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto">
+        <div className="text-center mb-16">
+          <h1 
+            data-aos="fade-down"
+            className="text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl bg-clip-text text-transparent bg-gradient-to-r from-primary to-primary/60"
+          >
+            Let's Connect
+          </h1>
         </div>
-        <div className="space-y-8">
-          <ContactInfo />
+
+        <div className="grid lg:grid-cols-2 gap-12 items-start">
+          <div 
+            data-aos="fade-right"
+            data-aos-delay="100"
+            className="order-2 lg:order-1"
+          >
+            <ContactForm />
+          </div>
+          <div 
+            data-aos="fade-left"
+            data-aos-delay="200"
+            className="order-1 lg:order-2"
+          >
+            <ContactInfo />
+          </div>
         </div>
       </div>
     </div>

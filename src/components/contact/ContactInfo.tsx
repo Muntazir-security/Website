@@ -37,23 +37,26 @@ const contactInfo: ContactInfoItem[] = [
 
 const ContactInfo = () => {
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+    <div className="space-y-6">
       {contactInfo.map((info) => (
         <div
           key={info.title}
           data-aos="fade-up"
           data-aos-delay={info.delay}
-          className="bg-white/5 backdrop-blur-xl p-6 rounded-2xl border border-white/10 hover:border-[#6366f1]/30 transition-all duration-300 group"
+          className="group relative"
         >
-          <div className="flex items-start gap-4">
-            <div className="p-3 bg-[#6366f1]/10 rounded-xl group-hover:bg-[#6366f1]/20 transition-colors">
-              <info.icon className="w-6 h-6 text-[#6366f1]" />
-            </div>
-            <div>
-              <h4 className="text-lg font-semibold text-white mb-1">
-                {info.title}
-              </h4>
-              <p className="text-gray-400">{info.content}</p>
+          <div className="absolute inset-0 bg-gradient-to-r from-primary/10 to-primary/5 rounded-2xl blur-2xl" />
+          <div className="relative bg-card/30 backdrop-blur-xl p-6 rounded-2xl border border-primary/10 transition-all duration-300 hover:border-primary/20">
+            <div className="flex items-start gap-4">
+              <div className="p-3 bg-primary/10 rounded-xl group-hover:bg-primary/20 transition-colors">
+                <info.icon className="w-6 h-6 text-primary" />
+              </div>
+              <div>
+                <h3 className="text-lg font-semibold text-foreground mb-1">
+                  {info.title}
+                </h3>
+                <p className="text-muted-foreground">{info.content}</p>
+              </div>
             </div>
           </div>
         </div>

@@ -37,7 +37,7 @@ const ContactForm = () => {
         title: "Success!",
         text: "Your message has been sent successfully!",
         icon: "success",
-        confirmButtonColor: "#6366f1",
+        confirmButtonColor: "hsl(var(--primary))",
         timer: 2000,
         timerProgressBar: true,
       });
@@ -52,7 +52,7 @@ const ContactForm = () => {
         title: "Error!",
         text: "Something went wrong. Please try again later.",
         icon: "error",
-        confirmButtonColor: "#6366f1",
+        confirmButtonColor: "hsl(var(--primary))",
       });
     } finally {
       setIsSubmitting(false);
@@ -60,57 +60,55 @@ const ContactForm = () => {
   };
 
   return (
-    <div className="bg-white/5 backdrop-blur-xl rounded-3xl p-6 sm:p-10 shadow-2xl">
-      <div className="flex justify-between items-start mb-8">
-        <div>
-          <h3 className="text-2xl font-bold mb-2 text-transparent bg-clip-text bg-gradient-to-r from-[#6366f1] to-[#a855f7]">
-            Send a Message
-          </h3>
-          <p className="text-gray-400">
-            Fill out the form below and I'll get back to you soon.
-          </p>
-        </div>
+    <div className="relative">
+      <div className="absolute inset-0 bg-gradient-to-r from-primary/10 to-primary/5 rounded-3xl blur-3xl" />
+      <div className="relative bg-card/30 backdrop-blur-xl rounded-3xl p-8 shadow-xl border border-primary/10">
+        <form onSubmit={handleSubmit} className="space-y-6">
+          <div className="space-y-2">
+            <input
+              type="text"
+              name="name"
+              placeholder="Your Name"
+              value={formData.name}
+              onChange={handleChange}
+              disabled={isSubmitting}
+              className="w-full bg-background/50 rounded-xl border border-primary/10 p-4 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/20 transition-all duration-300"
+              required
+            />
+          </div>
+          <div className="space-y-2">
+            <input
+              type="email"
+              name="email"
+              placeholder="Your Email"
+              value={formData.email}
+              onChange={handleChange}
+              disabled={isSubmitting}
+              className="w-full bg-background/50 rounded-xl border border-primary/10 p-4 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/20 transition-all duration-300"
+              required
+            />
+          </div>
+          <div className="space-y-2">
+            <textarea
+              name="message"
+              placeholder="Your Message"
+              value={formData.message}
+              onChange={handleChange}
+              disabled={isSubmitting}
+              className="w-full h-32 bg-background/50 rounded-xl border border-primary/10 p-4 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/20 transition-all duration-300 resize-none"
+              required
+            />
+          </div>
+          <button
+            type="submit"
+            disabled={isSubmitting}
+            className="w-full bg-primary text-primary-foreground rounded-xl p-4 font-medium flex items-center justify-center gap-2 transition-all duration-300 hover:opacity-90 disabled:opacity-50"
+          >
+            <Send className="w-5 h-5" />
+            {isSubmitting ? "Sending..." : "Send Message"}
+          </button>
+        </form>
       </div>
-
-      <form onSubmit={handleSubmit} className="space-y-6">
-        <input
-          type="text"
-          name="name"
-          placeholder="Your Name"
-          value={formData.name}
-          onChange={handleChange}
-          disabled={isSubmitting}
-          className="w-full p-4 bg-white/10 rounded-xl border border-white/20 placeholder-gray-500 text-white focus:outline-none focus:ring-2 focus:ring-[#6366f1]/30 transition-all duration-300 hover:border-[#6366f1]/30 disabled:opacity-50"
-          required
-        />
-        <input
-          type="email"
-          name="email"
-          placeholder="Your Email"
-          value={formData.email}
-          onChange={handleChange}
-          disabled={isSubmitting}
-          className="w-full p-4 bg-white/10 rounded-xl border border-white/20 placeholder-gray-500 text-white focus:outline-none focus:ring-2 focus:ring-[#6366f1]/30 transition-all duration-300 hover:border-[#6366f1]/30 disabled:opacity-50"
-          required
-        />
-        <textarea
-          name="message"
-          placeholder="Your Message"
-          value={formData.message}
-          onChange={handleChange}
-          disabled={isSubmitting}
-          className="w-full h-32 resize-none p-4 bg-white/10 rounded-xl border border-white/20 placeholder-gray-500 text-white focus:outline-none focus:ring-2 focus:ring-[#6366f1]/30 transition-all duration-300 hover:border-[#6366f1]/30 disabled:opacity-50"
-          required
-        />
-        <button
-          type="submit"
-          disabled={isSubmitting}
-          className="w-full bg-gradient-to-r from-[#6366f1] to-[#a855f7] text-white py-4 rounded-xl font-semibold transition-all duration-300 hover:opacity-90 active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 flex items-center justify-center gap-2"
-        >
-          <Send className="w-5 h-5" />
-          {isSubmitting ? "Sending..." : "Send Message"}
-        </button>
-      </form>
     </div>
   );
 };
