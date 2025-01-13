@@ -12,7 +12,7 @@ const MainNav = () => {
   const location = useLocation();
 
   return (
-    <div className="fixed top-0 left-0 right-0 z-50 bg-[#0B0B1E]/80 backdrop-blur-lg">
+    <div className="fixed top-0 left-0 right-0 z-50 bg-[#0B0B1E]/80 backdrop-blur-lg border-b border-white/10">
       <div className="container flex h-16 items-center justify-between">
         {/* Logo */}
         <Link to="/" className="text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#6366f1] to-[#a855f7]">
@@ -27,8 +27,8 @@ const MainNav = () => {
                 <NavigationMenuLink 
                   className={cn(
                     navigationMenuTriggerStyle(),
-                    "bg-transparent hover:bg-white/5",
-                    location.pathname === "/home" && "text-[#6366f1] font-medium border-b-2 border-[#6366f1]"
+                    "bg-transparent hover:bg-white/5 text-gray-300 hover:text-white transition-colors",
+                    location.pathname === "/home" && "text-[#9b87f5] font-medium border-b-2 border-[#9b87f5]"
                   )}
                 >
                   Home
@@ -40,8 +40,8 @@ const MainNav = () => {
                 <NavigationMenuLink 
                   className={cn(
                     navigationMenuTriggerStyle(),
-                    "bg-transparent hover:bg-white/5",
-                    location.pathname === "/about" && "text-[#6366f1] font-medium border-b-2 border-[#6366f1]"
+                    "bg-transparent hover:bg-white/5 text-gray-300 hover:text-white transition-colors",
+                    location.pathname === "/about" && "text-[#9b87f5] font-medium border-b-2 border-[#9b87f5]"
                   )}
                 >
                   About
@@ -53,11 +53,11 @@ const MainNav = () => {
                 <NavigationMenuLink 
                   className={cn(
                     navigationMenuTriggerStyle(),
-                    "bg-transparent hover:bg-white/5",
-                    location.pathname === "/portfolio" && "text-[#6366f1] font-medium border-b-2 border-[#6366f1]"
+                    "bg-transparent hover:bg-white/5 text-gray-300 hover:text-white transition-colors",
+                    location.pathname === "/portfolio" && "text-[#9b87f5] font-medium border-b-2 border-[#9b87f5]"
                   )}
                 >
-                  Portofolio
+                  Portfolio
                 </NavigationMenuLink>
               </Link>
             </NavigationMenuItem>
@@ -66,8 +66,8 @@ const MainNav = () => {
                 <NavigationMenuLink 
                   className={cn(
                     navigationMenuTriggerStyle(),
-                    "bg-transparent hover:bg-white/5",
-                    location.pathname === "/contact" && "text-[#6366f1] font-medium border-b-2 border-[#6366f1]"
+                    "bg-transparent hover:bg-white/5 text-gray-300 hover:text-white transition-colors",
+                    location.pathname === "/contact" && "text-[#9b87f5] font-medium border-b-2 border-[#9b87f5]"
                   )}
                 >
                   Contact
