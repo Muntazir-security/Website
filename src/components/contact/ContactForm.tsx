@@ -37,7 +37,7 @@ const ContactForm = () => {
         title: "Message Sent!",
         text: "We'll get back to you soon.",
         icon: "success",
-        confirmButtonColor: "hsl(var(--primary))",
+        confirmButtonColor: "#6366f1",
         timer: 2000,
         timerProgressBar: true,
       });
@@ -52,7 +52,7 @@ const ContactForm = () => {
         title: "Oops!",
         text: "Something went wrong. Please try again.",
         icon: "error",
-        confirmButtonColor: "hsl(var(--primary))",
+        confirmButtonColor: "#6366f1",
       });
     } finally {
       setIsSubmitting(false);
@@ -61,8 +61,8 @@ const ContactForm = () => {
 
   return (
     <div className="relative group">
-      <div className="absolute inset-0 bg-gradient-to-r from-primary/20 via-primary/10 to-transparent rounded-3xl blur-xl transition-all duration-500 group-hover:blur-2xl" />
-      <div className="relative bg-background/40 backdrop-blur-xl rounded-3xl p-8 border border-primary/10 transition-all duration-300 group-hover:border-primary/20">
+      <div className="absolute inset-0 bg-gradient-to-r from-[#6366f1]/20 via-[#9b87f5]/10 to-[#a855f7]/5 rounded-3xl blur-xl transition-all duration-500 group-hover:blur-2xl" />
+      <div className="relative bg-white/5 backdrop-blur-xl rounded-3xl p-8 border border-white/10 transition-all duration-300 group-hover:border-white/20">
         <form onSubmit={handleSubmit} className="space-y-6">
           <div className="space-y-2">
             <input
@@ -72,7 +72,7 @@ const ContactForm = () => {
               value={formData.name}
               onChange={handleChange}
               disabled={isSubmitting}
-              className="w-full bg-background/50 rounded-xl border border-primary/10 p-4 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/20 transition-all duration-300"
+              className="w-full bg-white/5 rounded-xl border border-white/10 p-4 text-white placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-[#6366f1]/20 transition-all duration-300"
               required
             />
           </div>
@@ -84,7 +84,7 @@ const ContactForm = () => {
               value={formData.email}
               onChange={handleChange}
               disabled={isSubmitting}
-              className="w-full bg-background/50 rounded-xl border border-primary/10 p-4 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/20 transition-all duration-300"
+              className="w-full bg-white/5 rounded-xl border border-white/10 p-4 text-white placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-[#6366f1]/20 transition-all duration-300"
               required
             />
           </div>
@@ -95,14 +95,14 @@ const ContactForm = () => {
               value={formData.message}
               onChange={handleChange}
               disabled={isSubmitting}
-              className="w-full h-32 bg-background/50 rounded-xl border border-primary/10 p-4 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/20 transition-all duration-300 resize-none"
+              className="w-full h-32 bg-white/5 rounded-xl border border-white/10 p-4 text-white placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-[#6366f1]/20 transition-all duration-300 resize-none"
               required
             />
           </div>
           <button
             type="submit"
             disabled={isSubmitting}
-            className="w-full bg-primary/90 hover:bg-primary text-primary-foreground rounded-xl p-4 font-medium flex items-center justify-center gap-2 transition-all duration-300 disabled:opacity-50"
+            className="w-full bg-gradient-to-r from-[#6366f1] to-[#a855f7] text-white rounded-xl p-4 font-medium flex items-center justify-center gap-2 transition-all duration-300 disabled:opacity-50 hover:brightness-110"
           >
             <Send className="w-5 h-5" />
             {isSubmitting ? "Sending..." : "Send Message"}
