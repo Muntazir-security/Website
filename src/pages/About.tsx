@@ -215,7 +215,7 @@ const AboutPage = () => {
                 data-aos="fade-right"
                 data-aos-duration="1300"
               >
-                Eki Zulfar Rachman
+                Muntazir Mehdi
               </span>
             </h2>
             
@@ -224,10 +224,11 @@ const AboutPage = () => {
               data-aos="fade-right"
               data-aos-duration="1500"
             >
-              seorang siswa Teknik Jaringan Komputer dan Telekomunikasi yang
-              tertarik dalam pengembangan Front-End. Saya berfokus pada
-              menciptakan pengalaman digital yang menarik dan selalu berusaha
-              memberikan solusi terbaik dalam setiap proyek.
+              a passionate Full Stack Developer with expertise in creating seamless digital experiences. 
+              With a strong foundation in both front-end and back-end development, I specialize in 
+              building robust, scalable applications that solve real-world problems. My approach 
+              combines technical excellence with creative problem-solving, ensuring each project 
+              not only meets but exceeds expectations.
             </p>
 
             <div className="flex flex-col lg:flex-row items-center lg:items-start gap-4 lg:gap-4 lg:px-0 w-full">

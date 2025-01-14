@@ -16,7 +16,7 @@ const MainNav = () => {
       <div className="container flex h-16 items-center justify-between">
         {/* Logo */}
         <Link to="/" className="text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#6366f1] to-[#a855f7]">
-          Ekizr
+          Muntazir
         </Link>
 
         {/* Navigation Items */}
