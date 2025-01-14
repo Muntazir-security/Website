@@ -224,15 +224,17 @@ const AboutPage = () => {
               data-aos="fade-right"
               data-aos-duration="1500"
             >
-              As a versatile Full Stack Developer with a passion for innovation, I craft digital solutions 
-              that bridge creativity and functionality. My journey in software development is driven by 
-              the belief that great code can transform ideas into impactful experiences. Specializing in 
-              modern web technologies and cloud architecture, I bring a unique blend of technical expertise 
-              and creative problem-solving to every project. Whether it's building scalable applications, 
-              optimizing user experiences, or architecting robust backend systems, I'm committed to 
-              delivering solutions that not only meet current needs but are built for the future. My 
-              approach combines cutting-edge technologies with clean, maintainable code practices, 
-              ensuring that each project stands as a testament to both innovation and reliability.
+              As a dedicated Cybersecurity Professional with a strong academic foundation, I specialize in 
+              blue team operations and defensive security strategies. My passion lies in fortifying digital 
+              infrastructures and protecting organizations against evolving cyber threats. With comprehensive 
+              knowledge in security monitoring, incident response, and threat detection, I excel at 
+              implementing robust security measures and maintaining vigilant defense systems. My approach 
+              combines technical expertise with analytical thinking, allowing me to identify potential 
+              vulnerabilities and develop effective countermeasures. Whether it's strengthening security 
+              protocols, conducting thorough system audits, or responding to security incidents, I'm 
+              committed to maintaining the highest standards of cybersecurity excellence. My dedication to 
+              continuous learning keeps me at the forefront of emerging threats and defense strategies, 
+              ensuring that I can provide cutting-edge security solutions in an ever-evolving digital landscape.
             </p>
 
             <div className="flex flex-col lg:flex-row items-center lg:items-start gap-4 lg:gap-4 lg:px-0 w-full">
