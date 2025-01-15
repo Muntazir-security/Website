@@ -2,7 +2,17 @@ import React, { useEffect } from "react";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { ExternalLink, Code2, Award, Boxes } from "lucide-react";
+import { 
+  ExternalLink, 
+  Code2, 
+  Award, 
+  Boxes, 
+  ShieldCheck, 
+  Bug as BugIcon, 
+  Binary as BinaryIcon,
+  ServerCrash,
+  Database as DatabaseIcon 
+} from "lucide-react";
 import AOS from "aos";
 import "aos/dist/aos.css";
 
@@ -32,44 +42,37 @@ const Portfolio = () => {
     {
       title: "Security Information and Event Management (SIEM)",
       description: "Implemented and managed Splunk SIEM solution for real-time security monitoring and threat detection.",
-      icon: Shield,
+      icon: ShieldCheck,
       tools: ["Splunk", "ELK Stack", "Log Analysis"],
       category: "Blue Team Operations"
     },
     {
       title: "Incident Response Framework",
       description: "Developed comprehensive IR playbooks and automated response procedures for common security incidents.",
-      icon: Lock,
+      icon: BugIcon,
       tools: ["TheHive", "MISP", "Automation"],
       category: "Security Operations"
     },
     {
       title: "Vulnerability Management System",
       description: "Created and maintained vulnerability scanning and patch management infrastructure.",
-      icon: Bug,
+      icon: BinaryIcon,
       tools: ["Nessus", "Qualys", "Patch Management"],
       category: "Security Assessment"
     },
     {
       title: "Network Security Monitoring",
       description: "Deployed and configured IDS/IPS systems for network traffic analysis and threat detection.",
-      icon: Binary,
+      icon: ServerCrash,
       tools: ["Suricata", "Zeek", "Wireshark"],
       category: "Network Security"
     },
     {
       title: "Security Automation Platform",
       description: "Built automated security response workflows using Python and security tools integration.",
-      icon: Server,
+      icon: DatabaseIcon,
       tools: ["Python", "APIs", "Automation"],
       category: "DevSecOps"
-    },
-    {
-      title: "Threat Intelligence Platform",
-      description: "Implemented threat intel collection and analysis platform for proactive defense.",
-      icon: Database,
-      tools: ["MISP", "OpenCTI", "Threat Intel"],
-      category: "Threat Intelligence"
     }
   ];
 
