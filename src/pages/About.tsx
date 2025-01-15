@@ -1,6 +1,7 @@
 import React, { useEffect, memo, useMemo } from "react"
 import { FileText, Code, Award, Globe, ArrowUpRight, Sparkles } from "lucide-react"
 import { LucideIcon } from "lucide-react"
+import { Link } from "react-router-dom"
 import AOS from 'aos'
 import 'aos/dist/aos.css'
 
@@ -68,7 +69,6 @@ const ProfileImage = memo(() => (
   </div>
 ));
 
-// Add TypeScript interface for StatCard props
 interface StatCardProps {
   icon: LucideIcon;
   color: string;
@@ -76,54 +76,56 @@ interface StatCardProps {
   label: string;
   description: string;
   animation: string;
+  link: string;
 }
 
-const StatCard = memo(({ icon: Icon, color, value, label, description, animation }: StatCardProps) => (
-  <div data-aos={animation} data-aos-duration={1300} className="relative group">
-    <div className="relative z-10 bg-gray-900/50 backdrop-blur-lg rounded-2xl p-6 border border-white/10 overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-2xl h-full flex flex-col justify-between">
-      <div className={`absolute -z-10 inset-0 bg-gradient-to-br ${color} opacity-10 group-hover:opacity-20 transition-opacity duration-300`}></div>
-      
-      <div className="flex items-center justify-between mb-4">
-        <div className="w-16 h-16 rounded-full flex items-center justify-center bg-white/10 transition-transform group-hover:rotate-6">
-          <Icon className="w-8 h-8 text-white" />
-        </div>
-        <span 
-          className="text-4xl font-bold text-white"
-          data-aos="fade-up-left"
-          data-aos-duration="1500"
-          data-aos-anchor-placement="top-bottom"
-        >
-          {value}
-        </span>
-      </div>
-
-      <div>
-        <p 
-          className="text-sm uppercase tracking-wider text-gray-300 mb-2"
-          data-aos="fade-up"
-          data-aos-duration="800"
-          data-aos-anchor-placement="top-bottom"
-        >
-          {label}
-        </p>
-        <div className="flex items-center justify-between">
-          <p 
-            className="text-xs text-gray-400"
-            data-aos="fade-up"
-            data-aos-duration="1000"
+const StatCard = memo(({ icon: Icon, color, value, label, description, animation, link }: StatCardProps) => (
+  <Link to={link} className="block">
+    <div data-aos={animation} data-aos-duration={1300} className="relative group">
+      <div className="relative z-10 bg-gray-900/50 backdrop-blur-lg rounded-2xl p-6 border border-white/10 overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-2xl h-full flex flex-col justify-between">
+        <div className={`absolute -z-10 inset-0 bg-gradient-to-br ${color} opacity-10 group-hover:opacity-20 transition-opacity duration-300`}></div>
+        
+        <div className="flex items-center justify-between mb-4">
+          <div className="w-16 h-16 rounded-full flex items-center justify-center bg-white/10 transition-transform group-hover:rotate-6">
+            <Icon className="w-8 h-8 text-white" />
+          </div>
+          <span 
+            className="text-4xl font-bold text-white"
+            data-aos="fade-up-left"
+            data-aos-duration="1500"
             data-aos-anchor-placement="top-bottom"
           >
-            {description}
+            {value}
+          </span>
+        </div>
+
+        <div>
+          <p 
+            className="text-sm uppercase tracking-wider text-gray-300 mb-2"
+            data-aos="fade-up"
+            data-aos-duration="800"
+            data-aos-anchor-placement="top-bottom"
+          >
+            {label}
           </p>
-          <ArrowUpRight className="w-4 h-4 text-white/50 group-hover:text-white transition-colors" />
+          <div className="flex items-center justify-between">
+            <p 
+              className="text-xs text-gray-400"
+              data-aos="fade-up"
+              data-aos-duration="1000"
+              data-aos-anchor-placement="top-bottom"
+            >
+              {description}
+            </p>
+            <ArrowUpRight className="w-4 h-4 text-white/50 group-hover:text-white transition-colors" />
+          </div>
         </div>
       </div>
     </div>
-  </div>
+  </Link>
 ));
 
 const AboutPage = () => {
-  // Memoized calculations
   const { totalProjects, totalCertificates, YearExperience } = useMemo(() => {
     const storedProjects = JSON.parse(localStorage.getItem("projects") || "[]");
     const storedCertificates = JSON.parse(localStorage.getItem("certificates") || "[]");
@@ -164,7 +166,7 @@ const AboutPage = () => {
     };
   }, []);
 
-  // Memoized stats data
+  // Updated statsData with links to portfolio sections
   const statsData = useMemo(() => [
     {
       icon: Code,
@@ -173,6 +175,7 @@ const AboutPage = () => {
       label: "Total Projects",
       description: "Innovative web solutions crafted",
       animation: "fade-right",
+      link: "/portfolio?tab=projects"
     },
     {
       icon: Award,
@@ -181,6 +184,7 @@ const AboutPage = () => {
       label: "Certificates",
       description: "Professional skills validated",
       animation: "fade-up",
+      link: "/portfolio?tab=certificates"
     },
     {
       icon: Globe,
@@ -189,6 +193,7 @@ const AboutPage = () => {
       label: "Years of Experience",
       description: "Continuous learning journey",
       animation: "fade-left",
+      link: "/portfolio?tab=tech-stack"
     },
   ], [totalProjects, totalCertificates, YearExperience]);
 
@@ -268,7 +273,3 @@ const AboutPage = () => {
       </div>
     </div>
   );
-};
-
-export default memo(AboutPage);
-
