@@ -8,7 +8,7 @@ import {
   Award, 
   Boxes,
   Shield,
-  Bank,
+  Building2,
   GraduationCap,
   Database,
   ShoppingCart,
@@ -20,6 +20,8 @@ import {
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { useSearchParams } from "react-router-dom";
+
+// ... keep existing code (projects array until the Bank icon reference)
 
 const projects = [
   {
@@ -38,7 +40,7 @@ const projects = [
   {
     title: "SABB Bank Management System",
     description: "A Python-based banking system with multi-level authentication, offering secure transaction handling and comprehensive account management features.",
-    icon: Bank,
+    icon: Building2, // Changed from Bank to Building2
     tech: ["Python", "CLI", "File I/O", "User Authentication"],
     category: "Banking",
     features: [
