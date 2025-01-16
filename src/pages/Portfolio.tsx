@@ -21,8 +21,6 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import { useSearchParams } from "react-router-dom";
 
-// ... keep existing code (projects array until the Bank icon reference)
-
 const projects = [
   {
     title: "Mitigating TCP SYN Flooding-Based DDoS Attack in SDN",
@@ -343,7 +341,6 @@ const Portfolio = () => {
 
       {/* Decorative Elements */}
       <div className="absolute bottom-10 left-10 w-24 h-24 border border-white/5 rounded-full animate-spin-slower" />
-      <div className="absolute top-10 right-10 w-32 h-32 border border-white/5 rounded-full animate-float" />
     </div>
   );
 };
