@@ -3,6 +3,7 @@ import { Shield, Linkedin, Mail, ExternalLink, Github, ShieldCheck, Sparkle } fr
 import { DotLottieReact } from '@lottiefiles/dotlottie-react'
 import AOS from 'aos'
 import 'aos/dist/aos.css'
+import { Link } from "react-router-dom"
 
 const StatusBadge = memo(() => (
   <div className="inline-block animate-float lg:mx-0" data-aos="zoom-in" data-aos-delay="400">
@@ -51,7 +52,7 @@ interface CTAButtonProps {
 }
 
 const CTAButton = memo(({ href, text, icon: Icon }: CTAButtonProps) => (
-  <a href={href}>
+  <Link to={href}>
     <button className="group relative w-[160px]">
       <div className="absolute -inset-0.5 bg-gradient-to-r from-[#4f52c9] to-[#8644c5] rounded-xl opacity-50 blur-md group-hover:opacity-90 transition-all duration-700"></div>
       <div className="relative h-11 bg-[#030014] backdrop-blur-xl rounded-lg border border-white/10 leading-none overflow-hidden">
@@ -64,7 +65,7 @@ const CTAButton = memo(({ href, text, icon: Icon }: CTAButtonProps) => (
         </span>
       </div>
     </button>
-  </a>
+  </Link>
 ));
 
 interface SocialLinkProps {
@@ -202,8 +203,8 @@ const Home = () => {
 
                 {/* CTA Buttons */}
                 <div className="flex flex-row gap-3 w-full justify-start" data-aos="fade-up" data-aos-delay="1400">
-                  <CTAButton href="#Portfolio" text="Projects" icon={ExternalLink} />
-                  <CTAButton href="#Contact" text="Contact" icon={Mail} />
+                  <CTAButton href="/portfolio" text="Projects" icon={ExternalLink} />
+                  <CTAButton href="/contact" text="Contact" icon={Mail} />
                 </div>
 
                 {/* Social Links */}
