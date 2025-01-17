@@ -130,19 +130,47 @@ const projects = [
 
 const certificates = [
   {
-    title: "JavaScript Programming",
-    issuer: "Dicoding",
-    date: "December 2023",
-    image: "/lovable-uploads/f24e585d-8b20-4f0a-bbd9-4c04698bb1d1.png",
+    title: "CCNAv7: Switching, Routing, and Wireless Essentials",
+    issuer: "Cisco Networking Academy",
+    date: "January 2023",
+    image: "/lovable-uploads/ce04fea6-5d73-4b47-b5f1-e6d5fa3519f5.png",
     verifyUrl: "#"
   },
   {
-    title: "Data Visualization",
-    issuer: "Dicoding",
-    date: "August 2023",
-    image: "/lovable-uploads/f24e585d-8b20-4f0a-bbd9-4c04698bb1d1.png",
+    title: "SOC Analyst Learning Path",
+    issuer: "LetsDefend",
+    date: "June 2024",
+    image: "/lovable-uploads/3a492309-ce9b-4907-a297-365e63e22d28.png",
     verifyUrl: "#"
   },
+  {
+    title: "Red Hat System Administration I (RH124)",
+    issuer: "Red Hat Training and Certification",
+    date: "September 2024",
+    image: "/lovable-uploads/9c4d0b95-2f93-432a-9552-83b4e6a5259f.png",
+    verifyUrl: "#"
+  },
+  {
+    title: "INE Certified Cloud Associate (ICCA)",
+    issuer: "INE",
+    date: "May 2024",
+    image: "/lovable-uploads/99780b88-80d2-439b-9191-8a8efd5b5ecb.png",
+    verifyUrl: "#"
+  },
+  {
+    title: "Google Cybersecurity Certificate",
+    issuer: "Google",
+    date: "March 2024",
+    image: "/lovable-uploads/4392609e-6645-4ac6-86f7-2f403b085442.png",
+    verifyUrl: "https://coursera.org/verify/professional-cert/B2AKYMEB5GTU"
+  },
+  {
+    title: "Junior Penetration Tester (eJPT)",
+    issuer: "INE Security",
+    date: "May 2024",
+    image: "/lovable-uploads/c266ac8b-521b-45aa-9cbb-f7390130b152.png",
+    verifyUrl: "#"
+  }
 ];
 
 const techStack = [
@@ -346,3 +374,4 @@ const Portfolio = () => {
 };
 
 export default Portfolio;
+
