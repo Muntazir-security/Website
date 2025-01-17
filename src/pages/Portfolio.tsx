@@ -185,7 +185,15 @@ const techStack = [
   { name: "Firebase", icon: "/firebase.svg" },
   { name: "Material UI", icon: "/mui.svg" },
   { name: "Vercel", icon: "/vercel.svg" },
-  { name: "SweetAlert2", icon: "/sweetalert2.svg" }
+  { name: "SweetAlert2", icon: "/sweetalert2.svg" },
+  { name: "Docker", icon: "/docker.svg" },
+  { name: "Kubernetes", icon: "/kubernetes.svg" },
+  { name: "AWS", icon: "/aws.svg" },
+  { name: "Splunk", icon: "/splunk.svg" },
+  { name: "Red Hat", icon: "/redhat.svg" },
+  { name: "Terraform", icon: "/terraform.svg" },
+  { name: "Suricata", icon: "/suricata.svg" },
+  { name: "Nessus", icon: "/nessus.svg" }
 ];
 
 const Portfolio = () => {
@@ -374,4 +382,3 @@ const Portfolio = () => {
 };
 
 export default Portfolio;
-
