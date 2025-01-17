@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import ContactForm from "@/components/contact/ContactForm";
 import ContactInfo from "@/components/contact/ContactInfo";
+import SocialLinks from "@/components/contact/SocialLinks";
 import AOS from "aos";
 import "aos/dist/aos.css";
 
@@ -21,25 +22,10 @@ const ContactPage = () => {
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[#9b87f5]/5 rounded-full blur-3xl animate-spin-slower" />
       </div>
 
-      <div className="max-w-7xl mx-auto relative">
-        {/* Header Section */}
-        <div className="text-center mb-16 space-y-4">
-          <h1 
-            data-aos="fade-down"
-            className="text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl bg-clip-text text-transparent bg-gradient-to-r from-[#6366f1] to-[#a855f7]"
-          >
-            Let's Connect
-            <span className="block text-3xl sm:text-4xl lg:text-5xl mt-2 bg-clip-text text-transparent bg-gradient-to-r from-gray-100/80 to-gray-100/40">
-              and Secure Your Digital Future
-            </span>
-          </h1>
-          <p 
-            data-aos="fade-up"
-            data-aos-delay="100"
-            className="max-w-2xl mx-auto text-gray-400/80"
-          >
-            Ready to enhance your cybersecurity posture? Let's discuss how we can protect your digital assets together.
-          </p>
+      <div className="max-w-7xl mx-auto relative space-y-20">
+        {/* Social Links Section */}
+        <div className="mb-20">
+          <SocialLinks />
         </div>
 
         {/* Contact Form and Info Grid */}
@@ -63,10 +49,6 @@ const ContactPage = () => {
           </div>
         </div>
       </div>
-
-      {/* Decorative Elements */}
-      <div className="absolute bottom-10 left-10 w-24 h-24 border border-white/5 rounded-full animate-spin-slower" />
-      <div className="absolute top-10 right-10 w-32 h-32 border border-white/5 rounded-full animate-float" />
     </div>
   );
 };
