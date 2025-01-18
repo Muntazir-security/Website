@@ -131,10 +131,10 @@ const projects = [
 
 const certificates = [
   {
-    title: "CCNAv7: Switching, Routing, and Wireless Essentials",
-    issuer: "Cisco Networking Academy",
-    date: "January 2023",
-    image: "/lovable-uploads/ce04fea6-5d73-4b47-b5f1-e6d5fa3519f5.png",
+    title: "Red Hat System Administration I (RH124)",
+    issuer: "Red Hat Training and Certification",
+    date: "September 2024",
+    image: "/lovable-uploads/9c4d0b95-2f93-432a-9552-83b4e6a5259f.png",
     verifyUrl: "#"
   },
   {
@@ -145,10 +145,10 @@ const certificates = [
     verifyUrl: "#"
   },
   {
-    title: "Red Hat System Administration I (RH124)",
-    issuer: "Red Hat Training and Certification",
-    date: "September 2024",
-    image: "/lovable-uploads/9c4d0b95-2f93-432a-9552-83b4e6a5259f.png",
+    title: "Junior Penetration Tester (eJPT)",
+    issuer: "INE Security",
+    date: "May 2024",
+    image: "/lovable-uploads/c266ac8b-521b-45aa-9cbb-f7390130b152.png",
     verifyUrl: "#"
   },
   {
@@ -166,10 +166,10 @@ const certificates = [
     verifyUrl: "https://coursera.org/verify/professional-cert/B2AKYMEB5GTU"
   },
   {
-    title: "Junior Penetration Tester (eJPT)",
-    issuer: "INE Security",
-    date: "May 2024",
-    image: "/lovable-uploads/c266ac8b-521b-45aa-9cbb-f7390130b152.png",
+    title: "CCNAv7: Switching, Routing, and Wireless Essentials",
+    issuer: "Cisco Networking Academy",
+    date: "January 2023",
+    image: "/lovable-uploads/ce04fea6-5d73-4b47-b5f1-e6d5fa3519f5.png",
     verifyUrl: "#"
   }
 ];
