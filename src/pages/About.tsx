@@ -229,19 +229,8 @@ const AboutPage = () => {
               data-aos="fade-right"
               data-aos-duration="1500"
             >
-              As a dedicated Cybersecurity Professional with a strong academic foundation, I specialize in 
-              blue team operations and defensive security strategies. My passion lies in fortifying digital 
-              infrastructures and protecting organizations against evolving cyber threats. With comprehensive 
-              knowledge in security monitoring, incident response, and threat detection, I excel at 
-              implementing robust security measures and maintaining vigilant defense systems. My approach 
-              combines technical expertise with analytical thinking, allowing me to identify potential 
-              vulnerabilities and develop effective countermeasures. Whether it's strengthening security 
-              protocols, conducting thorough system audits, or responding to security incidents, I'm 
-              committed to maintaining the highest standards of cybersecurity excellence. My dedication to 
-              continuous learning keeps me at the forefront of emerging threats and defense strategies, 
-              ensuring that I can provide cutting-edge security solutions in an ever-evolving digital landscape.
+              As a Computer Science graduate specializing in Cybersecurity, I've built expertise across SOC analysis, vulnerability assessment, and penetration testing at Asia Pacific University of Technology & Innovation. My hands-on experience in SIEM implementation, threat detection, and security documentation is strengthened by industry certifications including eJPT and ICCA. I blend technical expertise with analytical thinking to build robust security solutions, always staying ahead of emerging threats to protect critical infrastructure. Whether I'm conducting vulnerability assessments or implementing defense strategies, my goal remains constant: creating resilient security systems that effectively safeguard digital assets.
             </p>
-
             <div className="flex flex-col lg:flex-row items-center lg:items-start gap-4 lg:gap-4 lg:px-0 w-full">
               <a href="https://drive.google.com/drive/folders/1BOm51Grsabb3zj6Xk27K-iRwI1zITcpo" target="_blank" rel="noopener noreferrer" className="w-full lg:w-auto">
                 <button 
