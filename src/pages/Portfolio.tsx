@@ -1,7 +1,8 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { 
   ExternalLink, 
   Code2, 
@@ -38,7 +39,7 @@ const projects = [
   {
     title: "SABB Bank Management System",
     description: "A Python-based banking system with multi-level authentication, offering secure transaction handling and comprehensive account management features.",
-    icon: Building2, // Changed from Bank to Building2
+    icon: Building2,
     tech: ["Python", "CLI", "File I/O", "User Authentication"],
     category: "Banking",
     features: [
@@ -198,6 +199,7 @@ const techStack = [
 
 const Portfolio = () => {
   const [searchParams] = useSearchParams();
+  const [selectedCertificate, setSelectedCertificate] = useState<string | null>(null);
   
   useEffect(() => {
     AOS.init({
@@ -321,9 +323,10 @@ const Portfolio = () => {
               {certificates.map((cert, index) => (
                 <Card 
                   key={index}
-                  className="bg-black/40 backdrop-blur-xl border border-white/10 overflow-hidden group hover:border-white/20 transition-all duration-300"
+                  className="bg-black/40 backdrop-blur-xl border border-white/10 overflow-hidden group hover:border-white/20 transition-all duration-300 cursor-pointer"
                   data-aos="fade-up"
                   data-aos-delay={index * 100}
+                  onClick={() => setSelectedCertificate(cert.image)}
                 >
                   <div className="aspect-[4/3] relative overflow-hidden">
                     <img 
@@ -331,17 +334,6 @@ const Portfolio = () => {
                       alt={cert.title}
                       className="object-cover w-full h-full transform group-hover:scale-110 transition-transform duration-500"
                     />
-                    <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                      <Button 
-                        variant="secondary" 
-                        asChild 
-                        className="bg-white/10 hover:bg-white/20"
-                      >
-                        <a href={cert.verifyUrl} target="_blank" rel="noopener noreferrer">
-                          Verify Certificate
-                        </a>
-                      </Button>
-                    </div>
                   </div>
                   <CardContent className="p-6">
                     <h3 className="text-lg font-semibold text-white mb-1">{cert.title}</h3>
@@ -375,8 +367,16 @@ const Portfolio = () => {
         </Tabs>
       </div>
 
-      {/* Decorative Elements */}
-      <div className="absolute bottom-10 left-10 w-24 h-24 border border-white/5 rounded-full animate-spin-slower" />
+      {/* Certificate Dialog */}
+      <Dialog open={!!selectedCertificate} onOpenChange={() => setSelectedCertificate(null)}>
+        <DialogContent className="max-w-4xl w-[90vw] h-[90vh] p-0">
+          <img 
+            src={selectedCertificate || ''} 
+            alt="Certificate"
+            className="w-full h-full object-contain"
+          />
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };
