@@ -191,7 +191,7 @@ const Home = () => {
                 <p className="text-base md:text-lg text-gray-400 max-w-xl leading-relaxed font-light"
                   data-aos="fade-up"
                   data-aos-delay="1000">
-                  Specializing in blue team operations, threat detection, and incident response. Protecting digital assets through proactive security measures and continuous monitoring.
+                  Bridging the gap between security threats and robust defense solutions. As a dedicated Cybersecurity Professional with hands-on SOC and Security Analyst experience, I transform complex vulnerabilities into actionable defense strategies.
                 </p>
 
                 {/* Tech Stack */}
