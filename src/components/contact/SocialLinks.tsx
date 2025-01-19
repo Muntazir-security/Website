@@ -20,11 +20,11 @@ const SocialLink = ({ icon, label, value, href, delay }: SocialLinkProps) => (
     data-aos-delay={delay}
   >
     <div className="group relative">
-      <div className="absolute inset-0 bg-white/5 rounded-2xl blur-xl transition-all duration-500 group-hover:blur-2xl" />
-      <div className="relative bg-black/20 backdrop-blur-xl p-8 rounded-2xl border border-white/10 transition-all duration-300 group-hover:border-white/20 flex flex-col items-center justify-center text-center space-y-4">
+      <div className="absolute inset-0 bg-gradient-to-r from-[#6366f1]/20 via-[#9b87f5]/10 to-[#a855f7]/5 rounded-2xl blur-xl transition-all duration-500 group-hover:blur-2xl" />
+      <div className="relative bg-black/20 backdrop-blur-xl p-8 rounded-2xl border border-white/10 transition-all duration-300 group-hover:border-white/20 group-hover:bg-white/10 flex flex-col items-center justify-center text-center space-y-4">
         <div className={cn(
           "p-4 rounded-full transition-all duration-300",
-          "bg-white/5 group-hover:bg-white/10"
+          "bg-gradient-to-r from-[#6366f1]/10 to-[#a855f7]/10 group-hover:from-[#6366f1]/20 group-hover:to-[#a855f7]/20"
         )}>
           {icon}
         </div>
@@ -42,22 +42,22 @@ const SocialLinks = () => {
     {
       icon: <Github className="w-8 h-8 text-white" />,
       label: "Github",
-      value: "ekizulfarachman",
-      href: "https://github.com/ekizulfarachman",
+      value: "muntazir-security",
+      href: "https://github.com/muntazir-security",
       delay: "100"
     },
     {
       icon: <Mail className="w-8 h-8 text-white" />,
       label: "Email",
-      value: "dev@ekizulfarachman.com",
-      href: "mailto:dev@ekizulfarachman.com",
+      value: "info@muntazirmehdi.com",
+      href: "mailto:info@muntazirmehdi.com",
       delay: "200"
     },
     {
       icon: <Linkedin className="w-8 h-8 text-white" />,
       label: "LinkedIn",
-      value: "ekizulfarachman",
-      href: "https://linkedin.com/in/ekizulfarachman",
+      value: "Muntazir-security",
+      href: "https://linkedin.com/in/Muntazir-security",
       delay: "300"
     }
   ];
