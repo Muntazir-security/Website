@@ -1,6 +1,7 @@
 import React from "react";
 import { Github, Linkedin, Mail } from "lucide-react";
 import { cn } from "@/lib/utils";
+import HoverCard from "@/components/shared/HoverCard";
 
 interface SocialLinkProps {
   icon: React.ReactNode;
@@ -19,21 +20,18 @@ const SocialLink = ({ icon, label, value, href, delay }: SocialLinkProps) => (
     data-aos="fade-up"
     data-aos-delay={delay}
   >
-    <div className="group relative">
-      <div className="absolute inset-0 bg-gradient-to-r from-[#6366f1]/20 via-[#9b87f5]/10 to-[#a855f7]/5 rounded-2xl blur-xl transition-all duration-500 group-hover:blur-2xl" />
-      <div className="relative bg-black/20 backdrop-blur-xl p-8 rounded-2xl border border-white/10 transition-all duration-300 group-hover:border-white/20 group-hover:bg-white/10 flex flex-col items-center justify-center text-center space-y-4">
-        <div className={cn(
-          "p-4 rounded-full transition-all duration-300",
-          "bg-gradient-to-r from-[#6366f1]/10 to-[#a855f7]/10 group-hover:from-[#6366f1]/20 group-hover:to-[#a855f7]/20"
-        )}>
-          {icon}
-        </div>
-        <div>
-          <p className="text-lg font-medium text-white/60 mb-1">{label}</p>
-          <p className="text-xl font-semibold text-white">{value}</p>
-        </div>
+    <HoverCard className="flex flex-col items-center justify-center text-center space-y-4">
+      <div className={cn(
+        "p-4 rounded-full transition-all duration-300",
+        "bg-gradient-to-r from-[#6366f1]/10 to-[#a855f7]/10 group-hover:from-[#6366f1]/20 group-hover:to-[#a855f7]/20"
+      )}>
+        {icon}
       </div>
-    </div>
+      <div>
+        <p className="text-lg font-medium text-white/60 mb-1">{label}</p>
+        <p className="text-xl font-semibold text-white">{value}</p>
+      </div>
+    </HoverCard>
   </a>
 );
 
