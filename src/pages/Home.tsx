@@ -255,7 +255,7 @@ const Home = () => {
               </div>
             </div>
 
-            {/* Right Column - Updated Lottie Animation */}
+            {/* Right Column - Lottie Animation */}
             <div className="w-full py-[10%] sm:py-0 lg:w-1/2 h-auto lg:h-[600px] xl:h-[750px] relative flex items-center justify-center order-2 lg:order-2 mt-8 lg:mt-0"
               onMouseEnter={() => setIsHovering(true)}
               onMouseLeave={() => setIsHovering(false)}
