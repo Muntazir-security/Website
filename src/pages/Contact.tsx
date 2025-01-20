@@ -14,7 +14,17 @@ const ContactPage = () => {
 
   return (
     <PageBackground className="min-h-screen bg-[#0B0B1E]">
-      <div className="container mx-auto py-24">
+      <div className="relative">
+        {/* Page title */}
+        <div className="text-center mb-16" data-aos="fade-down">
+          <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-white via-white/90 to-white/80 bg-clip-text text-transparent">
+            Get in Touch
+          </h1>
+          <p className="mt-4 text-lg text-white/60">
+            Connect with me through any of these platforms
+          </p>
+        </div>
+
         <SocialLinks />
       </div>
     </PageBackground>
