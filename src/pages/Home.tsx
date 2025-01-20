@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback, memo } from "react"
 import { Shield, Linkedin, Mail, ExternalLink, Github, ShieldCheck, Sparkle } from "lucide-react"
-import { DotLottieReact } from '@lottiefiles/dotlottie-react'
+import Lottie from 'lottie-react'
 import AOS from 'aos'
 import 'aos/dist/aos.css'
 import { Link } from "react-router-dom"
@@ -149,21 +149,59 @@ const Home = () => {
     return () => clearTimeout(timeout);
   }, [handleTyping]);
 
-  // Update Lottie animation source to a security-themed animation
-  const lottieOptions = {
-    src: "https://lottie.host/58753882-bb6a-49f5-a2c0-950eda1e135a/NLbpVqGegK.lottie", // You might want to update this to a security-themed animation
+  // Update Lottie animation configuration
+  const defaultOptions = {
     loop: true,
     autoplay: true,
+    animationData: {
+      "v": "5.7.14",
+      "fr": 60,
+      "ip": 0,
+      "op": 180,
+      "w": 512,
+      "h": 512,
+      "nm": "Cyber Security",
+      "ddd": 0,
+      "assets": [],
+      "layers": [
+        {
+          "ddd": 0,
+          "ind": 1,
+          "ty": 4,
+          "nm": "Shield",
+          "sr": 1,
+          "ks": {
+            "o": { "a": 0, "k": 100 },
+            "r": { "a": 1, "k": [{ "t": 0, "s": [0] }, { "t": 180, "s": [360] }] },
+            "p": { "a": 0, "k": [256, 256, 0] },
+            "a": { "a": 0, "k": [0, 0, 0] },
+            "s": { "a": 0, "k": [100, 100, 100] }
+          },
+          "shapes": [
+            {
+              "ty": "gr",
+              "it": [
+                {
+                  "ty": "rc",
+                  "d": 1,
+                  "s": { "a": 0, "k": [200, 240] },
+                  "p": { "a": 0, "k": [0, 0] },
+                  "r": { "a": 0, "k": 20 }
+                },
+                {
+                  "ty": "fl",
+                  "c": { "a": 0, "k": [0.39, 0.4, 0.94, 1] },
+                  "o": { "a": 0, "k": 100 }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
     rendererSettings: {
       preserveAspectRatio: 'xMidYMid slice',
-      progressiveLoad: true,
-    },
-    style: { width: "100%", height: "100%" },
-    className: `w-full h-full transition-all duration-500 ${
-      isHovering 
-        ? "scale-[180%] sm:scale-[160%] md:scale-[150%] lg:scale-[145%] rotate-2" 
-        : "scale-[175%] sm:scale-[155%] md:scale-[145%] lg:scale-[140%]"
-    }`
+    }
   };
 
   return (
@@ -216,7 +254,7 @@ const Home = () => {
               </div>
             </div>
 
-            {/* Right Column - Optimized Lottie Animation */}
+            {/* Right Column - Updated Lottie Animation */}
             <div className="w-full py-[10%] sm:py-0 lg:w-1/2 h-auto lg:h-[600px] xl:h-[750px] relative flex items-center justify-center order-2 lg:order-2 mt-8 lg:mt-0"
               onMouseEnter={() => setIsHovering(true)}
               onMouseLeave={() => setIsHovering(false)}
@@ -231,7 +269,16 @@ const Home = () => {
                 <div className={`relative z-10 w-full opacity-90 transform transition-transform duration-500 ${
                   isHovering ? "scale-105" : "scale-100"
                 }`}>
-                  <DotLottieReact {...lottieOptions} />
+                  <Lottie
+                    animationData={defaultOptions.animationData}
+                    loop={defaultOptions.loop}
+                    autoplay={defaultOptions.autoplay}
+                    className={`w-full h-full transition-all duration-500 ${
+                      isHovering 
+                        ? "scale-[180%] sm:scale-[160%] md:scale-[150%] lg:scale-[145%] rotate-2" 
+                        : "scale-[175%] sm:scale-[155%] md:scale-[145%] lg:scale-[140%]"
+                    }`}
+                  />
                 </div>
 
                 <div className={`absolute inset-0 pointer-events-none transition-all duration-700 ${
