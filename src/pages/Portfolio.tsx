@@ -391,13 +391,13 @@ const Portfolio = () => {
       <Dialog open={!!selectedProject} onOpenChange={() => setSelectedProject(null)}>
         <DialogContent className="max-w-3xl bg-black/90 backdrop-blur-xl border-white/10">
           <DialogHeader>
-            <DialogTitle className="flex items-center gap-4">
+            <DialogTitle className="flex items-center gap-4 text-white">
               <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#6366f1] to-[#a855f7] p-2 flex items-center justify-center">
                 {selectedProject && <selectedProject.icon className="w-5 h-5 text-white" />}
               </div>
-              <span className="text-xl font-semibold">{selectedProject?.title}</span>
+              <span className="text-xl font-semibold text-white">{selectedProject?.title}</span>
             </DialogTitle>
-            <DialogDescription className="text-gray-400 mt-4">
+            <DialogDescription className="text-gray-300 mt-4">
               {selectedProject?.description}
             </DialogDescription>
           </DialogHeader>
