@@ -20,16 +20,16 @@ const SocialLink = ({ icon, label, value, href, delay }: SocialLinkProps) => (
     data-aos="fade-up"
     data-aos-delay={delay}
   >
-    <HoverCard className="flex flex-col items-center justify-center text-center space-y-4">
+    <HoverCard className="flex flex-col items-center justify-center text-center space-y-6">
       <div className={cn(
-        "p-6 rounded-full transition-all duration-300",
+        "p-8 rounded-full transition-all duration-300",
         "bg-gradient-to-r from-[#6366f1]/10 to-[#a855f7]/10 group-hover:from-[#6366f1]/20 group-hover:to-[#a855f7]/20"
       )}>
         {icon}
       </div>
-      <div>
-        <p className="text-lg font-medium text-white/60 mb-1">{label}</p>
-        <p className="text-xl font-semibold text-white">{value}</p>
+      <div className="p-4">
+        <p className="text-xl font-medium text-white/60 mb-2">{label}</p>
+        <p className="text-2xl font-semibold text-white">{value}</p>
       </div>
     </HoverCard>
   </a>
@@ -61,7 +61,7 @@ const SocialLinks = () => {
   ];
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
       {links.map((link) => (
         <SocialLink key={link.label} {...link} />
       ))}
