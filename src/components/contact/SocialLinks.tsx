@@ -15,60 +15,55 @@ const SocialLink = ({ icon, label, value, href, delay }: SocialLinkProps) => (
     href={href}
     target="_blank"
     rel="noopener noreferrer"
-    className="group block"
+    className="group relative block overflow-hidden rounded-2xl bg-gradient-to-br from-slate-900 to-slate-800 p-8 transition-all duration-500 hover:scale-[1.02]"
     data-aos="fade-up"
     data-aos-delay={delay}
   >
-    <div className="flex flex-col items-center justify-center text-center space-y-6">
-      <div className="relative">
-        {/* Glow effect */}
-        <div className="absolute inset-0 bg-gradient-to-r from-[#6366f1]/30 to-[#a855f7]/30 rounded-full blur-xl group-hover:blur-2xl transition-all duration-500 animate-pulse-slow" />
-        
-        {/* Icon container */}
-        <div className={cn(
-          "relative w-36 h-36 rounded-full flex items-center justify-center",
-          "bg-[#1A1F2C]/80 backdrop-blur-sm border border-white/5",
-          "group-hover:border-white/20 group-hover:scale-105",
-          "transition-all duration-500"
-        )}>
-          <div className="transform group-hover:scale-110 transition-transform duration-500">
-            {icon}
-          </div>
-        </div>
+    <div className="relative z-10 flex items-center gap-6">
+      {/* Icon container */}
+      <div className={cn(
+        "relative flex h-16 w-16 shrink-0 items-center justify-center rounded-xl",
+        "bg-gradient-to-br from-indigo-500 to-purple-500",
+        "group-hover:from-indigo-400 group-hover:to-purple-400",
+        "transition-all duration-500"
+      )}>
+        {icon}
       </div>
 
-      {/* Text content with animated underline */}
-      <div className="space-y-2">
-        <p className="text-2xl font-semibold bg-gradient-to-r from-white to-white/80 bg-clip-text text-transparent">
+      {/* Text content */}
+      <div className="space-y-1">
+        <p className="text-lg font-medium text-white">
           {value}
         </p>
-        <p className="text-base text-white/60 relative overflow-hidden group-hover:text-white/80 transition-colors duration-300">
+        <p className="text-sm text-slate-400 group-hover:text-slate-300 transition-colors">
           {label}
-          <span className="absolute bottom-0 left-0 w-full h-[1px] bg-gradient-to-r from-[#6366f1] to-[#a855f7] transform translate-x-[-100%] group-hover:translate-x-0 transition-transform duration-500" />
         </p>
       </div>
     </div>
+
+    {/* Background gradient effect */}
+    <div className="absolute inset-0 z-0 bg-gradient-to-br from-indigo-500/10 to-purple-500/10 opacity-0 blur-xl transition-opacity duration-500 group-hover:opacity-100" />
   </a>
 );
 
 const SocialLinks = () => {
   const links = [
     {
-      icon: <Twitter className="w-16 h-16 text-white/90" />,
+      icon: <Twitter className="w-8 h-8 text-white" />,
       label: "Twitter",
       value: "@muntazir-security",
       href: "https://twitter.com/muntazir-security",
       delay: "100"
     },
     {
-      icon: <Mail className="w-16 h-16 text-white/90" />,
+      icon: <Mail className="w-8 h-8 text-white" />,
       label: "Email",
       value: "info@muntazirmehdi.com",
       href: "mailto:info@muntazirmehdi.com",
       delay: "200"
     },
     {
-      icon: <Github className="w-16 h-16 text-white/90" />,
+      icon: <Github className="w-8 h-8 text-white" />,
       label: "Github",
       value: "muntazir-security",
       href: "https://github.com/muntazir-security",
@@ -77,15 +72,9 @@ const SocialLinks = () => {
   ];
 
   return (
-    <div className="relative">
-      {/* Background decorative elements */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-[#6366f1]/5 rounded-full blur-3xl animate-spin-slower" />
-        <div className="absolute bottom-1/4 right-1/4 w-64 h-64 bg-[#a855f7]/5 rounded-full blur-3xl animate-spin-slower" />
-      </div>
-
+    <div className="relative px-4 py-12">
       {/* Content */}
-      <div className="relative grid grid-cols-1 md:grid-cols-3 gap-16 px-4 py-24 max-w-7xl mx-auto">
+      <div className="grid grid-cols-1 gap-6 md:grid-cols-3 max-w-7xl mx-auto">
         {links.map((link) => (
           <SocialLink key={link.label} {...link} />
         ))}
