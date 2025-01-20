@@ -21,16 +21,16 @@ const SocialLink = ({ icon, label, value, href, delay }: SocialLinkProps) => (
   >
     <div className="group relative">
       <div className="absolute inset-0 bg-gradient-to-r from-[#6366f1]/20 via-[#9b87f5]/10 to-[#a855f7]/5 rounded-2xl blur-xl transition-all duration-500 group-hover:blur-2xl" />
-      <div className="relative bg-black/20 backdrop-blur-xl p-8 rounded-2xl border border-white/10 transition-all duration-300 group-hover:border-white/20 group-hover:bg-white/10 flex flex-col items-center justify-center text-center space-y-4">
+      <div className="relative bg-black/20 backdrop-blur-xl p-16 rounded-2xl border border-white/10 transition-all duration-300 group-hover:border-white/20 group-hover:bg-white/10 flex flex-col items-center justify-center text-center space-y-8">
         <div className={cn(
-          "p-4 rounded-full transition-all duration-300",
+          "p-8 rounded-full transition-all duration-300",
           "bg-gradient-to-r from-[#6366f1]/10 to-[#a855f7]/10 group-hover:from-[#6366f1]/20 group-hover:to-[#a855f7]/20"
         )}>
-          {icon}
+          {React.cloneElement(icon as React.ReactElement, { className: "w-16 h-16 text-white" })}
         </div>
         <div>
-          <p className="text-lg font-medium text-white/60 mb-1">{label}</p>
-          <p className="text-xl font-semibold text-white">{value}</p>
+          <p className="text-2xl font-medium text-white/60 mb-2">{label}</p>
+          <p className="text-3xl font-semibold text-white">{value}</p>
         </div>
       </div>
     </div>
@@ -63,7 +63,7 @@ const SocialLinks = () => {
   ];
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-12 max-w-[1400px] mx-auto px-6">
       {links.map((link) => (
         <SocialLink key={link.label} {...link} />
       ))}
