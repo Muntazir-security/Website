@@ -30,7 +30,7 @@ const Header = memo(() => (
 ));
 
 const ProfileImage = memo(() => (
-  <div className="flex justify-center items-center sm:p-12 sm:py-0 sm:pb-0 p-0 py-2 pb-2">
+  <div className="flex justify-end items-center sm:p-12 sm:py-0 sm:pb-0 p-0 py-2 pb-2">
     <div 
       className="relative group" 
       data-aos="fade-up"
@@ -191,8 +191,10 @@ const AboutPage = () => {
     <PageBackground>
       <div className="w-full mx-auto pt-8 sm:pt-12 relative">
         <Header />
-        <ProfileImage />
-        <Introduction />
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center mb-16">
+          <Introduction />
+          <ProfileImage />
+        </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
           {statsData.map((stat) => (
             <StatCard key={stat.label} {...stat} />
