@@ -1,5 +1,5 @@
 import React from "react";
-import { Github, Linkedin, Mail } from "lucide-react";
+import { Github, Mail, Twitter } from "lucide-react";
 import { cn } from "@/lib/utils";
 import HoverCard from "@/components/shared/HoverCard";
 
@@ -20,16 +20,16 @@ const SocialLink = ({ icon, label, value, href, delay }: SocialLinkProps) => (
     data-aos="fade-up"
     data-aos-delay={delay}
   >
-    <HoverCard className="flex flex-col items-center justify-center text-center space-y-6">
+    <HoverCard className="flex flex-col items-center justify-center text-center space-y-8 p-12 bg-[#0B0B1E]/30 backdrop-blur-sm border border-white/5 rounded-2xl hover:border-white/10 transition-all duration-300">
       <div className={cn(
         "p-8 rounded-full transition-all duration-300",
         "bg-gradient-to-r from-[#6366f1]/10 to-[#a855f7]/10 group-hover:from-[#6366f1]/20 group-hover:to-[#a855f7]/20"
       )}>
         {icon}
       </div>
-      <div className="p-4">
-        <p className="text-xl font-medium text-white/60 mb-2">{label}</p>
+      <div className="space-y-2">
         <p className="text-2xl font-semibold text-white">{value}</p>
+        <p className="text-lg font-medium text-white/60">{label}</p>
       </div>
     </HoverCard>
   </a>
@@ -38,10 +38,10 @@ const SocialLink = ({ icon, label, value, href, delay }: SocialLinkProps) => (
 const SocialLinks = () => {
   const links = [
     {
-      icon: <Github className="w-16 h-16 text-white" />,
-      label: "Github",
-      value: "muntazir-security",
-      href: "https://github.com/muntazir-security",
+      icon: <Twitter className="w-16 h-16 text-white" />,
+      label: "Twitter",
+      value: "@muntazir-security",
+      href: "https://twitter.com/muntazir-security",
       delay: "100"
     },
     {
@@ -52,16 +52,16 @@ const SocialLinks = () => {
       delay: "200"
     },
     {
-      icon: <Linkedin className="w-16 h-16 text-white" />,
-      label: "LinkedIn",
-      value: "Muntazir-security",
-      href: "https://linkedin.com/in/Muntazir-security",
+      icon: <Github className="w-16 h-16 text-white" />,
+      label: "Github",
+      value: "muntazir-security",
+      href: "https://github.com/muntazir-security",
       delay: "300"
     }
   ];
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-8 px-4">
       {links.map((link) => (
         <SocialLink key={link.label} {...link} />
       ))}
