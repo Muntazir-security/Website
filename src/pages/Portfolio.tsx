@@ -16,7 +16,18 @@ import {
   CheckSquare,
   Car,
   Home,
-  ArrowRight
+  ArrowRight,
+  Globe,
+  Palette,
+  FileCode,
+  Wind,
+  Cpu,
+  Cloud,
+  Server,
+  Monitor,
+  Lock,
+  Search,
+  Network
 } from "lucide-react";
 import AOS from "aos";
 import "aos/dist/aos.css";
@@ -175,26 +186,26 @@ const certificates = [
 ];
 
 const techStack = [
-  { name: "HTML", icon: "/html5.svg" },
-  { name: "CSS", icon: "/css3.svg" },
-  { name: "JavaScript", icon: "/javascript.svg" },
-  { name: "Tailwind CSS", icon: "/tailwind.svg" },
-  { name: "ReactJS", icon: "/react.svg" },
-  { name: "Vite", icon: "/vite.svg" },
-  { name: "Node.js", icon: "/nodejs.svg" },
-  { name: "Bootstrap", icon: "/bootstrap.svg" },
-  { name: "Firebase", icon: "/firebase.svg" },
-  { name: "Material UI", icon: "/mui.svg" },
-  { name: "Vercel", icon: "/vercel.svg" },
-  { name: "SweetAlert2", icon: "/sweetalert2.svg" },
-  { name: "Docker", icon: "/docker.svg" },
-  { name: "Kubernetes", icon: "/kubernetes.svg" },
-  { name: "AWS", icon: "/aws.svg" },
-  { name: "Splunk", icon: "/splunk.svg" },
-  { name: "Red Hat", icon: "/redhat.svg" },
-  { name: "Terraform", icon: "/terraform.svg" },
-  { name: "Suricata", icon: "/suricata.svg" },
-  { name: "Nessus", icon: "/nessus.svg" }
+  { name: "HTML", icon: "/html5.svg", lucideIcon: Globe },
+  { name: "CSS", icon: "/css3.svg", lucideIcon: Palette },
+  { name: "JavaScript", icon: "/javascript.svg", lucideIcon: FileCode },
+  { name: "Tailwind CSS", icon: "/tailwind.svg", lucideIcon: Wind },
+  { name: "ReactJS", icon: "/react.svg", lucideIcon: Code2 },
+  { name: "Vite", icon: "/vite.svg", lucideIcon: Cpu },
+  { name: "Node.js", icon: "/nodejs.svg", lucideIcon: Server },
+  { name: "Bootstrap", icon: "/bootstrap.svg", lucideIcon: Monitor },
+  { name: "Firebase", icon: "/firebase.svg", lucideIcon: Cloud },
+  { name: "Material UI", icon: "/mui.svg", lucideIcon: Palette },
+  { name: "Vercel", icon: "/vercel.svg", lucideIcon: Cloud },
+  { name: "SweetAlert2", icon: "/sweetalert2.svg", lucideIcon: Monitor },
+  { name: "Docker", icon: "/docker.svg", lucideIcon: Boxes },
+  { name: "Kubernetes", icon: "/kubernetes.svg", lucideIcon: Network },
+  { name: "AWS", icon: "/aws.svg", lucideIcon: Cloud },
+  { name: "Splunk", icon: "/splunk.svg", lucideIcon: Search },
+  { name: "Red Hat", icon: "/redhat.svg", lucideIcon: Server },
+  { name: "Terraform", icon: "/terraform.svg", lucideIcon: Cloud },
+  { name: "Suricata", icon: "/suricata.svg", lucideIcon: Shield },
+  { name: "Nessus", icon: "/nessus.svg", lucideIcon: Lock }
 ];
 
 const Portfolio = () => {
@@ -354,11 +365,16 @@ const Portfolio = () => {
                   data-aos="fade-up"
                   data-aos-delay={index * 50}
                 >
-                  <img 
-                    src={tech.icon} 
-                    alt={tech.name}
-                    className="w-12 h-12 object-contain"
-                  />
+                  <div className="relative w-12 h-12">
+                    <img 
+                      src={tech.icon} 
+                      alt={tech.name}
+                      className="w-12 h-12 object-contain absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                    />
+                    {React.createElement(tech.lucideIcon, {
+                      className: "w-12 h-12 text-gray-300 group-hover:opacity-0 transition-opacity duration-300"
+                    })}
+                  </div>
                   <span className="text-gray-300 text-sm font-medium">{tech.name}</span>
                 </div>
               ))}
