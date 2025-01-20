@@ -274,13 +274,13 @@ const Portfolio = () => {
               {projects.map((project, index) => (
                 <Card 
                   key={index}
-                  className="group bg-black/40 backdrop-blur-xl border border-white/10 overflow-hidden hover:border-white/20 transition-all duration-300 hover:shadow-lg hover:shadow-[#6366f1]/10"
+                  className="group bg-black/40 backdrop-blur-xl border border-white/10 overflow-hidden hover:border-white/20 transition-all duration-300 hover:shadow-lg hover:shadow-[#6366f1]/10 h-full flex flex-col"
                   data-aos="fade-up"
                   data-aos-delay={index * 100}
                 >
-                  <CardContent className="p-6">
+                  <CardContent className="p-6 flex flex-col h-full">
                     <div className="flex items-start gap-4 mb-6">
-                      <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#6366f1] to-[#a855f7] p-2.5 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                      <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#6366f1] to-[#a855f7] p-2.5 flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shrink-0">
                         <project.icon className="w-6 h-6 text-white" />
                       </div>
                       <div>
@@ -289,7 +289,7 @@ const Portfolio = () => {
                       </div>
                     </div>
 
-                    <div className="space-y-4">
+                    <div className="space-y-4 flex-grow">
                       <div className="flex flex-wrap gap-2">
                         {project.tech.map((tech, idx) => (
                           <span 
@@ -306,25 +306,25 @@ const Portfolio = () => {
                         <ul className="space-y-1">
                           {project.features.slice(0, 2).map((feature, idx) => (
                             <li key={idx} className="text-xs text-gray-400 flex items-center gap-2">
-                              <ArrowRight className="w-3 h-3 text-[#6366f1]" />
+                              <ArrowRight className="w-3 h-3 text-[#6366f1] shrink-0" />
                               {feature}
                             </li>
                           ))}
                         </ul>
                       </div>
+                    </div>
 
-                      <div className="pt-4 flex justify-between items-center border-t border-white/5">
-                        <span className="text-xs text-gray-500">{project.category}</span>
-                        <Button 
-                          variant="ghost" 
-                          size="sm"
-                          onClick={() => setSelectedProject(project)}
-                          className="text-[#6366f1] hover:text-[#a855f7] hover:bg-white/5 group/btn"
-                        >
-                          <ExternalLink className="w-4 h-4 mr-2 transition-transform duration-300 group-hover/btn:rotate-45" />
-                          View Details
-                        </Button>
-                      </div>
+                    <div className="pt-4 mt-4 flex justify-between items-center border-t border-white/5">
+                      <span className="text-xs text-gray-500">{project.category}</span>
+                      <Button 
+                        variant="ghost" 
+                        size="sm"
+                        onClick={() => setSelectedProject(project)}
+                        className="text-[#6366f1] hover:text-[#a855f7] hover:bg-white/5 group/btn"
+                      >
+                        <ExternalLink className="w-4 h-4 mr-2 transition-transform duration-300 group-hover/btn:rotate-45" />
+                        View Details
+                      </Button>
                     </div>
                   </CardContent>
                 </Card>
