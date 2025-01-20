@@ -14,39 +14,31 @@ const ContactPage = () => {
 
   return (
     <PageBackground>
-      <div className="flex flex-col items-center justify-center min-h-screen max-w-7xl mx-auto px-4">
+      <div className="relative max-w-6xl mx-auto">
         {/* Page title with gradient text */}
         <div 
-          className="text-center mb-16" 
+          className="text-center mb-12" 
           data-aos="fade-down"
         >
-          <h1 className="text-5xl md:text-6xl font-bold text-white mb-4">
-            Get in Touch
+          <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-[#6366f1] via-[#a855f7] to-[#6366f1] bg-clip-text text-transparent pb-2">
+            Let's Connect
           </h1>
-          <p className="text-lg text-gray-400">
-            Feel free to reach out through any of these platforms
+          <p className="mt-4 text-lg text-white/60 max-w-2xl mx-auto">
+            Feel free to reach out through any of these platforms for collaboration, questions, or just to say hello
           </p>
         </div>
 
-        {/* Social links */}
-        <div className="w-full">
+        {/* Social links with reduced vertical padding */}
+        <div className="py-4">
           <SocialLinks />
         </div>
 
-        {/* Animated stars background */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          {[...Array(20)].map((_, i) => (
-            <div
-              key={i}
-              className="absolute w-1 h-1 bg-green-500/20 rounded-full animate-pulse-slow"
-              style={{
-                top: `${Math.random() * 100}%`,
-                left: `${Math.random() * 100}%`,
-                animationDelay: `${Math.random() * 3}s`,
-              }}
-            />
-          ))}
-        </div>
+        {/* Bottom decorative element */}
+        <div 
+          className="absolute bottom-0 left-1/2 -translate-x-1/2 w-32 h-1 bg-gradient-to-r from-transparent via-purple-500/50 to-transparent"
+          data-aos="fade-up"
+          data-aos-delay="400"
+        />
       </div>
     </PageBackground>
   );
