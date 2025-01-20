@@ -9,7 +9,7 @@ import {
   Award, 
   Boxes,
   Shield,
-  Building,
+  Building2,
   GraduationCap,
   Database,
   ShoppingCart,
@@ -21,7 +21,6 @@ import {
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { useSearchParams } from "react-router-dom";
-import PageBackground from "@/components/shared/PageBackground";
 
 const projects = [
   {
@@ -40,7 +39,7 @@ const projects = [
   {
     title: "SABB Bank Management System",
     description: "A Python-based banking system with multi-level authentication, offering secure transaction handling and comprehensive account management features.",
-    icon: Building,
+    icon: Building2,
     tech: ["Python", "CLI", "File I/O", "User Authentication"],
     category: "Banking",
     features: [
@@ -212,7 +211,14 @@ const Portfolio = () => {
   const activeTab = searchParams.get('tab') || 'projects';
 
   return (
-    <PageBackground>
+    <div className="min-h-screen bg-[#0B0B1E] py-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+      {/* Animated background elements */}
+      <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute top-0 left-0 w-[500px] h-[500px] bg-[#6366f1]/5 rounded-full blur-3xl animate-pulse-slow" />
+        <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-[#a855f7]/5 rounded-full blur-3xl animate-pulse-slow" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[#9b87f5]/5 rounded-full blur-3xl animate-spin-slower" />
+      </div>
+
       <div className="max-w-7xl mx-auto relative">
         <div className="text-center mb-16" data-aos="fade-down">
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-[#6366f1] to-[#a855f7] mb-4">
@@ -371,7 +377,7 @@ const Portfolio = () => {
           />
         </DialogContent>
       </Dialog>
-    </PageBackground>
+    </div>
   );
 };
 

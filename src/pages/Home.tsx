@@ -4,7 +4,6 @@ import { DotLottieReact } from '@lottiefiles/dotlottie-react'
 import AOS from 'aos'
 import 'aos/dist/aos.css'
 import { Link } from "react-router-dom"
-import PageBackground from "@/components/shared/PageBackground"
 
 const StatusBadge = memo(() => (
   <div className="inline-block animate-float lg:mx-0" data-aos="zoom-in" data-aos-delay="400">
@@ -168,7 +167,7 @@ const Home = () => {
   };
 
   return (
-    <PageBackground>
+    <div className="min-h-screen bg-[#030014] overflow-hidden" id="Home">
       <div className={`relative z-10 transition-all duration-1000 ${isLoaded ? "opacity-100" : "opacity-0"}`}>
         <div className="container mx-auto px-[5%] sm:px-6 lg:px-[0%] min-h-screen">
           <div className="flex flex-col lg:flex-row items-center justify-center h-screen md:justify-between gap-0 sm:gap-12 lg:gap-20">
@@ -248,7 +247,7 @@ const Home = () => {
           </div>
         </div>
       </div>
-    </PageBackground>
+    </div>
   );
 };
 

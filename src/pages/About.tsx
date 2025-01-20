@@ -4,7 +4,6 @@ import { LucideIcon } from "lucide-react"
 import { Link } from "react-router-dom"
 import AOS from 'aos'
 import 'aos/dist/aos.css'
-import PageBackground from "@/components/shared/PageBackground"
 
 const Header = memo(() => (
   <div className="text-center lg:mb-8 mb-2 px-[5%]">
@@ -36,6 +35,7 @@ const ProfileImage = memo(() => (
       data-aos="fade-up"
       data-aos-duration="1000"
     >
+      {/* Optimized gradient backgrounds with reduced complexity for mobile */}
       <div className="absolute -inset-6 opacity-[25%] z-0 hidden sm:block">
         <div className="absolute inset-0 bg-gradient-to-r from-violet-600 via-indigo-500 to-purple-600 rounded-full blur-2xl animate-spin-slower" />
         <div className="absolute inset-0 bg-gradient-to-l from-fuchsia-500 via-rose-500 to-pink-600 rounded-full blur-2xl animate-pulse-slow opacity-50" />
@@ -46,6 +46,7 @@ const ProfileImage = memo(() => (
         <div className="w-72 h-72 sm:w-80 sm:h-80 rounded-full overflow-hidden shadow-[0_0_40px_rgba(120,119,198,0.3)] transform transition-all duration-700 group-hover:scale-105">
           <div className="absolute inset-0 border-4 border-white/20 rounded-full z-20 transition-all duration-700 group-hover:border-white/40 group-hover:scale-105" />
           
+          {/* Optimized overlay effects - disabled on mobile */}
           <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/40 z-10 transition-opacity duration-700 group-hover:opacity-0 hidden sm:block" />
           <div className="absolute inset-0 bg-gradient-to-t from-purple-500/20 via-transparent to-blue-500/20 z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-700 hidden sm:block" />
           
@@ -56,6 +57,7 @@ const ProfileImage = memo(() => (
             loading="lazy"
           />
 
+          {/* Advanced hover effects - desktop only */}
           <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-all duration-700 z-20 hidden sm:block">
             <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/20 to-transparent transform -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
             <div className="absolute inset-0 bg-gradient-to-bl from-transparent via-white/10 to-transparent transform translate-y-full group-hover:-translate-y-full transition-transform duration-1000 delay-100" />
@@ -64,17 +66,6 @@ const ProfileImage = memo(() => (
         </div>
       </div>
     </div>
-  </div>
-));
-
-const Introduction = memo(() => (
-  <div className="max-w-4xl mx-auto text-center px-4 mb-16" data-aos="fade-up" data-aos-duration="1000">
-    <p className="text-lg text-gray-300 leading-relaxed">
-      Hi there! I'm a passionate full-stack developer with expertise in modern web technologies. 
-      I specialize in creating responsive, user-friendly applications that solve real-world problems. 
-      With a strong foundation in both front-end and back-end development, I bring ideas to life through clean, 
-      efficient code and intuitive user experiences.
-    </p>
   </div>
 ));
 
@@ -151,12 +142,31 @@ const AboutPage = () => {
     };
   }, []);
 
+  // Optimized AOS initialization
   useEffect(() => {
-    AOS.init({
-      once: false, 
-    });
+    const initAOS = () => {
+      AOS.init({
+        once: false, 
+      });
+    };
+
+    initAOS();
+    
+    // Debounced resize handler
+    let resizeTimer;
+    const handleResize = () => {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(initAOS, 250);
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+      clearTimeout(resizeTimer);
+    };
   }, []);
 
+  // Updated statsData with links to portfolio sections
   const statsData = useMemo(() => [
     {
       icon: Code,
@@ -188,20 +198,69 @@ const AboutPage = () => {
   ], [totalProjects, totalCertificates, YearExperience]);
 
   return (
-    <PageBackground>
+    <div
+      className="min-h-screen bg-gradient-to-br from-[#0F0524] via-[#130F24] to-[#0A1929] pb-[10%] text-white overflow-hidden px-[5%] sm:px-[5%] lg:px-[10%] mt-10 sm-mt-0" 
+      id="About"
+    >
+      <Header />
+
       <div className="w-full mx-auto pt-8 sm:pt-12 relative">
-        <Header />
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center mb-16">
-          <Introduction />
+        <div className="flex flex-col-reverse lg:grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+          <div className="space-y-6 text-center lg:text-left">
+            <h2 
+              className="text-3xl sm:text-4xl lg:text-5xl font-bold"
+              data-aos="fade-right"
+              data-aos-duration="1000"
+            >
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#6366f1] to-[#a855f7]">
+                Hello, I'm
+              </span>
+              <span 
+                className="block mt-2 text-gray-200"
+                data-aos="fade-right"
+                data-aos-duration="1300"
+              >
+                Muntazir Mehdi
+              </span>
+            </h2>
+            
+            <p 
+              className="text-base sm:text-lg lg:text-xl text-gray-400 leading-relaxed text-justify pb-4 sm:pb-0"
+              data-aos="fade-right"
+              data-aos-duration="1500"
+            >
+              As a Computer Science graduate specializing in Cybersecurity, I've built expertise across SOC analysis, vulnerability assessment, and penetration testing at Asia Pacific University of Technology & Innovation. My hands-on experience in SIEM implementation, threat detection, and security documentation is strengthened by industry certifications including eJPT and ICCA. I blend technical expertise with analytical thinking to build robust security solutions, always staying ahead of emerging threats to protect critical infrastructure. Whether I'm conducting vulnerability assessments or implementing defense strategies, my goal remains constant: creating resilient security systems that effectively safeguard digital assets.
+            </p>
+            <div className="flex flex-col lg:flex-row items-center lg:items-start gap-4 lg:gap-4 lg:px-0 w-full">
+              <a href="https://drive.google.com/drive/folders/1BOm51Grsabb3zj6Xk27K-iRwI1zITcpo" target="_blank" rel="noopener noreferrer" className="w-full lg:w-auto">
+                <button 
+                  data-aos="fade-up"
+                  data-aos-duration="800"
+                  className="w-full lg:w-auto sm:px-6 py-2 sm:py-3 rounded-lg bg-gradient-to-r from-[#6366f1] to-[#a855f7] text-white font-medium transition-all duration-300 hover:scale-105 flex items-center justify-center lg:justify-start gap-2 shadow-lg hover:shadow-xl"
+                >
+                  <FileText className="w-4 h-4 sm:w-5 sm:h-5" /> Download CV
+                </button>
+              </a>
+              <button 
+                data-aos="fade-up"
+                data-aos-duration="1000"
+                className="w-full lg:w-auto sm:px-6 py-2 sm:py-3 rounded-lg border border-[#a855f7]/50 text-[#a855f7] font-medium transition-all duration-300 hover:scale-105 flex items-center justify-center lg:justify-start gap-2 hover:bg-[#a855f7]/10"
+              >
+                <Code className="w-4 h-4 sm:w-5 sm:h-5" /> View Projects
+              </button>
+            </div>
+          </div>
+
           <ProfileImage />
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-16">
           {statsData.map((stat) => (
             <StatCard key={stat.label} {...stat} />
           ))}
         </div>
       </div>
-    </PageBackground>
+    </div>
   );
 };
 
