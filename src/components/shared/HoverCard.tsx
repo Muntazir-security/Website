@@ -6,7 +6,7 @@ interface HoverCardProps {
   className?: string;
 }
 
-const HoverCard = ({ children, className }: HoverCardProps) => {
+export const HoverCard = ({ children, className }: HoverCardProps) => {
   return (
     <div className="group relative">
       <div className="absolute inset-0 bg-gradient-to-r from-[#6366f1]/20 via-[#9b87f5]/10 to-[#a855f7]/5 rounded-2xl blur-xl transition-all duration-500 group-hover:blur-2xl" />
