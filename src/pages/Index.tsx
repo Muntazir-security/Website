@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import WelcomeScreen from '../components/WelcomeScreen';
 
@@ -12,7 +12,7 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#0B0B1E]">
+    <div className="min-h-screen bg-[#030014]">
       <WelcomeScreen onLoadingComplete={handleLoadingComplete} />
     </div>
   );
