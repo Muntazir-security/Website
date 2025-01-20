@@ -1,7 +1,6 @@
 import React from "react";
 import { Github, Mail, Twitter } from "lucide-react";
 import { cn } from "@/lib/utils";
-import HoverCard from "@/components/shared/HoverCard";
 
 interface SocialLinkProps {
   icon: React.ReactNode;
@@ -20,18 +19,18 @@ const SocialLink = ({ icon, label, value, href, delay }: SocialLinkProps) => (
     data-aos="fade-up"
     data-aos-delay={delay}
   >
-    <HoverCard className="flex flex-col items-center justify-center text-center space-y-8 p-12 bg-[#0B0B1E]/30 backdrop-blur-sm border border-white/5 rounded-2xl hover:border-white/10 transition-all duration-300">
+    <div className="flex flex-col items-center justify-center text-center space-y-4">
       <div className={cn(
-        "p-8 rounded-full transition-all duration-300",
-        "bg-gradient-to-r from-[#6366f1]/10 to-[#a855f7]/10 group-hover:from-[#6366f1]/20 group-hover:to-[#a855f7]/20"
+        "w-32 h-32 rounded-full flex items-center justify-center",
+        "bg-[#1A1F2C] transition-all duration-300"
       )}>
         {icon}
       </div>
-      <div className="space-y-2">
-        <p className="text-2xl font-semibold text-white">{value}</p>
-        <p className="text-lg font-medium text-white/60">{label}</p>
+      <div className="space-y-1">
+        <p className="text-xl font-semibold text-white">{value}</p>
+        <p className="text-base text-white/60">{label}</p>
       </div>
-    </HoverCard>
+    </div>
   </a>
 );
 
@@ -61,7 +60,7 @@ const SocialLinks = () => {
   ];
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-8 px-4">
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-16 px-4 py-16 max-w-6xl mx-auto">
       {links.map((link) => (
         <SocialLink key={link.label} {...link} />
       ))}

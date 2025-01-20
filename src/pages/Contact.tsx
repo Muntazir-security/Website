@@ -13,11 +13,9 @@ const ContactPage = () => {
   }, []);
 
   return (
-    <PageBackground>
-      <div className="max-w-4xl mx-auto relative">
-        <div>
-          <SocialLinks />
-        </div>
+    <PageBackground className="min-h-screen bg-[#0B0B1E]">
+      <div className="container mx-auto py-24">
+        <SocialLinks />
       </div>
     </PageBackground>
   );
