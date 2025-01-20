@@ -22,7 +22,7 @@ const SocialLink = ({ icon, label, value, href, delay }: SocialLinkProps) => (
   >
     <HoverCard className="flex flex-col items-center justify-center text-center space-y-4">
       <div className={cn(
-        "p-4 rounded-full transition-all duration-300",
+        "p-6 rounded-full transition-all duration-300",
         "bg-gradient-to-r from-[#6366f1]/10 to-[#a855f7]/10 group-hover:from-[#6366f1]/20 group-hover:to-[#a855f7]/20"
       )}>
         {icon}
@@ -38,21 +38,21 @@ const SocialLink = ({ icon, label, value, href, delay }: SocialLinkProps) => (
 const SocialLinks = () => {
   const links = [
     {
-      icon: <Github className="w-8 h-8 text-white" />,
+      icon: <Github className="w-16 h-16 text-white" />,
       label: "Github",
       value: "muntazir-security",
       href: "https://github.com/muntazir-security",
       delay: "100"
     },
     {
-      icon: <Mail className="w-8 h-8 text-white" />,
+      icon: <Mail className="w-16 h-16 text-white" />,
       label: "Email",
       value: "info@muntazirmehdi.com",
       href: "mailto:info@muntazirmehdi.com",
       delay: "200"
     },
     {
-      icon: <Linkedin className="w-8 h-8 text-white" />,
+      icon: <Linkedin className="w-16 h-16 text-white" />,
       label: "LinkedIn",
       value: "Muntazir-security",
       href: "https://linkedin.com/in/Muntazir-security",
