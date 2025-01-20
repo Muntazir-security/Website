@@ -30,7 +30,7 @@ const Header = memo(() => (
 ));
 
 const ProfileImage = memo(() => (
-  <div className="flex justify-end items-center sm:p-12 sm:py-0 sm:pb-0 p-0 py-2 pb-2">
+  <div className="flex justify-center items-center sm:p-12 sm:py-0 sm:pb-0 p-0 py-2 pb-2">
     <div 
       className="relative group" 
       data-aos="fade-up"
@@ -64,6 +64,17 @@ const ProfileImage = memo(() => (
         </div>
       </div>
     </div>
+  </div>
+));
+
+const Introduction = memo(() => (
+  <div className="max-w-4xl mx-auto text-center px-4 mb-16" data-aos="fade-up" data-aos-duration="1000">
+    <p className="text-lg text-gray-300 leading-relaxed">
+      Hi there! I'm a passionate full-stack developer with expertise in modern web technologies. 
+      I specialize in creating responsive, user-friendly applications that solve real-world problems. 
+      With a strong foundation in both front-end and back-end development, I bring ideas to life through clean, 
+      efficient code and intuitive user experiences.
+    </p>
   </div>
 ));
 
@@ -180,7 +191,9 @@ const AboutPage = () => {
     <PageBackground>
       <div className="w-full mx-auto pt-8 sm:pt-12 relative">
         <Header />
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-16">
+        <ProfileImage />
+        <Introduction />
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
           {statsData.map((stat) => (
             <StatCard key={stat.label} {...stat} />
           ))}
