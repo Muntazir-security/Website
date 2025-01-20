@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Dialog, DialogContent } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { 
   ExternalLink, 
   Code2, 
@@ -27,11 +27,13 @@ import {
   Monitor,
   Lock,
   Search,
-  Network
+  Network,
+  X
 } from "lucide-react";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { useSearchParams } from "react-router-dom";
+import { HoverCard } from "@/components/shared/HoverCard";
 
 const projects = [
   {
@@ -211,6 +213,7 @@ const techStack = [
 const Portfolio = () => {
   const [searchParams] = useSearchParams();
   const [selectedCertificate, setSelectedCertificate] = useState<string | null>(null);
+  const [selectedProject, setSelectedProject] = useState<typeof projects[0] | null>(null);
   
   useEffect(() => {
     AOS.init({
@@ -271,7 +274,7 @@ const Portfolio = () => {
               {projects.map((project, index) => (
                 <Card 
                   key={index}
-                  className="bg-black/40 backdrop-blur-xl border border-white/10 overflow-hidden group hover:border-white/20 transition-all duration-300"
+                  className="group bg-black/40 backdrop-blur-xl border border-white/10 overflow-hidden hover:border-white/20 transition-all duration-300 hover:shadow-lg hover:shadow-[#6366f1]/10"
                   data-aos="fade-up"
                   data-aos-delay={index * 100}
                 >
@@ -291,7 +294,7 @@ const Portfolio = () => {
                         {project.tech.map((tech, idx) => (
                           <span 
                             key={idx}
-                            className="text-xs px-2 py-1 rounded-full bg-white/5 text-gray-300"
+                            className="text-xs px-2 py-1 rounded-full bg-white/5 text-gray-300 border border-white/10 hover:border-white/20 transition-colors duration-300"
                           >
                             {tech}
                           </span>
@@ -301,7 +304,7 @@ const Portfolio = () => {
                       <div className="space-y-2">
                         <h4 className="text-sm font-medium text-white">Key Features:</h4>
                         <ul className="space-y-1">
-                          {project.features.map((feature, idx) => (
+                          {project.features.slice(0, 2).map((feature, idx) => (
                             <li key={idx} className="text-xs text-gray-400 flex items-center gap-2">
                               <ArrowRight className="w-3 h-3 text-[#6366f1]" />
                               {feature}
@@ -315,9 +318,10 @@ const Portfolio = () => {
                         <Button 
                           variant="ghost" 
                           size="sm"
-                          className="text-[#6366f1] hover:text-[#a855f7] hover:bg-white/5"
+                          onClick={() => setSelectedProject(project)}
+                          className="text-[#6366f1] hover:text-[#a855f7] hover:bg-white/5 group/btn"
                         >
-                          <ExternalLink className="w-4 h-4 mr-2" />
+                          <ExternalLink className="w-4 h-4 mr-2 transition-transform duration-300 group-hover/btn:rotate-45" />
                           View Details
                         </Button>
                       </div>
@@ -382,6 +386,53 @@ const Portfolio = () => {
           </TabsContent>
         </Tabs>
       </div>
+
+      {/* Project Details Dialog */}
+      <Dialog open={!!selectedProject} onOpenChange={() => setSelectedProject(null)}>
+        <DialogContent className="max-w-3xl bg-black/90 backdrop-blur-xl border-white/10">
+          <DialogHeader>
+            <DialogTitle className="flex items-center gap-4">
+              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#6366f1] to-[#a855f7] p-2 flex items-center justify-center">
+                {selectedProject && <selectedProject.icon className="w-5 h-5 text-white" />}
+              </div>
+              <span className="text-xl font-semibold">{selectedProject?.title}</span>
+            </DialogTitle>
+            <DialogDescription className="text-gray-400 mt-4">
+              {selectedProject?.description}
+            </DialogDescription>
+          </DialogHeader>
+          
+          <div className="mt-6 space-y-6">
+            <div>
+              <h4 className="text-sm font-medium text-white mb-3">Technologies Used</h4>
+              <div className="flex flex-wrap gap-2">
+                {selectedProject?.tech.map((tech, idx) => (
+                  <span 
+                    key={idx}
+                    className="text-xs px-3 py-1.5 rounded-full bg-white/5 text-gray-300 border border-white/10 hover:border-white/20 transition-colors duration-300"
+                  >
+                    {tech}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            <div>
+              <h4 className="text-sm font-medium text-white mb-3">Key Features</h4>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                {selectedProject?.features.map((feature, idx) => (
+                  <HoverCard key={idx} className="p-4">
+                    <div className="flex items-start gap-3">
+                      <ArrowRight className="w-4 h-4 text-[#6366f1] mt-0.5" />
+                      <span className="text-sm text-gray-300">{feature}</span>
+                    </div>
+                  </HoverCard>
+                ))}
+              </div>
+            </div>
+          </div>
+        </DialogContent>
+      </Dialog>
 
       {/* Certificate Dialog */}
       <Dialog open={!!selectedCertificate} onOpenChange={() => setSelectedCertificate(null)}>
