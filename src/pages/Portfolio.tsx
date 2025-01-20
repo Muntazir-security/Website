@@ -8,6 +8,15 @@ import {
   Code2, 
   Award, 
   Boxes,
+  Shield,
+  Building,
+  GraduationCap,
+  Database,
+  ShoppingCart,
+  CheckSquare,
+  Car,
+  Home,
+  ArrowRight
 } from "lucide-react";
 import AOS from "aos";
 import "aos/dist/aos.css";
@@ -31,7 +40,7 @@ const projects = [
   {
     title: "SABB Bank Management System",
     description: "A Python-based banking system with multi-level authentication, offering secure transaction handling and comprehensive account management features.",
-    icon: Building2,
+    icon: Building,
     tech: ["Python", "CLI", "File I/O", "User Authentication"],
     category: "Banking",
     features: [
