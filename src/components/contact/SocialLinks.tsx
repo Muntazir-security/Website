@@ -1,5 +1,5 @@
 import React from "react";
-import { Github, Mail, Twitter } from "lucide-react";
+import { Github, Mail, Linkedin } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 interface SocialLinkProps {
@@ -17,83 +17,59 @@ const SocialLink = ({ icon, label, value, href, delay }: SocialLinkProps) => (
     rel="noopener noreferrer"
     className={cn(
       "group relative block overflow-hidden rounded-2xl",
-      "bg-gradient-to-br from-slate-900 to-slate-800",
-      "transition-all duration-500 hover:scale-[1.02]"
+      "bg-black/20 backdrop-blur-sm border border-white/5",
+      "transition-all duration-500 hover:scale-[1.02] hover:border-green-500/20"
     )}
     data-aos="fade-up"
     data-aos-delay={delay}
   >
-    {/* Glass overlay */}
-    <div className="absolute inset-0 bg-white/5 backdrop-blur-sm opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
-
-    {/* Content */}
-    <div className="relative z-10 p-8">
-      <div className="flex items-center gap-6">
-        {/* Icon container with gradient background */}
+    <div className="relative p-8">
+      {/* Icon container */}
+      <div className="flex flex-col items-center gap-4 text-center">
         <div className={cn(
-          "relative flex h-16 w-16 shrink-0 items-center justify-center rounded-xl",
-          "bg-gradient-to-br from-[#6366f1] to-[#a855f7]",
-          "transition-all duration-500 group-hover:shadow-lg group-hover:shadow-purple-500/25"
+          "relative flex h-16 w-16 items-center justify-center rounded-full",
+          "bg-black/30 border border-white/5",
+          "transition-all duration-500 group-hover:border-green-500/20",
+          "group-hover:text-green-400"
         )}>
-          {icon}
-          {/* Glow effect */}
-          <div className="absolute inset-0 rounded-xl bg-purple-500/20 blur opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+          {React.cloneElement(icon as React.ReactElement, {
+            className: "w-8 h-8 transition-colors duration-500"
+          })}
+          <div className="absolute inset-0 rounded-full bg-green-500/5 blur-xl opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
         </div>
 
-        {/* Text content with hover animations */}
-        <div className="space-y-2">
-          <p className="text-lg font-medium text-white group-hover:text-purple-200 transition-colors">
+        {/* Text content */}
+        <div className="space-y-1">
+          <p className="text-lg font-medium text-green-400 transition-colors duration-500">
             {value}
           </p>
-          <p className="text-sm text-slate-400 group-hover:text-slate-300 transition-colors">
+          <p className="text-sm text-gray-500 group-hover:text-gray-400 transition-colors">
             {label}
           </p>
         </div>
       </div>
-
-      {/* Interactive element indicator */}
-      <div className="absolute bottom-4 right-4 text-slate-600 group-hover:text-purple-400 transition-colors">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="20"
-          height="20"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          className="transform transition-transform duration-500 group-hover:translate-x-1 group-hover:-translate-y-1"
-        >
-          <path d="M7 17L17 7" />
-          <path d="M7 7h10v10" />
-        </svg>
-      </div>
     </div>
-
-    {/* Background gradient effect */}
-    <div className="absolute inset-0 bg-gradient-to-br from-purple-500/10 to-indigo-500/10 opacity-0 blur-xl transition-opacity duration-500 group-hover:opacity-100" />
   </a>
 );
 
 const SocialLinks = () => {
   const links = [
     {
-      icon: <Twitter className="w-8 h-8 text-white" />,
-      label: "Twitter",
-      value: "@muntazir-security",
-      href: "https://twitter.com/muntazir-security",
+      icon: <Linkedin />,
+      label: "LinkedIn",
+      value: "muntazir-security",
+      href: "https://linkedin.com/in/muntazir-security",
       delay: "100"
     },
     {
-      icon: <Mail className="w-8 h-8 text-white" />,
+      icon: <Mail />,
       label: "Email",
       value: "info@muntazirmehdi.com",
       href: "mailto:info@muntazirmehdi.com",
       delay: "200"
     },
     {
-      icon: <Github className="w-8 h-8 text-white" />,
+      icon: <Github />,
       label: "Github",
       value: "muntazir-security",
       href: "https://github.com/muntazir-security",
@@ -102,12 +78,10 @@ const SocialLinks = () => {
   ];
 
   return (
-    <div className="relative px-4 py-12">
-      <div className="grid grid-cols-1 gap-6 md:grid-cols-3 max-w-7xl mx-auto">
-        {links.map((link) => (
-          <SocialLink key={link.label} {...link} />
-        ))}
-      </div>
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto px-4">
+      {links.map((link) => (
+        <SocialLink key={link.label} {...link} />
+      ))}
     </div>
   );
 };
