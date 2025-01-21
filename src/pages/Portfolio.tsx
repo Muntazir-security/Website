@@ -228,7 +228,6 @@ const Portfolio = () => {
   const [searchParams] = useSearchParams();
   const [selectedCertificate, setSelectedCertificate] = useState<string | null>(null);
   const [selectedProject, setSelectedProject] = useState<typeof projects[0] | null>(null);
-  const [filter, setFilter] = useState("all");
   
   useEffect(() => {
     AOS.init({
@@ -238,10 +237,6 @@ const Portfolio = () => {
   }, []);
 
   const activeTab = searchParams.get('tab') || 'projects';
-
-  const filteredProjects = filter === "all" 
-    ? projects 
-    : projects.filter(p => p.category.toLowerCase() === filter.toLowerCase());
 
   return (
     <PageBackground>
@@ -282,21 +277,8 @@ const Portfolio = () => {
 
           {/* Projects Content */}
           <TabsContent value="projects">
-            <div className="flex justify-center gap-2 mb-8">
-              {["All", "Security", "Banking", "Education", "Database", "Retail", "Productivity"].map((category) => (
-                <Button
-                  key={category}
-                  variant={filter.toLowerCase() === category.toLowerCase() ? "default" : "outline"}
-                  size="sm"
-                  onClick={() => setFilter(category.toLowerCase())}
-                  className="text-sm"
-                >
-                  {category}
-                </Button>
-              ))}
-            </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {filteredProjects.map((project, index) => (
+              {projects.map((project, index) => (
                 <Card 
                   key={index}
                   className="group bg-black/40 backdrop-blur-xl border border-white/10 overflow-hidden hover:border-white/20 transition-all duration-300 hover:shadow-lg hover:shadow-[#6366f1]/10"
