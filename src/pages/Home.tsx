@@ -149,9 +149,9 @@ const Home = () => {
     return () => clearTimeout(timeout);
   }, [handleTyping]);
 
-  // Update the lottieOptions object with a new, publicly accessible animation
+  // Update the lottieOptions object with a CORS-friendly animation URL
   const lottieOptions = {
-    src: "https://lottie.host/embed/2d2950c7-a9b2-4ca9-91dd-1d274ebaf8ba/B0VeqwCF6M.json",
+    src: "https://lottie.host/58753882-bb6a-49f5-a2c0-950eda1e135a/NLbpVqGegK.json",
     loop: true,
     autoplay: true,
     style: { width: "100%", height: "100%" },
