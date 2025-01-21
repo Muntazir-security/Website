@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&amp;display=swap');
+    </style>
+    <pattern id="texture" width="120" height="120" patternUnits="userSpaceOnUse">
+      <path d="M0 120L120 0" stroke="#1E3A8A" stroke-opacity="0.04" stroke-width="2"/>
+    </pattern>
+  </defs>
+  <!-- Background -->
+  <rect width="100%" height="100%" fill="#0A192F"/>
+  <rect width="100%" height="100%" fill="url(#texture)"/>
+  <!-- Name -->
+  <text x="50%" y="38%" 
+        font-family="Inter" font-size="68" font-weight="600"
+        text-anchor="middle" fill="#FFFFFF" letter-spacing="-1.8px">
+    Muntazir Mehdi
+  </text>
+  <!-- Title -->
+  <text x="50%" y="55%"
+        font-family="Inter" font-size="34" font-weight="400"
+        text-anchor="middle" fill="#80FFEE">
+    Cybersecurity Engineer <tspan fill="#80FFEE">|</tspan> SOC Analyst <tspan fill="#80FFEE">|</tspan> Penetration Tester
+  </text>
+</svg>
