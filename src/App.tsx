@@ -18,8 +18,8 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
-        <MainNav />
-        <main className="pt-16 min-h-screen bg-[#0B0B1E]">
+        <div className="min-h-screen bg-[#0B0B1E]">
+          <MainNav />
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/home" element={<Home />} />
@@ -27,7 +27,7 @@ const App = () => (
             <Route path="/portfolio" element={<Portfolio />} />
             <Route path="/contact" element={<Contact />} />
           </Routes>
-        </main>
+        </div>
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>
