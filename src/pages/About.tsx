@@ -222,7 +222,7 @@ const AboutPage = () => {
               Hello, I'm Muntazir Mehdi, a Cybersecurity Engineer with a passion for securing digital environments. I hold a degree in Computer Science, specializing in Cybersecurity, from Asia Pacific University of Technology & Innovation. With hands-on experience in SOC analysis, vulnerability assessment, and penetration testing, I've developed a strong foundation in identifying and mitigating security risks. My expertise in SIEM implementation, threat detection, and security documentation is further strengthened by industry certifications, including eJPT and ICCA. I blend technical expertise with analytical thinking to build robust security solutions, always staying ahead of emerging threats to protect critical infrastructure. Whether I'm conducting vulnerability assessments or implementing defense strategies, my goal remains constant: creating resilient security systems that effectively safeguard digital environments.
             </p>
             <div className="flex flex-col lg:flex-row items-center lg:items-start gap-4 lg:gap-4 lg:px-0 w-full">
-              <a href="https://drive.google.com/drive/folders/1BOm51Grsabb3zj6Xk27K-iRwI1zITcpo" target="_blank" rel="noopener noreferrer" className="w-full lg:w-auto">
+              <a href="https://drive.google.com/file/d/1elv9fAs-utle7FIR6uQeAfvmQzbFjYYk/view?usp=sharing" target="_blank" rel="noopener noreferrer" className="w-full lg:w-auto">
                 <button 
                   data-aos="fade-up"
                   data-aos-duration="800"
@@ -255,3 +255,4 @@ const AboutPage = () => {
 };
 
 export default AboutPage;
+
