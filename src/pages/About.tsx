@@ -6,21 +6,11 @@ import AOS from 'aos'
 import 'aos/dist/aos.css'
 
 const Header = memo(() => (
-  <div className="text-center lg:mb-8 mb-2 px-[5%] pt-24">
-    <div className="inline-block relative group">
-      <h2 
-        className="text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#6366f1] to-[#a855f7]" 
-        data-aos="zoom-in-up"
-        data-aos-duration="600"
-      >
-        About Me
-      </h2>
-    </div>
-    <p 
-      className="mt-2 text-gray-400 max-w-2xl mx-auto text-base sm:text-lg flex items-center justify-center gap-2"
-      data-aos="zoom-in-up"
-      data-aos-duration="800"
-    >
+  <div className="text-center mb-16 pt-20" data-aos="fade-down">
+    <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-[#6366f1] to-[#a855f7] mb-4">
+      About Me
+    </h1>
+    <p className="text-gray-400 max-w-2xl mx-auto flex items-center justify-center gap-2">
       <Sparkles className="w-5 h-5 text-purple-400" />
       Transforming ideas into digital experiences
       <Sparkles className="w-5 h-5 text-purple-400" />
@@ -199,11 +189,11 @@ const AboutPage = () => {
 
   return (
     <div
-      className="min-h-screen bg-gradient-to-br from-[#0F0524] via-[#130F24] to-[#0A1929] pb-[10%] text-white overflow-hidden px-[5%] sm:px-[5%] lg:px-[10%] mt-10 sm-mt-0" 
+      className="min-h-screen bg-gradient-to-br from-[#0F0524] via-[#130F24] to-[#0A1929] pb-[10%] text-white overflow-hidden px-[5%] sm:px-[5%] lg:px-[10%]" 
       id="About"
     >
       <Header />
-
+      
       <div className="w-full mx-auto pt-8 sm:pt-12 relative">
         <div className="flex flex-col-reverse lg:grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
           <div className="space-y-6 text-center lg:text-left">
