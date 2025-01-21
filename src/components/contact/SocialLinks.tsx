@@ -1,5 +1,5 @@
 import React from "react";
-import { Github, Mail, Twitter } from "lucide-react";
+import { Github, Mail, Linkedin } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 interface SocialLinkProps {
@@ -16,84 +16,50 @@ const SocialLink = ({ icon, label, value, href, delay }: SocialLinkProps) => (
     target="_blank"
     rel="noopener noreferrer"
     className={cn(
-      "group relative block overflow-hidden rounded-2xl",
-      "bg-gradient-to-br from-slate-900 to-slate-800",
-      "transition-all duration-500 hover:scale-[1.02]"
+      "group relative block overflow-hidden rounded-xl",
+      "bg-black/20 backdrop-blur-sm border border-white/10",
+      "transition-all duration-500 hover:border-white/20 hover:bg-white/10"
     )}
     data-aos="fade-up"
     data-aos-delay={delay}
   >
-    {/* Glass overlay */}
-    <div className="absolute inset-0 bg-white/5 backdrop-blur-sm opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
-
-    {/* Content */}
-    <div className="relative z-10 p-8">
-      <div className="flex items-center gap-6">
-        {/* Icon container with gradient background */}
-        <div className={cn(
-          "relative flex h-16 w-16 shrink-0 items-center justify-center rounded-xl",
-          "bg-gradient-to-br from-[#6366f1] to-[#a855f7]",
-          "transition-all duration-500 group-hover:shadow-lg group-hover:shadow-purple-500/25"
-        )}>
-          {icon}
-          {/* Glow effect */}
-          <div className="absolute inset-0 rounded-xl bg-purple-500/20 blur opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
-        </div>
-
-        {/* Text content with hover animations */}
-        <div className="space-y-2">
-          <p className="text-lg font-medium text-white group-hover:text-purple-200 transition-colors">
-            {value}
-          </p>
-          <p className="text-sm text-slate-400 group-hover:text-slate-300 transition-colors">
-            {label}
-          </p>
-        </div>
+    <div className="relative p-8 flex flex-col items-center justify-center text-center gap-3">
+      {/* Icon */}
+      <div className="text-[#6366f1] w-12 h-12">
+        {icon}
       </div>
 
-      {/* Interactive element indicator */}
-      <div className="absolute bottom-4 right-4 text-slate-600 group-hover:text-purple-400 transition-colors">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="20"
-          height="20"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          className="transform transition-transform duration-500 group-hover:translate-x-1 group-hover:-translate-y-1"
-        >
-          <path d="M7 17L17 7" />
-          <path d="M7 7h10v10" />
-        </svg>
+      {/* Text content */}
+      <div className="space-y-1">
+        <p className="text-xl font-medium text-white group-hover:text-[#6366f1] transition-colors">
+          {value}
+        </p>
+        <p className="text-sm text-gray-400">
+          {label}
+        </p>
       </div>
     </div>
-
-    {/* Background gradient effect */}
-    <div className="absolute inset-0 bg-gradient-to-br from-purple-500/10 to-indigo-500/10 opacity-0 blur-xl transition-opacity duration-500 group-hover:opacity-100" />
   </a>
 );
 
 const SocialLinks = () => {
   const links = [
     {
-      icon: <Twitter className="w-8 h-8 text-white" />,
-      label: "Twitter",
-      value: "@muntazir-security",
-      href: "https://twitter.com/muntazir-security",
+      icon: <Linkedin className="w-full h-full" />,
+      label: "LinkedIn",
+      value: "muntazir-security",
+      href: "https://linkedin.com/in/muntazir-security",
       delay: "100"
     },
     {
-      icon: <Mail className="w-8 h-8 text-white" />,
+      icon: <Mail className="w-full h-full" />,
       label: "Email",
       value: "info@muntazirmehdi.com",
       href: "mailto:info@muntazirmehdi.com",
       delay: "200"
     },
     {
-      icon: <Github className="w-8 h-8 text-white" />,
+      icon: <Github className="w-full h-full" />,
       label: "Github",
       value: "muntazir-security",
       href: "https://github.com/muntazir-security",
@@ -102,12 +68,10 @@ const SocialLinks = () => {
   ];
 
   return (
-    <div className="relative px-4 py-12">
-      <div className="grid grid-cols-1 gap-6 md:grid-cols-3 max-w-7xl mx-auto">
-        {links.map((link) => (
-          <SocialLink key={link.label} {...link} />
-        ))}
-      </div>
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 px-4">
+      {links.map((link) => (
+        <SocialLink key={link.label} {...link} />
+      ))}
     </div>
   );
 };
