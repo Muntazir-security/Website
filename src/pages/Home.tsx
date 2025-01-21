@@ -92,7 +92,7 @@ const WORDS = ["Ethical Hacker", "Network Defender", "Security Analysis"];
 const TECH_STACK = ["SIEM", "Threat Intel", "Network Security", "Incident Response"];
 const SOCIAL_LINKS = [
   { icon: Github, link: "https://github.com/muntazir-security" },
-  { icon: Linkedin, link: "https://www.linkedin.com/in/muntazir-security/" },
+  { icon: Linkedin, link: "https://linkedin.com/in/muntazir-security/" },
   { icon: Shield, link: "https://tryhackme.com/p/yourusername" }
 ];
 
@@ -149,17 +149,11 @@ const Home = () => {
     return () => clearTimeout(timeout);
   }, [handleTyping]);
 
-  // Update Lottie animation source to a security-themed animation
-
-  // Update the lottieOptions object in the Home component
+  // Update the lottieOptions object with a new, publicly accessible animation
   const lottieOptions = {
-    src: "https://lottie.host/2d2950c7-a9b2-4ca9-91dd-1d274ebaf8ba/B0VeqwCF6M.json",
+    src: "https://lottie.host/embed/2d2950c7-a9b2-4ca9-91dd-1d274ebaf8ba/B0VeqwCF6M.json",
     loop: true,
     autoplay: true,
-    rendererSettings: {
-      preserveAspectRatio: 'xMidYMid slice',
-      progressiveLoad: true,
-    },
     style: { width: "100%", height: "100%" },
     className: `w-full h-full transition-all duration-500 ${
       isHovering 
@@ -254,4 +248,3 @@ const Home = () => {
 };
 
 export default memo(Home);
-
