@@ -204,21 +204,21 @@ const certificates = [
 ];
 
 const techStack = [
-  { name: "HTML", icon: "/html5.svg", lucideIcon: Globe },
-  { name: "CSS", icon: "/css3.svg", lucideIcon: Palette },
-  { name: "JavaScript", icon: "/javascript.svg", lucideIcon: FileCode },
-  { name: "Tailwind CSS", icon: "/tailwind.svg", lucideIcon: Wind },
-  { name: "Vercel", icon: "/vercel.svg", lucideIcon: Cloud },
-  { name: "Docker", icon: "/docker.svg", lucideIcon: Boxes },
-  { name: "Kubernetes", icon: "/kubernetes.svg", lucideIcon: Network },
-  { name: "AWS", icon: "/aws.svg", lucideIcon: Cloud },
-  { name: "Azure", icon: "/azure.svg", lucideIcon: Cloud },
-  { name: "Splunk", icon: "/splunk.svg", lucideIcon: Search },
-  { name: "Red Hat", icon: "/redhat.svg", lucideIcon: Server },
-  { name: "Suricata", icon: "/suricata.svg", lucideIcon: Shield },
-  { name: "Nessus", icon: "/nessus.svg", lucideIcon: Lock },
-  { name: "Arch Linux", icon: "/archlinux.svg", lucideIcon: Terminal },
-  { name: "Cisco", icon: "/cisco.svg", lucideIcon: Router }
+  { name: "HTML", icon: "/html5.svg" },
+  { name: "CSS", icon: "/css3.svg" },
+  { name: "JavaScript", icon: "/javascript.svg" },
+  { name: "Tailwind CSS", icon: "/tailwind.svg" },
+  { name: "Vercel", icon: "/vercel.svg" },
+  { name: "Docker", icon: "/docker.svg" },
+  { name: "Kubernetes", icon: "/kubernetes.svg" },
+  { name: "AWS", icon: "/aws.svg" },
+  { name: "Azure", icon: "/azure.svg" },
+  { name: "Splunk", icon: "/splunk.svg" },
+  { name: "Red Hat", icon: "/lovable-uploads/555bd741-67e6-481a-a9d4-412df81e8673.png" },
+  { name: "Suricata", icon: "/suricata.svg" },
+  { name: "Nessus", icon: "/lovable-uploads/14f8e442-54dc-45c3-857c-cac33eb3e013.png" },
+  { name: "Arch Linux", icon: "/archlinux.svg" },
+  { name: "Cisco", icon: "/cisco.svg" }
 ];
 
 const Portfolio = () => {
