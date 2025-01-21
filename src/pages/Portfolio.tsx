@@ -214,7 +214,7 @@ const techStack = [
   { name: "AWS", icon: "/aws.svg", lucideIcon: Cloud },
   { name: "Azure", icon: "/azure.svg", lucideIcon: Cloud },
   { name: "Splunk", icon: "/splunk.svg", lucideIcon: Search },
-  { name: "Red Hat", icon: "/redhat.svg", lucideIcon: Server },
+  { name: "Red Hat", icon: "/lovable-uploads/7b08653a-f78f-4862-925e-060e605b1215.png", lucideIcon: Server },
   { name: "Suricata", icon: "/suricata.svg", lucideIcon: Shield },
   { name: "Nessus", icon: "/nessus.svg", lucideIcon: Lock },
   { name: "Arch Linux", icon: "/archlinux.svg", lucideIcon: Terminal },
