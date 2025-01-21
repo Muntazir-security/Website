@@ -380,11 +380,8 @@ const Portfolio = () => {
                     <img 
                       src={tech.icon} 
                       alt={tech.name}
-                      className="w-12 h-12 object-contain absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                      className="w-12 h-12 object-contain"
                     />
-                    {React.createElement(tech.lucideIcon, {
-                      className: "w-12 h-12 text-gray-300 group-hover:opacity-0 transition-opacity duration-300"
-                    })}
                   </div>
                   <span className="text-gray-300 text-sm font-medium">{tech.name}</span>
                 </div>
