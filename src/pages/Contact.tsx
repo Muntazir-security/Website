@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
-import SocialLinks from "@/components/contact/SocialLinks";
 import PageBackground from "@/components/shared/PageBackground";
+import SocialLinks from "@/components/contact/SocialLinks";
 import AOS from "aos";
 import "aos/dist/aos.css";
 
@@ -21,8 +21,8 @@ const ContactPage = () => {
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-[#6366f1] to-[#a855f7] mb-4">
               Get in Touch
             </h1>
-            <p className="text-gray-400 text-lg">
-              Feel free to reach out through any of these platforms
+            <p className="text-gray-400 text-lg max-w-2xl mx-auto">
+              Have a project in mind? Let's collaborate! Feel free to reach out through any of these platforms.
             </p>
           </div>
 
