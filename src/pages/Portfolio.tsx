@@ -29,7 +29,9 @@ import {
   Search,
   Network,
   X,
-  AlertTriangle
+  AlertTriangle,
+  Terminal,
+  Router
 } from "lucide-react";
 import AOS from "aos";
 import "aos/dist/aos.css";
@@ -206,22 +208,17 @@ const techStack = [
   { name: "CSS", icon: "/css3.svg", lucideIcon: Palette },
   { name: "JavaScript", icon: "/javascript.svg", lucideIcon: FileCode },
   { name: "Tailwind CSS", icon: "/tailwind.svg", lucideIcon: Wind },
-  { name: "ReactJS", icon: "/react.svg", lucideIcon: Code2 },
-  { name: "Vite", icon: "/vite.svg", lucideIcon: Cpu },
-  { name: "Node.js", icon: "/nodejs.svg", lucideIcon: Server },
-  { name: "Bootstrap", icon: "/bootstrap.svg", lucideIcon: Monitor },
-  { name: "Firebase", icon: "/firebase.svg", lucideIcon: Cloud },
-  { name: "Material UI", icon: "/mui.svg", lucideIcon: Palette },
   { name: "Vercel", icon: "/vercel.svg", lucideIcon: Cloud },
-  { name: "SweetAlert2", icon: "/sweetalert2.svg", lucideIcon: Monitor },
   { name: "Docker", icon: "/docker.svg", lucideIcon: Boxes },
   { name: "Kubernetes", icon: "/kubernetes.svg", lucideIcon: Network },
   { name: "AWS", icon: "/aws.svg", lucideIcon: Cloud },
+  { name: "Azure", icon: "/azure.svg", lucideIcon: Cloud },
   { name: "Splunk", icon: "/splunk.svg", lucideIcon: Search },
   { name: "Red Hat", icon: "/redhat.svg", lucideIcon: Server },
-  { name: "Terraform", icon: "/terraform.svg", lucideIcon: Cloud },
   { name: "Suricata", icon: "/suricata.svg", lucideIcon: Shield },
-  { name: "Nessus", icon: "/nessus.svg", lucideIcon: Lock }
+  { name: "Nessus", icon: "/nessus.svg", lucideIcon: Lock },
+  { name: "Arch Linux", icon: "/archlinux.svg", lucideIcon: Terminal },
+  { name: "Cisco", icon: "/cisco.svg", lucideIcon: Router }
 ];
 
 const Portfolio = () => {
@@ -473,4 +470,3 @@ const Portfolio = () => {
 };
 
 export default Portfolio;
-
