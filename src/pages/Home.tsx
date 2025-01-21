@@ -25,14 +25,14 @@ const MainTitle = memo(() => (
       <span className="relative inline-block">
         <span className="absolute -inset-2 bg-gradient-to-r from-[#6366f1] to-[#a855f7] blur-2xl opacity-20"></span>
         <span className="relative bg-gradient-to-r from-white via-blue-100 to-purple-200 bg-clip-text text-transparent">
-          Cybersecurity
+          Muntazir
         </span>
       </span>
       <br />
       <span className="relative inline-block mt-2">
         <span className="absolute -inset-2 bg-gradient-to-r from-[#6366f1] to-[#a855f7] blur-2xl opacity-20"></span>
         <span className="relative bg-gradient-to-r from-[#6366f1] to-[#a855f7] bg-clip-text text-transparent">
-          Engineer
+          Mehdi
         </span>
       </span>
     </h1>
@@ -161,7 +161,7 @@ const Home = () => {
     style: { width: "100%", height: "100%" },
     className: `w-full h-full transition-all duration-500 ${
       isHovering 
-        ? "scale-[180%] sm:scale-[160%] md:scale-[150%] lg:scale-[145%] rotate-2" 
+        ? "scale-[180%] sm:scale-[160%] md:scale-[150%] lg:scale-[145%]" 
         : "scale-[175%] sm:scale-[155%] md:scale-[145%] lg:scale-[140%]"
     }`
   };
@@ -171,7 +171,6 @@ const Home = () => {
       <div className={`relative z-10 transition-all duration-1000 ${isLoaded ? "opacity-100" : "opacity-0"}`}>
         <div className="container mx-auto px-[5%] sm:px-6 lg:px-[0%] min-h-screen">
           <div className="flex flex-col lg:flex-row items-center justify-center h-screen md:justify-between gap-0 sm:gap-12 lg:gap-20">
-            {/* Left Column */}
             <div className="w-full lg:w-1/2 space-y-6 sm:space-y-8 text-left lg:text-left order-1 lg:order-1 lg:mt-0"
               data-aos="fade-right"
               data-aos-delay="200">
@@ -191,7 +190,7 @@ const Home = () => {
                 <p className="text-base md:text-lg text-gray-400 max-w-xl leading-relaxed font-light"
                   data-aos="fade-up"
                   data-aos-delay="1000">
-                  Bridging the gap between security threats and robust defense solutions. As a dedicated Cybersecurity Professional with hands-on SOC and Security Analyst experience, I transform complex vulnerabilities into actionable defense strategies.
+                  Hi, I'm a Cybersecurity Engineer with hands-on experience in SOC analysis, vulnerability assessment, and penetration testing. I specialize in identifying vulnerabilities and crafting robust defense strategies to protect digital environments from emerging threats.
                 </p>
 
                 {/* Tech Stack */}
