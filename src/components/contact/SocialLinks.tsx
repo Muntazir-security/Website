@@ -23,18 +23,18 @@ const SocialLink = ({ icon, label, value, href, delay }: SocialLinkProps) => (
     data-aos="fade-up"
     data-aos-delay={delay}
   >
-    <div className="relative p-8 flex flex-col items-center justify-center text-center gap-3">
+    <div className="relative p-12 flex flex-col items-center justify-center text-center gap-6">
       {/* Icon */}
-      <div className="text-[#6366f1] w-12 h-12">
+      <div className="text-[#6366f1] w-20 h-20">
         {icon}
       </div>
 
       {/* Text content */}
-      <div className="space-y-1">
-        <p className="text-xl font-medium text-white group-hover:text-[#6366f1] transition-colors">
+      <div className="space-y-2">
+        <p className="text-2xl font-medium text-white group-hover:text-[#6366f1] transition-colors">
           {value}
         </p>
-        <p className="text-sm text-gray-400">
+        <p className="text-lg text-gray-400">
           {label}
         </p>
       </div>
@@ -68,7 +68,7 @@ const SocialLinks = () => {
   ];
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 px-4">
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-8 px-6">
       {links.map((link) => (
         <SocialLink key={link.label} {...link} />
       ))}
