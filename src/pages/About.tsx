@@ -12,7 +12,7 @@ const Header = memo(() => (
     </h1>
     <p className="text-gray-400 max-w-2xl mx-auto flex items-center justify-center gap-2">
       <Sparkles className="w-5 h-5 text-purple-400" />
-      Transforming ideas into digital experiences
+      Transforming vulnerabilities into robust security solutions
       <Sparkles className="w-5 h-5 text-purple-400" />
     </p>
   </div>
