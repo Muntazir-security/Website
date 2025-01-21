@@ -28,52 +28,60 @@ import {
   Lock,
   Search,
   Network,
-  X
+  X,
+  AlertTriangle
 } from "lucide-react";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { useSearchParams } from "react-router-dom";
 import { HoverCard } from "@/components/shared/HoverCard";
+import PageBackground from "@/components/shared/PageBackground";
 
 const projects = [
   {
     title: "Mitigating TCP SYN Flooding-Based DDoS Attack in SDN",
-    description: "An advanced anomaly detection system designed to protect Software-Defined Networks from TCP SYN flooding-based DDoS attacks using statistical approaches.",
+    description: "Designed and implemented an advanced anomaly detection system to protect Software-Defined Networks (SDN) from DDoS attacks. The system uses a statistical approach for real-time analysis of network traffic, ensuring robust security against SYN flooding attacks.",
     icon: Shield,
     tech: ["Software-Defined Networking (SDN)", "DDoS Mitigation", "Network Security", "Statistical Analysis"],
     category: "Security",
     features: [
-      "Statistical approach for anomaly detection in SDN",
       "Real-time analysis of network traffic",
       "Detection and prevention of TCP SYN flooding",
-      "Enhancement of critical infrastructure protection"
-    ]
+      "Enhancement of critical infrastructure protection",
+      "Statistical anomaly detection"
+    ],
+    overview: "An advanced anomaly detection system designed to protect Software-Defined Networks from TCP SYN flooding-based DDoS attacks using statistical approaches.",
+    problem: "TCP SYN flooding-based DDoS attacks can overwhelm SDN controllers, leading to network downtime and security breaches. This project aimed to mitigate such attacks using statistical anomaly detection.",
+    solution: "Developed a statistical approach to detect anomalies in network traffic in real-time. The system identifies and mitigates TCP SYN flooding attacks, ensuring the stability and security of SDN environments."
   },
   {
     title: "SABB Bank Management System",
-    description: "A Python-based banking system with multi-level authentication, offering secure transaction handling and comprehensive account management features.",
+    description: "Developed a Python-based banking system with multi-level authentication and secure transaction handling. The system ensures robust security and prevents fraudulent activities.",
     icon: Building2,
     tech: ["Python", "CLI", "File I/O", "User Authentication"],
     category: "Banking",
     features: [
-      "Multi-level user authentication",
-      "Secure transactions handling",
-      "Transaction history tracking",
-      "Password management"
-    ]
+      "Multi-level user authentication for enhanced security.",
+      "Secure handling of transactions to prevent fraud."
+    ],
+    overview: "A Python-based banking system with multi-level authentication, offering secure transaction handling and comprehensive account management features.",
+    problem: "The banking system needed to ensure secure transactions and protect user data from unauthorized access.",
+    solution: "Implemented multi-level authentication and secure transaction handling to enhance security."
   },
   {
     title: "University Information Management System",
-    description: "A recommendation engine for the Malaysian Ministry of Higher Education to help evaluate global higher education options using QS university rating data.",
+    description: "Created a recommendation engine for the Malaysian Ministry of Higher Education to evaluate university rankings. The system features user-specific interfaces and data analysis tools.",
     icon: GraduationCap,
     tech: ["Data Structures", "Algorithms", "User Authentication", "Data Analysis"],
     category: "Education",
     features: [
       "University ranking system",
       "User-specific interfaces",
-      "Data analysis tools",
-      "Administrative dashboard"
-    ]
+      "Data analysis tools"
+    ],
+    overview: "A recommendation engine for the Malaysian Ministry of Higher Education to help evaluate global higher education options using QS university rating data.",
+    problem: "Students needed a reliable way to evaluate universities based on various criteria.",
+    solution: "Developed a recommendation engine that analyzes university data and provides tailored suggestions."
   },
   {
     title: "APU e-Bookstore Database Management System",
@@ -84,9 +92,11 @@ const projects = [
     features: [
       "ERD modeling",
       "Database normalization",
-      "Order processing",
-      "Review system"
-    ]
+      "Order processing"
+    ],
+    overview: "A database management system for APU's e-Bookstore, enhancing book management and order processing.",
+    problem: "The e-Bookstore required an efficient way to manage books and orders.",
+    solution: "Implemented a normalized database design to streamline operations."
   },
   {
     title: "Minimart Management System",
@@ -96,10 +106,11 @@ const projects = [
     category: "Retail",
     features: [
       "Inventory management",
-      "Sales analysis",
-      "Stock tracking",
-      "Revenue reporting"
-    ]
+      "Sales analysis"
+    ],
+    overview: "An Assembly Language application providing essential tools for minimart operations.",
+    problem: "Minimarts needed a simple yet effective way to manage inventory and sales.",
+    solution: "Developed an application that streamlines inventory management and sales tracking."
   },
   {
     title: "Personal Task Management System",
@@ -109,10 +120,11 @@ const projects = [
     category: "Productivity",
     features: [
       "Task organization",
-      "Priority scheduling",
-      "Deadline management",
-      "Progress tracking"
-    ]
+      "Priority scheduling"
+    ],
+    overview: "A CLI-based task management solution that helps users organize and track tasks effectively.",
+    problem: "Users needed a way to manage tasks efficiently in a command-line environment.",
+    solution: "Created a CLI application that allows users to organize tasks with priority scheduling."
   },
   {
     title: "Car Rental System",
@@ -122,10 +134,11 @@ const projects = [
     category: "Transportation",
     features: [
       "Vehicle booking",
-      "Customer management",
-      "Payment processing",
-      "Report generation"
-    ]
+      "Customer management"
+    ],
+    overview: "A Java-based rental management system that simplifies vehicle booking and customer management.",
+    problem: "Car rental companies needed an efficient way to manage bookings and customers.",
+    solution: "Developed a system that streamlines vehicle booking and customer management processes."
   },
   {
     title: "House Rent Prediction Analysis",
@@ -135,10 +148,11 @@ const projects = [
     category: "Analytics",
     features: [
       "Data preprocessing",
-      "Statistical modeling",
-      "Market trend analysis",
-      "Visualization"
-    ]
+      "Statistical modeling"
+    ],
+    overview: "A data analysis project that explores housing market trends using statistical modeling.",
+    problem: "Homebuyers needed insights into housing market trends to make informed decisions.",
+    solution: "Conducted data analysis and visualization to provide insights into market trends."
   }
 ];
 
@@ -214,6 +228,7 @@ const Portfolio = () => {
   const [searchParams] = useSearchParams();
   const [selectedCertificate, setSelectedCertificate] = useState<string | null>(null);
   const [selectedProject, setSelectedProject] = useState<typeof projects[0] | null>(null);
+  const [filter, setFilter] = useState("all");
   
   useEffect(() => {
     AOS.init({
@@ -224,15 +239,12 @@ const Portfolio = () => {
 
   const activeTab = searchParams.get('tab') || 'projects';
 
-  return (
-    <div className="min-h-screen bg-[#0B0B1E] py-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
-      {/* Animated background elements */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-0 left-0 w-[500px] h-[500px] bg-[#6366f1]/5 rounded-full blur-3xl animate-pulse-slow" />
-        <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-[#a855f7]/5 rounded-full blur-3xl animate-pulse-slow" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[#9b87f5]/5 rounded-full blur-3xl animate-spin-slower" />
-      </div>
+  const filteredProjects = filter === "all" 
+    ? projects 
+    : projects.filter(p => p.category.toLowerCase() === filter.toLowerCase());
 
+  return (
+    <PageBackground>
       <div className="max-w-7xl mx-auto relative">
         <div className="text-center mb-16" data-aos="fade-down">
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-[#6366f1] to-[#a855f7] mb-4">
@@ -270,28 +282,41 @@ const Portfolio = () => {
 
           {/* Projects Content */}
           <TabsContent value="projects">
+            <div className="flex justify-center gap-2 mb-8">
+              {["All", "Security", "Banking", "Education", "Database", "Retail", "Productivity"].map((category) => (
+                <Button
+                  key={category}
+                  variant={filter.toLowerCase() === category.toLowerCase() ? "default" : "outline"}
+                  size="sm"
+                  onClick={() => setFilter(category.toLowerCase())}
+                  className="text-sm"
+                >
+                  {category}
+                </Button>
+              ))}
+            </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {projects.map((project, index) => (
+              {filteredProjects.map((project, index) => (
                 <Card 
                   key={index}
-                  className="group bg-black/40 backdrop-blur-xl border border-white/10 overflow-hidden hover:border-white/20 transition-all duration-300 hover:shadow-lg hover:shadow-[#6366f1]/10 h-full flex flex-col"
+                  className="group bg-black/40 backdrop-blur-xl border border-white/10 overflow-hidden hover:border-white/20 transition-all duration-300 hover:shadow-lg hover:shadow-[#6366f1]/10"
                   data-aos="fade-up"
                   data-aos-delay={index * 100}
                 >
-                  <CardContent className="p-6 flex flex-col h-full">
+                  <CardContent className="p-6">
                     <div className="flex items-start gap-4 mb-6">
-                      <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#6366f1] to-[#a855f7] p-2.5 flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shrink-0">
+                      <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#6366f1] to-[#a855f7] p-2.5 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
                         <project.icon className="w-6 h-6 text-white" />
                       </div>
                       <div>
                         <h3 className="text-xl font-semibold text-white mb-2">{project.title}</h3>
-                        <p className="text-gray-400 text-sm line-clamp-2">{project.description}</p>
+                        <p className="text-gray-400 text-sm line-clamp-3">{project.description}</p>
                       </div>
                     </div>
 
-                    <div className="space-y-4 flex-grow">
+                    <div className="space-y-4">
                       <div className="flex flex-wrap gap-2">
-                        {project.tech.map((tech, idx) => (
+                        {project.tech.slice(0, 3).map((tech, idx) => (
                           <span 
                             key={idx}
                             className="text-xs px-2 py-1 rounded-full bg-white/5 text-gray-300 border border-white/10 hover:border-white/20 transition-colors duration-300"
@@ -299,6 +324,11 @@ const Portfolio = () => {
                             {tech}
                           </span>
                         ))}
+                        {project.tech.length > 3 && (
+                          <span className="text-xs px-2 py-1 rounded-full bg-white/5 text-gray-300">
+                            +{project.tech.length - 3} more
+                          </span>
+                        )}
                       </div>
 
                       <div className="space-y-2">
@@ -314,16 +344,14 @@ const Portfolio = () => {
                       </div>
                     </div>
 
-                    <div className="pt-4 mt-4 flex justify-between items-center border-t border-white/5">
-                      <span className="text-xs text-gray-500">{project.category}</span>
+                    <div className="pt-4 mt-4 border-t border-white/5">
                       <Button 
                         variant="ghost" 
-                        size="sm"
+                        className="w-full text-[#6366f1] hover:text-[#a855f7] hover:bg-white/5"
                         onClick={() => setSelectedProject(project)}
-                        className="text-[#6366f1] hover:text-[#a855f7] hover:bg-white/5 group/btn"
                       >
-                        <ExternalLink className="w-4 h-4 mr-2 transition-transform duration-300 group-hover/btn:rotate-45" />
-                        View Details
+                        <ExternalLink className="w-4 h-4 mr-2" />
+                        View Project Details
                       </Button>
                     </div>
                   </CardContent>
@@ -389,46 +417,60 @@ const Portfolio = () => {
 
       {/* Project Details Dialog */}
       <Dialog open={!!selectedProject} onOpenChange={() => setSelectedProject(null)}>
-        <DialogContent className="max-w-3xl bg-black/90 backdrop-blur-xl border-white/10">
+        <DialogContent className="max-w-4xl bg-black/90 backdrop-blur-xl border-white/10">
           <DialogHeader>
-            <DialogTitle className="flex items-center gap-4 text-white">
-              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#6366f1] to-[#a855f7] p-2 flex items-center justify-center">
-                {selectedProject && <selectedProject.icon className="w-5 h-5 text-white" />}
+            <DialogTitle className="flex items-center gap-4">
+              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#6366f1] to-[#a855f7] p-2.5 flex items-center justify-center">
+                {selectedProject && <selectedProject.icon className="w-6 h-6 text-white" />}
               </div>
-              <span className="text-xl font-semibold text-white">{selectedProject?.title}</span>
+              <span className="text-2xl font-semibold text-white">{selectedProject?.title}</span>
             </DialogTitle>
-            <DialogDescription className="text-gray-300 mt-4">
-              {selectedProject?.description}
-            </DialogDescription>
           </DialogHeader>
           
-          <div className="mt-6 space-y-6">
-            <div>
-              <h4 className="text-sm font-medium text-white mb-3">Technologies Used</h4>
-              <div className="flex flex-wrap gap-2">
-                {selectedProject?.tech.map((tech, idx) => (
-                  <span 
-                    key={idx}
-                    className="text-xs px-3 py-1.5 rounded-full bg-white/5 text-gray-300 border border-white/10 hover:border-white/20 transition-colors duration-300"
-                  >
-                    {tech}
-                  </span>
-                ))}
-              </div>
+          <div className="mt-8 space-y-8">
+            <HoverCard>
+              <h3 className="text-lg font-semibold text-white mb-2">Overview</h3>
+              <p className="text-gray-300">{selectedProject?.overview}</p>
+            </HoverCard>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <HoverCard>
+                <h3 className="text-lg font-semibold text-white mb-2">Problem Statement</h3>
+                <p className="text-gray-300">{selectedProject?.problem}</p>
+              </HoverCard>
+
+              <HoverCard>
+                <h3 className="text-lg font-semibold text-white mb-2">Solution</h3>
+                <p className="text-gray-300">{selectedProject?.solution}</p>
+              </HoverCard>
             </div>
 
-            <div>
-              <h4 className="text-sm font-medium text-white mb-3">Key Features</h4>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                {selectedProject?.features.map((feature, idx) => (
-                  <HoverCard key={idx} className="p-4">
-                    <div className="flex items-start gap-3">
-                      <ArrowRight className="w-4 h-4 text-[#6366f1] mt-0.5" />
-                      <span className="text-sm text-gray-300">{feature}</span>
-                    </div>
-                  </HoverCard>
-                ))}
-              </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <HoverCard>
+                <h3 className="text-lg font-semibold text-white mb-2">Technologies Used</h3>
+                <div className="flex flex-wrap gap-2">
+                  {selectedProject?.tech.map((tech, idx) => (
+                    <span 
+                      key={idx}
+                      className="text-sm px-3 py-1.5 rounded-full bg-white/5 text-gray-300 border border-white/10"
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+              </HoverCard>
+
+              <HoverCard>
+                <h3 className="text-lg font-semibold text-white mb-2">Key Features</h3>
+                <ul className="space-y-2">
+                  {selectedProject?.features.map((feature, idx) => (
+                    <li key={idx} className="text-sm text-gray-300 flex items-center gap-2">
+                      <ArrowRight className="w-4 h-4 text-[#6366f1]" />
+                      {feature}
+                    </li>
+                  ))}
+                </ul>
+              </HoverCard>
             </div>
           </div>
         </DialogContent>
@@ -444,7 +486,7 @@ const Portfolio = () => {
           />
         </DialogContent>
       </Dialog>
-    </div>
+    </PageBackground>
   );
 };
 
