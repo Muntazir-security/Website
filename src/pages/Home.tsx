@@ -150,8 +150,10 @@ const Home = () => {
   }, [handleTyping]);
 
   // Update Lottie animation source to a security-themed animation
+
+  // Update the lottieOptions object in the Home component
   const lottieOptions = {
-    src: "https://lottie.host/58753882-bb6a-49f5-a2c0-950eda1e135a/NLbpVqGegK.lottie", // You might want to update this to a security-themed animation
+    src: "https://lottie.host/2d2950c7-a9b2-4ca9-91dd-1d274ebaf8ba/B0VeqwCF6M.json",
     loop: true,
     autoplay: true,
     rendererSettings: {
@@ -252,3 +254,4 @@ const Home = () => {
 };
 
 export default memo(Home);
+
