@@ -204,21 +204,14 @@ const certificates = [
 ];
 
 const techStack = [
-  { name: "HTML", icon: "/html5.svg" },
-  { name: "CSS", icon: "/css3.svg" },
-  { name: "JavaScript", icon: "/javascript.svg" },
-  { name: "Tailwind CSS", icon: "/tailwind.svg" },
-  { name: "Vercel", icon: "/vercel.svg" },
-  { name: "Docker", icon: "/docker.svg" },
-  { name: "Kubernetes", icon: "/kubernetes.svg" },
-  { name: "AWS", icon: "/aws.svg" },
-  { name: "Azure", icon: "/azure.svg" },
-  { name: "Splunk", icon: "/splunk.svg" },
-  { name: "Red Hat", icon: "/lovable-uploads/555bd741-67e6-481a-a9d4-412df81e8673.png" },
-  { name: "Suricata", icon: "/suricata.svg" },
-  { name: "Nessus", icon: "/lovable-uploads/14f8e442-54dc-45c3-857c-cac33eb3e013.png" },
+  { name: "HTML", icon: "/lovable-uploads/46f7d000-7c1c-482a-858f-11b65d9c7809.png" },
+  { name: "JavaScript", icon: "/lovable-uploads/7fbf2c98-2ccb-4904-b534-4ad767a44606.png" },
+  { name: "Vercel", icon: "/lovable-uploads/2cf092a1-01eb-4141-ae44-07080e564279.png" },
+  { name: "Docker", icon: "/lovable-uploads/1490e639-4410-4645-b6f7-05c89c7feb34.png" },
   { name: "Arch Linux", icon: "/archlinux.svg" },
-  { name: "Cisco", icon: "/cisco.svg" }
+  { name: "Cisco", icon: "/lovable-uploads/9f319e89-181b-4bab-b995-aae3894ec3c8.png" },
+  { name: "Red Hat", icon: "/lovable-uploads/555bd741-67e6-481a-a9d4-412df81e8673.png" },
+  { name: "Nessus", icon: "/lovable-uploads/14f8e442-54dc-45c3-857c-cac33eb3e013.png" }
 ];
 
 const Portfolio = () => {
