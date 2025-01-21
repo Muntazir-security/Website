@@ -92,7 +92,7 @@ const WORDS = ["Ethical Hacker", "Network Defender", "Security Analysis"];
 const TECH_STACK = ["SIEM", "Threat Intel", "Network Security", "Incident Response"];
 const SOCIAL_LINKS = [
   { icon: Github, link: "https://github.com/muntazir-security" },
-  { icon: Linkedin, link: "https://linkedin.com/in/muntazir-security/" },
+  { icon: Linkedin, link: "https://www.linkedin.com/in/muntazir-security/" },
   { icon: Shield, link: "https://tryhackme.com/p/yourusername" }
 ];
 
@@ -149,11 +149,15 @@ const Home = () => {
     return () => clearTimeout(timeout);
   }, [handleTyping]);
 
-  // Update the lottieOptions object with a CORS-friendly animation URL
+  // Update Lottie animation source to a security-themed animation
   const lottieOptions = {
-    src: "https://lottie.host/58753882-bb6a-49f5-a2c0-950eda1e135a/NLbpVqGegK.json",
+    src: "https://lottie.host/58753882-bb6a-49f5-a2c0-950eda1e135a/NLbpVqGegK.lottie", // You might want to update this to a security-themed animation
     loop: true,
     autoplay: true,
+    rendererSettings: {
+      preserveAspectRatio: 'xMidYMid slice',
+      progressiveLoad: true,
+    },
     style: { width: "100%", height: "100%" },
     className: `w-full h-full transition-all duration-500 ${
       isHovering 
