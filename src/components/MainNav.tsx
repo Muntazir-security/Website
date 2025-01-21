@@ -13,7 +13,7 @@ const MainNav = () => {
 
   return (
     <div className="fixed top-0 left-0 right-0 z-50 bg-transparent backdrop-blur-sm">
-      <div className="container flex h-16 items-center justify-between">
+      <div className="max-w-screen-xl mx-auto px-4 flex h-16 items-center justify-between">
         {/* Logo */}
         <Link to="/" className="text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#6366f1] to-[#a855f7]">
           Muntazir
