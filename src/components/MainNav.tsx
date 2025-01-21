@@ -12,7 +12,7 @@ const MainNav = () => {
   const location = useLocation();
 
   return (
-    <div className="fixed top-0 left-0 right-0 z-50 bg-transparent backdrop-blur-sm">
+    <div className="fixed top-0 left-0 right-0 z-50 bg-[#0B0B1E]/80 backdrop-blur-sm border-b border-white/10">
       <div className="max-w-[1280px] mx-auto px-6 flex h-16 items-center justify-between">
         {/* Logo */}
         <Link to="/" className="text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#6366f1] to-[#a855f7]">
