@@ -21,7 +21,6 @@ const Index = () => {
   const handleLoadingComplete = () => {
     console.log('Welcome screen complete, marking as seen');
     localStorage.setItem('hasSeenWelcome', 'true');
-    setShowWelcome(false);
     navigate('/home');
   };
 
