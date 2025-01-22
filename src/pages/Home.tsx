@@ -43,22 +43,37 @@ const TechStack = memo(({ tech }: { tech: string }) => {
   const getIcon = () => {
     switch (tech) {
       case "SIEM":
-        return <Shield className="w-4 h-4 mr-2" />;
+        return <Shield />;
       case "Threat Intel":
-        return <Search className="w-4 h-4 mr-2" />;
+        return <Search />;
       case "Network Security":
-        return <Lock className="w-4 h-4 mr-2" />;
+        return <Lock />;
       case "Incident Response":
-        return <AlertTriangle className="w-4 h-4 mr-2" />;
+        return <AlertTriangle />;
       default:
         return null;
     }
   };
 
+  const getIconColor = () => {
+    switch (tech) {
+      case "SIEM":
+        return "text-blue-400";
+      case "Threat Intel":
+        return "text-green-400";
+      case "Network Security":
+        return "text-purple-400";
+      case "Incident Response":
+        return "text-red-400";
+      default:
+        return "text-gray-300";
+    }
+  };
+
   return (
-    <div className="px-4 py-2 hidden sm:block rounded-full bg-white/5 backdrop-blur-sm border border-white/10 text-sm text-gray-300 hover:bg-white/10 transition-colors flex items-center">
-      {getIcon()}
-      {tech}
+    <div className="px-4 py-2 hidden sm:flex items-center rounded-full bg-white/5 backdrop-blur-sm border border-white/10 text-sm text-gray-300 hover:bg-white/10 transition-colors">
+      {React.cloneElement(getIcon(), { className: `w-6 h-6 mr-2 ${getIconColor()}` })}
+      <span>{tech}</span>
     </div>
   );
 });
