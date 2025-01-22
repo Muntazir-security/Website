@@ -5,18 +5,16 @@ import { Link } from "react-router-dom"
 import AOS from 'aos'
 import 'aos/dist/aos.css'
 
-const PageHeader = memo(({ title, description, showSparkles = false }) => (
-  <div className="max-w-7xl mx-auto relative">
-    <div className="text-center mb-16 pt-20" data-aos="fade-down">
-      <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-[#6366f1] to-[#a855f7] mb-4">
-        {title}
-      </h1>
-      <p className="text-gray-400 max-w-2xl mx-auto flex items-center justify-center gap-2">
-        {showSparkles && <Sparkles className="w-5 h-5 text-purple-400" />}
-        {description}
-        {showSparkles && <Sparkles className="w-5 h-5 text-purple-400" />}
-      </p>
-    </div>
+const Header = memo(() => (
+  <div className="text-center mb-16 pt-20" data-aos="fade-down">
+    <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-[#6366f1] to-[#a855f7] mb-4">
+      About Me
+    </h1>
+    <p className="text-gray-400 max-w-2xl mx-auto flex items-center justify-center gap-2">
+      <Sparkles className="w-5 h-5 text-purple-400" />
+      Transforming vulnerabilities into robust security solutions
+      <Sparkles className="w-5 h-5 text-purple-400" />
+    </p>
   </div>
 ));
 
