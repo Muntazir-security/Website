@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import PageBackground from "@/components/shared/PageBackground";
 import { Linkedin, Github, Mail } from "lucide-react";
 import AOS from "aos";
@@ -47,7 +47,7 @@ const ContactPage = () => {
               Contact Me
             </h1>
             <p className="text-gray-400 text-lg max-w-2xl mx-auto">
-              Got a question? Send me a message, and I’ll get back to you soon.
+              Got a question? Send me a message, and I'll get back to you soon.
             </p>
           </div>
 
