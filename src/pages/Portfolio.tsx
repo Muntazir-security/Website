@@ -8,6 +8,7 @@ import {
   Code2, 
   Award, 
   Boxes,
+  Sparkles,
   Shield,
   Building2,
   GraduationCap,
@@ -242,8 +243,10 @@ const Portfolio = () => {
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-[#6366f1] to-[#a855f7] mb-4">
             Portfolio
           </h1>
-          <p className="text-gray-400 max-w-2xl mx-auto">
+          <p className="text-gray-400 max-w-2xl mx-auto flex items-center justify-center gap-2">
+            <Sparkles className="w-5 h-5 text-purple-400" />
             Explore my journey through projects, certifications, and technical expertise
+            <Sparkles className="w-5 h-5 text-purple-400" />
           </p>
         </div>
 
