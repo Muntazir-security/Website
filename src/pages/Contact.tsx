@@ -1,151 +1,218 @@
 import React, { useState, useEffect } from "react";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
-import * as z from "zod";
-import { Mail, MessageSquare, User } from "lucide-react";
-import { useToast } from "@/components/ui/use-toast";
-import { Form, FormControl, FormField, FormItem, FormMessage } from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { Button } from "@/components/ui/button";
-import PageBackground from "@/components/shared/PageBackground";
-import HoverCard from "@/components/shared/HoverCard";
-import SocialLinks from "@/components/contact/SocialLinks";
+import { Share2, User, Mail, MessageSquare, Send } from "lucide-react";
+import { Link } from "react-router-dom";
+import SocialLinks from "../components/SocialLinks";
+import Komentar from "../components/Commentar";
+import Swal from "sweetalert2";
 import AOS from "aos";
 import "aos/dist/aos.css";
 
-const formSchema = z.object({
-  name: z.string().min(2, "Name must be at least 2 characters"),
-  email: z.string().email("Invalid email address"),
-  message: z.string().min(10, "Message must be at least 10 characters"),
-});
-
 const ContactPage = () => {
-  const { toast } = useToast();
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
-    defaultValues: {
-      name: "",
-      email: "",
-      message: "",
-    },
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    message: "",
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   useEffect(() => {
     AOS.init({
-      duration: 1000,
       once: false,
-      mirror: true,
     });
   }, []);
 
-  const onSubmit = async (data: z.infer<typeof formSchema>) => {
-    console.log("Form submitted:", data);
-    
-    // Here you would typically send the data to your backend
-    // For now, we'll just show a success toast
-    toast({
-      title: "Message sent!",
-      description: "Thank you for your message. I'll get back to you soon.",
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+
+    Swal.fire({
+      title: 'Sending Message...',
+      html: 'Please wait while we send your message',
+      allowOutsideClick: false,
+      didOpen: () => {
+        Swal.showLoading();
+      }
     });
-    
-    form.reset();
+
+    try {
+      // Get form data
+      const form = e.target;
+      const formData = new FormData(form);
+
+      // Submit form
+      await form.submit();
+
+      // Show success message
+      Swal.fire({
+        title: 'Success!',
+        text: 'Your message has been sent successfully!',
+        icon: 'success',
+        confirmButtonColor: '#6366f1',
+        timer: 2000,
+        timerProgressBar: true
+      });
+
+      // Reset form
+      setFormData({
+        name: "",
+        email: "",
+        message: "",
+      });
+    } catch (error) {
+      Swal.fire({
+        title: 'Error!',
+        text: 'Something went wrong. Please try again later.',
+        icon: 'error',
+        confirmButtonColor: '#6366f1'
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
-    <PageBackground>
-      <div className="min-h-screen flex flex-col items-center justify-center py-20 px-4 sm:px-6 lg:px-8">
-        <div className="w-full max-w-6xl mx-auto space-y-16">
-          {/* Header Section */}
-          <div className="text-center space-y-4" data-aos="fade-down">
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-[#6366f1] to-[#a855f7]">
-              Get in Touch
-            </h1>
-            <p className="text-gray-400 text-lg max-w-2xl mx-auto">
-              Have a question or want to work together? I'd love to hear from you.
-            </p>
+    <>
+      <div className="text-center lg:mt-[5%] mt-10 mb-2 sm:px-0 px-[5%]">
+        <h2
+          data-aos="fade-down"
+          data-aos-duration="1000"
+          className="inline-block text-3xl md:text-5xl font-bold text-center mx-auto text-transparent bg-clip-text bg-gradient-to-r from-[#6366f1] to-[#a855f7]"
+        >
+          <span
+            style={{
+              color: "#6366f1",
+              backgroundImage:
+                "linear-gradient(45deg, #6366f1 10%, #a855f7 93%)",
+              WebkitBackgroundClip: "text",
+              backgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+            }}
+          >
+            Contact Me
+          </span>
+        </h2>
+        <p
+          data-aos="fade-up"
+          data-aos-duration="1100"
+          className="text-slate-400 max-w-2xl mx-auto text-sm md:text-base mt-2"
+        >
+          Got a question? Send me a message, and I'll get back to you soon.
+        </p>
+      </div>
+
+      <div
+        className="h-auto py-10 flex items-center justify-center px-[5%] md:px-0"
+        id="Contact"
+      >
+        <div className="container px-[1%] grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-[45%_55%] 2xl:grid-cols-[35%_65%] gap-12">
+          <div
+            data-aos="fade-right"
+            data-aos-duration="1200"
+            className="bg-white/5 backdrop-blur-xl rounded-3xl shadow-2xl p-5 py-10 sm:p-10 transform transition-all duration-300 hover:shadow-[#6366f1]/10"
+          >
+            <div className="flex justify-between items-start mb-8">
+              <div>
+                <h2 className="text-4xl font-bold mb-3 text-transparent bg-clip-text bg-gradient-to-r from-[#6366f1] to-[#a855f7]">
+                  Get in Touch
+                </h2>
+                <p className="text-gray-400">
+                  Have something to discuss? Send me a message and let's talk.
+                </p>
+              </div>
+              <Share2 className="w-10 h-10 text-[#6366f1] opacity-50" />
+            </div>
+
+            <form 
+              action="https://formsubmit.co/ekizulfarrachman@gmail.com"
+              method="POST"
+              onSubmit={handleSubmit}
+              className="space-y-6"
+            >
+              {/* FormSubmit Configuration */}
+              <input type="hidden" name="_template" value="table" />
+              <input type="hidden" name="_captcha" value="false" />
+
+              <div
+                data-aos="fade-up"
+                data-aos-delay="100"
+                className="relative group"
+              >
+                <User className="absolute left-4 top-4 w-5 h-5 text-gray-400 group-focus-within:text-[#6366f1] transition-colors" />
+                <input
+                  type="text"
+                  name="name"
+                  placeholder="Your Name"
+                  value={formData.name}
+                  onChange={handleChange}
+                  disabled={isSubmitting}
+                  className="w-full p-4 pl-12 bg-white/10 rounded-xl border border-white/20 placeholder-gray-500 text-white focus:outline-none focus:ring-2 focus:ring-[#6366f1]/30 transition-all duration-300 hover:border-[#6366f1]/30 disabled:opacity-50"
+                  required
+                />
+              </div>
+              <div
+                data-aos="fade-up"
+                data-aos-delay="200"
+                className="relative group"
+              >
+                <Mail className="absolute left-4 top-4 w-5 h-5 text-gray-400 group-focus-within:text-[#6366f1] transition-colors" />
+                <input
+                  type="email"
+                  name="email"
+                  placeholder="Your Email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  disabled={isSubmitting}
+                  className="w-full p-4 pl-12 bg-white/10 rounded-xl border border-white/20 placeholder-gray-500 text-white focus:outline-none focus:ring-2 focus:ring-[#6366f1]/30 transition-all duration-300 hover:border-[#6366f1]/30 disabled:opacity-50"
+                  required
+                />
+              </div>
+              <div
+                data-aos="fade-up"
+                data-aos-delay="300"
+                className="relative group"
+              >
+                <MessageSquare className="absolute left-4 top-4 w-5 h-5 text-gray-400 group-focus-within:text-[#6366f1] transition-colors" />
+                <textarea
+                  name="message"
+                  placeholder="Your Message"
+                  value={formData.message}
+                  onChange={handleChange}
+                  disabled={isSubmitting}
+                  className="w-full resize-none p-4 pl-12 bg-white/10 rounded-xl border border-white/20 placeholder-gray-500 text-white focus:outline-none focus:ring-2 focus:ring-[#6366f1]/30 transition-all duration-300 hover:border-[#6366f1]/30 h-[9.9rem] disabled:opacity-50"
+                  required
+                />
+              </div>
+              <button
+                data-aos="fade-up"
+                data-aos-delay="400"
+                type="submit"
+                disabled={isSubmitting}
+                className="w-full bg-gradient-to-r from-[#6366f1] to-[#a855f7] text-white py-4 rounded-xl font-semibold transition-all duration-300 hover:scale-[1.02] hover:shadow-lg hover:shadow-[#6366f1]/20 active:scale-[0.98] flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
+              >
+                <Send className="w-5 h-5" />
+                {isSubmitting ? 'Sending...' : 'Send Message'}
+              </button>
+            </form>
+
+            <div className="mt-10 pt-6 border-t border-white/10 flex justify-center space-x-6">
+              <SocialLinks />
+            </div>
           </div>
 
-          {/* Social Links */}
-          <SocialLinks />
-
-          {/* Contact Form Section */}
-          <HoverCard className="max-w-2xl mx-auto">
-            <Form {...form}>
-              <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-                <FormField
-                  control={form.control}
-                  name="name"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormControl>
-                        <div className="relative">
-                          <Input
-                            placeholder="Your Name"
-                            className="pl-10 bg-black/20 border-white/10 text-white placeholder:text-gray-400"
-                            {...field}
-                          />
-                          <User className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
-                        </div>
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-
-                <FormField
-                  control={form.control}
-                  name="email"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormControl>
-                        <div className="relative">
-                          <Input
-                            placeholder="Your Email"
-                            className="pl-10 bg-black/20 border-white/10 text-white placeholder:text-gray-400"
-                            {...field}
-                          />
-                          <Mail className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
-                        </div>
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-
-                <FormField
-                  control={form.control}
-                  name="message"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormControl>
-                        <div className="relative">
-                          <Textarea
-                            placeholder="Your Message"
-                            className="pl-10 min-h-[150px] bg-black/20 border-white/10 text-white placeholder:text-gray-400"
-                            {...field}
-                          />
-                          <MessageSquare className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
-                        </div>
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-
-                <Button
-                  type="submit"
-                  className="w-full bg-gradient-to-r from-[#6366f1] to-[#a855f7] hover:opacity-90 transition-opacity"
-                  data-aos="fade-up"
-                >
-                  Send Message
-                </Button>
-              </form>
-            </Form>
-          </HoverCard>
+          <div className="bg-white/5 backdrop-blur-xl rounded-3xl p-3 py-3 md:p-10 md:py-8 shadow-2xl transform transition-all duration-300 hover:shadow-[#6366f1]/10">
+            <Komentar />
+          </div>
         </div>
       </div>
-    </PageBackground>
+    </>
   );
 };
 
