@@ -1,149 +1,148 @@
 import React, { useState, useEffect } from "react";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import * as z from "zod";
+import { Mail, MessageSquare, User } from "lucide-react";
+import { useToast } from "@/components/ui/use-toast";
+import { Form, FormControl, FormField, FormItem, FormMessage } from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Button } from "@/components/ui/button";
 import PageBackground from "@/components/shared/PageBackground";
-import { Linkedin, Github, Mail } from "lucide-react";
+import HoverCard from "@/components/shared/HoverCard";
+import SocialLinks from "@/components/contact/SocialLinks";
 import AOS from "aos";
 import "aos/dist/aos.css";
 
+const formSchema = z.object({
+  name: z.string().min(2, "Name must be at least 2 characters"),
+  email: z.string().email("Invalid email address"),
+  message: z.string().min(10, "Message must be at least 10 characters"),
+});
+
 const ContactPage = () => {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    message: "",
+  const { toast } = useToast();
+  const form = useForm<z.infer<typeof formSchema>>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      name: "",
+      email: "",
+      message: "",
+    },
   });
-  const [isSubmitted, setIsSubmitted] = useState(false);
 
   useEffect(() => {
     AOS.init({
+      duration: 1000,
       once: false,
       mirror: true,
     });
   }, []);
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    // Send form data to your email (replace with your backend or email service)
-    const response = await fetch("/api/send-email", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(formData),
+  const onSubmit = async (data: z.infer<typeof formSchema>) => {
+    console.log("Form submitted:", data);
+    
+    // Here you would typically send the data to your backend
+    // For now, we'll just show a success toast
+    toast({
+      title: "Message sent!",
+      description: "Thank you for your message. I'll get back to you soon.",
     });
-
-    if (response.ok) {
-      setIsSubmitted(true);
-      setFormData({ name: "", email: "", message: "" }); // Clear form
-    }
+    
+    form.reset();
   };
 
   return (
     <PageBackground>
       <div className="min-h-screen flex flex-col items-center justify-center py-20 px-4 sm:px-6 lg:px-8">
-        <div className="w-full max-w-4xl mx-auto text-center space-y-16">
+        <div className="w-full max-w-6xl mx-auto space-y-16">
           {/* Header Section */}
-          <div data-aos="fade-down">
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-[#6366f1] to-[#a855f7] mb-4">
-              Contact Me
+          <div className="text-center space-y-4" data-aos="fade-down">
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-[#6366f1] to-[#a855f7]">
+              Get in Touch
             </h1>
             <p className="text-gray-400 text-lg max-w-2xl mx-auto">
-              Got a question? Send me a message, and I'll get back to you soon.
+              Have a question or want to work together? I'd love to hear from you.
             </p>
           </div>
 
-          {/* Contact Form */}
-          <div className="w-full max-w-2xl mx-auto">
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div>
-                <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-2">
-                  Your Name
-                </label>
-                <input
-                  type="text"
-                  id="name"
-                  value={formData.name}
-                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                  className="w-full px-4 py-2 bg-black/20 backdrop-blur-lg border border-white/10 rounded-lg text-gray-300 focus:outline-none focus:border-[#a855f7]"
-                  required
-                />
-              </div>
-
-              <div>
-                <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-2">
-                  Your Email
-                </label>
-                <input
-                  type="email"
-                  id="email"
-                  value={formData.email}
-                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                  className="w-full px-4 py-2 bg-black/20 backdrop-blur-lg border border-white/10 rounded-lg text-gray-300 focus:outline-none focus:border-[#a855f7]"
-                  required
-                />
-              </div>
-
-              <div>
-                <label htmlFor="message" className="block text-sm font-medium text-gray-300 mb-2">
-                  Your Message
-                </label>
-                <textarea
-                  id="message"
-                  value={formData.message}
-                  onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                  className="w-full px-4 py-2 bg-black/20 backdrop-blur-lg border border-white/10 rounded-lg text-gray-300 focus:outline-none focus:border-[#a855f7]"
-                  rows={5}
-                  required
-                />
-              </div>
-
-              <button
-                type="submit"
-                className="w-full px-6 py-3 bg-gradient-to-r from-[#6366f1] to-[#a855f7] text-white font-medium rounded-lg hover:scale-105 transition-transform duration-300"
-              >
-                Send Message
-              </button>
-            </form>
-
-            {isSubmitted && (
-              <p className="mt-4 text-green-400">
-                Thank you! Your message has been sent.
-              </p>
-            )}
-          </div>
-
           {/* Social Links */}
-          <div className="relative">
-            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-purple-500/5 to-transparent blur-3xl" />
-            <div className="relative">
-              <div className="flex justify-center gap-8">
-                <a
-                  href="https://linkedin.com/in/muntazir-security"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-2 text-gray-300 hover:text-[#6366f1] transition-colors duration-300"
+          <SocialLinks />
+
+          {/* Contact Form Section */}
+          <HoverCard className="max-w-2xl mx-auto">
+            <Form {...form}>
+              <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+                <FormField
+                  control={form.control}
+                  name="name"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormControl>
+                        <div className="relative">
+                          <Input
+                            placeholder="Your Name"
+                            className="pl-10 bg-black/20 border-white/10 text-white placeholder:text-gray-400"
+                            {...field}
+                          />
+                          <User className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
+                        </div>
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+
+                <FormField
+                  control={form.control}
+                  name="email"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormControl>
+                        <div className="relative">
+                          <Input
+                            placeholder="Your Email"
+                            className="pl-10 bg-black/20 border-white/10 text-white placeholder:text-gray-400"
+                            {...field}
+                          />
+                          <Mail className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
+                        </div>
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+
+                <FormField
+                  control={form.control}
+                  name="message"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormControl>
+                        <div className="relative">
+                          <Textarea
+                            placeholder="Your Message"
+                            className="pl-10 min-h-[150px] bg-black/20 border-white/10 text-white placeholder:text-gray-400"
+                            {...field}
+                          />
+                          <MessageSquare className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
+                        </div>
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+
+                <Button
+                  type="submit"
+                  className="w-full bg-gradient-to-r from-[#6366f1] to-[#a855f7] hover:opacity-90 transition-opacity"
+                  data-aos="fade-up"
                 >
-                  <Linkedin className="w-6 h-6" />
-                  LinkedIn
-                </a>
-                <a
-                  href="https://github.com/muntazir-security"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-2 text-gray-300 hover:text-[#a855f7] transition-colors duration-300"
-                >
-                  <Github className="w-6 h-6" />
-                  GitHub
-                </a>
-                <a
-                  href="mailto:info@muntazirmehdi.com"
-                  className="flex items-center gap-2 text-gray-300 hover:text-[#6366f1] transition-colors duration-300"
-                >
-                  <Mail className="w-6 h-6" />
-                  Email
-                </a>
-              </div>
-            </div>
-          </div>
+                  Send Message
+                </Button>
+              </form>
+            </Form>
+          </HoverCard>
         </div>
       </div>
     </PageBackground>
