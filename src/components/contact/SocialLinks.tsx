@@ -16,25 +16,39 @@ const SocialLink = ({ icon, label, value, href, delay }: SocialLinkProps) => (
     target="_blank"
     rel="noopener noreferrer"
     className={cn(
-      "group relative block overflow-hidden rounded-xl",
-      "bg-black/20 backdrop-blur-sm border border-white/10",
-      "transition-all duration-500 hover:border-white/20 hover:bg-white/10"
+      "group relative block overflow-hidden",
+      "bg-gradient-to-br from-white/[0.075] to-white/[0.035]",
+      "backdrop-blur-xl border border-white/10 rounded-2xl",
+      "transition-all duration-500",
+      "hover:border-white/20 hover:from-white/[0.1] hover:to-white/[0.05]",
+      "hover:shadow-xl hover:shadow-indigo-500/10",
+      "hover:-translate-y-1"
     )}
     data-aos="fade-up"
     data-aos-delay={delay}
   >
-    <div className="relative p-8 flex flex-col items-center justify-center text-center gap-3">
-      {/* Icon */}
-      <div className="text-[#6366f1] w-12 h-12">
-        {icon}
+    <div className="relative p-8 flex flex-col items-center justify-center text-center gap-4">
+      {/* Animated gradient background */}
+      <div className="absolute inset-0 bg-gradient-to-r from-indigo-500/10 via-purple-500/10 to-pink-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+      
+      {/* Glowing orb effect */}
+      <div className="absolute -inset-1 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-full blur-3xl opacity-0 group-hover:opacity-20 transition-opacity duration-500" />
+
+      {/* Icon with gradient */}
+      <div className="relative">
+        <div className="w-16 h-16 rounded-xl bg-gradient-to-br from-indigo-500/10 to-purple-500/10 flex items-center justify-center group-hover:scale-110 transition-transform duration-500">
+          <div className="w-8 h-8 text-indigo-400 group-hover:text-indigo-300 transition-colors duration-300">
+            {icon}
+          </div>
+        </div>
       </div>
 
       {/* Text content */}
-      <div className="space-y-1">
-        <p className="text-xl font-medium text-white group-hover:text-[#6366f1] transition-colors">
+      <div className="relative space-y-1">
+        <p className="text-xl font-medium text-white group-hover:text-indigo-300 transition-colors duration-300">
           {value}
         </p>
-        <p className="text-sm text-gray-400">
+        <p className="text-sm text-gray-400 group-hover:text-gray-300 transition-colors duration-300">
           {label}
         </p>
       </div>
@@ -68,7 +82,7 @@ const SocialLinks = () => {
   ];
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 px-4">
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-8 px-6">
       {links.map((link) => (
         <SocialLink key={link.label} {...link} />
       ))}
