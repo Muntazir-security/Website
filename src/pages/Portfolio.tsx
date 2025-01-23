@@ -31,7 +31,9 @@ import {
   X,
   AlertTriangle,
   Terminal,
-  Router
+  Router,
+  Wifi,
+  FileSearch
 } from "lucide-react";
 import AOS from "aos";
 import "aos/dist/aos.css";
@@ -204,21 +206,47 @@ const certificates = [
 ];
 
 const techStack = [
-  { name: "HTML", icon: "/html5.svg", lucideIcon: Globe },
-  { name: "CSS", icon: "/css3.svg", lucideIcon: Palette },
-  { name: "JavaScript", icon: "/javascript.svg", lucideIcon: FileCode },
-  { name: "Tailwind CSS", icon: "/tailwind.svg", lucideIcon: Wind },
-  { name: "Vercel", icon: "/vercel.svg", lucideIcon: Cloud },
-  { name: "Docker", icon: "/docker.svg", lucideIcon: Boxes },
-  { name: "Kubernetes", icon: "/kubernetes.svg", lucideIcon: Network },
-  { name: "AWS", icon: "/aws.svg", lucideIcon: Cloud },
-  { name: "Azure", icon: "/azure.svg", lucideIcon: Cloud },
-  { name: "Splunk", icon: "/splunk.svg", lucideIcon: Search },
-  { name: "Red Hat", icon: "/redhat.svg", lucideIcon: Server },
-  { name: "Suricata", icon: "/suricata.svg", lucideIcon: Shield },
-  { name: "Nessus", icon: "/nessus.svg", lucideIcon: Lock },
-  { name: "Arch Linux", icon: "/archlinux.svg", lucideIcon: Terminal },
-  { name: "Cisco", icon: "/cisco.svg", lucideIcon: Router }
+  {
+    category: "Cloud & Deployment",
+    items: [
+      { name: "Vercel", icon: "/vercel.svg", lucideIcon: Cloud },
+      { name: "Docker", icon: "/docker.svg", lucideIcon: Boxes },
+      { name: "Kubernetes", icon: "/kubernetes.svg", lucideIcon: Network },
+      { name: "AWS", icon: "/aws.svg", lucideIcon: Cloud },
+      { name: "Azure", icon: "/azure.svg", lucideIcon: Cloud },
+    ],
+  },
+  {
+    category: "Security Tools",
+    items: [
+      { name: "Burp Suite", icon: "/burpsuite.svg", lucideIcon: Shield },
+      { name: "Nessus", icon: "/nessus.svg", lucideIcon: Lock },
+      { name: "John the Ripper", icon: "/johntheripper.svg", lucideIcon: AlertTriangle },
+      { name: "Zeek", icon: "/zeek.svg", lucideIcon: Search },
+      { name: "Snort", icon: "/snort.svg", lucideIcon: Shield },
+      { name: "Aircrack-ng", icon: "/aircrack-ng.svg", lucideIcon: Wifi },
+      { name: "Yara", icon: "/yara.svg", lucideIcon: FileSearch },
+      { name: "WireGuard", icon: "/wireguard.svg", lucideIcon: Lock },
+    ],
+  },
+  {
+    category: "SIEM & Monitoring",
+    items: [
+      { name: "Splunk", icon: "/splunk.svg", lucideIcon: Search },
+      { name: "Elastic", icon: "/elastic.svg", lucideIcon: Database },
+      { name: "The Hive", icon: "/thehive.svg", lucideIcon: Network },
+      { name: "Wazuh", icon: "/wazuh.svg", lucideIcon: Shield },
+    ],
+  },
+  {
+    category: "Operating Systems & Platforms",
+    items: [
+      { name: "Red Hat", icon: "/redhat.svg", lucideIcon: Terminal },
+      { name: "Windows", icon: "/windows.svg", lucideIcon: Monitor },
+      { name: "Ubuntu", icon: "/ubuntu.svg", lucideIcon: Terminal },
+      { name: "Arch Linux", icon: "/archlinux.svg", lucideIcon: Terminal },
+    ],
+  },
 ];
 
 const Portfolio = () => {
@@ -368,22 +396,38 @@ const Portfolio = () => {
 
           {/* Tech Stack Content */}
           <TabsContent value="tech-stack">
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6">
-              {techStack.map((tech, index) => (
+            <div className="space-y-12">
+              {techStack.map((category, categoryIndex) => (
                 <div 
-                  key={index}
-                  className="bg-black/40 backdrop-blur-xl border border-white/10 rounded-lg p-6 flex flex-col items-center gap-4 hover:border-white/20 hover:scale-105 transition-all duration-300"
+                  key={categoryIndex}
+                  className="space-y-6"
                   data-aos="fade-up"
-                  data-aos-delay={index * 50}
+                  data-aos-delay={categoryIndex * 100}
                 >
-                  <div className="relative w-12 h-12">
-                    <img 
-                      src={tech.icon} 
-                      alt={tech.name}
-                      className="w-12 h-12 object-contain"
-                    />
+                  <h3 className="text-xl font-semibold text-white/90 px-2">
+                    {category.category}
+                  </h3>
+                  <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6">
+                    {category.items.map((tech, techIndex) => (
+                      <div 
+                        key={techIndex}
+                        className="bg-black/40 backdrop-blur-xl border border-white/10 rounded-lg p-6 flex flex-col items-center gap-4 hover:border-white/20 hover:scale-105 transition-all duration-300"
+                        data-aos="fade-up"
+                        data-aos-delay={techIndex * 50}
+                      >
+                        <div className="relative w-12 h-12">
+                          <img 
+                            src={tech.icon} 
+                            alt={tech.name}
+                            className="w-12 h-12 object-contain"
+                          />
+                        </div>
+                        <span className="text-gray-300 text-sm font-medium text-center">
+                          {tech.name}
+                        </span>
+                      </div>
+                    ))}
                   </div>
-                  <span className="text-gray-300 text-sm font-medium">{tech.name}</span>
                 </div>
               ))}
             </div>
