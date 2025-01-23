@@ -16,32 +16,40 @@ const MainNav = () => {
         <nav className="flex items-center gap-6">
           <Link
             to="/"
-            className={`text-sm transition-colors hover:text-white/90 ${
-              location.pathname === "/" ? "text-white" : "text-white/60"
+            className={`text-sm transition-all relative ${
+              location.pathname === "/" 
+                ? "text-transparent bg-clip-text bg-gradient-to-r from-[#6366f1] to-[#a855f7] after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-full after:h-0.5 after:bg-gradient-to-r after:from-[#6366f1] after:to-[#a855f7]" 
+                : "text-white/60 hover:text-white/90"
             }`}
           >
             Home
           </Link>
           <Link
             to="/about"
-            className={`text-sm transition-colors hover:text-white/90 ${
-              location.pathname === "/about" ? "text-white" : "text-white/60"
+            className={`text-sm transition-all relative ${
+              location.pathname === "/about"
+                ? "text-transparent bg-clip-text bg-gradient-to-r from-[#6366f1] to-[#a855f7] after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-full after:h-0.5 after:bg-gradient-to-r after:from-[#6366f1] after:to-[#a855f7]"
+                : "text-white/60 hover:text-white/90"
             }`}
           >
             About
           </Link>
           <Link
             to="/portfolio"
-            className={`text-sm transition-colors hover:text-white/90 ${
-              location.pathname === "/portfolio" ? "text-white" : "text-white/60"
+            className={`text-sm transition-all relative ${
+              location.pathname === "/portfolio"
+                ? "text-transparent bg-clip-text bg-gradient-to-r from-[#6366f1] to-[#a855f7] after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-full after:h-0.5 after:bg-gradient-to-r after:from-[#6366f1] after:to-[#a855f7]"
+                : "text-white/60 hover:text-white/90"
             }`}
           >
             Portfolio
           </Link>
           <Link
             to="/contact"
-            className={`text-sm transition-colors hover:text-white/90 ${
-              location.pathname === "/contact" ? "text-white" : "text-white/60"
+            className={`text-sm transition-all relative ${
+              location.pathname === "/contact"
+                ? "text-transparent bg-clip-text bg-gradient-to-r from-[#6366f1] to-[#a855f7] after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-full after:h-0.5 after:bg-gradient-to-r after:from-[#6366f1] after:to-[#a855f7]"
+                : "text-white/60 hover:text-white/90"
             }`}
           >
             Contact
