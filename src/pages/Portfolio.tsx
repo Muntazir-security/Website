@@ -206,42 +206,22 @@ const certificates = [
 ];
 
 const techStack = [
-  {
-    category: "Cloud & Deployment",
-    items: [
-      { name: "AWS", icon: "/aws.svg" },
-      { name: "Azure", icon: "/azure.svg" },
-      { name: "Docker", icon: "/docker.svg" },
-      { name: "Kubernetes", icon: "/kubernets.svg" },
-    ],
-  },
-  {
-    category: "Security Tools",
-    items: [
-      { name: "Yara", icon: "/yara.png" },
-      { name: "Nessus", icon: "/nessus-professional.svg" },
-      { name: "TheHive", icon: "/thehive.png" },
-      { name: "John the Ripper", icon: "/johntheripper.png" },
-      { name: "Burp Suite", icon: "/burpsuite.png" },
-      { name: "Snort", icon: "/snort.png" },
-    ],
-  },
-  {
-    category: "SIEM & Monitoring",
-    items: [
-      { name: "Splunk", icon: "/splunk.svg" },
-      { name: "Elastic", icon: "/elastic.svg" },
-      { name: "WireGuard", icon: "/wireguard.png" },
-    ],
-  },
-  {
-    category: "Operating Systems",
-    items: [
-      { name: "Red Hat", icon: "/redhat.svg" },
-      { name: "Ubuntu", icon: "/ubuntu.svg" },
-      { name: "Arch Linux", icon: "/archlinux.svg" },
-    ],
-  },
+  { name: "AWS", icon: "/aws.svg" },
+  { name: "Azure", icon: "/azure.svg" },
+  { name: "Docker", icon: "/docker.svg" },
+  { name: "Kubernetes", icon: "/kubernets.svg" },
+  { name: "Yara", icon: "/yara.png" },
+  { name: "Nessus", icon: "/nessus-professional.svg" },
+  { name: "TheHive", icon: "/thehive.png" },
+  { name: "John the Ripper", icon: "/johntheripper.png" },
+  { name: "Burp Suite", icon: "/burpsuite.png" },
+  { name: "Snort", icon: "/snort.png" },
+  { name: "Splunk", icon: "/splunk.svg" },
+  { name: "Elastic", icon: "/elastic.svg" },
+  { name: "WireGuard", icon: "/wireguard.png" },
+  { name: "Red Hat", icon: "/redhat.svg" },
+  { name: "Ubuntu", icon: "/ubuntu.svg" },
+  { name: "Arch Linux", icon: "/archlinux.svg" },
 ];
 
 const Portfolio = () => {
@@ -391,38 +371,28 @@ const Portfolio = () => {
 
           {/* Tech Stack Content */}
           <TabsContent value="tech-stack">
-            <div className="space-y-12">
-              {techStack.map((category, categoryIndex) => (
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-8 p-4">
+              {techStack.map((tech, techIndex) => (
                 <div 
-                  key={categoryIndex}
-                  className="space-y-6"
+                  key={techIndex}
+                  className="group flex flex-col items-center justify-center p-6 rounded-xl bg-black/40 backdrop-blur-xl border border-white/10 hover:border-white/20 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-[#6366f1]/10"
                   data-aos="fade-up"
-                  data-aos-delay={categoryIndex * 100}
+                  data-aos-delay={techIndex * 50}
                 >
-                  <h3 className="text-xl font-semibold text-white/90 px-2">
-                    {category.category}
-                  </h3>
-                  <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6">
-                    {category.items.map((tech, techIndex) => (
-                      <div 
-                        key={techIndex}
-                        className="bg-black/40 backdrop-blur-xl border border-white/10 rounded-lg p-6 flex flex-col items-center gap-4 hover:border-white/20 hover:scale-105 transition-all duration-300"
-                        data-aos="fade-up"
-                        data-aos-delay={techIndex * 50}
-                      >
-                        <div className="relative w-12 h-12">
-                          <img 
-                            src={tech.icon} 
-                            alt={tech.name}
-                            className="w-12 h-12 object-contain"
-                          />
-                        </div>
-                        <span className="text-gray-300 text-sm font-medium text-center">
-                          {tech.name}
-                        </span>
-                      </div>
-                    ))}
+                  <div className="relative w-20 h-20 mb-4">
+                    <img 
+                      src={tech.icon} 
+                      alt={tech.name}
+                      className={`w-20 h-20 object-contain transition-all duration-300 group-hover:brightness-110 ${
+                        tech.icon.endsWith('.png') 
+                          ? 'brightness-90 contrast-125 saturate-150'
+                          : 'filter-none'
+                      }`}
+                    />
                   </div>
+                  <span className="text-gray-300 text-sm font-medium text-center group-hover:text-white transition-colors duration-300">
+                    {tech.name}
+                  </span>
                 </div>
               ))}
             </div>
