@@ -237,7 +237,7 @@ const techStack = [
     items: [
       { name: "Red Hat", icon: "/icons/redhat.svg" },
       { name: "Ubuntu", icon: "/icons/ubuntu.svg" },
-      { name: "Windows", icon: "/icons/windows.svg" },
+      { name: "Arch Linux", icon: "/icons/archlinux.svg" },
     ],
   },
 ];
