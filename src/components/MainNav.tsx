@@ -31,6 +31,14 @@ const MainNav = () => {
             About
           </Link>
           <Link
+            to="/portfolio"
+            className={`text-sm transition-colors hover:text-white/90 ${
+              location.pathname === "/portfolio" ? "text-white" : "text-white/60"
+            }`}
+          >
+            Portfolio
+          </Link>
+          <Link
             to="/contact"
             className={`text-sm transition-colors hover:text-white/90 ${
               location.pathname === "/contact" ? "text-white" : "text-white/60"
