@@ -17,23 +17,6 @@ import {
   Car,
   Home,
   ArrowRight,
-  Globe,
-  Palette,
-  FileCode,
-  Wind,
-  Cpu,
-  Cloud,
-  Server,
-  Monitor,
-  Lock,
-  Search,
-  Network,
-  X,
-  AlertTriangle,
-  Terminal,
-  Router,
-  Wifi,
-  FileSearch
 } from "lucide-react";
 import AOS from "aos";
 import "aos/dist/aos.css";
@@ -206,42 +189,22 @@ const certificates = [
 ];
 
 const techStack = [
-  {
-    category: "Cloud & Deployment",
-    items: [
-      { name: "AWS", icon: "/aws.svg" },
-      { name: "Azure", icon: "/azure.svg" },
-      { name: "Docker", icon: "/docker.svg" },
-      { name: "Kubernetes", icon: "/kubernets.svg" },
-    ],
-  },
-  {
-    category: "Security Tools",
-    items: [
-      { name: "Yara", icon: "/yara.png" },
-      { name: "Nessus", icon: "/nessus-professional.svg" },
-      { name: "TheHive", icon: "/thehive.png" },
-      { name: "John the Ripper", icon: "/johntheripper.png" },
-      { name: "Burp Suite", icon: "/burpsuite.png" },
-      { name: "Snort", icon: "/snort.png" },
-    ],
-  },
-  {
-    category: "SIEM & Monitoring",
-    items: [
-      { name: "Splunk", icon: "/splunk.svg" },
-      { name: "Elastic", icon: "/elastic.svg" },
-      { name: "WireGuard", icon: "/wireguard.png" },
-    ],
-  },
-  {
-    category: "Operating Systems",
-    items: [
-      { name: "Red Hat", icon: "/redhat.svg" },
-      { name: "Ubuntu", icon: "/ubuntu.svg" },
-      { name: "Arch Linux", icon: "/archlinux.svg" },
-    ],
-  },
+  { name: "AWS", icon: "/aws.svg" },
+  { name: "Azure", icon: "/azure.svg" },
+  { name: "Docker", icon: "/docker.svg" },
+  { name: "Kubernetes", icon: "/kubernets.svg" },
+  { name: "Yara", icon: "/yara.png", isPng: true },
+  { name: "Nessus", icon: "/nessus-professional.svg" },
+  { name: "TheHive", icon: "/thehive.png", isPng: true },
+  { name: "John the Ripper", icon: "/johntheripper.png", isPng: true },
+  { name: "Burp Suite", icon: "/burpsuite.png", isPng: true },
+  { name: "Snort", icon: "/snort.svg" },
+  { name: "Splunk", icon: "/splunk.svg" },
+  { name: "Elastic", icon: "/elastic.svg" },
+  { name: "WireGuard", icon: "/wireguard.svg" },
+  { name: "Red Hat", icon: "/redhat.svg" },
+  { name: "Ubuntu", icon: "/ubuntu.svg" },
+  { name: "Arch Linux", icon: "/archlinux.svg" },
 ];
 
 const Portfolio = () => {
@@ -391,37 +354,32 @@ const Portfolio = () => {
 
           {/* Tech Stack Content */}
           <TabsContent value="tech-stack">
-            <div className="space-y-12">
-              {techStack.map((category, categoryIndex) => (
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6 px-4">
+              {techStack.map((tech, techIndex) => (
                 <div 
-                  key={categoryIndex}
-                  className="space-y-6"
+                  key={techIndex}
+                  className="group relative bg-black/40 backdrop-blur-xl border border-white/10 rounded-xl p-8 
+                           hover:border-white/20 hover:bg-white/5 transition-all duration-500 
+                           hover:shadow-xl hover:shadow-indigo-500/10 hover:-translate-y-1"
                   data-aos="fade-up"
-                  data-aos-delay={categoryIndex * 100}
+                  data-aos-delay={techIndex * 50}
                 >
-                  <h3 className="text-xl font-semibold text-white/90 px-2">
-                    {category.category}
-                  </h3>
-                  <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6">
-                    {category.items.map((tech, techIndex) => (
-                      <div 
-                        key={techIndex}
-                        className="bg-black/40 backdrop-blur-xl border border-white/10 rounded-lg p-6 flex flex-col items-center gap-4 hover:border-white/20 hover:scale-105 transition-all duration-300"
-                        data-aos="fade-up"
-                        data-aos-delay={techIndex * 50}
-                      >
-                        <div className="relative w-12 h-12">
-                          <img 
-                            src={tech.icon} 
-                            alt={tech.name}
-                            className="w-12 h-12 object-contain"
-                          />
-                        </div>
-                        <span className="text-gray-300 text-sm font-medium text-center">
-                          {tech.name}
-                        </span>
-                      </div>
-                    ))}
+                  {/* Glowing orb effect on hover */}
+                  <div className="absolute -inset-1 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-full blur-3xl opacity-0 group-hover:opacity-20 transition-opacity duration-500" />
+                  
+                  <div className="relative flex flex-col items-center gap-4">
+                    <div className="w-20 h-20 flex items-center justify-center group-hover:scale-110 transition-transform duration-500">
+                      <img 
+                        src={tech.icon} 
+                        alt={tech.name}
+                        className={`w-full h-full object-contain
+                          ${tech.isPng ? 'brightness-0 invert opacity-80' : ''}
+                          group-hover:filter-none group-hover:opacity-100 transition-all duration-300`}
+                      />
+                    </div>
+                    <span className="text-sm font-medium text-gray-300 group-hover:text-white transition-colors duration-300">
+                      {tech.name}
+                    </span>
                   </div>
                 </div>
               ))}
