@@ -98,7 +98,7 @@ const ContactPage = () => {
             </div>
 
             <form 
-              action="https://formsubmit.co/info@muntazirmehdi.com"
+              action="https://formsubmit.co/mrzanny93@gmail.com"
               method="POST"
               onSubmit={handleSubmit}
               className="space-y-6"
