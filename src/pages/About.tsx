@@ -188,10 +188,7 @@ const AboutPage = () => {
   ], [totalProjects, totalCertificates, YearExperience]);
 
   return (
-    <div
-      className="min-h-screen bg-gradient-to-br from-[#0F0524] via-[#130F24] to-[#0A1929] pb-[10%] text-white overflow-hidden px-[5%] sm:px-[5%] lg:px-[10%]" 
-      id="About"
-    >
+    <div className="min-h-screen bg-gradient-to-br from-[#0F0524] via-[#130F24] to-[#0A1929] pb-[10%] text-white overflow-hidden px-[5%] sm:px-[5%] lg:px-[10%]" id="About">
       <Header />
       
       <div className="w-full mx-auto pt-8 sm:pt-12 relative">
@@ -222,22 +219,50 @@ const AboutPage = () => {
               A Cybersecurity Engineer with a passion for securing digital environments. I hold a degree in Computer Science, specializing in Cybersecurity, from Asia Pacific University of Technology & Innovation. With hands-on experience in SOC analysis, vulnerability assessment, and penetration testing, I've developed a strong foundation in identifying and mitigating security risks. My expertise in SIEM implementation, threat detection, and security documentation is further strengthened by industry certifications, including eJPT and ICCA. I blend technical expertise with analytical thinking to build robust security solutions, always staying ahead of emerging threats to protect critical infrastructure. Whether I'm conducting vulnerability assessments or implementing defense strategies, my goal remains constant: creating resilient security systems that effectively safeguard digital environments.
             </p>
             <div className="flex flex-col lg:flex-row items-center lg:items-start gap-4 lg:gap-4 lg:px-0 w-full">
-              <a href="https://drive.google.com/file/d/1elv9fAs-utle7FIR6uQeAfvmQzbFjYYk/view?usp=sharing" target="_blank" rel="noopener noreferrer" className="w-full lg:w-auto">
+              <a 
+                href="https://drive.google.com/file/d/1elv9fAs-utle7FIR6uQeAfvmQzbFjYYk/view?usp=sharing" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="w-full lg:w-auto"
+              >
                 <button 
                   data-aos="fade-up"
                   data-aos-duration="800"
-                  className="w-full lg:w-auto sm:px-6 py-2 sm:py-3 rounded-lg bg-gradient-to-r from-[#6366f1] to-[#a855f7] text-white font-medium transition-all duration-300 hover:scale-105 flex items-center justify-center lg:justify-start gap-2 shadow-lg hover:shadow-xl"
+                  className="group relative w-full lg:w-[160px]"
                 >
-                  <FileText className="w-4 h-4 sm:w-5 sm:h-5" /> Download CV
+                  <div className="absolute -inset-0.5 bg-gradient-to-r from-[#4f52c9] to-[#8644c5] rounded-xl opacity-50 blur-md group-hover:opacity-90 transition-all duration-700"></div>
+                  <div className="relative h-11 bg-[#030014] backdrop-blur-xl rounded-lg border border-white/10 leading-none overflow-hidden">
+                    <div className="absolute inset-0 scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-500 bg-gradient-to-r from-[#4f52c9]/20 to-[#8644c5]/20"></div>
+                    <span className="absolute inset-0 flex items-center justify-center gap-2 text-sm group-hover:gap-3 transition-all duration-300">
+                      <span className="bg-gradient-to-r from-gray-200 to-white bg-clip-text text-transparent font-medium z-10">
+                        Download CV
+                      </span>
+                      <FileText className="w-4 h-4 text-gray-200 group-hover:rotate-45 transform transition-all duration-300 z-10" />
+                    </span>
+                  </div>
                 </button>
               </a>
-              <button 
-                data-aos="fade-up"
-                data-aos-duration="1000"
-                className="w-full lg:w-auto sm:px-6 py-2 sm:py-3 rounded-lg border border-[#a855f7]/50 text-[#a855f7] font-medium transition-all duration-300 hover:scale-105 flex items-center justify-center lg:justify-start gap-2 hover:bg-[#a855f7]/10"
+              <Link 
+                to="/portfolio?tab=projects" 
+                className="w-full lg:w-auto"
               >
-                <Code className="w-4 h-4 sm:w-5 sm:h-5" /> View Projects
-              </button>
+                <button 
+                  data-aos="fade-up"
+                  data-aos-duration="1000"
+                  className="group relative w-full lg:w-[160px]"
+                >
+                  <div className="absolute -inset-0.5 bg-gradient-to-r from-[#4f52c9] to-[#8644c5] rounded-xl opacity-50 blur-md group-hover:opacity-90 transition-all duration-700"></div>
+                  <div className="relative h-11 bg-[#030014] backdrop-blur-xl rounded-lg border border-white/10 leading-none overflow-hidden">
+                    <div className="absolute inset-0 scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-500 bg-gradient-to-r from-[#4f52c9]/20 to-[#8644c5]/20"></div>
+                    <span className="absolute inset-0 flex items-center justify-center gap-2 text-sm group-hover:gap-3 transition-all duration-300">
+                      <span className="bg-gradient-to-r from-gray-200 to-white bg-clip-text text-transparent font-medium z-10">
+                        View Projects
+                      </span>
+                      <Code className="w-4 h-4 text-gray-200 group-hover:rotate-45 transform transition-all duration-300 z-10" />
+                    </span>
+                  </div>
+                </button>
+              </Link>
             </div>
           </div>
 
@@ -255,4 +280,3 @@ const AboutPage = () => {
 };
 
 export default AboutPage;
-
