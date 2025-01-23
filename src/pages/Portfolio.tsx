@@ -204,44 +204,21 @@ const certificates = [
 ];
 
 const techStack = [
-  {
-    category: "Cloud & Deployment",
-    items: [
-      { name: "Vercel", icon: "/icons/vercel.svg" },
-      { name: "Docker", icon: "/icons/docker.svg" },
-      { name: "Kubernetes", icon: "/icons/kubernetes.svg" },
-      { name: "AWS", icon: "/icons/aws.svg" },
-      { name: "Azure", icon: "/icons/azure.svg" },
-    ],
-  },
-  {
-    category: "Security Tools",
-    items: [
-      { name: "Burp Suite", icon: "/icons/burpsuite.svg" },
-      { name: "Nessus", icon: "/icons/nessus.svg" },
-      { name: "John the Ripper", icon: "/icons/johntheripper.svg" },
-      { name: "Zeek", icon: "/icons/zeek.svg" },
-      { name: "Snort", icon: "/icons/snort.svg" },
-      { name: "Aircrack-ng", icon: "/icons/aircrack-ng.svg" },
-      { name: "Yara", icon: "/icons/yara.svg" },
-      { name: "WireGuard", icon: "/icons/wireguard.svg" },
-    ],
-  },
-  {
-    category: "SIEM & Monitoring",
-    items: [
-      { name: "Splunk", icon: "/icons/splunk.svg" },
-      { name: "Elastic", icon: "/icons/elastic.svg" },
-      { name: "The Hive", icon: "/icons/thehive.svg" },
-      { name: "Wazuh", icon: "/icons/wazuh.svg" },
-    ],
-  },
-  {
-    category: "Operating Systems & Platforms",
-    items: [
-      { name: "Red Hat", icon: "/icons/redhat.svg" },
-    ],
-  },
+  { name: "HTML", icon: "/html5.svg", lucideIcon: Globe },
+  { name: "CSS", icon: "/css3.svg", lucideIcon: Palette },
+  { name: "JavaScript", icon: "/javascript.svg", lucideIcon: FileCode },
+  { name: "Tailwind CSS", icon: "/tailwind.svg", lucideIcon: Wind },
+  { name: "Vercel", icon: "/vercel.svg", lucideIcon: Cloud },
+  { name: "Docker", icon: "/docker.svg", lucideIcon: Boxes },
+  { name: "Kubernetes", icon: "/kubernetes.svg", lucideIcon: Network },
+  { name: "AWS", icon: "/aws.svg", lucideIcon: Cloud },
+  { name: "Azure", icon: "/azure.svg", lucideIcon: Cloud },
+  { name: "Splunk", icon: "/splunk.svg", lucideIcon: Search },
+  { name: "Red Hat", icon: "/redhat.svg", lucideIcon: Server },
+  { name: "Suricata", icon: "/suricata.svg", lucideIcon: Shield },
+  { name: "Nessus", icon: "/nessus.svg", lucideIcon: Lock },
+  { name: "Arch Linux", icon: "/archlinux.svg", lucideIcon: Terminal },
+  { name: "Cisco", icon: "/cisco.svg", lucideIcon: Router }
 ];
 
 const Portfolio = () => {
