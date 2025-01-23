@@ -375,24 +375,27 @@ const Portfolio = () => {
               {techStack.map((tech, techIndex) => (
                 <div 
                   key={techIndex}
-                  className="group flex flex-col items-center justify-center p-6 rounded-xl bg-black/40 backdrop-blur-xl border border-white/10 hover:border-white/20 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-[#6366f1]/10"
+                  className="group relative"
                   data-aos="fade-up"
                   data-aos-delay={techIndex * 50}
                 >
-                  <div className="relative w-20 h-20 mb-4">
-                    <img 
-                      src={tech.icon} 
-                      alt={tech.name}
-                      className={`w-20 h-20 object-contain transition-all duration-300 group-hover:brightness-110 ${
-                        tech.icon.endsWith('.png') 
-                          ? 'brightness-90 contrast-125 saturate-150'
-                          : 'filter-none'
-                      }`}
-                    />
+                  <div className="absolute -inset-0.5 bg-gradient-to-r from-[#4f52c9] to-[#8644c5] rounded-xl opacity-50 blur-md group-hover:opacity-90 transition-all duration-700" />
+                  <div className="relative flex flex-col items-center justify-center p-6 rounded-xl bg-black/20 backdrop-blur-xl border border-white/10 hover:border-white/20 transition-all duration-300">
+                    <div className="relative w-20 h-20 mb-4 group-hover:scale-110 transition-transform duration-300">
+                      <img 
+                        src={tech.icon} 
+                        alt={tech.name}
+                        className={`w-20 h-20 object-contain transition-all duration-300 group-hover:brightness-110 ${
+                          tech.icon.endsWith('.png') 
+                            ? 'brightness-90 contrast-125 saturate-150'
+                            : 'filter-none'
+                        }`}
+                      />
+                    </div>
+                    <span className="text-gray-300 text-sm font-medium text-center group-hover:text-white transition-colors duration-300">
+                      {tech.name}
+                    </span>
                   </div>
-                  <span className="text-gray-300 text-sm font-medium text-center group-hover:text-white transition-colors duration-300">
-                    {tech.name}
-                  </span>
                 </div>
               ))}
             </div>
