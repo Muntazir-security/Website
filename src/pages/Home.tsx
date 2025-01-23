@@ -126,7 +126,7 @@ const TECH_STACK = ["SIEM", "Threat Intel", "Network Security", "Incident Respon
 const SOCIAL_LINKS = [
   { icon: Github, link: "https://github.com/muntazir-security" },
   { icon: Linkedin, link: "https://www.linkedin.com/in/muntazir-security/" },
-  { icon: Shield, link: "https://tryhackme.com/r/p/muntazir" }
+  { icon: Shield, link: "https://tryhackme.com/r/p/Muntazir" }
 ];
 
 const Home = () => {
