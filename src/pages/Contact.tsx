@@ -98,7 +98,7 @@ const ContactPage = () => {
             </div>
 
             <form 
-              action="https://formsubmit.co/info@muntazirmehdi.com"
+              action="https://formsubmit.co/fe701d1f17341f778f44a54441a3c483"
               method="POST"
               onSubmit={handleSubmit}
               className="space-y-6"
