@@ -209,35 +209,37 @@ const techStack = [
   {
     category: "Cloud & Deployment",
     items: [
-      { name: "AWS", icon: "/icons/aws.svg" },
-      { name: "Azure", icon: "/icons/azure.svg" },
-      { name: "Docker", icon: "/icons/docker.svg" },
-      { name: "Kubernetes", icon: "/icons/kubernetes.svg" },
+      { name: "AWS", icon: "/aws.svg" },
+      { name: "Azure", icon: "/azure.svg" },
+      { name: "Docker", icon: "/docker.svg" },
+      { name: "Kubernetes", icon: "/kubernets.svg" },
     ],
   },
   {
     category: "Security Tools",
     items: [
-      { name: "Burp Suite", icon: "/icons/burpsuite.svg" },
-      { name: "Nessus", icon: "/icons/nessus.svg" },
-      { name: "Zeek", icon: "/icons/zeek.svg" },
-      { name: "Snort", icon: "/icons/snort.svg" },
+      { name: "Yara", icon: "/yara.png" },
+      { name: "Nessus", icon: "/nessus-professional.svg" },
+      { name: "TheHive", icon: "/thehive.png" },
+      { name: "John the Ripper", icon: "/johntheripper.png" },
+      { name: "Burp Suite", icon: "/burpsuite.png" },
+      { name: "Snort", icon: "/snort.png" },
     ],
   },
   {
     category: "SIEM & Monitoring",
     items: [
-      { name: "Splunk", icon: "/icons/splunk.svg" },
-      { name: "Elastic", icon: "/icons/elastic.svg" },
-      { name: "Wazuh", icon: "/icons/wazuh.svg" },
+      { name: "Splunk", icon: "/splunk.svg" },
+      { name: "Elastic", icon: "/elastic.svg" },
+      { name: "WireGuard", icon: "/wireguard.png" },
     ],
   },
   {
     category: "Operating Systems",
     items: [
-      { name: "Red Hat", icon: "/icons/redhat.svg" },
-      { name: "Ubuntu", icon: "/icons/ubuntu.svg" },
-      { name: "Arch Linux", icon: "/icons/archlinux.svg" },
+      { name: "Red Hat", icon: "/redhat.svg" },
+      { name: "Ubuntu", icon: "/ubuntu.svg" },
+      { name: "Arch Linux", icon: "/archlinux.svg" },
     ],
   },
 ];
