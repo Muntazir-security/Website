@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Link as ScrollLink, Events } from "react-scroll";
+import { Link as ScrollLink, Events, scrollSpy } from "react-scroll";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Menu } from "lucide-react";
@@ -12,18 +12,44 @@ const MainNav = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
+    // Initialize scrollspy
+    scrollSpy.update();
+
+    // Register scroll events
     Events.scrollEvent.register('begin', () => {
-      console.log("scroll begin");
+      console.log("Scroll begin");
     });
 
     Events.scrollEvent.register('end', (to) => {
-      console.log("scroll end:", to);
+      console.log("Scroll end:", to);
       setActiveSection(to);
     });
+
+    // Handle scroll position on page load
+    const handleScroll = () => {
+      const sections = ["home", "about", "portfolio", "contact"];
+      const scrollPosition = window.scrollY;
+
+      sections.forEach((section) => {
+        const element = document.getElementById(section);
+        if (element) {
+          const offsetTop = element.offsetTop - 100; // Adjust offset as needed
+          const offsetBottom = offsetTop + element.offsetHeight;
+
+          if (scrollPosition >= offsetTop && scrollPosition < offsetBottom) {
+            setActiveSection(section);
+          }
+        }
+      });
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    handleScroll(); // Check initial position
 
     return () => {
       Events.scrollEvent.remove('begin');
       Events.scrollEvent.remove('end');
+      window.removeEventListener('scroll', handleScroll);
     };
   }, []);
 
@@ -42,7 +68,7 @@ const MainNav = () => {
       offset={-70}
       duration={800}
       className={cn(
-        "relative px-3 py-1.5 text-sm font-medium transition-colors hover:text-white",
+        "relative px-3 py-1.5 text-sm font-medium transition-colors hover:text-white cursor-pointer",
         activeSection === href ? "text-white" : "text-gray-400",
         className
       )}
