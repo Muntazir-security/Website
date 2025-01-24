@@ -18,16 +18,16 @@ const App = () => (
       <Sonner />
       <div className="min-h-screen bg-[#0B0B1E]">
         <MainNav />
-        <Element name="home" className="section" id="home">
+        <Element name="home" className="section animate-fade-in" id="home">
           <Home />
         </Element>
-        <Element name="about" className="section" id="about">
+        <Element name="about" className="section animate-fade-in" id="about">
           <About />
         </Element>
-        <Element name="portfolio" className="section" id="portfolio">
+        <Element name="portfolio" className="section animate-fade-in" id="portfolio">
           <Portfolio />
         </Element>
-        <Element name="contact" className="section" id="contact">
+        <Element name="contact" className="section animate-fade-in" id="contact">
           <Contact />
         </Element>
       </div>
