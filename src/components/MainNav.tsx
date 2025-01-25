@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Menu, ArrowUp, Sun, Moon } from "lucide-react";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { useIsMobile } from "@/hooks/use-mobile";
+import { useNavigate } from 'react-router-dom';
 
 const MainNav = () => {
   const [activeSection, setActiveSection] = useState("home");
@@ -12,6 +13,7 @@ const MainNav = () => {
   const [theme, setTheme] = useState<'light' | 'dark'>('dark');
   const isMobile = useIsMobile();
   const [isOpen, setIsOpen] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     scrollSpy.update();
@@ -73,6 +75,12 @@ const MainNav = () => {
     }, 500);
   };
 
+  const handleLogoClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    console.log('Logo clicked, redirecting to index for welcome screen');
+    navigate('/');
+  };
+
   const NavLink = ({ href, label, ariaLabel, className }: { href: string; label: string; ariaLabel: string; className?: string }) => (
     <ScrollLink
       to={href}
@@ -104,19 +112,13 @@ const MainNav = () => {
     <>
       <header className="fixed top-0 left-0 right-0 z-50 bg-black/10 backdrop-blur-xl border-b border-white/10" role="banner">
         <nav className="container mx-auto px-6 h-16 flex items-center justify-between" role="navigation" aria-label="Main navigation">
-          <ScrollLink
-            to="home"
-            spy={true}
-            smooth={true}
-            offset={-100}
-            duration={800}
+          <button
+            onClick={handleLogoClick}
             className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-[#6366f1] to-[#a855f7] cursor-pointer focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2"
-            aria-label="Back to top"
-            role="button"
-            tabIndex={0}
+            aria-label="Back to welcome screen"
           >
             Muntazir
-          </ScrollLink>
+          </button>
 
           <div className="flex items-center gap-4">
             <Button
