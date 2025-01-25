@@ -18,16 +18,16 @@ const App = () => (
       <Sonner />
       <div className="min-h-screen bg-[#0B0B1E]">
         <MainNav />
-        <Element name="home" className="section">
+        <Element name="home" className="section" id="home">
           <Home />
         </Element>
-        <Element name="about" className="section">
+        <Element name="about" className="section" id="about">
           <About />
         </Element>
-        <Element name="portfolio" className="section">
+        <Element name="portfolio" className="section" id="portfolio">
           <Portfolio />
         </Element>
-        <Element name="contact" className="section">
+        <Element name="contact" className="section" id="contact">
           <Contact />
         </Element>
       </div>
