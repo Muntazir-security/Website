@@ -68,10 +68,10 @@ const MainNav = () => {
   ];
 
   const handleLinkClick = () => {
-    // Delay closing the sheet menu for smoother transition
+    // Add smooth transition before closing
     setTimeout(() => {
       setIsOpen(false);
-    }, 300);
+    }, 500); // Increased timeout for smoother transition
   };
 
   const NavLink = ({ href, label, ariaLabel, className }: { href: string; label: string; ariaLabel: string; className?: string }) => (
@@ -79,10 +79,12 @@ const MainNav = () => {
       to={href}
       spy={true}
       smooth={true}
-      offset={-100}
+      offset={-70} // Adjusted offset for better highlighting
       duration={800}
       className={cn(
-        "relative px-3 py-1.5 text-sm font-medium transition-all duration-300 hover:text-white focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 cursor-pointer",
+        "relative px-3 py-1.5 text-sm font-medium transition-all duration-300",
+        "hover:text-white focus:outline-none focus:ring-2 focus:ring-purple-500",
+        "focus:ring-offset-2 cursor-pointer",
         activeSection === href ? "text-white" : "text-gray-400",
         className
       )}
@@ -101,8 +103,8 @@ const MainNav = () => {
 
   return (
     <>
-      <header className="fixed top-0 left-0 right-0 z-50 bg-black/10 backdrop-blur-xl border-b border-white/10">
-        <nav className="container mx-auto px-6 h-16 flex items-center justify-between">
+      <header className="fixed top-0 left-0 right-0 z-50 bg-black/10 backdrop-blur-xl border-b border-white/10" role="banner">
+        <nav className="container mx-auto px-6 h-16 flex items-center justify-between" role="navigation" aria-label="Main navigation">
           <ScrollLink
             to="home"
             spy={true}
@@ -135,7 +137,10 @@ const MainNav = () => {
                     <Menu className="h-6 w-6" />
                   </Button>
                 </SheetTrigger>
-                <SheetContent className="w-64 bg-black/90 backdrop-blur-xl border-white/10">
+                <SheetContent 
+                  className="w-64 bg-black/90 backdrop-blur-xl border-white/10"
+                  aria-label="Mobile navigation menu"
+                >
                   <div className="flex flex-col space-y-6 mt-8">
                     {navItems.map((item) => (
                       <NavLink key={item.href} {...item} className="text-lg" />
@@ -167,7 +172,11 @@ const MainNav = () => {
         smooth={true}
         duration={800}
         className={cn(
-          "fixed bottom-8 right-8 z-50 p-3 rounded-full bg-gradient-to-r from-[#6366f1] to-[#a855f7] cursor-pointer transition-all duration-300 hover:scale-110 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2",
+          "fixed bottom-8 right-8 z-50 p-3 rounded-full",
+          "bg-gradient-to-r from-[#6366f1] to-[#a855f7]",
+          "cursor-pointer transition-all duration-300",
+          "hover:scale-110 focus:outline-none focus:ring-2",
+          "focus:ring-purple-500 focus:ring-offset-2",
           showBackToTop ? "opacity-100 translate-y-0" : "opacity-0 translate-y-16 pointer-events-none"
         )}
         aria-label="Scroll to top"
