@@ -34,7 +34,7 @@ const MainNav = () => {
       sections.forEach((section) => {
         const element = document.getElementById(section);
         if (element) {
-          const offsetTop = element.offsetTop - 100;
+          const offsetTop = element.offsetTop - 80; // Adjusted offset
           const offsetBottom = offsetTop + element.offsetHeight;
 
           if (scrollPosition >= offsetTop && scrollPosition < offsetBottom) {
@@ -68,10 +68,9 @@ const MainNav = () => {
   ];
 
   const handleLinkClick = () => {
-    // Add smooth transition before closing
     setTimeout(() => {
       setIsOpen(false);
-    }, 500); // Increased timeout for smoother transition
+    }, 500);
   };
 
   const NavLink = ({ href, label, ariaLabel, className }: { href: string; label: string; ariaLabel: string; className?: string }) => (
@@ -79,7 +78,7 @@ const MainNav = () => {
       to={href}
       spy={true}
       smooth={true}
-      offset={-70} // Adjusted offset for better highlighting
+      offset={-100} // Adjusted offset for better positioning
       duration={800}
       className={cn(
         "relative px-3 py-1.5 text-sm font-medium transition-all duration-300",
