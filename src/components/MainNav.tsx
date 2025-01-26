@@ -3,8 +3,18 @@ import { Link } from "react-router-dom";
 import WelcomeScreen from "./WelcomeScreen";
 
 const MainNav = () => {
-  const [showWelcome, setShowWelcome] = useState(false);
+  const [showWelcome, setShowWelcome] = useState(true);
   const [activeSection, setActiveSection] = useState('home');
+
+  useEffect(() => {
+    console.log('MainNav mounted, showing welcome screen');
+    const timer = setTimeout(() => {
+      console.log('5 seconds elapsed, hiding welcome screen');
+      setShowWelcome(false);
+    }, 5000);
+    
+    return () => clearTimeout(timer);
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -15,11 +25,10 @@ const MainNav = () => {
         const element = document.getElementById(section);
         if (element) {
           const { offsetTop, offsetHeight } = element;
-          // Adding a buffer for better UX
           if (scrollPosition >= offsetTop - 100 && 
               scrollPosition < offsetTop + offsetHeight - 100) {
             setActiveSection(section);
-            console.log('Active section:', section); // Debug log
+            console.log('Active section:', section);
           }
         }
       });
