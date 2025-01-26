@@ -22,15 +22,7 @@ const MainNav = () => {
 
   return (
     <>
-      {showWelcome && (
-        <WelcomeScreen 
-          onLoadingComplete={() => {
-            console.log('Welcome screen complete from nav');
-            setShowWelcome(false);
-            navigate('/home');
-          }} 
-        />
-      )}
+      {showWelcome && <WelcomeScreen />}
       <div className="fixed top-0 left-0 right-0 z-50 bg-[#0B0B1E] border-b border-white/10">
         <div className="max-w-[1280px] mx-auto px-6 flex h-16 items-center justify-between">
           {/* Logo */}
@@ -45,9 +37,9 @@ const MainNav = () => {
           {/* Navigation Links */}
           <nav className="flex items-center gap-6">
             <Link
-              to="/"
+              to="/home"
               className={`text-sm transition-all relative ${
-                location.pathname === "/" 
+                location.pathname === "/home" 
                   ? "text-transparent bg-clip-text bg-gradient-to-r from-[#6366f1] to-[#a855f7] after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-full after:h-0.5 after:bg-gradient-to-r after:from-[#6366f1] after:to-[#a855f7]" 
                   : "text-white/60 hover:text-white/90"
               }`}
