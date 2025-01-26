@@ -12,6 +12,7 @@ const MainNav = () => {
     console.log('Logo clicked, showing welcome screen');
     setShowWelcome(true);
     
+    // After 5 seconds, hide welcome screen and navigate to home
     setTimeout(() => {
       console.log('5 seconds elapsed, hiding welcome screen');
       setShowWelcome(false);
@@ -19,24 +20,12 @@ const MainNav = () => {
     }, 5000);
   };
 
-  const scrollToSection = (sectionId: string) => {
-    if (location.pathname !== '/home') {
-      navigate('/home');
-      setTimeout(() => {
-        const element = document.getElementById(sectionId);
-        element?.scrollIntoView({ behavior: 'smooth' });
-      }, 100);
-    } else {
-      const element = document.getElementById(sectionId);
-      element?.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
-
   return (
     <>
       {showWelcome && <WelcomeScreen />}
       <div className="fixed top-0 left-0 right-0 z-50 bg-[#0B0B1E] border-b border-white/10">
         <div className="max-w-[1280px] mx-auto px-6 flex h-16 items-center justify-between">
+          {/* Logo */}
           <Link 
             to="/" 
             className="text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#6366f1] to-[#a855f7]"
@@ -45,9 +34,10 @@ const MainNav = () => {
             Muntazir
           </Link>
 
+          {/* Navigation Links */}
           <nav className="flex items-center gap-6">
-            <button
-              onClick={() => scrollToSection('home')}
+            <Link
+              to="/home"
               className={`text-sm transition-all relative ${
                 location.pathname === "/home" 
                   ? "text-transparent bg-clip-text bg-gradient-to-r from-[#6366f1] to-[#a855f7] after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-full after:h-0.5 after:bg-gradient-to-r after:from-[#6366f1] after:to-[#a855f7]" 
@@ -55,9 +45,9 @@ const MainNav = () => {
               }`}
             >
               Home
-            </button>
-            <button
-              onClick={() => scrollToSection('about')}
+            </Link>
+            <Link
+              to="/about"
               className={`text-sm transition-all relative ${
                 location.pathname === "/about"
                   ? "text-transparent bg-clip-text bg-gradient-to-r from-[#6366f1] to-[#a855f7] after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-full after:h-0.5 after:bg-gradient-to-r after:from-[#6366f1] after:to-[#a855f7]"
@@ -65,9 +55,9 @@ const MainNav = () => {
               }`}
             >
               About
-            </button>
-            <button
-              onClick={() => scrollToSection('portfolio')}
+            </Link>
+            <Link
+              to="/portfolio"
               className={`text-sm transition-all relative ${
                 location.pathname === "/portfolio"
                   ? "text-transparent bg-clip-text bg-gradient-to-r from-[#6366f1] to-[#a855f7] after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-full after:h-0.5 after:bg-gradient-to-r after:from-[#6366f1] after:to-[#a855f7]"
@@ -75,9 +65,9 @@ const MainNav = () => {
               }`}
             >
               Portfolio
-            </button>
-            <button
-              onClick={() => scrollToSection('contact')}
+            </Link>
+            <Link
+              to="/contact"
               className={`text-sm transition-all relative ${
                 location.pathname === "/contact"
                   ? "text-transparent bg-clip-text bg-gradient-to-r from-[#6366f1] to-[#a855f7] after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-full after:h-0.5 after:bg-gradient-to-r after:from-[#6366f1] after:to-[#a855f7]"
@@ -85,7 +75,7 @@ const MainNav = () => {
               }`}
             >
               Contact
-            </button>
+            </Link>
           </nav>
         </div>
       </div>

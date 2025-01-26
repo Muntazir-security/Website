@@ -200,7 +200,7 @@ const Home = () => {
   };
 
   return (
-    <div id="home" className="min-h-screen bg-[#0B0B1E] overflow-hidden">
+    <div className="min-h-screen bg-[#0B0B1E] overflow-hidden" id="Home">
       <div className={`relative z-10 transition-all duration-1000 ${isLoaded ? "opacity-100" : "opacity-0"}`}>
         <div className="container mx-auto px-[5%] sm:px-6 lg:px-[0%] min-h-screen">
           <div className="flex flex-col lg:flex-row items-center justify-center h-screen md:justify-between gap-0 sm:gap-12 lg:gap-20">
