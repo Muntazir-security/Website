@@ -2,8 +2,9 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { Element } from 'react-scroll';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import MainNav from "./components/MainNav";
+import Index from "./pages/Index";
 import Home from "./pages/Home";
 import About from "./pages/About";
 import Portfolio from "./pages/Portfolio";
@@ -16,21 +17,18 @@ const App = () => (
     <TooltipProvider>
       <Toaster />
       <Sonner />
-      <div className="min-h-screen bg-[#0B0B1E]">
-        <MainNav />
-        <Element name="home" className="section" id="home">
-          <Home />
-        </Element>
-        <Element name="about" className="section" id="about">
-          <About />
-        </Element>
-        <Element name="portfolio" className="section" id="portfolio">
-          <Portfolio />
-        </Element>
-        <Element name="contact" className="section" id="contact">
-          <Contact />
-        </Element>
-      </div>
+      <BrowserRouter>
+        <div className="min-h-screen bg-[#0B0B1E]">
+          <MainNav />
+          <Routes>
+            <Route path="/" element={<Index />} />
+            <Route path="/home" element={<Home />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/portfolio" element={<Portfolio />} />
+            <Route path="/contact" element={<Contact />} />
+          </Routes>
+        </div>
+      </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>
 );
