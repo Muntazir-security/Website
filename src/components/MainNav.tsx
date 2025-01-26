@@ -1,9 +1,33 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import WelcomeScreen from "./WelcomeScreen";
 
 const MainNav = () => {
   const [showWelcome, setShowWelcome] = useState(false);
+  const [activeSection, setActiveSection] = useState('home');
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const sections = ['home', 'about', 'portfolio', 'contact'];
+      const scrollPosition = window.scrollY;
+
+      sections.forEach(section => {
+        const element = document.getElementById(section);
+        if (element) {
+          const { offsetTop, offsetHeight } = element;
+          // Adding a buffer for better UX
+          if (scrollPosition >= offsetTop - 100 && 
+              scrollPosition < offsetTop + offsetHeight - 100) {
+            setActiveSection(section);
+            console.log('Active section:', section); // Debug log
+          }
+        }
+      });
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const handleLogoClick = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -40,28 +64,44 @@ const MainNav = () => {
             <a
               href="#home"
               onClick={(e) => scrollToSection(e, 'home')}
-              className="text-sm transition-all relative text-white/60 hover:text-white/90"
+              className={`text-sm transition-all relative ${
+                activeSection === 'home' 
+                  ? 'text-white after:absolute after:bottom-[-4px] after:left-0 after:w-full after:h-[2px] after:bg-gradient-to-r after:from-[#6366f1] after:to-[#a855f7]' 
+                  : 'text-white/60 hover:text-white/90'
+              }`}
             >
               Home
             </a>
             <a
               href="#about"
               onClick={(e) => scrollToSection(e, 'about')}
-              className="text-sm transition-all relative text-white/60 hover:text-white/90"
+              className={`text-sm transition-all relative ${
+                activeSection === 'about' 
+                  ? 'text-white after:absolute after:bottom-[-4px] after:left-0 after:w-full after:h-[2px] after:bg-gradient-to-r after:from-[#6366f1] after:to-[#a855f7]' 
+                  : 'text-white/60 hover:text-white/90'
+              }`}
             >
               About
             </a>
             <a
               href="#portfolio"
               onClick={(e) => scrollToSection(e, 'portfolio')}
-              className="text-sm transition-all relative text-white/60 hover:text-white/90"
+              className={`text-sm transition-all relative ${
+                activeSection === 'portfolio' 
+                  ? 'text-white after:absolute after:bottom-[-4px] after:left-0 after:w-full after:h-[2px] after:bg-gradient-to-r after:from-[#6366f1] after:to-[#a855f7]' 
+                  : 'text-white/60 hover:text-white/90'
+              }`}
             >
               Portfolio
             </a>
             <a
               href="#contact"
               onClick={(e) => scrollToSection(e, 'contact')}
-              className="text-sm transition-all relative text-white/60 hover:text-white/90"
+              className={`text-sm transition-all relative ${
+                activeSection === 'contact' 
+                  ? 'text-white after:absolute after:bottom-[-4px] after:left-0 after:w-full after:h-[2px] after:bg-gradient-to-r after:from-[#6366f1] after:to-[#a855f7]' 
+                  : 'text-white/60 hover:text-white/90'
+              }`}
             >
               Contact
             </a>
