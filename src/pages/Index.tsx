@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import WelcomeScreen from '../components/WelcomeScreen';
 
@@ -8,6 +8,7 @@ const Index = () => {
 
   const handleLoadingComplete = () => {
     console.log('Welcome screen complete, navigating to home');
+    setShowWelcome(false);
     navigate('/home');
   };
 
