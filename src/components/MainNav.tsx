@@ -1,10 +1,8 @@
 import React, { useState } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import WelcomeScreen from "./WelcomeScreen";
 
 const MainNav = () => {
-  const location = useLocation();
-  const navigate = useNavigate();
   const [showWelcome, setShowWelcome] = useState(false);
 
   const handleLogoClick = (e: React.MouseEvent) => {
@@ -12,12 +10,17 @@ const MainNav = () => {
     console.log('Logo clicked, showing welcome screen');
     setShowWelcome(true);
     
-    // After 5 seconds, hide welcome screen and navigate to home
     setTimeout(() => {
       console.log('5 seconds elapsed, hiding welcome screen');
       setShowWelcome(false);
-      navigate('/home');
+      document.getElementById('home')?.scrollIntoView({ behavior: 'smooth' });
     }, 5000);
+  };
+
+  const scrollToSection = (e: React.MouseEvent, sectionId: string) => {
+    e.preventDefault();
+    console.log(`Scrolling to section: ${sectionId}`);
+    document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth' });
   };
 
   return (
@@ -25,7 +28,6 @@ const MainNav = () => {
       {showWelcome && <WelcomeScreen />}
       <div className="fixed top-0 left-0 right-0 z-50 bg-[#0B0B1E] border-b border-white/10">
         <div className="max-w-[1280px] mx-auto px-6 flex h-16 items-center justify-between">
-          {/* Logo */}
           <Link 
             to="/" 
             className="text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#6366f1] to-[#a855f7]"
@@ -34,48 +36,35 @@ const MainNav = () => {
             Muntazir
           </Link>
 
-          {/* Navigation Links */}
           <nav className="flex items-center gap-6">
-            <Link
-              to="/home"
-              className={`text-sm transition-all relative ${
-                location.pathname === "/home" 
-                  ? "text-transparent bg-clip-text bg-gradient-to-r from-[#6366f1] to-[#a855f7] after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-full after:h-0.5 after:bg-gradient-to-r after:from-[#6366f1] after:to-[#a855f7]" 
-                  : "text-white/60 hover:text-white/90"
-              }`}
+            <a
+              href="#home"
+              onClick={(e) => scrollToSection(e, 'home')}
+              className="text-sm transition-all relative text-white/60 hover:text-white/90"
             >
               Home
-            </Link>
-            <Link
-              to="/about"
-              className={`text-sm transition-all relative ${
-                location.pathname === "/about"
-                  ? "text-transparent bg-clip-text bg-gradient-to-r from-[#6366f1] to-[#a855f7] after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-full after:h-0.5 after:bg-gradient-to-r after:from-[#6366f1] after:to-[#a855f7]"
-                  : "text-white/60 hover:text-white/90"
-              }`}
+            </a>
+            <a
+              href="#about"
+              onClick={(e) => scrollToSection(e, 'about')}
+              className="text-sm transition-all relative text-white/60 hover:text-white/90"
             >
               About
-            </Link>
-            <Link
-              to="/portfolio"
-              className={`text-sm transition-all relative ${
-                location.pathname === "/portfolio"
-                  ? "text-transparent bg-clip-text bg-gradient-to-r from-[#6366f1] to-[#a855f7] after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-full after:h-0.5 after:bg-gradient-to-r after:from-[#6366f1] after:to-[#a855f7]"
-                  : "text-white/60 hover:text-white/90"
-              }`}
+            </a>
+            <a
+              href="#portfolio"
+              onClick={(e) => scrollToSection(e, 'portfolio')}
+              className="text-sm transition-all relative text-white/60 hover:text-white/90"
             >
               Portfolio
-            </Link>
-            <Link
-              to="/contact"
-              className={`text-sm transition-all relative ${
-                location.pathname === "/contact"
-                  ? "text-transparent bg-clip-text bg-gradient-to-r from-[#6366f1] to-[#a855f7] after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-full after:h-0.5 after:bg-gradient-to-r after:from-[#6366f1] after:to-[#a855f7]"
-                  : "text-white/60 hover:text-white/90"
-              }`}
+            </a>
+            <a
+              href="#contact"
+              onClick={(e) => scrollToSection(e, 'contact')}
+              className="text-sm transition-all relative text-white/60 hover:text-white/90"
             >
               Contact
-            </Link>
+            </a>
           </nav>
         </div>
       </div>
