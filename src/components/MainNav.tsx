@@ -5,17 +5,17 @@ import { Button } from "@/components/ui/button";
 import { Menu } from "lucide-react";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { useIsMobile } from "@/hooks/use-mobile";
+import { useNavigate } from "react-router-dom";
 
 const MainNav = () => {
   const [activeSection, setActiveSection] = useState("home");
   const isMobile = useIsMobile();
   const [isOpen, setIsOpen] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
-    // Initialize scrollspy
     scrollSpy.update();
 
-    // Register scroll events
     Events.scrollEvent.register('begin', () => {
       console.log("Scroll begin");
     });
@@ -25,7 +25,6 @@ const MainNav = () => {
       setActiveSection(to);
     });
 
-    // Handle scroll position on page load
     const handleScroll = () => {
       const sections = ["home", "about", "portfolio", "contact"];
       const scrollPosition = window.scrollY;
@@ -33,7 +32,7 @@ const MainNav = () => {
       sections.forEach((section) => {
         const element = document.getElementById(section);
         if (element) {
-          const offsetTop = element.offsetTop - 100; // Adjust offset as needed
+          const offsetTop = element.offsetTop - 100;
           const offsetBottom = offsetTop + element.offsetHeight;
 
           if (scrollPosition >= offsetTop && scrollPosition < offsetBottom) {
@@ -44,7 +43,7 @@ const MainNav = () => {
     };
 
     window.addEventListener('scroll', handleScroll);
-    handleScroll(); // Check initial position
+    handleScroll();
 
     return () => {
       Events.scrollEvent.remove('begin');
@@ -52,6 +51,11 @@ const MainNav = () => {
       window.removeEventListener('scroll', handleScroll);
     };
   }, []);
+
+  const handleLogoClick = () => {
+    console.log('Logo clicked, navigating to welcome screen');
+    navigate('/');
+  };
 
   const navItems = [
     { href: "home", label: "Home" },
@@ -85,16 +89,12 @@ const MainNav = () => {
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-black/10 backdrop-blur-xl border-b border-white/10">
       <nav className="container mx-auto px-6 h-16 flex items-center justify-between">
-        <ScrollLink
-          to="home"
-          spy={true}
-          smooth={true}
-          offset={-70}
-          duration={800}
+        <div
+          onClick={handleLogoClick}
           className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-[#6366f1] to-[#a855f7] cursor-pointer"
         >
           Muntazir
-        </ScrollLink>
+        </div>
 
         {isMobile ? (
           <Sheet open={isOpen} onOpenChange={setIsOpen}>
