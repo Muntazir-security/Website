@@ -35,17 +35,17 @@ const App = () => (
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/home" element={
-              <main className="scroll-smooth">
-                <section id="home" className="min-h-screen">
+              <main className="scroll-smooth pt-16">
+                <section id="home" className="min-h-screen flex items-center">
                   <Home />
                 </section>
-                <section id="about" className="min-h-screen">
+                <section id="about" className="min-h-screen flex items-center">
                   <About />
                 </section>
-                <section id="portfolio" className="min-h-screen">
+                <section id="portfolio" className="min-h-screen flex items-center">
                   <Portfolio />
                 </section>
-                <section id="contact" className="min-h-screen">
+                <section id="contact" className="min-h-screen flex items-center">
                   <Contact />
                 </section>
               </main>
