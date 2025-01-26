@@ -4,7 +4,7 @@ import MainTitle from './MainTitle';
 import TypewriterEffect from './TypewriterEffect';
 import SocialLinks from './SocialLinks';
 import CTAButtons from './CTAButtons';
-import { Shield, Linkedin, Github } from 'lucide-react';
+import SecurityFeatures from './SecurityFeatures';
 
 const HeroSection = () => {
   return (
@@ -25,6 +25,8 @@ const HeroSection = () => {
           Hi, I'm a Cybersecurity Engineer with hands-on experience in SOC analysis, vulnerability assessment, and penetration testing. I specialize in identifying vulnerabilities and crafting robust defense strategies to protect digital environments from emerging threats.
         </p>
 
+        <SecurityFeatures />
+        
         <CTAButtons />
 
         {/* Social Links */}
