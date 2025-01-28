@@ -1,5 +1,5 @@
 import ReactGA from 'react-ga4';
-import { hotjar } from '@hotjar/browser';
+import hotjar from '@hotjar/browser';
 
 // Initialize Google Analytics
 export const initGA = () => {
