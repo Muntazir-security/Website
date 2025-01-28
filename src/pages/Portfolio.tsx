@@ -16,7 +16,8 @@ import {
   CheckSquare,
   Car,
   Home,
-  ArrowRight
+  ArrowRight,
+  X
 } from "lucide-react";
 import AOS from "aos";
 import "aos/dist/aos.css";
@@ -393,6 +394,15 @@ const Portfolio = () => {
             </DialogTitle>
           </DialogHeader>
           
+          {/* Override the close button styles */}
+          <button 
+            onClick={() => setSelectedProject(null)}
+            className="absolute right-4 top-4 p-2 rounded-full bg-white/10 hover:bg-white/20 transition-colors duration-200"
+          >
+            <X className="h-4 w-4 text-white" />
+            <span className="sr-only">Close</span>
+          </button>
+          
           <div className="mt-8 space-y-8">
             <HoverCard>
               <h3 className="text-lg font-semibold text-white mb-2">Overview</h3>
@@ -445,6 +455,14 @@ const Portfolio = () => {
       {/* Certificate Dialog */}
       <Dialog open={!!selectedCertificate} onOpenChange={() => setSelectedCertificate(null)}>
         <DialogContent className="max-w-4xl w-[90vw] h-[90vh] p-0">
+          {/* Override the close button styles */}
+          <button 
+            onClick={() => setSelectedCertificate(null)}
+            className="absolute right-4 top-4 p-2 rounded-full bg-white/10 hover:bg-white/20 transition-colors duration-200 z-50"
+          >
+            <X className="h-4 w-4 text-white" />
+            <span className="sr-only">Close</span>
+          </button>
           <img 
             src={selectedCertificate || ''} 
             alt="Certificate"
