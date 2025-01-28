@@ -235,38 +235,46 @@ const Portfolio = () => {
         </div>
 
         <Tabs defaultValue={activeTab} className="space-y-8">
-          <TabsList className="grid w-full grid-cols-3 max-w-2xl mx-auto mb-12 bg-gradient-to-br from-black/40 to-black/60 backdrop-blur-xl border border-white/20 p-2 rounded-2xl shadow-xl">
-            <TabsTrigger 
-              value="projects"
-              className="relative px-6 py-3 data-[state=active]:bg-gradient-to-r data-[state=active]:from-[#6366f1] data-[state=active]:to-[#a855f7] data-[state=active]:text-white rounded-xl transition-all duration-500 hover:bg-white/5 group"
-            >
-              <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-[#6366f1]/20 to-[#a855f7]/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10" />
-              <div className="flex items-center justify-center gap-2">
-                <Code2 className="w-4 h-4" />
-                <span className="font-medium">Projects</span>
-              </div>
-            </TabsTrigger>
-            <TabsTrigger 
-              value="certificates"
-              className="relative px-6 py-3 data-[state=active]:bg-gradient-to-r data-[state=active]:from-[#6366f1] data-[state=active]:to-[#a855f7] data-[state=active]:text-white rounded-xl transition-all duration-500 hover:bg-white/5 group"
-            >
-              <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-[#6366f1]/20 to-[#a855f7]/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10" />
-              <div className="flex items-center justify-center gap-2">
-                <Award className="w-4 h-4" />
-                <span className="font-medium">Certificates</span>
-              </div>
-            </TabsTrigger>
-            <TabsTrigger 
-              value="tech-stack"
-              className="relative px-6 py-3 data-[state=active]:bg-gradient-to-r data-[state=active]:from-[#6366f1] data-[state=active]:to-[#a855f7] data-[state=active]:text-white rounded-xl transition-all duration-500 hover:bg-white/5 group"
-            >
-              <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-[#6366f1]/20 to-[#a855f7]/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10" />
-              <div className="flex items-center justify-center gap-2">
-                <Boxes className="w-4 h-4" />
-                <span className="font-medium">Tech Stack</span>
-              </div>
-            </TabsTrigger>
-          </TabsList>
+          <div className="relative max-w-3xl mx-auto mb-12">
+            <div className="absolute inset-0 bg-gradient-to-r from-[#1a1a1a] via-[#2a2a2a] to-[#1a1a1a] rounded-full blur-xl opacity-50" />
+            <TabsList className="relative grid w-full grid-cols-3 bg-black/40 backdrop-blur-xl border border-white/10 p-1.5 rounded-full overflow-hidden">
+              <div
+                className="absolute inset-y-1 left-0 w-1/3 bg-gradient-to-r from-[#6366f1] to-[#a855f7] rounded-full transition-transform duration-300"
+                style={{
+                  transform: `translateX(${
+                    activeTab === 'projects' ? '0%' : activeTab === 'certificates' ? '100%' : '200%'
+                  })`
+                }}
+              />
+              <TabsTrigger 
+                value="projects"
+                className="relative px-6 py-3 rounded-full transition-all duration-300 z-10 data-[state=active]:text-white text-gray-400"
+              >
+                <div className="flex items-center justify-center gap-2">
+                  <Code2 className="w-4 h-4" />
+                  <span className="font-medium">Projects</span>
+                </div>
+              </TabsTrigger>
+              <TabsTrigger 
+                value="certificates"
+                className="relative px-6 py-3 rounded-full transition-all duration-300 z-10 data-[state=active]:text-white text-gray-400"
+              >
+                <div className="flex items-center justify-center gap-2">
+                  <Award className="w-4 h-4" />
+                  <span className="font-medium">Certificates</span>
+                </div>
+              </TabsTrigger>
+              <TabsTrigger 
+                value="tech-stack"
+                className="relative px-6 py-3 rounded-full transition-all duration-300 z-10 data-[state=active]:text-white text-gray-400"
+              >
+                <div className="flex items-center justify-center gap-2">
+                  <Boxes className="w-4 h-4" />
+                  <span className="font-medium">Tech Stack</span>
+                </div>
+              </TabsTrigger>
+            </TabsList>
+          </div>
 
           {/* Projects Content */}
           <TabsContent value="projects">
