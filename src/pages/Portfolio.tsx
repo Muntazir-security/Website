@@ -226,20 +226,19 @@ const Portfolio = () => {
     <PageBackground>
       <div className="max-w-7xl mx-auto relative">
         <div className="text-center mb-16 pt-20" data-aos="fade-down">
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-[#6366f1] to-[#a855f7] mb-4">
+          <h1 className="text-6xl md:text-7xl lg:text-8xl font-bold text-[#8B5CF6] mb-6">
             Portfolio
           </h1>
-          <p className="text-gray-400 max-w-2xl mx-auto">
+          <p className="text-gray-400 text-lg max-w-2xl mx-auto">
             Explore my journey through projects, certifications, and technical expertise
           </p>
         </div>
 
-        <Tabs defaultValue={activeTab} className="space-y-8">
-          <div className="relative max-w-3xl mx-auto mb-12">
-            <div className="absolute inset-0 bg-gradient-to-r from-[#1a1a1a] via-[#2a2a2a] to-[#1a1a1a] rounded-full blur-xl opacity-50" />
-            <TabsList className="relative grid w-full grid-cols-3 bg-black/40 backdrop-blur-xl border border-white/10 p-1.5 rounded-full overflow-hidden">
+        <Tabs defaultValue={activeTab} className="space-y-12">
+          <div className="relative max-w-3xl mx-auto">
+            <TabsList className="relative grid w-full grid-cols-3 bg-[#1a1b26]/50 backdrop-blur-xl p-1.5 rounded-full overflow-hidden">
               <div
-                className="absolute inset-y-1 left-0 w-1/3 bg-gradient-to-r from-[#6366f1] to-[#a855f7] rounded-full transition-transform duration-300"
+                className="absolute inset-y-1 left-0 w-1/3 bg-[#8B5CF6] rounded-full transition-transform duration-300"
                 style={{
                   transform: `translateX(${
                     activeTab === 'projects' ? '0%' : activeTab === 'certificates' ? '100%' : '200%'
@@ -248,27 +247,27 @@ const Portfolio = () => {
               />
               <TabsTrigger 
                 value="projects"
-                className="relative px-6 py-3 rounded-full transition-all duration-300 z-10 data-[state=active]:text-white text-gray-400"
+                className="relative px-8 py-3 rounded-full transition-all duration-300 z-10 data-[state=active]:text-white text-gray-400 hover:text-white/90"
               >
-                <div className="flex items-center justify-center gap-2">
+                <div className="flex items-center justify-center gap-2.5">
                   <Code2 className="w-4 h-4" />
                   <span className="font-medium">Projects</span>
                 </div>
               </TabsTrigger>
               <TabsTrigger 
                 value="certificates"
-                className="relative px-6 py-3 rounded-full transition-all duration-300 z-10 data-[state=active]:text-white text-gray-400"
+                className="relative px-8 py-3 rounded-full transition-all duration-300 z-10 data-[state=active]:text-white text-gray-400 hover:text-white/90"
               >
-                <div className="flex items-center justify-center gap-2">
+                <div className="flex items-center justify-center gap-2.5">
                   <Award className="w-4 h-4" />
                   <span className="font-medium">Certificates</span>
                 </div>
               </TabsTrigger>
               <TabsTrigger 
                 value="tech-stack"
-                className="relative px-6 py-3 rounded-full transition-all duration-300 z-10 data-[state=active]:text-white text-gray-400"
+                className="relative px-8 py-3 rounded-full transition-all duration-300 z-10 data-[state=active]:text-white text-gray-400 hover:text-white/90"
               >
-                <div className="flex items-center justify-center gap-2">
+                <div className="flex items-center justify-center gap-2.5">
                   <Boxes className="w-4 h-4" />
                   <span className="font-medium">Tech Stack</span>
                 </div>
