@@ -9,7 +9,7 @@ export const initGA = () => {
 
 // Initialize Hotjar
 export const initHotjar = () => {
-  hotjar.initialize(0000000, 6); // Replace with your Hotjar ID and version
+  hotjar.initialize(1234567, 6); // Replace 1234567 with your actual Hotjar ID
   console.log('Hotjar initialized');
 };
 
