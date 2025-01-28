@@ -29,31 +29,33 @@ const App = () => {
   return (
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
-        <Toaster />
-        <Sonner />
-        <BrowserRouter>
-          {showWelcome ? (
-            <WelcomeScreen onLoadingComplete={() => setShowWelcome(false)} />
-          ) : (
-            <div className="min-h-screen bg-[#0B0B1E]">
-              <MainNav onLogoClick={() => setShowWelcome(true)} />
-              <div className="scroll-smooth">
-                <section id="home">
-                  <Home />
-                </section>
-                <section id="about">
-                  <About />
-                </section>
-                <section id="portfolio">
-                  <Portfolio />
-                </section>
-                <section id="contact">
-                  <Contact />
-                </section>
+        <div className="relative min-h-screen w-full overflow-hidden">
+          <Toaster />
+          <Sonner />
+          <BrowserRouter>
+            {showWelcome ? (
+              <WelcomeScreen onLoadingComplete={() => setShowWelcome(false)} />
+            ) : (
+              <div className="min-h-screen bg-[#0B0B1E]">
+                <MainNav onLogoClick={() => setShowWelcome(true)} />
+                <div className="scroll-smooth pt-16">
+                  <section id="home" className="min-h-screen">
+                    <Home />
+                  </section>
+                  <section id="about" className="min-h-screen">
+                    <About />
+                  </section>
+                  <section id="portfolio" className="min-h-screen">
+                    <Portfolio />
+                  </section>
+                  <section id="contact" className="min-h-screen">
+                    <Contact />
+                  </section>
+                </div>
               </div>
-            </div>
-          )}
-        </BrowserRouter>
+            )}
+          </BrowserRouter>
+        </div>
       </TooltipProvider>
     </QueryClientProvider>
   );
