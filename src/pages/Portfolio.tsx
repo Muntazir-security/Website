@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { 
   ExternalLink, 
   Code2, 
@@ -16,24 +16,7 @@ import {
   CheckSquare,
   Car,
   Home,
-  ArrowRight,
-  Globe,
-  Palette,
-  FileCode,
-  Wind,
-  Cpu,
-  Cloud,
-  Server,
-  Monitor,
-  Lock,
-  Search,
-  Network,
-  X,
-  AlertTriangle,
-  Terminal,
-  Router,
-  Wifi,
-  FileSearch
+  ArrowRight
 } from "lucide-react";
 import AOS from "aos";
 import "aos/dist/aos.css";
@@ -281,7 +264,7 @@ const Portfolio = () => {
               {projects.map((project, index) => (
                 <Card 
                   key={index}
-                  className="group bg-black/40 backdrop-blur-xl border border-white/10 overflow-hidden hover:border-white/20 transition-all duration-300 hover:shadow-lg hover:shadow-[#6366f1]/10"
+                  className="group relative bg-black/40 backdrop-blur-xl border border-white/10 overflow-hidden hover:border-white/20 transition-all duration-300 hover:shadow-lg hover:shadow-[#6366f1]/10 hover:-translate-y-1"
                   data-aos="fade-up"
                   data-aos-delay={index * 100}
                 >
@@ -290,36 +273,31 @@ const Portfolio = () => {
                       <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#6366f1] to-[#a855f7] p-2.5 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
                         <project.icon className="w-6 h-6 text-white" />
                       </div>
-                      <div>
-                        <h3 className="text-xl font-semibold text-white mb-2">{project.title}</h3>
-                        <p className="text-gray-400 text-sm line-clamp-3">{project.description}</p>
+                      <div className="flex-1">
+                        <h3 className="text-xl font-semibold text-white mb-2 line-clamp-2">{project.title}</h3>
+                        <p className="text-gray-400 text-sm line-clamp-3 mb-4">{project.description}</p>
                       </div>
                     </div>
 
                     <div className="space-y-4">
                       <div className="flex flex-wrap gap-2">
-                        {project.tech.slice(0, 3).map((tech, idx) => (
+                        {project.tech.map((tech, idx) => (
                           <span 
                             key={idx}
-                            className="text-xs px-2 py-1 rounded-full bg-white/5 text-gray-300 border border-white/10 hover:border-white/20 transition-colors duration-300"
+                            className="text-xs px-2.5 py-1 rounded-full bg-white/5 text-gray-300 border border-white/10 hover:border-white/20 transition-colors duration-300 hover:bg-white/10"
                           >
                             {tech}
                           </span>
                         ))}
-                        {project.tech.length > 3 && (
-                          <span className="text-xs px-2 py-1 rounded-full bg-white/5 text-gray-300">
-                            +{project.tech.length - 3} more
-                          </span>
-                        )}
                       </div>
 
                       <div className="space-y-2">
-                        <h4 className="text-sm font-medium text-white">Key Features:</h4>
-                        <ul className="space-y-1">
+                        <h4 className="text-sm font-medium text-white/80">Key Features:</h4>
+                        <ul className="space-y-1.5">
                           {project.features.slice(0, 2).map((feature, idx) => (
-                            <li key={idx} className="text-xs text-gray-400 flex items-center gap-2">
+                            <li key={idx} className="text-xs text-gray-400 flex items-center gap-2 group-hover:text-gray-300 transition-colors">
                               <ArrowRight className="w-3 h-3 text-[#6366f1] shrink-0" />
-                              {feature}
+                              <span className="line-clamp-1">{feature}</span>
                             </li>
                           ))}
                         </ul>
@@ -329,10 +307,10 @@ const Portfolio = () => {
                     <div className="pt-4 mt-4 border-t border-white/5">
                       <Button 
                         variant="ghost" 
-                        className="w-full text-[#6366f1] hover:text-[#a855f7] hover:bg-white/5"
+                        className="w-full text-[#6366f1] hover:text-[#a855f7] hover:bg-white/5 group"
                         onClick={() => setSelectedProject(project)}
                       >
-                        <ExternalLink className="w-4 h-4 mr-2" />
+                        <ExternalLink className="w-4 h-4 mr-2 transition-transform duration-300 group-hover:scale-110" />
                         View Project Details
                       </Button>
                     </div>
