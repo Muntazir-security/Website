@@ -220,10 +220,18 @@ const AboutPage = () => {
             </p>
             <div className="flex flex-col lg:flex-row items-center lg:items-start gap-4 lg:gap-4 lg:px-0 w-full">
               <a 
-                href="/Syed Muntazir Mehdi CV.pdf"
-                download="Syed Muntazir Mehdi CV.pdf"
-                rel="noopener noreferrer" 
+                href="Syed Muntazir Mehdi CV.pdf"
+                download
                 className="w-full lg:w-auto"
+                onClick={(e) => {
+                  console.log('CV download clicked');
+                  // Add error handling
+                  const link = e.currentTarget;
+                  if (!link.href) {
+                    console.error('CV file path is invalid');
+                    e.preventDefault();
+                  }
+                }}
               >
                 <button 
                   data-aos="fade-up"
@@ -242,6 +250,7 @@ const AboutPage = () => {
                   </div>
                 </button>
               </a>
+              
               <Link 
                 to="/portfolio?tab=projects" 
                 className="w-full lg:w-auto"
