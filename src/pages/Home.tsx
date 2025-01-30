@@ -5,6 +5,18 @@ import AOS from 'aos'
 import 'aos/dist/aos.css'
 import { Link, useNavigate } from "react-router-dom"
 
+// Constants
+const TYPING_SPEED = 100;
+const ERASING_SPEED = 50;
+const PAUSE_DURATION = 2000;
+const WORDS = ["Ethical Hacker", "Network Defender", "Security Analyst"];
+const TECH_STACK = ["SIEM", "Threat Intel", "Network Security", "Incident Response"];
+const SOCIAL_LINKS = [
+  { icon: Github, link: "https://github.com/muntazir-security" },
+  { icon: Linkedin, link: "https://www.linkedin.com/in/muntazir-security/" },
+  { icon: Shield, link: "https://tryhackme.com/r/p/Muntazir" }
+];
+
 const StatusBadge = memo(() => (
   <div className="inline-block animate-float lg:mx-0" data-aos="zoom-in" data-aos-delay="400">
     <div className="relative group">
@@ -99,18 +111,6 @@ const SocialLink = memo(({ icon: Icon, link }: SocialLinkProps) => (
     </button>
   </a>
 ));
-
-// Constants
-const TYPING_SPEED = 100;
-const ERASING_SPEED = 50;
-const PAUSE_DURATION = 2000;
-const WORDS = ["Ethical Hacker", "Network Defender", "Security Analyst"];
-const TECH_STACK = ["SIEM", "Threat Intel", "Network Security", "Incident Response"];
-const SOCIAL_LINKS = [
-  { icon: Github, link: "https://github.com/muntazir-security" },
-  { icon: Linkedin, link: "https://www.linkedin.com/in/muntazir-security/" },
-  { icon: Shield, link: "https://tryhackme.com/r/p/Muntazir" }
-];
 
 const CTAButton = memo(({ href, text, icon: Icon }: CTAButtonProps) => {
   const navigate = useNavigate();
@@ -276,16 +276,17 @@ const Home = () => {
                 <div className={`relative z-10 w-full opacity-90 transform transition-transform duration-500 ${
                   isHovering ? "scale-105" : "scale-100"
                 }`}>
-                  <DotLottieReact {...lottieOptions} />
-                </div>
-
-                <div className={`absolute inset-0 pointer-events-none transition-all duration-700 ${
-                  isHovering ? "opacity-50" : "opacity-20"
-                }`}>
-                  <div className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-gradient-to-br from-indigo-500/10 to-purple-500/10 blur-3xl animate-[pulse_6s_cubic-bezier(0.4,0,0.6,1)_infinite] transition-all duration-700 ${
-                    isHovering ? "scale-110" : "scale-100"
-                  }`}>
-                  </div>
+                  <DotLottieReact 
+                    src="https://lottie.host/58753882-bb6a-49f5-a2c0-950eda1e135a/NLbpVqGegK.lottie"
+                    loop={true}
+                    autoplay={true}
+                    style={{ width: "100%", height: "100%" }}
+                    className={`w-full h-full transition-all duration-500 ${
+                      isHovering 
+                        ? "scale-[180%] sm:scale-[160%] md:scale-[150%] lg:scale-[145%]" 
+                        : "scale-[175%] sm:scale-[155%] md:scale-[145%] lg:scale-[140%]"
+                    }`}
+                  />
                 </div>
               </div>
             </div>
@@ -294,5 +295,6 @@ const Home = () => {
       </div>
     </div>
   );
+};
 
 export default memo(Home);
