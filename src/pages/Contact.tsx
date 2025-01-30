@@ -50,41 +50,32 @@ const ContactPage = () => {
     console.log("Form submission started", data);
 
     try {
-      const form = document.createElement("form");
-      form.method = "POST";
-      form.action = "https://formsubmit.co/fe701d1f17341f778f44a54441a3c483";
-
-      Object.entries(data).forEach(([key, value]) => {
-        const input = document.createElement("input");
-        input.type = "hidden";
-        input.name = key;
-        input.value = value;
-        form.appendChild(input);
+      const response = await fetch("https://formsubmit.co/ajax/fe701d1f17341f778f44a54441a3c483", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          ...data,
+          _template: "table",
+          _captcha: false,
+        }),
       });
 
-      const templateInput = document.createElement("input");
-      templateInput.type = "hidden";
-      templateInput.name = "_template";
-      templateInput.value = "table";
-      form.appendChild(templateInput);
-
-      const captchaInput = document.createElement("input");
-      captchaInput.type = "hidden";
-      captchaInput.name = "_captcha";
-      captchaInput.value = "false";
-      form.appendChild(captchaInput);
-
-      document.body.appendChild(form);
-      await form.submit();
+      const result = await response.json();
       
-      console.log("Form submitted successfully");
-      toast({
-        title: "Message sent!",
-        description: "Thank you for your message. I'll get back to you soon.",
-        duration: 3000,
-      });
-
-      form.reset();
+      if (result.success === "true") {
+        console.log("Form submitted successfully");
+        toast({
+          title: "Message sent!",
+          description: "Thank you for your message. I'll get back to you soon.",
+          duration: 3000,
+        });
+        form.reset();
+      } else {
+        throw new Error("Form submission failed");
+      }
     } catch (error) {
       console.error("Form submission error:", error);
       toast({
