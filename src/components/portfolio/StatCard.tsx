@@ -16,7 +16,9 @@ interface StatCardProps {
 const StatCard = memo(({ icon: Icon, color, value, label, description, animation, link }: StatCardProps) => {
   const navigate = useNavigate();
 
-  const handleClick = () => {
+  const handleClick = (e: React.MouseEvent) => {
+    e.preventDefault(); // Prevent default behavior
+    e.stopPropagation(); // Stop event propagation
     console.log('StatCard clicked, navigating to:', link);
     navigate(link);
   };
