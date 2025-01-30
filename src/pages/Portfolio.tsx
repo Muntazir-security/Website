@@ -235,27 +235,44 @@ const Portfolio = () => {
         </div>
 
         <Tabs defaultValue={activeTab} className="space-y-8">
-          <TabsList className="grid w-full grid-cols-3 max-w-2xl mx-auto mb-12 bg-black/20 backdrop-blur-xl border border-white/10 p-1 rounded-2xl">
+          <TabsList className="grid w-full grid-cols-3 max-w-2xl mx-auto mb-12 relative overflow-hidden group">
+            {/* Animated background gradient */}
+            <div className="absolute inset-0 bg-gradient-to-r from-[#6366f1]/10 via-[#9b87f5]/5 to-[#a855f7]/10 animate-pulse-slow rounded-2xl" />
+            
+            {/* Glass effect container */}
+            <div className="absolute inset-0 backdrop-blur-xl bg-black/20 border border-white/10 rounded-2xl" />
+            
             <TabsTrigger 
               value="projects"
-              className="data-[state=active]:bg-white/10 data-[state=active]:text-white rounded-xl transition-all duration-300"
+              className="relative px-8 py-3 data-[state=active]:bg-white/10 data-[state=active]:text-white rounded-xl transition-all duration-300 hover:text-white group"
             >
-              <Code2 className="w-4 h-4 mr-2" />
-              Projects
+              <div className="absolute inset-0 bg-gradient-to-r from-[#6366f1]/0 to-[#a855f7]/0 opacity-0 group-hover:opacity-100 group-data-[state=active]:opacity-100 transition-opacity duration-300 rounded-xl" />
+              <span className="relative flex items-center justify-center gap-2">
+                <Code2 className="w-4 h-4 group-hover:scale-110 transition-transform duration-300" />
+                Projects
+              </span>
             </TabsTrigger>
+            
             <TabsTrigger 
               value="certificates"
-              className="data-[state=active]:bg-white/10 data-[state=active]:text-white rounded-xl transition-all duration-300"
+              className="relative px-8 py-3 data-[state=active]:bg-white/10 data-[state=active]:text-white rounded-xl transition-all duration-300 hover:text-white group"
             >
-              <Award className="w-4 h-4 mr-2" />
-              Certificates
+              <div className="absolute inset-0 bg-gradient-to-r from-[#6366f1]/0 to-[#a855f7]/0 opacity-0 group-hover:opacity-100 group-data-[state=active]:opacity-100 transition-opacity duration-300 rounded-xl" />
+              <span className="relative flex items-center justify-center gap-2">
+                <Award className="w-4 h-4 group-hover:scale-110 transition-transform duration-300" />
+                Certificates
+              </span>
             </TabsTrigger>
+            
             <TabsTrigger 
               value="tech-stack"
-              className="data-[state=active]:bg-white/10 data-[state=active]:text-white rounded-xl transition-all duration-300"
+              className="relative px-8 py-3 data-[state=active]:bg-white/10 data-[state=active]:text-white rounded-xl transition-all duration-300 hover:text-white group"
             >
-              <Boxes className="w-4 h-4 mr-2" />
-              Tech Stack
+              <div className="absolute inset-0 bg-gradient-to-r from-[#6366f1]/0 to-[#a855f7]/0 opacity-0 group-hover:opacity-100 group-data-[state=active]:opacity-100 transition-opacity duration-300 rounded-xl" />
+              <span className="relative flex items-center justify-center gap-2">
+                <Boxes className="w-4 h-4 group-hover:scale-110 transition-transform duration-300" />
+                Tech Stack
+              </span>
             </TabsTrigger>
           </TabsList>
 
