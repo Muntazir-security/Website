@@ -13,7 +13,9 @@ const CTAButton = ({ href, text, icon: Icon }: CTAButtonProps) => {
 
   const handleClick = () => {
     console.log('CTA Button clicked, navigating to:', href);
-    navigate(href);
+    // Parse the URL to handle query parameters correctly
+    const url = new URL(href, window.location.origin);
+    navigate(url.pathname + url.search);
   };
 
   return (
