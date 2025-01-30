@@ -84,9 +84,23 @@ interface CTAButtonProps {
   icon: React.ElementType;
 }
 
-const CTAButton = memo(({ href, text, icon: Icon }: CTAButtonProps) => (
-  <Link to={href}>
-    <button className="group relative w-[160px]">
+const CTAButton = memo(({ href, text, icon: Icon }: CTAButtonProps) => {
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    console.log('CTA Button clicked, navigating to:', href);
+    if (text === "View My Projects") {
+      navigate('/portfolio?tab=projects');
+    } else {
+      navigate(href);
+    }
+  };
+
+  return (
+    <button 
+      className="group relative w-[160px]"
+      onClick={handleClick}
+    >
       <div className="absolute -inset-0.5 bg-gradient-to-r from-[#4f52c9] to-[#8644c5] rounded-xl opacity-50 blur-md group-hover:opacity-90 transition-all duration-700"></div>
       <div className="relative h-11 bg-[#030014] backdrop-blur-xl rounded-lg border border-white/10 leading-none overflow-hidden">
         <div className="absolute inset-0 scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-500 bg-gradient-to-r from-[#4f52c9]/20 to-[#8644c5]/20"></div>
@@ -98,36 +112,8 @@ const CTAButton = memo(({ href, text, icon: Icon }: CTAButtonProps) => (
         </span>
       </div>
     </button>
-  </Link>
-));
-
-interface SocialLinkProps {
-  icon: React.ElementType;
-  link: string;
-}
-
-const SocialLink = memo(({ icon: Icon, link }: SocialLinkProps) => (
-  <a href={link} target="_blank" rel="noopener noreferrer">
-    <button className="group relative p-3">
-      <div className="absolute inset-0 bg-gradient-to-r from-[#6366f1] to-[#a855f7] rounded-xl blur opacity-20 group-hover:opacity-40 transition duration-300"></div>
-      <div className="relative rounded-xl bg-black/50 backdrop-blur-xl p-2 flex items-center justify-center border border-white/10 group-hover:border-white/20 transition-all duration-300">
-        <Icon className="w-5 h-5 text-gray-400 group-hover:text-white transition-colors" />
-      </div>
-    </button>
-  </a>
-));
-
-// Constants
-const TYPING_SPEED = 100;
-const ERASING_SPEED = 50;
-const PAUSE_DURATION = 2000;
-const WORDS = ["Ethical Hacker", "Network Defender", "Security Analysis"];
-const TECH_STACK = ["SIEM", "Threat Intel", "Network Security", "Incident Response"];
-const SOCIAL_LINKS = [
-  { icon: Github, link: "https://github.com/muntazir-security" },
-  { icon: Linkedin, link: "https://www.linkedin.com/in/muntazir-security/" },
-  { icon: Shield, link: "https://tryhackme.com/r/p/Muntazir" }
-];
+  );
+});
 
 const Home = () => {
   const [text, setText] = useState("")
@@ -182,9 +168,8 @@ const Home = () => {
     return () => clearTimeout(timeout);
   }, [handleTyping]);
 
-  // Update Lottie animation source to a security-themed animation
   const lottieOptions = {
-    src: "https://lottie.host/58753882-bb6a-49f5-a2c0-950eda1e135a/NLbpVqGegK.lottie", // You might want to update this to a security-themed animation
+    src: "https://lottie.host/58753882-bb6a-49f5-a2c0-950eda1e135a/NLbpVqGegK.lottie",
     loop: true,
     autoplay: true,
     rendererSettings: {
