@@ -226,6 +226,7 @@ const Portfolio = () => {
 
   // Handle tab change
   const handleTabChange = (value: string) => {
+    console.log('Tab changed to:', value);
     navigate(`/portfolio?tab=${value}`);
   };
 

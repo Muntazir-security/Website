@@ -67,7 +67,7 @@ const StatCard = memo(({ icon: Icon, color, value, label, description, animation
   const navigate = useNavigate();
 
   const handleClick = () => {
-    console.log(`Navigating to: ${link}`);
+    console.log('StatCard clicked, navigating to:', link);
     navigate(link);
   };
 
