@@ -1,18 +1,44 @@
 import React, { useState, useEffect } from "react";
-import { Share2, User, Mail, MessageSquare, Send } from "lucide-react";
+import { Share2, User, Mail, MessageSquare, Send, CheckCircle2, AlertCircle } from "lucide-react";
 import SocialLinks from "@/components/contact/SocialLinks";
 import { useToast } from "@/components/ui/use-toast";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import * as z from "zod";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
 import AOS from "aos";
 import "aos/dist/aos.css";
 
+// Form validation schema
+const formSchema = z.object({
+  name: z.string().min(2, "Name must be at least 2 characters"),
+  email: z.string().email("Please enter a valid email address"),
+  message: z.string().min(10, "Message must be at least 10 characters"),
+});
+
+type FormData = z.infer<typeof formSchema>;
+
 const ContactPage = () => {
   const { toast } = useToast();
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    message: "",
-  });
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const form = useForm<FormData>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      name: "",
+      email: "",
+      message: "",
+    },
+  });
 
   useEffect(() => {
     AOS.init({
@@ -20,35 +46,50 @@ const ContactPage = () => {
     });
   }, []);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
-  };
-
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const onSubmit = async (data: FormData) => {
     setIsSubmitting(true);
+    console.log("Form submission started", data);
 
     try {
-      const form = e.target as HTMLFormElement;
-      const formData = new FormData(form);
-      await form.submit();
+      const form = document.createElement("form");
+      form.method = "POST";
+      form.action = "https://formsubmit.co/fe701d1f17341f778f44a54441a3c483";
 
+      // Add form fields
+      Object.entries(data).forEach(([key, value]) => {
+        const input = document.createElement("input");
+        input.type = "hidden";
+        input.name = key;
+        input.value = value;
+        form.appendChild(input);
+      });
+
+      // Add additional required fields
+      const templateInput = document.createElement("input");
+      templateInput.type = "hidden";
+      templateInput.name = "_template";
+      templateInput.value = "table";
+      form.appendChild(templateInput);
+
+      const captchaInput = document.createElement("input");
+      captchaInput.type = "hidden";
+      captchaInput.name = "_captcha";
+      captchaInput.value = "false";
+      form.appendChild(captchaInput);
+
+      document.body.appendChild(form);
+      await form.submit();
+      
+      console.log("Form submitted successfully");
       toast({
         title: "Message sent!",
         description: "Thank you for your message. I'll get back to you soon.",
         duration: 3000,
       });
 
-      setFormData({
-        name: "",
-        email: "",
-        message: "",
-      });
+      form.reset();
     } catch (error) {
+      console.error("Form submission error:", error);
       toast({
         variant: "destructive",
         title: "Error",
@@ -94,68 +135,100 @@ const ContactPage = () => {
                   Have something to discuss? Send me a message and let's talk.
                 </p>
               </div>
-              <Share2 className="w-8 h-8 text-[#6366f1] opacity-50" />
+              <Share2 className="w-8 h-8 text-[#6366f1] opacity-50 animate-pulse-slow" />
             </div>
 
-            <form 
-              action="https://formsubmit.co/fe701d1f17341f778f44a54441a3c483"
-              method="POST"
-              onSubmit={handleSubmit}
-              className="space-y-6"
-            >
-              <input type="hidden" name="_template" value="table" />
-              <input type="hidden" name="_captcha" value="false" />
-
-              <div className="relative group">
-                <User className="absolute left-4 top-4 w-5 h-5 text-gray-400 group-focus-within:text-[#6366f1] transition-colors" />
-                <input
-                  type="text"
+            <Form {...form}>
+              <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+                <FormField
+                  control={form.control}
                   name="name"
-                  placeholder="Your Name"
-                  value={formData.name}
-                  onChange={handleChange}
-                  disabled={isSubmitting}
-                  className="w-full p-4 pl-12 bg-white/10 rounded-xl border border-white/20 placeholder-gray-500 text-white focus:outline-none focus:ring-2 focus:ring-[#6366f1]/30 transition-all duration-300 hover:border-[#6366f1]/30 disabled:opacity-50"
-                  required
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className="text-white">Name</FormLabel>
+                      <div className="relative">
+                        <User className="absolute left-4 top-3 w-5 h-5 text-gray-400 peer-focus:text-[#6366f1] transition-colors" />
+                        <FormControl>
+                          <Input
+                            {...field}
+                            className="pl-12 bg-white/10 border-white/20 text-white placeholder-gray-500 focus:border-[#6366f1]/30 hover:border-[#6366f1]/30"
+                            placeholder="Your Name"
+                            disabled={isSubmitting}
+                          />
+                        </FormControl>
+                      </div>
+                      <FormMessage />
+                    </FormItem>
+                  )}
                 />
-              </div>
 
-              <div className="relative group">
-                <Mail className="absolute left-4 top-4 w-5 h-5 text-gray-400 group-focus-within:text-[#6366f1] transition-colors" />
-                <input
-                  type="email"
+                <FormField
+                  control={form.control}
                   name="email"
-                  placeholder="Your Email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  disabled={isSubmitting}
-                  className="w-full p-4 pl-12 bg-white/10 rounded-xl border border-white/20 placeholder-gray-500 text-white focus:outline-none focus:ring-2 focus:ring-[#6366f1]/30 transition-all duration-300 hover:border-[#6366f1]/30 disabled:opacity-50"
-                  required
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className="text-white">Email</FormLabel>
+                      <div className="relative">
+                        <Mail className="absolute left-4 top-3 w-5 h-5 text-gray-400 peer-focus:text-[#6366f1] transition-colors" />
+                        <FormControl>
+                          <Input
+                            {...field}
+                            type="email"
+                            className="pl-12 bg-white/10 border-white/20 text-white placeholder-gray-500 focus:border-[#6366f1]/30 hover:border-[#6366f1]/30"
+                            placeholder="Your Email"
+                            disabled={isSubmitting}
+                          />
+                        </FormControl>
+                      </div>
+                      <FormMessage />
+                    </FormItem>
+                  )}
                 />
-              </div>
 
-              <div className="relative group">
-                <MessageSquare className="absolute left-4 top-4 w-5 h-5 text-gray-400 group-focus-within:text-[#6366f1] transition-colors" />
-                <textarea
+                <FormField
+                  control={form.control}
                   name="message"
-                  placeholder="Your Message"
-                  value={formData.message}
-                  onChange={handleChange}
-                  disabled={isSubmitting}
-                  className="w-full resize-none p-4 pl-12 bg-white/10 rounded-xl border border-white/20 placeholder-gray-500 text-white focus:outline-none focus:ring-2 focus:ring-[#6366f1]/30 transition-all duration-300 hover:border-[#6366f1]/30 h-40 disabled:opacity-50"
-                  required
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className="text-white">Message</FormLabel>
+                      <div className="relative">
+                        <MessageSquare className="absolute left-4 top-3 w-5 h-5 text-gray-400 peer-focus:text-[#6366f1] transition-colors" />
+                        <FormControl>
+                          <Textarea
+                            {...field}
+                            className="pl-12 bg-white/10 border-white/20 text-white placeholder-gray-500 focus:border-[#6366f1]/30 hover:border-[#6366f1]/30 min-h-[120px]"
+                            placeholder="Your Message"
+                            disabled={isSubmitting}
+                          />
+                        </FormControl>
+                      </div>
+                      <FormMessage />
+                    </FormItem>
+                  )}
                 />
-              </div>
 
-              <button
-                type="submit"
-                disabled={isSubmitting}
-                className="w-full bg-gradient-to-r from-[#6366f1] to-[#a855f7] text-white py-4 rounded-xl font-semibold transition-all duration-300 hover:scale-[1.02] hover:shadow-lg hover:shadow-[#6366f1]/20 active:scale-[0.98] flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
-              >
-                <Send className="w-5 h-5" />
-                {isSubmitting ? 'Sending...' : 'Send Message'}
-              </button>
-            </form>
+                <button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="w-full bg-gradient-to-r from-[#6366f1] to-[#a855f7] text-white py-4 rounded-xl font-semibold transition-all duration-300 hover:scale-[1.02] hover:shadow-lg hover:shadow-[#6366f1]/20 active:scale-[0.98] flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
+                  aria-label="Send message"
+                >
+                  {isSubmitting ? (
+                    <>
+                      <span className="animate-spin">
+                        <Send className="w-5 h-5" />
+                      </span>
+                      Sending...
+                    </>
+                  ) : (
+                    <>
+                      <Send className="w-5 h-5" />
+                      Send Message
+                    </>
+                  )}
+                </button>
+              </form>
+            </Form>
 
             <div className="mt-12 pt-8 border-t border-white/10">
               <SocialLinks />
