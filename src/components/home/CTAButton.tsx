@@ -1,5 +1,5 @@
 import React, { memo } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { LucideIcon } from "lucide-react";
 
 interface CTAButtonProps {
@@ -13,11 +13,7 @@ const CTAButton = ({ href, text, icon: Icon }: CTAButtonProps) => {
 
   const handleClick = () => {
     console.log('CTA Button clicked, navigating to:', href);
-    if (text === "View My Projects") {
-      navigate('/portfolio?tab=projects');
-    } else {
-      navigate(href);
-    }
+    navigate(href);
   };
 
   return (
