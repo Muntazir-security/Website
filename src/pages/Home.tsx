@@ -116,11 +116,11 @@ const CTAButton = memo(({ href, text, icon: Icon }: CTAButtonProps) => {
   const navigate = useNavigate();
 
   const handleClick = () => {
-    console.log('CTA Button clicked, navigating to:', href);
+    console.log('CTA Button clicked, navigating to:', text === "View My Projects" ? "/portfolio?tab=projects" : "/contact");
     if (text === "View My Projects") {
-      navigate('/portfolio?tab=projects');
+      navigate("/portfolio?tab=projects");
     } else {
-      navigate(href);
+      navigate("/contact");
     }
   };
 
@@ -217,6 +217,7 @@ const Home = () => {
       <div className={`relative z-10 transition-all duration-1000 ${isLoaded ? "opacity-100" : "opacity-0"}`}>
         <div className="container mx-auto px-[5%] sm:px-6 lg:px-[0%] min-h-screen">
           <div className="flex flex-col lg:flex-row items-center justify-center h-screen md:justify-between gap-0 sm:gap-12 lg:gap-20">
+            {/* Left Column */}
             <div className="w-full lg:w-1/2 space-y-6 sm:space-y-8 text-left lg:text-left order-1 lg:order-1 lg:mt-0"
               data-aos="fade-right"
               data-aos-delay="200">
@@ -261,7 +262,7 @@ const Home = () => {
               </div>
             </div>
 
-            {/* Right Column - Optimized Lottie Animation */}
+            {/* Right Column - Lottie Animation */}
             <div className="w-full py-[10%] sm:py-0 lg:w-1/2 h-auto lg:h-[600px] xl:h-[750px] relative flex items-center justify-center order-2 lg:order-2 mt-8 lg:mt-0"
               onMouseEnter={() => setIsHovering(true)}
               onMouseLeave={() => setIsHovering(false)}
@@ -272,7 +273,6 @@ const Home = () => {
                   isHovering ? "opacity-50 scale-105" : "opacity-20 scale-100"
                 }`}>
                 </div>
-
                 <div className={`relative z-10 w-full opacity-90 transform transition-transform duration-500 ${
                   isHovering ? "scale-105" : "scale-100"
                 }`}>
