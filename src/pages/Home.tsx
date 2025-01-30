@@ -4,6 +4,7 @@ import { DotLottieReact } from '@lottiefiles/dotlottie-react'
 import AOS from 'aos'
 import 'aos/dist/aos.css'
 import { Link, useNavigate } from "react-router-dom"
+import CTAButton from "../components/home/CTAButton"
 
 // Constants
 const TYPING_SPEED = 100;
@@ -90,12 +91,6 @@ const TechStack = memo(({ tech }: { tech: string }) => {
   );
 });
 
-interface CTAButtonProps {
-  href: string;
-  text: string;
-  icon: React.ElementType;
-}
-
 interface SocialLinkProps {
   icon: React.ElementType;
   link: string;
@@ -111,37 +106,6 @@ const SocialLink = memo(({ icon: Icon, link }: SocialLinkProps) => (
     </button>
   </a>
 ));
-
-const CTAButton = memo(({ href, text, icon: Icon }: CTAButtonProps) => {
-  const navigate = useNavigate();
-
-  const handleClick = () => {
-    console.log('CTA Button clicked, navigating to:', text === "View My Projects" ? "/portfolio?tab=projects" : "/contact");
-    if (text === "View My Projects") {
-      navigate("/portfolio?tab=projects");
-    } else {
-      navigate("/contact");
-    }
-  };
-
-  return (
-    <button 
-      className="group relative w-[160px]"
-      onClick={handleClick}
-    >
-      <div className="absolute -inset-0.5 bg-gradient-to-r from-[#4f52c9] to-[#8644c5] rounded-xl opacity-50 blur-md group-hover:opacity-90 transition-all duration-700"></div>
-      <div className="relative h-11 bg-[#030014] backdrop-blur-xl rounded-lg border border-white/10 leading-none overflow-hidden">
-        <div className="absolute inset-0 scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-500 bg-gradient-to-r from-[#4f52c9]/20 to-[#8644c5]/20"></div>
-        <span className="absolute inset-0 flex items-center justify-center gap-2 text-sm group-hover:gap-3 transition-all duration-300">
-          <span className="bg-gradient-to-r from-gray-200 to-white bg-clip-text text-transparent font-medium z-10">
-            {text}
-          </span>
-          <Icon className={`w-4 h-4 text-gray-200 ${text === "Contact" ? "group-hover:translate-x-1" : "group-hover:rotate-45"} transform transition-all duration-300 z-10`} />
-        </span>
-      </div>
-    </button>
-  );
-});
 
 const Home = () => {
   const [text, setText] = useState("")
@@ -195,22 +159,6 @@ const Home = () => {
     );
     return () => clearTimeout(timeout);
   }, [handleTyping]);
-
-  const lottieOptions = {
-    src: "https://lottie.host/58753882-bb6a-49f5-a2c0-950eda1e135a/NLbpVqGegK.lottie",
-    loop: true,
-    autoplay: true,
-    rendererSettings: {
-      preserveAspectRatio: 'xMidYMid slice',
-      progressiveLoad: true,
-    },
-    style: { width: "100%", height: "100%" },
-    className: `w-full h-full transition-all duration-500 ${
-      isHovering 
-        ? "scale-[180%] sm:scale-[160%] md:scale-[150%] lg:scale-[145%]" 
-        : "scale-[175%] sm:scale-[155%] md:scale-[145%] lg:scale-[140%]"
-    }`
-  };
 
   return (
     <div className="min-h-screen bg-[#0B0B1E] overflow-hidden" id="Home">
