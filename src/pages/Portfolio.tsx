@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { 
   ExternalLink, 
   Code2, 
@@ -17,27 +17,11 @@ import {
   Car,
   Home,
   ArrowRight,
-  Globe,
-  Palette,
-  FileCode,
-  Wind,
-  Cpu,
-  Cloud,
-  Server,
-  Monitor,
-  Lock,
-  Search,
-  Network,
-  X,
-  AlertTriangle,
-  Terminal,
-  Router,
-  Wifi,
-  FileSearch
+  X
 } from "lucide-react";
 import AOS from "aos";
 import "aos/dist/aos.css";
-import { useSearchParams } from "react-router-dom";
+import { useSearchParams, useNavigate } from "react-router-dom";
 import { HoverCard } from "@/components/shared/HoverCard";
 import PageBackground from "@/components/shared/PageBackground";
 
@@ -226,6 +210,7 @@ const techStack = [
 
 const Portfolio = () => {
   const [searchParams] = useSearchParams();
+  const navigate = useNavigate();
   const [selectedCertificate, setSelectedCertificate] = useState<string | null>(null);
   const [selectedProject, setSelectedProject] = useState<typeof projects[0] | null>(null);
   
@@ -236,7 +221,14 @@ const Portfolio = () => {
     });
   }, []);
 
+  // Get the tab from URL params, defaulting to 'projects'
   const activeTab = searchParams.get('tab') || 'projects';
+
+  // Handle tab change
+  const handleTabChange = (value: string) => {
+    console.log('Tab changed to:', value);
+    navigate(`/portfolio?tab=${value}`);
+  };
 
   return (
     <PageBackground>
@@ -250,7 +242,7 @@ const Portfolio = () => {
           </p>
         </div>
 
-        <Tabs defaultValue={activeTab} className="space-y-8">
+        <Tabs value={activeTab} onValueChange={handleTabChange} className="space-y-8">
           <TabsList className="grid w-full grid-cols-3 max-w-2xl mx-auto mb-12 bg-black/20 backdrop-blur-xl border border-white/10 p-1 rounded-2xl">
             <TabsTrigger 
               value="projects"
@@ -275,51 +267,51 @@ const Portfolio = () => {
             </TabsTrigger>
           </TabsList>
 
-          {/* Projects Content */}
           <TabsContent value="projects">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {projects.map((project, index) => (
                 <Card 
                   key={index}
-                  className="group bg-black/40 backdrop-blur-xl border border-white/10 overflow-hidden hover:border-white/20 transition-all duration-300 hover:shadow-lg hover:shadow-[#6366f1]/10"
+                  className="group relative bg-black/40 backdrop-blur-xl border border-white/10 overflow-hidden hover:border-white/20 transition-all duration-300 hover:shadow-lg hover:shadow-[#6366f1]/10 hover:-translate-y-1 flex flex-col h-full"
                   data-aos="fade-up"
                   data-aos-delay={index * 100}
                 >
-                  <CardContent className="p-6">
+                  <CardContent className="p-6 flex flex-col h-full">
                     <div className="flex items-start gap-4 mb-6">
                       <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#6366f1] to-[#a855f7] p-2.5 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
                         <project.icon className="w-6 h-6 text-white" />
                       </div>
-                      <div>
-                        <h3 className="text-xl font-semibold text-white mb-2">{project.title}</h3>
-                        <p className="text-gray-400 text-sm line-clamp-3">{project.description}</p>
+                      <div className="flex-1 min-h-[120px]">
+                        <h3 className="text-xl font-semibold text-white mb-2 line-clamp-2 group-hover:text-[#6366f1] transition-colors">
+                          {project.title}
+                        </h3>
+                        <p className="text-gray-400 text-sm line-clamp-3 mb-4">
+                          {project.description}
+                        </p>
                       </div>
                     </div>
 
-                    <div className="space-y-4">
+                    <div className="space-y-4 flex-grow">
                       <div className="flex flex-wrap gap-2">
-                        {project.tech.slice(0, 3).map((tech, idx) => (
+                        {project.tech.map((tech, idx) => (
                           <span 
                             key={idx}
-                            className="text-xs px-2 py-1 rounded-full bg-white/5 text-gray-300 border border-white/10 hover:border-white/20 transition-colors duration-300"
+                            className="text-xs px-2.5 py-1 rounded-full bg-white/5 text-gray-300 border border-white/10 hover:border-white/20 transition-colors duration-300 hover:bg-white/10"
                           >
                             {tech}
                           </span>
                         ))}
-                        {project.tech.length > 3 && (
-                          <span className="text-xs px-2 py-1 rounded-full bg-white/5 text-gray-300">
-                            +{project.tech.length - 3} more
-                          </span>
-                        )}
                       </div>
 
                       <div className="space-y-2">
-                        <h4 className="text-sm font-medium text-white">Key Features:</h4>
-                        <ul className="space-y-1">
+                        <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-[#6366f1]/10 text-[#6366f1] border border-[#6366f1]/20">
+                          {project.category}
+                        </span>
+                        <ul className="space-y-1.5">
                           {project.features.slice(0, 2).map((feature, idx) => (
-                            <li key={idx} className="text-xs text-gray-400 flex items-center gap-2">
+                            <li key={idx} className="text-xs text-gray-400 flex items-center gap-2 group-hover:text-gray-300 transition-colors">
                               <ArrowRight className="w-3 h-3 text-[#6366f1] shrink-0" />
-                              {feature}
+                              <span className="line-clamp-1">{feature}</span>
                             </li>
                           ))}
                         </ul>
@@ -329,10 +321,10 @@ const Portfolio = () => {
                     <div className="pt-4 mt-4 border-t border-white/5">
                       <Button 
                         variant="ghost" 
-                        className="w-full text-[#6366f1] hover:text-[#a855f7] hover:bg-white/5"
+                        className="w-full text-[#6366f1] hover:text-[#a855f7] hover:bg-white/5 group"
                         onClick={() => setSelectedProject(project)}
                       >
-                        <ExternalLink className="w-4 h-4 mr-2" />
+                        <ExternalLink className="w-4 h-4 mr-2 transition-transform duration-300 group-hover:scale-110" />
                         View Project Details
                       </Button>
                     </div>
@@ -342,7 +334,6 @@ const Portfolio = () => {
             </div>
           </TabsContent>
 
-          {/* Certificates Content */}
           <TabsContent value="certificates">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {certificates.map((cert, index) => (
@@ -369,7 +360,6 @@ const Portfolio = () => {
             </div>
           </TabsContent>
 
-          {/* Tech Stack Content */}
           <TabsContent value="tech-stack">
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-8 p-4">
               {techStack.map((tech, techIndex) => (
@@ -403,7 +393,6 @@ const Portfolio = () => {
         </Tabs>
       </div>
 
-      {/* Project Details Dialog */}
       <Dialog open={!!selectedProject} onOpenChange={() => setSelectedProject(null)}>
         <DialogContent className="max-w-4xl bg-black/90 backdrop-blur-xl border-white/10">
           <DialogHeader>
@@ -414,6 +403,14 @@ const Portfolio = () => {
               <span className="text-2xl font-semibold text-white">{selectedProject?.title}</span>
             </DialogTitle>
           </DialogHeader>
+          
+          <button 
+            onClick={() => setSelectedProject(null)}
+            className="absolute right-4 top-4 p-2 rounded-full bg-white/10 hover:bg-white/20 transition-colors duration-200"
+          >
+            <X className="h-4 w-4 text-white" />
+            <span className="sr-only">Close</span>
+          </button>
           
           <div className="mt-8 space-y-8">
             <HoverCard>
@@ -464,9 +461,15 @@ const Portfolio = () => {
         </DialogContent>
       </Dialog>
 
-      {/* Certificate Dialog */}
       <Dialog open={!!selectedCertificate} onOpenChange={() => setSelectedCertificate(null)}>
         <DialogContent className="max-w-4xl w-[90vw] h-[90vh] p-0">
+          <button 
+            onClick={() => setSelectedCertificate(null)}
+            className="absolute right-4 top-4 p-2 rounded-full bg-white/10 hover:bg-white/20 transition-colors duration-200 z-50"
+          >
+            <X className="h-4 w-4 text-white" />
+            <span className="sr-only">Close</span>
+          </button>
           <img 
             src={selectedCertificate || ''} 
             alt="Certificate"
