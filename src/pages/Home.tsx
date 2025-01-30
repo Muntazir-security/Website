@@ -3,7 +3,7 @@ import { Shield, Linkedin, Mail, ExternalLink, Github, ShieldCheck, Sparkle, Sea
 import { DotLottieReact } from '@lottiefiles/dotlottie-react'
 import AOS from 'aos'
 import 'aos/dist/aos.css'
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 
 const StatusBadge = memo(() => (
   <div className="inline-block animate-float lg:mx-0" data-aos="zoom-in" data-aos-delay="400">
@@ -83,6 +83,34 @@ interface CTAButtonProps {
   text: string;
   icon: React.ElementType;
 }
+
+interface SocialLinkProps {
+  icon: React.ElementType;
+  link: string;
+}
+
+const SocialLink = memo(({ icon: Icon, link }: SocialLinkProps) => (
+  <a href={link} target="_blank" rel="noopener noreferrer">
+    <button className="group relative p-3">
+      <div className="absolute inset-0 bg-gradient-to-r from-[#6366f1] to-[#a855f7] rounded-xl blur opacity-20 group-hover:opacity-40 transition duration-300"></div>
+      <div className="relative rounded-xl bg-black/50 backdrop-blur-xl p-2 flex items-center justify-center border border-white/10 group-hover:border-white/20 transition-all duration-300">
+        <Icon className="w-5 h-5 text-gray-400 group-hover:text-white transition-colors" />
+      </div>
+    </button>
+  </a>
+));
+
+// Constants
+const TYPING_SPEED = 100;
+const ERASING_SPEED = 50;
+const PAUSE_DURATION = 2000;
+const WORDS = ["Ethical Hacker", "Network Defender", "Security Analyst"];
+const TECH_STACK = ["SIEM", "Threat Intel", "Network Security", "Incident Response"];
+const SOCIAL_LINKS = [
+  { icon: Github, link: "https://github.com/muntazir-security" },
+  { icon: Linkedin, link: "https://www.linkedin.com/in/muntazir-security/" },
+  { icon: Shield, link: "https://tryhackme.com/r/p/Muntazir" }
+];
 
 const CTAButton = memo(({ href, text, icon: Icon }: CTAButtonProps) => {
   const navigate = useNavigate();
@@ -266,6 +294,5 @@ const Home = () => {
       </div>
     </div>
   );
-};
 
 export default memo(Home);
