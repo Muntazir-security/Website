@@ -1,23 +1,32 @@
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import WelcomeScreen from '../components/WelcomeScreen';
 
 const Index = () => {
+  const [showWelcome, setShowWelcome] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
-    console.log('Index component mounted');
-    const timer = setTimeout(() => {
-      console.log('5 seconds elapsed, navigating to home');
-      navigate('/home');
-    }, 5000);
+    const hasSeenWelcome = localStorage.getItem('hasSeenWelcome');
     
-    return () => clearTimeout(timer);
+    if (hasSeenWelcome) {
+      console.log('User has already seen welcome screen, redirecting to home');
+      navigate('/home');
+    } else {
+      console.log('First visit, showing welcome screen');
+      setShowWelcome(true);
+    }
   }, [navigate]);
+
+  const handleLoadingComplete = () => {
+    console.log('Welcome screen complete, marking as seen');
+    localStorage.setItem('hasSeenWelcome', 'true');
+    navigate('/home');
+  };
 
   return (
     <div className="min-h-screen bg-[#0B0B1E]">
-      <WelcomeScreen />
+      {showWelcome && <WelcomeScreen onLoadingComplete={handleLoadingComplete} />}
     </div>
   );
 };
