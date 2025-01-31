@@ -45,29 +45,17 @@ const IconButton = ({ Icon }: { Icon: React.ElementType }) => (
   </div>
 );
 
-interface WelcomeScreenProps {
-  onLoadingComplete?: () => void;
-}
-
-const WelcomeScreen = ({ onLoadingComplete }: WelcomeScreenProps) => {
+const WelcomeScreen = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
+    console.log('Initializing welcome screen animations');
     AOS.init({
       duration: 1000,
       once: false,
       mirror: false,
     });
-
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-      setTimeout(() => {
-        onLoadingComplete?.();
-      }, 1000);
-    }, 5000);
-    
-    return () => clearTimeout(timer);
-  }, [onLoadingComplete]);
+  }, []);
 
   const containerVariants = {
     exit: {
