@@ -26,9 +26,9 @@ const MainNav = () => {
         {/* Navigation Links */}
         <nav className="flex items-center gap-6">
           <Link
-            to="/"
+            to="/home"
             className={`text-sm transition-all relative ${
-              location.pathname === "/" 
+              location.pathname === "/home" 
                 ? "text-transparent bg-clip-text bg-gradient-to-r from-[#6366f1] to-[#a855f7] after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-full after:h-0.5 after:bg-gradient-to-r after:from-[#6366f1] after:to-[#a855f7]" 
                 : "text-white/60 hover:text-white/90"
             }`}
