@@ -15,17 +15,8 @@ const CTAButton = ({ href, text, icon: Icon }: CTAButtonProps) => {
     e.preventDefault();
     console.log('CTA Button clicked, navigating to:', href);
     
-    if (href.includes('#')) {
-      // If href contains a hash, it's an internal section
-      const sectionId = href.split('#')[1];
-      const element = document.getElementById(sectionId);
-      if (element) {
-        element.scrollIntoView({ behavior: 'smooth' });
-      }
-    } else {
-      // Otherwise, use React Router navigation
-      navigate(href);
-    }
+    // Always use navigate for routing
+    navigate(href);
   };
 
   return (
