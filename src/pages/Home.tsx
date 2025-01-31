@@ -9,6 +9,15 @@ import PageBackground from "@/components/shared/PageBackground";
 const Home = () => {
   console.log('Home component rendered');
   
+  const technologies = [
+    "React",
+    "TypeScript",
+    "Node.js",
+    "Python",
+    "AWS",
+    "Docker"
+  ];
+  
   return (
     <PageBackground>
       <div className="min-h-screen flex flex-col justify-center max-w-7xl mx-auto px-4 sm:px-6 relative">
@@ -29,7 +38,11 @@ const Home = () => {
             />
           </div>
           
-          <TechStack />
+          <div className="flex flex-wrap gap-4">
+            {technologies.map((tech) => (
+              <TechStack key={tech} tech={tech} />
+            ))}
+          </div>
         </div>
       </div>
     </PageBackground>
