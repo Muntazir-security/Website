@@ -11,9 +11,21 @@ interface CTAButtonProps {
 const CTAButton = ({ href, text, icon: Icon }: CTAButtonProps) => {
   const navigate = useNavigate();
 
-  const handleClick = () => {
+  const handleClick = (e: React.MouseEvent) => {
+    e.preventDefault();
     console.log('CTA Button clicked, navigating to:', href);
-    navigate(href);
+    
+    if (href.includes('#')) {
+      // If href contains a hash, it's an internal section
+      const sectionId = href.split('#')[1];
+      const element = document.getElementById(sectionId);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    } else {
+      // Otherwise, use React Router navigation
+      navigate(href);
+    }
   };
 
   return (
