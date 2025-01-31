@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Share2, User, Mail, MessageSquare, Send } from "lucide-react";
 import SocialLinks from "@/components/contact/SocialLinks";
 import { useToast } from "@/components/ui/use-toast";
+import PageBackground from "@/components/shared/PageBackground";
 import AOS from "aos";
 import "aos/dist/aos.css";
 
@@ -61,7 +62,7 @@ const ContactPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#0F0524] via-[#130F24] to-[#0A1929] pb-20">
+    <PageBackground>
       <div className="container mx-auto px-4 pt-20">
         <div className="text-center mb-16">
           <h1 
@@ -163,7 +164,7 @@ const ContactPage = () => {
           </div>
         </div>
       </div>
-    </div>
+    </PageBackground>
   );
 };
 
