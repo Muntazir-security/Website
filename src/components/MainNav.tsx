@@ -1,73 +1,99 @@
-import React, { useEffect, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { Link as ScrollLink, Events } from "react-scroll";
+import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
+import { Menu } from "lucide-react";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { useMobile } from "@/hooks/use-mobile";
 
 const MainNav = () => {
-  const location = useLocation();
-  const [activeSection, setActiveSection] = useState("/");
+  const [activeSection, setActiveSection] = useState("home");
+  const isMobile = useMobile();
+  const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      const sections = document.querySelectorAll("section[id]");
-      const scrollPosition = window.scrollY;
+    Events.scrollEvent.register('begin', () => {
+      console.log("scroll begin");
+    });
 
-      sections.forEach((section) => {
-        const sectionTop = (section as HTMLElement).offsetTop - 100;
-        const sectionHeight = (section as HTMLElement).offsetHeight;
-        const sectionId = section.getAttribute("id") || "";
+    Events.scrollEvent.register('end', (to) => {
+      console.log("scroll end:", to);
+      setActiveSection(to);
+    });
 
-        if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
-          setActiveSection(`/${sectionId}`);
-        }
-      });
+    return () => {
+      Events.scrollEvent.remove('begin');
+      Events.scrollEvent.remove('end');
     };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const isActive = (path: string) => {
-    return location.pathname === path || activeSection === path;
-  };
+  const navItems = [
+    { href: "home", label: "Home" },
+    { href: "about", label: "About" },
+    { href: "portfolio", label: "Portfolio" },
+    { href: "contact", label: "Contact" },
+  ];
 
-  const scrollToSection = (path: string) => {
-    const sectionId = path.replace("/", "");
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-    }
-  };
+  const NavLink = ({ href, label, className }: { href: string; label: string; className?: string }) => (
+    <ScrollLink
+      to={href}
+      spy={true}
+      smooth={true}
+      offset={-70}
+      duration={800}
+      className={cn(
+        "relative px-3 py-1.5 text-sm font-medium transition-colors hover:text-white",
+        activeSection === href ? "text-white" : "text-gray-400",
+        className
+      )}
+      activeClass="active"
+      onClick={() => setIsOpen(false)}
+    >
+      {label}
+      {activeSection === href && (
+        <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-[#6366f1] to-[#a855f7] transform origin-left" />
+      )}
+    </ScrollLink>
+  );
 
   return (
-    <div className="fixed top-0 left-0 right-0 z-50 bg-[#0B0B1E]/80 backdrop-blur-lg border-b border-white/10">
-      <div className="max-w-[1280px] mx-auto px-6 flex h-16 items-center justify-between">
-        {/* Logo */}
-        <Link to="/" className="text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#6366f1] to-[#a855f7]">
+    <header className="fixed top-0 left-0 right-0 z-50 bg-black/10 backdrop-blur-xl border-b border-white/10">
+      <nav className="container mx-auto px-6 h-16 flex items-center justify-between">
+        <ScrollLink
+          to="home"
+          spy={true}
+          smooth={true}
+          offset={-70}
+          duration={800}
+          className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-[#6366f1] to-[#a855f7] cursor-pointer"
+        >
           Muntazir
-        </Link>
+        </ScrollLink>
 
-        {/* Navigation Links */}
-        <nav className="flex items-center gap-6">
-          {[
-            { path: "/", label: "Home" },
-            { path: "/about", label: "About" },
-            { path: "/portfolio", label: "Portfolio" },
-            { path: "/contact", label: "Contact" },
-          ].map(({ path, label }) => (
-            <button
-              key={path}
-              onClick={() => scrollToSection(path)}
-              className={`text-sm transition-all relative ${
-                isActive(path)
-                  ? "text-transparent bg-clip-text bg-gradient-to-r from-[#6366f1] to-[#a855f7] after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-full after:h-0.5 after:bg-gradient-to-r after:from-[#6366f1] after:to-[#a855f7]"
-                  : "text-white/60 hover:text-white/90"
-              }`}
-            >
-              {label}
-            </button>
-          ))}
-        </nav>
-      </div>
-    </div>
+        {isMobile ? (
+          <Sheet open={isOpen} onOpenChange={setIsOpen}>
+            <SheetTrigger asChild>
+              <Button variant="ghost" size="icon">
+                <Menu className="h-6 w-6" />
+              </Button>
+            </SheetTrigger>
+            <SheetContent className="w-64 bg-black/90 backdrop-blur-xl border-white/10">
+              <div className="flex flex-col space-y-4 mt-8">
+                {navItems.map((item) => (
+                  <NavLink key={item.href} {...item} className="text-lg" />
+                ))}
+              </div>
+            </SheetContent>
+          </Sheet>
+        ) : (
+          <div className="flex items-center space-x-8">
+            {navItems.map((item) => (
+              <NavLink key={item.href} {...item} />
+            ))}
+          </div>
+        )}
+      </nav>
+    </header>
   );
 };
 
