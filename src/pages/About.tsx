@@ -184,12 +184,12 @@ const AboutPage = () => {
 
   return (
     <PageBackground className="min-h-screen">
-      <div className="max-w-7xl mx-auto px-[5%] sm:px-[5%] lg:px-[10%]" id="About">
+      <div className="container max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8" id="About">
         <Header />
         
         <div className="w-full mx-auto pt-8 sm:pt-12 relative">
-          <div className="flex flex-col-reverse lg:grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
-            <div className="space-y-6 text-center lg:text-left">
+          <div className="flex flex-col-reverse lg:grid lg:grid-cols-2 gap-10 lg:gap-20 items-center">
+            <div className="space-y-6 text-center lg:text-left lg:max-w-2xl">
               <h2 
                 className="text-3xl sm:text-4xl lg:text-5xl font-bold"
                 data-aos="fade-right"
@@ -214,7 +214,7 @@ const AboutPage = () => {
               >
                 A Cybersecurity Engineer with a passion for securing digital environments. I hold a degree in Computer Science, specializing in Cybersecurity, from Asia Pacific University of Technology & Innovation. With hands-on experience in SOC analysis, vulnerability assessment, and penetration testing, I've developed a strong foundation in identifying and mitigating security risks. My expertise in SIEM implementation, threat detection, and security documentation is further strengthened by industry certifications, including eJPT and ICCA. I blend technical expertise with analytical thinking to build robust security solutions, always staying ahead of emerging threats to protect critical infrastructure. Whether I'm conducting vulnerability assessments or implementing defense strategies, my goal remains constant: creating resilient security systems that effectively safeguard digital environments.
               </p>
-              <div className="flex flex-col lg:flex-row items-center lg:items-start gap-4 lg:gap-4 lg:px-0 w-full">
+              <div className="flex flex-col lg:flex-row items-center lg:items-start gap-4 lg:gap-6 w-full">
                 <a 
                   href="/Syed Muntazir Mehdi CV.pdf" 
                   download
@@ -223,10 +223,10 @@ const AboutPage = () => {
                   <button 
                     data-aos="fade-up"
                     data-aos-duration="800"
-                    className="group relative w-full lg:w-[160px]"
+                    className="group relative w-full lg:w-[180px]"
                   >
                     <div className="absolute -inset-0.5 bg-gradient-to-r from-[#4f52c9] to-[#8644c5] rounded-xl opacity-50 blur-md group-hover:opacity-90 transition-all duration-700"></div>
-                    <div className="relative h-11 bg-[#030014] backdrop-blur-xl rounded-lg border border-white/10 leading-none overflow-hidden">
+                    <div className="relative h-12 bg-[#030014] backdrop-blur-xl rounded-lg border border-white/10 leading-none overflow-hidden">
                       <div className="absolute inset-0 scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-500 bg-gradient-to-r from-[#4f52c9]/20 to-[#8644c5]/20"></div>
                       <span className="absolute inset-0 flex items-center justify-center gap-2 text-sm group-hover:gap-3 transition-all duration-300">
                         <span className="bg-gradient-to-r from-gray-200 to-white bg-clip-text text-transparent font-medium z-10">
@@ -244,10 +244,10 @@ const AboutPage = () => {
                   <button 
                     data-aos="fade-up"
                     data-aos-duration="1000"
-                    className="group relative w-full lg:w-[160px]"
+                    className="group relative w-full lg:w-[180px]"
                   >
                     <div className="absolute -inset-0.5 bg-gradient-to-r from-[#4f52c9] to-[#8644c5] rounded-xl opacity-50 blur-md group-hover:opacity-90 transition-all duration-700"></div>
-                    <div className="relative h-11 bg-[#030014] backdrop-blur-xl rounded-lg border border-white/10 leading-none overflow-hidden">
+                    <div className="relative h-12 bg-[#030014] backdrop-blur-xl rounded-lg border border-white/10 leading-none overflow-hidden">
                       <div className="absolute inset-0 scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-500 bg-gradient-to-r from-[#4f52c9]/20 to-[#8644c5]/20"></div>
                       <span className="absolute inset-0 flex items-center justify-center gap-2 text-sm group-hover:gap-3 transition-all duration-300">
                         <span className="bg-gradient-to-r from-gray-200 to-white bg-clip-text text-transparent font-medium z-10">
