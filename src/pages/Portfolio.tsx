@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { 
   ExternalLink, 
   Code2, 
@@ -16,24 +16,7 @@ import {
   CheckSquare,
   Car,
   Home,
-  ArrowRight,
-  Globe,
-  Palette,
-  FileCode,
-  Wind,
-  Cpu,
-  Cloud,
-  Server,
-  Monitor,
-  Lock,
-  Search,
-  Network,
-  X,
-  AlertTriangle,
-  Terminal,
-  Router,
-  Wifi,
-  FileSearch
+  ArrowRight
 } from "lucide-react";
 import AOS from "aos";
 import "aos/dist/aos.css";
@@ -281,22 +264,22 @@ const Portfolio = () => {
               {projects.map((project, index) => (
                 <Card 
                   key={index}
-                  className="group bg-black/40 backdrop-blur-xl border border-white/10 overflow-hidden hover:border-white/20 transition-all duration-300 hover:shadow-lg hover:shadow-[#6366f1]/10"
+                  className="group bg-black/40 backdrop-blur-xl border border-white/10 overflow-hidden hover:border-white/20 transition-all duration-300 hover:shadow-lg hover:shadow-[#6366f1]/10 h-[440px] flex flex-col"
                   data-aos="fade-up"
                   data-aos-delay={index * 100}
                 >
-                  <CardContent className="p-6">
+                  <CardContent className="p-6 flex flex-col h-full">
                     <div className="flex items-start gap-4 mb-6">
                       <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#6366f1] to-[#a855f7] p-2.5 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
                         <project.icon className="w-6 h-6 text-white" />
                       </div>
                       <div>
-                        <h3 className="text-xl font-semibold text-white mb-2">{project.title}</h3>
-                        <p className="text-gray-400 text-sm line-clamp-3">{project.description}</p>
+                        <h3 className="text-xl font-semibold text-white mb-2 line-clamp-1">{project.title}</h3>
+                        <p className="text-gray-400 text-sm line-clamp-2">{project.description}</p>
                       </div>
                     </div>
 
-                    <div className="space-y-4">
+                    <div className="space-y-4 flex-grow">
                       <div className="flex flex-wrap gap-2">
                         {project.tech.slice(0, 3).map((tech, idx) => (
                           <span 
@@ -348,20 +331,20 @@ const Portfolio = () => {
               {certificates.map((cert, index) => (
                 <Card 
                   key={index}
-                  className="bg-black/40 backdrop-blur-xl border border-white/10 overflow-hidden group hover:border-white/20 transition-all duration-300 cursor-pointer"
+                  className="bg-black/40 backdrop-blur-xl border border-white/10 overflow-hidden group hover:border-white/20 transition-all duration-300 cursor-pointer h-[320px] flex flex-col"
                   data-aos="fade-up"
                   data-aos-delay={index * 100}
                   onClick={() => setSelectedCertificate(cert.image)}
                 >
-                  <div className="aspect-[4/3] relative overflow-hidden">
+                  <div className="aspect-video relative overflow-hidden">
                     <img 
                       src={cert.image} 
                       alt={cert.title}
                       className="object-cover w-full h-full transform group-hover:scale-110 transition-transform duration-500"
                     />
                   </div>
-                  <CardContent className="p-6">
-                    <h3 className="text-lg font-semibold text-white mb-1">{cert.title}</h3>
+                  <CardContent className="p-6 flex flex-col justify-between flex-grow">
+                    <h3 className="text-lg font-semibold text-white mb-1 line-clamp-2">{cert.title}</h3>
                     <p className="text-gray-400 text-sm">{cert.issuer} • {cert.date}</p>
                   </CardContent>
                 </Card>
