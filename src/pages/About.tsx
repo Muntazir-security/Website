@@ -183,7 +183,7 @@ const AboutPage = () => {
   ], [totalProjects, totalCertificates, YearExperience]);
 
   return (
-    <PageBackground>
+    <PageBackground className="min-h-screen">
       <div className="max-w-7xl mx-auto px-[5%] sm:px-[5%] lg:px-[10%]" id="About">
         <Header />
         
@@ -276,4 +276,3 @@ const AboutPage = () => {
 };
 
 export default AboutPage;
-
