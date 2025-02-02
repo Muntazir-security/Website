@@ -16,13 +16,18 @@ import {
   CheckSquare,
   Car,
   Home,
-  ArrowRight
+  ArrowRight,
+  X,
+  FileText,
+  AlertCircle,
+  Lightbulb
 } from "lucide-react";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { useSearchParams } from "react-router-dom";
 import { HoverCard } from "@/components/shared/HoverCard";
 import PageBackground from "@/components/shared/PageBackground";
+import * as DialogPrimitive from "@radix-ui/react-dialog";
 
 const projects = [
   {
@@ -386,44 +391,67 @@ const Portfolio = () => {
         </Tabs>
       </div>
 
-      {/* Project Details Dialog */}
+      {/* Project Details Dialog - Updated Design */}
       <Dialog open={!!selectedProject} onOpenChange={() => setSelectedProject(null)}>
-        <DialogContent className="max-w-4xl bg-black/90 backdrop-blur-xl border-white/10">
-          <DialogHeader>
-            <DialogTitle className="flex items-center gap-4">
-              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#6366f1] to-[#a855f7] p-2.5 flex items-center justify-center">
-                {selectedProject && <selectedProject.icon className="w-6 h-6 text-white" />}
+        <DialogContent className="max-w-4xl bg-[#0A0118]/95 backdrop-blur-xl border-white/10">
+          <DialogHeader className="relative pb-6 border-b border-white/10">
+            <div className="flex items-center gap-4">
+              <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-[#6366f1] to-[#a855f7] p-3 flex items-center justify-center shadow-lg">
+                {selectedProject && <selectedProject.icon className="w-8 h-8 text-white" />}
               </div>
-              <span className="text-2xl font-semibold text-white">{selectedProject?.title}</span>
-            </DialogTitle>
+              <div>
+                <DialogTitle className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-400">
+                  {selectedProject?.title}
+                </DialogTitle>
+                <p className="text-gray-400 text-sm mt-1">
+                  {selectedProject?.category}
+                </p>
+              </div>
+            </div>
+            <DialogPrimitive.Close className="absolute right-4 top-4 rounded-full w-8 h-8 flex items-center justify-center bg-white/10 hover:bg-white/20 transition-colors">
+              <X className="h-4 w-4 text-gray-300" />
+              <span className="sr-only">Close</span>
+            </DialogPrimitive.Close>
           </DialogHeader>
           
           <div className="mt-8 space-y-8">
-            <HoverCard>
-              <h3 className="text-lg font-semibold text-white mb-2">Overview</h3>
-              <p className="text-gray-300">{selectedProject?.overview}</p>
+            <HoverCard className="bg-[#110C1D]/50">
+              <h3 className="text-lg font-semibold text-white mb-3 flex items-center gap-2">
+                <FileText className="w-5 h-5 text-[#6366f1]" />
+                Overview
+              </h3>
+              <p className="text-gray-300 leading-relaxed">{selectedProject?.overview}</p>
             </HoverCard>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <HoverCard>
-                <h3 className="text-lg font-semibold text-white mb-2">Problem Statement</h3>
-                <p className="text-gray-300">{selectedProject?.problem}</p>
+              <HoverCard className="bg-[#110C1D]/50">
+                <h3 className="text-lg font-semibold text-white mb-3 flex items-center gap-2">
+                  <AlertCircle className="w-5 h-5 text-[#6366f1]" />
+                  Problem Statement
+                </h3>
+                <p className="text-gray-300 leading-relaxed">{selectedProject?.problem}</p>
               </HoverCard>
 
-              <HoverCard>
-                <h3 className="text-lg font-semibold text-white mb-2">Solution</h3>
-                <p className="text-gray-300">{selectedProject?.solution}</p>
+              <HoverCard className="bg-[#110C1D]/50">
+                <h3 className="text-lg font-semibold text-white mb-3 flex items-center gap-2">
+                  <Lightbulb className="w-5 h-5 text-[#6366f1]" />
+                  Solution
+                </h3>
+                <p className="text-gray-300 leading-relaxed">{selectedProject?.solution}</p>
               </HoverCard>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <HoverCard>
-                <h3 className="text-lg font-semibold text-white mb-2">Technologies Used</h3>
+              <HoverCard className="bg-[#110C1D]/50">
+                <h3 className="text-lg font-semibold text-white mb-3 flex items-center gap-2">
+                  <Code2 className="w-5 h-5 text-[#6366f1]" />
+                  Technologies Used
+                </h3>
                 <div className="flex flex-wrap gap-2">
                   {selectedProject?.tech.map((tech, idx) => (
                     <span 
                       key={idx}
-                      className="text-sm px-3 py-1.5 rounded-full bg-white/5 text-gray-300 border border-white/10"
+                      className="text-sm px-3 py-1.5 rounded-full bg-white/5 text-gray-300 border border-white/10 hover:border-white/20 transition-colors"
                     >
                       {tech}
                     </span>
@@ -431,13 +459,18 @@ const Portfolio = () => {
                 </div>
               </HoverCard>
 
-              <HoverCard>
-                <h3 className="text-lg font-semibold text-white mb-2">Key Features</h3>
+              <HoverCard className="bg-[#110C1D]/50">
+                <h3 className="text-lg font-semibold text-white mb-3 flex items-center gap-2">
+                  <CheckSquare className="w-5 h-5 text-[#6366f1]" />
+                  Key Features
+                </h3>
                 <ul className="space-y-2">
                   {selectedProject?.features.map((feature, idx) => (
                     <li key={idx} className="text-sm text-gray-300 flex items-center gap-2">
-                      <ArrowRight className="w-4 h-4 text-[#6366f1]" />
-                      {feature}
+                      <div className="w-5 h-5 rounded-full bg-[#6366f1]/10 flex items-center justify-center flex-shrink-0">
+                        <ArrowRight className="w-3 h-3 text-[#6366f1]" />
+                      </div>
+                      <span className="leading-relaxed">{feature}</span>
                     </li>
                   ))}
                 </ul>
