@@ -72,24 +72,24 @@ const ContactPage = () => {
 
   return (
     <PageBackground>
-      <div className="container mx-auto px-4 min-h-screen flex items-center py-20">
-        <div className="w-full max-w-7xl mx-auto">
-          <div className="text-center mb-12">
-            <h1 
-              className="text-4xl sm:text-5xl lg:text-6xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-[#6366f1] to-[#a855f7] mb-4"
-              data-aos="fade-down"
-            >
-              Contact Me
-            </h1>
-            <p 
-              className="text-gray-400 max-w-2xl mx-auto"
-              data-aos="fade-up"
-              data-aos-delay="100"
-            >
-              Got a question? Send me a message, and I'll get back to you soon.
-            </p>
-          </div>
+      <div className="min-h-screen flex flex-col justify-center py-12 sm:px-6 lg:px-8">
+        <div className="text-center mb-12">
+          <h1 
+            className="text-4xl sm:text-5xl lg:text-6xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-[#6366f1] to-[#a855f7] mb-4"
+            data-aos="fade-down"
+          >
+            Contact Me
+          </h1>
+          <p 
+            className="text-gray-400 max-w-2xl mx-auto"
+            data-aos="fade-up"
+            data-aos-delay="100"
+          >
+            Got a question? Send me a message, and I'll get back to you soon.
+          </p>
+        </div>
 
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-8 items-start">
             {/* Contact Form */}
             <div
@@ -171,7 +171,7 @@ const ContactPage = () => {
               data-aos-duration="1000"
               className="lg:sticky lg:top-24"
             >
-              <div className="bg-black/20 backdrop-blur-xl rounded-3xl border border-white/10 p-8 shadow-xl mb-8">
+              <div className="bg-black/20 backdrop-blur-xl rounded-3xl border border-white/10 p-8 shadow-xl">
                 <h2 className="text-3xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-[#6366f1] to-[#a855f7]">
                   Connect With Me
                 </h2>
