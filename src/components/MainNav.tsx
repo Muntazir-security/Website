@@ -5,27 +5,10 @@ const MainNav = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
-  const scrollToSection = (sectionId: string) => {
-    console.log(`Scrolling to section: ${sectionId}`);
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
-
-  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, path: string) => {
+  const handleLogoClick = (e: React.MouseEvent) => {
     e.preventDefault();
-    console.log(`Nav item clicked: ${path}`);
-
-    // If we're not on the main content pages, navigate first
-    if (location.pathname === '/') {
-      navigate('/home');
-      setTimeout(() => {
-        scrollToSection(`${path.replace('/', '')}-section`);
-      }, 100);
-    } else {
-      scrollToSection(`${path.replace('/', '')}-section`);
-    }
+    console.log('Logo clicked, redirecting to welcome screen');
+    navigate('/');
   };
 
   return (
@@ -34,10 +17,7 @@ const MainNav = () => {
         {/* Logo */}
         <Link 
           to="/" 
-          onClick={(e) => {
-            e.preventDefault();
-            navigate('/');
-          }}
+          onClick={handleLogoClick}
           className="text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#6366f1] to-[#a855f7]"
         >
           Muntazir
@@ -47,7 +27,6 @@ const MainNav = () => {
         <nav className="flex items-center gap-6">
           <Link
             to="/home"
-            onClick={(e) => handleNavClick(e, "/home")}
             className={`text-sm transition-all relative ${
               location.pathname === "/home" 
                 ? "text-transparent bg-clip-text bg-gradient-to-r from-[#6366f1] to-[#a855f7] after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-full after:h-0.5 after:bg-gradient-to-r after:from-[#6366f1] after:to-[#a855f7]" 
@@ -58,7 +37,6 @@ const MainNav = () => {
           </Link>
           <Link
             to="/about"
-            onClick={(e) => handleNavClick(e, "/about")}
             className={`text-sm transition-all relative ${
               location.pathname === "/about"
                 ? "text-transparent bg-clip-text bg-gradient-to-r from-[#6366f1] to-[#a855f7] after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-full after:h-0.5 after:bg-gradient-to-r after:from-[#6366f1] after:to-[#a855f7]"
@@ -69,7 +47,6 @@ const MainNav = () => {
           </Link>
           <Link
             to="/portfolio"
-            onClick={(e) => handleNavClick(e, "/portfolio")}
             className={`text-sm transition-all relative ${
               location.pathname === "/portfolio"
                 ? "text-transparent bg-clip-text bg-gradient-to-r from-[#6366f1] to-[#a855f7] after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-full after:h-0.5 after:bg-gradient-to-r after:from-[#6366f1] after:to-[#a855f7]"
@@ -80,7 +57,6 @@ const MainNav = () => {
           </Link>
           <Link
             to="/contact"
-            onClick={(e) => handleNavClick(e, "/contact")}
             className={`text-sm transition-all relative ${
               location.pathname === "/contact"
                 ? "text-transparent bg-clip-text bg-gradient-to-r from-[#6366f1] to-[#a855f7] after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-full after:h-0.5 after:bg-gradient-to-r after:from-[#6366f1] after:to-[#a855f7]"
