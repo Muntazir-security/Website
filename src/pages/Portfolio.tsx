@@ -239,28 +239,71 @@ const Portfolio = () => {
         </div>
 
         <Tabs defaultValue={activeTab} className="space-y-8">
-          <TabsList className="grid w-full grid-cols-3 max-w-2xl mx-auto mb-12 bg-black/20 backdrop-blur-xl border border-white/10 p-1 rounded-2xl">
-            <TabsTrigger 
-              value="projects"
-              className="data-[state=active]:bg-white/10 data-[state=active]:text-white rounded-xl transition-all duration-300"
-            >
-              <Code2 className="w-4 h-4 mr-2" />
-              Projects
-            </TabsTrigger>
-            <TabsTrigger 
-              value="certificates"
-              className="data-[state=active]:bg-white/10 data-[state=active]:text-white rounded-xl transition-all duration-300"
-            >
-              <Award className="w-4 h-4 mr-2" />
-              Certificates
-            </TabsTrigger>
-            <TabsTrigger 
-              value="tech-stack"
-              className="data-[state=active]:bg-white/10 data-[state=active]:text-white rounded-xl transition-all duration-300"
-            >
-              <Boxes className="w-4 h-4 mr-2" />
-              Tech Stack
-            </TabsTrigger>
+          <TabsList className="w-full h-16 bg-gradient-to-r from-[#1e293b] via-[#0f172a] to-[#1e293b] border border-white/10 rounded-xl flex justify-center items-center p-1">
+            <div className="flex w-full max-w-4xl justify-evenly gap-2">
+              <TabsTrigger 
+                value="projects"
+                className="
+                  flex-1 h-full 
+                  flex items-center justify-center gap-2 
+                  px-4 py-2 rounded-lg
+                  text-gray-400 hover:text-gray-300
+                  transition-all duration-300
+                  data-[state=active]:bg-gradient-to-r 
+                  data-[state=active]:from-[#4f46e5] 
+                  data-[state=active]:to-[#a855f7]
+                  data-[state=active]:text-white 
+                  data-[state=active]:font-semibold
+                  hover:bg-gray-800/30
+                  backdrop-blur-sm
+                "
+              >
+                <Code className="w-6 h-6" />
+                Projects
+              </TabsTrigger>
+              
+              <TabsTrigger 
+                value="certificates"
+                className="
+                  flex-1 h-full 
+                  flex items-center justify-center gap-2 
+                  px-4 py-2 rounded-lg
+                  text-gray-400 hover:text-gray-300
+                  transition-all duration-300
+                  data-[state=active]:bg-gradient-to-r 
+                  data-[state=active]:from-[#4f46e5] 
+                  data-[state=active]:to-[#a855f7]
+                  data-[state=active]:text-white 
+                  data-[state=active]:font-semibold
+                  hover:bg-gray-800/30
+                  backdrop-blur-sm
+                "
+              >
+                <Award className="w-6 h-6" />
+                Certificates
+              </TabsTrigger>
+              
+              <TabsTrigger 
+                value="tech-stack"
+                className="
+                  flex-1 h-full 
+                  flex items-center justify-center gap-2 
+                  px-4 py-2 rounded-lg
+                  text-gray-400 hover:text-gray-300
+                  transition-all duration-300
+                  data-[state=active]:bg-gradient-to-r 
+                  data-[state=active]:from-[#4f46e5] 
+                  data-[state=active]:to-[#a855f7]
+                  data-[state=active]:text-white 
+                  data-[state=active]:font-semibold
+                  hover:bg-gray-800/30
+                  backdrop-blur-sm
+                "
+              >
+                <Boxes className="w-6 h-6" />
+                Tech Stack
+              </TabsTrigger>
+            </div>
           </TabsList>
 
           <TabsContent value="projects">
