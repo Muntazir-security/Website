@@ -1,5 +1,5 @@
 import React, { memo } from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { LucideIcon } from "lucide-react";
 
 interface CTAButtonProps {
@@ -8,9 +8,31 @@ interface CTAButtonProps {
   icon: LucideIcon;
 }
 
-const CTAButton = ({ href, text, icon: Icon }: CTAButtonProps) => (
-  <Link to={href}>
-    <button className="group relative w-[160px]">
+const CTAButton = ({ href, text, icon: Icon }: CTAButtonProps) => {
+  const navigate = useNavigate();
+
+  const handleClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    console.log(`CTA Button clicked: ${text}`);
+    
+    // First scroll smoothly to top
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+
+    // Then navigate after a small delay to ensure smooth scroll completes
+    setTimeout(() => {
+      console.log(`Navigating to: ${href}`);
+      navigate(href);
+    }, 500);
+  };
+
+  return (
+    <button 
+      onClick={handleClick}
+      className="group relative w-[160px]"
+    >
       <div className="absolute -inset-0.5 bg-gradient-to-r from-[#4f52c9] to-[#8644c5] rounded-xl opacity-50 blur-md group-hover:opacity-90 transition-all duration-700"></div>
       <div className="relative h-11 bg-[#030014] backdrop-blur-xl rounded-lg border border-white/10 leading-none overflow-hidden">
         <div className="absolute inset-0 scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-500 bg-gradient-to-r from-[#4f52c9]/20 to-[#8644c5]/20"></div>
@@ -22,7 +44,7 @@ const CTAButton = ({ href, text, icon: Icon }: CTAButtonProps) => (
         </span>
       </div>
     </button>
-  </Link>
-);
+  );
+};
 
 export default memo(CTAButton);

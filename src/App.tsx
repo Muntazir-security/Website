@@ -2,9 +2,9 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { Analytics } from "@vercel/analytics/react";
-import { StrictMode } from "react";
+import { StrictMode, useEffect } from "react";
 import MainNav from "./components/MainNav";
 import Index from "./pages/Index";
 import Home from "./pages/Home";
@@ -14,6 +14,21 @@ import Contact from "./pages/Contact";
 
 const queryClient = new QueryClient();
 
+// Scroll to top component
+const ScrollToTop = () => {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    console.log('Route changed, scrolling to top');
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  }, [pathname]);
+
+  return null;
+};
+
 const App = () => (
   <StrictMode>
     <QueryClientProvider client={queryClient}>
@@ -22,6 +37,7 @@ const App = () => (
         <Sonner />
         <BrowserRouter>
           <div className="min-h-screen bg-[#0B0B1E]">
+            <ScrollToTop />
             <MainNav />
             <Routes>
               <Route path="/" element={<Index />} />
