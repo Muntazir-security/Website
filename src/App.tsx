@@ -29,6 +29,18 @@ const ScrollToTop = () => {
   return null;
 };
 
+// Main content wrapper that combines all pages for continuous scrolling
+const MainContent = () => {
+  return (
+    <div className="continuous-scroll">
+      <div id="home-section"><Home /></div>
+      <div id="about-section"><About /></div>
+      <div id="portfolio-section"><Portfolio /></div>
+      <div id="contact-section"><Contact /></div>
+    </div>
+  );
+};
+
 const App = () => (
   <StrictMode>
     <QueryClientProvider client={queryClient}>
@@ -41,10 +53,7 @@ const App = () => (
             <MainNav />
             <Routes>
               <Route path="/" element={<Index />} />
-              <Route path="/home" element={<Home />} />
-              <Route path="/about" element={<About />} />
-              <Route path="/portfolio" element={<Portfolio />} />
-              <Route path="/contact" element={<Contact />} />
+              <Route path="/*" element={<MainContent />} />
             </Routes>
             <Analytics />
           </div>

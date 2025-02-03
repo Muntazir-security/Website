@@ -1,30 +1,30 @@
 import React from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { smoothScrollToElement } from "../utils/scrollUtils";
 
 const MainNav = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
+  const scrollToSection = (sectionId: string) => {
+    console.log(`Scrolling to section: ${sectionId}`);
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, path: string) => {
     e.preventDefault();
     console.log(`Nav item clicked: ${path}`);
 
-    if (location.pathname === path) {
-      // If we're already on the page, just scroll to top
-      window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
-      });
-    } else {
-      // If we're on a different page, navigate and then scroll
-      navigate(path);
+    // If we're not on the main content pages, navigate first
+    if (location.pathname === '/') {
+      navigate('/home');
       setTimeout(() => {
-        window.scrollTo({
-          top: 0,
-          behavior: 'smooth'
-        });
+        scrollToSection(`${path.replace('/', '')}-section`);
       }, 100);
+    } else {
+      scrollToSection(`${path.replace('/', '')}-section`);
     }
   };
 
@@ -34,7 +34,10 @@ const MainNav = () => {
         {/* Logo */}
         <Link 
           to="/" 
-          onClick={(e) => handleNavClick(e, "/")}
+          onClick={(e) => {
+            e.preventDefault();
+            navigate('/');
+          }}
           className="text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#6366f1] to-[#a855f7]"
         >
           Muntazir
