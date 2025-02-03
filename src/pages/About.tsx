@@ -7,8 +7,8 @@ import 'aos/dist/aos.css'
 import PageBackground from "@/components/shared/PageBackground"
 
 const Header = memo(() => (
-  <div className="text-center mb-16 pt-20" data-aos="fade-down">
-    <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-[#6366f1] to-[#a855f7] mb-4">
+  <div className="text-center mb-8" data-aos="fade-down">
+    <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-[#6366f1] to-[#a855f7] mb-2">
       About Me
     </h1>
     <p className="text-gray-400 max-w-2xl mx-auto flex items-center justify-center gap-2">
@@ -20,7 +20,7 @@ const Header = memo(() => (
 ));
 
 const ProfileImage = memo(() => (
-  <div className="flex justify-end items-center sm:p-12 sm:py-0 sm:pb-0 p-0 py-2 pb-2">
+  <div className="flex justify-end items-start sm:p-8 sm:py-0 sm:pb-0 p-0">
     <div 
       className="relative group" 
       data-aos="fade-up"
@@ -33,7 +33,7 @@ const ProfileImage = memo(() => (
       </div>
 
       <div className="relative">
-        <div className="w-72 h-72 sm:w-80 sm:h-80 rounded-full overflow-hidden shadow-[0_0_40px_rgba(120,119,198,0.3)] transform transition-all duration-700 group-hover:scale-105">
+        <div className="w-64 h-64 sm:w-72 sm:h-72 rounded-full overflow-hidden shadow-[0_0_40px_rgba(120,119,198,0.3)] transform transition-all duration-700 group-hover:scale-105">
           <div className="absolute inset-0 border-4 border-white/20 rounded-full z-20 transition-all duration-700 group-hover:border-white/40 group-hover:scale-105" />
           
           <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/40 z-10 transition-opacity duration-700 group-hover:opacity-0 hidden sm:block" />
@@ -70,39 +70,24 @@ interface StatCardProps {
 const StatCard = memo(({ icon: Icon, color, value, label, description, animation, link }: StatCardProps) => (
   <Link to={link} className="block">
     <div data-aos={animation} data-aos-duration={1300} className="relative group">
-      <div className="relative z-10 bg-gray-900/50 backdrop-blur-lg rounded-2xl p-6 border border-white/10 overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-2xl h-full flex flex-col justify-between">
+      <div className="relative z-10 bg-gray-900/50 backdrop-blur-lg rounded-2xl p-4 border border-white/10 overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-2xl h-full flex flex-col justify-between">
         <div className={`absolute -z-10 inset-0 bg-gradient-to-br ${color} opacity-10 group-hover:opacity-20 transition-opacity duration-300`}></div>
         
-        <div className="flex items-center justify-between mb-4">
-          <div className="w-16 h-16 rounded-full flex items-center justify-center bg-white/10 transition-transform group-hover:rotate-6">
-            <Icon className="w-8 h-8 text-white" />
+        <div className="flex items-center justify-between mb-2">
+          <div className="w-12 h-12 rounded-full flex items-center justify-center bg-white/10 transition-transform group-hover:rotate-6">
+            <Icon className="w-6 h-6 text-white" />
           </div>
-          <span 
-            className="text-4xl font-bold text-white"
-            data-aos="fade-up-left"
-            data-aos-duration="1500"
-            data-aos-anchor-placement="top-bottom"
-          >
+          <span className="text-3xl font-bold text-white">
             {value}
           </span>
         </div>
 
         <div>
-          <p 
-            className="text-sm uppercase tracking-wider text-gray-300 mb-2"
-            data-aos="fade-up"
-            data-aos-duration="800"
-            data-aos-anchor-placement="top-bottom"
-          >
+          <p className="text-sm uppercase tracking-wider text-gray-300 mb-1">
             {label}
           </p>
           <div className="flex items-center justify-between">
-            <p 
-              className="text-xs text-gray-400"
-              data-aos="fade-up"
-              data-aos-duration="1000"
-              data-aos-anchor-placement="top-bottom"
-            >
+            <p className="text-xs text-gray-400">
               {description}
             </p>
             <ArrowUpRight className="w-4 h-4 text-white/50 group-hover:text-white transition-colors" />
@@ -118,38 +103,22 @@ const AboutPage = () => {
     const storedProjects = JSON.parse(localStorage.getItem("projects") || "[]");
     const storedCertificates = JSON.parse(localStorage.getItem("certificates") || "[]");
     
-    const startDate = new Date("2022-05-01"); // Adjusted to reflect 2 years of experience
+    const startDate = new Date("2022-05-01");
     const today = new Date();
     const experience = today.getFullYear() - startDate.getFullYear() -
       (today < new Date(today.getFullYear(), startDate.getMonth(), startDate.getDate()) ? 1 : 0);
 
     return {
-      totalProjects: storedProjects.length || 8, // Updated to 8
-      totalCertificates: storedCertificates.length || 6, // Updated to 6
-      YearExperience: experience || 2 // Updated to 2
+      totalProjects: storedProjects.length || 8,
+      totalCertificates: storedCertificates.length || 6,
+      YearExperience: experience || 2
     };
   }, []);
 
   useEffect(() => {
-    const initAOS = () => {
-      AOS.init({
-        once: false, 
-      });
-    };
-
-    initAOS();
-    
-    let resizeTimer;
-    const handleResize = () => {
-      clearTimeout(resizeTimer);
-      resizeTimer = setTimeout(initAOS, 250);
-    };
-
-    window.addEventListener('resize', handleResize);
-    return () => {
-      window.removeEventListener('resize', handleResize);
-      clearTimeout(resizeTimer);
-    };
+    AOS.init({
+      once: false,
+    });
   }, []);
 
   const statsData = useMemo(() => [
@@ -184,12 +153,12 @@ const AboutPage = () => {
 
   return (
     <PageBackground className="min-h-screen">
-      <div className="container max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8" id="About">
+      <div className="container max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 h-screen flex flex-col justify-center" id="About">
         <Header />
         
-        <div className="w-full mx-auto pt-8 sm:pt-12 relative">
-          <div className="flex flex-col-reverse lg:grid lg:grid-cols-2 gap-10 lg:gap-20 items-center">
-            <div className="space-y-6 text-center lg:text-left lg:max-w-2xl">
+        <div className="w-full mx-auto relative flex-1 flex flex-col justify-center">
+          <div className="flex flex-col lg:grid lg:grid-cols-2 gap-6 lg:gap-12 items-center mb-8">
+            <div className="space-y-4 text-center lg:text-left">
               <h2 
                 className="text-3xl sm:text-4xl lg:text-5xl font-bold"
                 data-aos="fade-right"
@@ -199,7 +168,7 @@ const AboutPage = () => {
                   Hello, I'm
                 </span>
                 <span 
-                  className="block mt-2 text-gray-200"
+                  className="block mt-1 text-gray-200"
                   data-aos="fade-right"
                   data-aos-duration="1300"
                 >
@@ -208,22 +177,22 @@ const AboutPage = () => {
               </h2>
               
               <p 
-                className="text-base sm:text-lg lg:text-xl text-gray-400 leading-relaxed text-justify pb-4 sm:pb-0"
+                className="text-sm sm:text-base lg:text-lg text-gray-400 leading-relaxed text-justify"
                 data-aos="fade-right"
                 data-aos-duration="1500"
               >
-                A Cybersecurity Engineer with a passion for securing digital environments. I hold a degree in Computer Science, specializing in Cybersecurity, from Asia Pacific University of Technology & Innovation. With hands-on experience in SOC analysis, vulnerability assessment, and penetration testing, I've developed a strong foundation in identifying and mitigating security risks. My expertise in SIEM implementation, threat detection, and security documentation is further strengthened by industry certifications, including eJPT and ICCA. I blend technical expertise with analytical thinking to build robust security solutions, always staying ahead of emerging threats to protect critical infrastructure. Whether I'm conducting vulnerability assessments or implementing defense strategies, my goal remains constant: creating resilient security systems that effectively safeguard digital environments.
+                A Cybersecurity Engineer with a passion for securing digital environments. I hold a degree in Computer Science, specializing in Cybersecurity, from Asia Pacific University of Technology & Innovation. With hands-on experience in SOC analysis, vulnerability assessment, and penetration testing, I've developed a strong foundation in identifying and mitigating security risks. My expertise in SIEM implementation, threat detection, and security documentation is further strengthened by industry certifications, including eJPT and ICCA. I blend technical expertise with analytical thinking to build robust security solutions, always staying ahead of emerging threats to protect critical infrastructure.
               </p>
-              <div className="flex flex-col lg:flex-row items-center lg:items-start gap-4 lg:gap-6 w-full">
+              <div className="flex flex-col sm:flex-row items-center sm:items-start gap-4 sm:gap-6 w-full">
                 <a 
                   href="/Syed Muntazir Mehdi CV.pdf" 
                   download
-                  className="w-full lg:w-auto"
+                  className="w-full sm:w-auto"
                 >
                   <button 
                     data-aos="fade-up"
                     data-aos-duration="800"
-                    className="group relative w-full lg:w-[180px]"
+                    className="group relative w-full sm:w-[180px]"
                   >
                     <div className="absolute -inset-0.5 bg-gradient-to-r from-[#4f52c9] to-[#8644c5] rounded-xl opacity-50 blur-md group-hover:opacity-90 transition-all duration-700"></div>
                     <div className="relative h-12 bg-[#030014] backdrop-blur-xl rounded-lg border border-white/10 leading-none overflow-hidden">
@@ -239,12 +208,12 @@ const AboutPage = () => {
                 </a>
                 <Link 
                   to="/portfolio?tab=projects" 
-                  className="w-full lg:w-auto"
+                  className="w-full sm:w-auto"
                 >
                   <button 
                     data-aos="fade-up"
                     data-aos-duration="1000"
-                    className="group relative w-full lg:w-[180px]"
+                    className="group relative w-full sm:w-[180px]"
                   >
                     <div className="absolute -inset-0.5 bg-gradient-to-r from-[#4f52c9] to-[#8644c5] rounded-xl opacity-50 blur-md group-hover:opacity-90 transition-all duration-700"></div>
                     <div className="relative h-12 bg-[#030014] backdrop-blur-xl rounded-lg border border-white/10 leading-none overflow-hidden">
@@ -264,7 +233,7 @@ const AboutPage = () => {
             <ProfileImage />
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-16">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             {statsData.map((stat) => (
               <StatCard key={stat.label} {...stat} />
             ))}
