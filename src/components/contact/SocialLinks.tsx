@@ -16,7 +16,7 @@ const SocialLink = ({ icon, label, value, href, delay }: SocialLinkProps) => (
     target="_blank"
     rel="noopener noreferrer"
     className={cn(
-      "group flex items-center gap-4 p-4",
+      "group flex flex-col items-center gap-4 p-4",
       "bg-gradient-to-br from-white/[0.075] to-white/[0.035]",
       "backdrop-blur-xl border border-white/10 rounded-2xl",
       "transition-all duration-500",
@@ -28,7 +28,7 @@ const SocialLink = ({ icon, label, value, href, delay }: SocialLinkProps) => (
     data-aos-delay={delay}
   >
     {/* Icon container */}
-    <div className="relative shrink-0">
+    <div className="relative">
       <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-indigo-500/10 to-purple-500/10 flex items-center justify-center group-hover:scale-110 transition-transform duration-500">
         <div className="w-6 h-6 text-indigo-400 group-hover:text-indigo-300 transition-colors duration-300">
           {icon}
@@ -37,7 +37,7 @@ const SocialLink = ({ icon, label, value, href, delay }: SocialLinkProps) => (
     </div>
 
     {/* Text content */}
-    <div className="min-w-0 flex-1">
+    <div className="text-center">
       <p className="text-sm font-medium text-white group-hover:text-indigo-300 transition-colors duration-300 truncate">
         {value}
       </p>
