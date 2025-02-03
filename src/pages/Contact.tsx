@@ -95,7 +95,7 @@ const ContactPage = () => {
             <div
               data-aos="fade-right"
               data-aos-duration="1000"
-              className="bg-black/20 backdrop-blur-xl rounded-3xl border border-white/10 p-8 shadow-xl h-[600px]"
+              className="bg-black/20 backdrop-blur-xl rounded-3xl border border-white/10 p-8 shadow-xl"
             >
               <div className="flex justify-between items-start mb-8">
                 <div>
@@ -171,16 +171,14 @@ const ContactPage = () => {
               data-aos-duration="1000"
               className="lg:sticky lg:top-24"
             >
-              <div className="bg-black/20 backdrop-blur-xl rounded-3xl border border-white/10 p-8 shadow-xl h-[600px] flex flex-col">
+              <div className="bg-black/20 backdrop-blur-xl rounded-3xl border border-white/10 p-8 shadow-xl">
                 <h2 className="text-3xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-[#6366f1] to-[#a855f7]">
                   Connect With Me
                 </h2>
                 <p className="text-gray-400 mb-8">
                   Feel free to connect with me on social media or check out my work on various platforms.
                 </p>
-                <div className="flex-grow flex items-center">
-                  <SocialLinks />
-                </div>
+                <SocialLinks />
               </div>
             </div>
           </div>
