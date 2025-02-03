@@ -239,73 +239,31 @@ const Portfolio = () => {
         </div>
 
         <Tabs defaultValue={activeTab} className="space-y-8">
-          <TabsList className="w-full h-16 bg-gradient-to-r from-[#1e293b] via-[#0f172a] to-[#1e293b] border border-white/10 rounded-xl flex justify-center items-center p-1">
-            <div className="flex w-full max-w-4xl justify-evenly gap-2">
-              <TabsTrigger 
-                value="projects"
-                className="
-                  flex-1 h-full 
-                  flex items-center justify-center gap-2 
-                  px-4 py-2 rounded-lg
-                  text-gray-400 hover:text-gray-300
-                  transition-all duration-300
-                  data-[state=active]:bg-gradient-to-r 
-                  data-[state=active]:from-[#4f46e5] 
-                  data-[state=active]:to-[#a855f7]
-                  data-[state=active]:text-white 
-                  data-[state=active]:font-semibold
-                  hover:bg-gray-800/30
-                  backdrop-blur-sm
-                "
-              >
-                <Code2 className="w-6 h-6" />
-                Projects
-              </TabsTrigger>
-              
-              <TabsTrigger 
-                value="certificates"
-                className="
-                  flex-1 h-full 
-                  flex items-center justify-center gap-2 
-                  px-4 py-2 rounded-lg
-                  text-gray-400 hover:text-gray-300
-                  transition-all duration-300
-                  data-[state=active]:bg-gradient-to-r 
-                  data-[state=active]:from-[#4f46e5] 
-                  data-[state=active]:to-[#a855f7]
-                  data-[state=active]:text-white 
-                  data-[state=active]:font-semibold
-                  hover:bg-gray-800/30
-                  backdrop-blur-sm
-                "
-              >
-                <Award className="w-6 h-6" />
-                Certificates
-              </TabsTrigger>
-              
-              <TabsTrigger 
-                value="tech-stack"
-                className="
-                  flex-1 h-full 
-                  flex items-center justify-center gap-2 
-                  px-4 py-2 rounded-lg
-                  text-gray-400 hover:text-gray-300
-                  transition-all duration-300
-                  data-[state=active]:bg-gradient-to-r 
-                  data-[state=active]:from-[#4f46e5] 
-                  data-[state=active]:to-[#a855f7]
-                  data-[state=active]:text-white 
-                  data-[state=active]:font-semibold
-                  hover:bg-gray-800/30
-                  backdrop-blur-sm
-                "
-              >
-                <Boxes className="w-6 h-6" />
-                Tech Stack
-              </TabsTrigger>
-            </div>
+          <TabsList className="grid w-full grid-cols-3 max-w-2xl mx-auto mb-12 bg-black/20 backdrop-blur-xl border border-white/10 p-1 rounded-2xl">
+            <TabsTrigger 
+              value="projects"
+              className="data-[state=active]:bg-white/10 data-[state=active]:text-white rounded-xl transition-all duration-300"
+            >
+              <Code2 className="w-4 h-4 mr-2" />
+              Projects
+            </TabsTrigger>
+            <TabsTrigger 
+              value="certificates"
+              className="data-[state=active]:bg-white/10 data-[state=active]:text-white rounded-xl transition-all duration-300"
+            >
+              <Award className="w-4 h-4 mr-2" />
+              Certificates
+            </TabsTrigger>
+            <TabsTrigger 
+              value="tech-stack"
+              className="data-[state=active]:bg-white/10 data-[state=active]:text-white rounded-xl transition-all duration-300"
+            >
+              <Boxes className="w-4 h-4 mr-2" />
+              Tech Stack
+            </TabsTrigger>
           </TabsList>
 
+          {/* Projects Content */}
           <TabsContent value="projects">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {projects.map((project, index) => (
@@ -372,6 +330,7 @@ const Portfolio = () => {
             </div>
           </TabsContent>
 
+          {/* Certificates Content */}
           <TabsContent value="certificates">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {certificates.map((cert, index) => (
@@ -398,22 +357,23 @@ const Portfolio = () => {
             </div>
           </TabsContent>
 
+          {/* Tech Stack Content */}
           <TabsContent value="tech-stack">
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-8 p-4">
               {techStack.map((tech, techIndex) => (
                 <div 
                   key={techIndex}
                   className="group relative"
-                  data-aos={techIndex % 3 === 0 ? "fade-up-right" : techIndex % 3 === 1 ? "fade-up" : "fade-up-left"}
-                  data-aos-duration={techIndex % 3 === 0 ? "1000" : techIndex % 3 === 1 ? "1200" : "1000"}
+                  data-aos="fade-up"
+                  data-aos-delay={techIndex * 50}
                 >
                   <div className="absolute -inset-0.5 bg-gradient-to-r from-[#4f52c9] to-[#8644c5] rounded-xl opacity-50 blur-md group-hover:opacity-90 transition-all duration-700" />
-                  <div className="relative flex flex-col items-center justify-center p-6 rounded-xl bg-black/20 backdrop-blur-xl border border-white/10 hover:border-white/20 transition-all duration-300 group-hover:transform group-hover:scale-[1.02]">
-                    <div className="relative w-16 h-16 mb-4 group-hover:scale-110 transition-transform duration-300">
+                  <div className="relative flex flex-col items-center justify-center p-6 rounded-xl bg-black/20 backdrop-blur-xl border border-white/10 hover:border-white/20 transition-all duration-300">
+                    <div className="relative w-20 h-20 mb-4 group-hover:scale-110 transition-transform duration-300">
                       <img 
                         src={tech.icon} 
                         alt={tech.name}
-                        className={`w-16 h-16 object-contain transition-all duration-300 group-hover:brightness-110 ${
+                        className={`w-20 h-20 object-contain transition-all duration-300 group-hover:brightness-110 ${
                           tech.icon.endsWith('.png') 
                             ? 'brightness-90 contrast-125 saturate-150'
                             : 'filter-none'
