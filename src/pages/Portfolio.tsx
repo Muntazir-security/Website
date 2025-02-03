@@ -258,7 +258,7 @@ const Portfolio = () => {
                   backdrop-blur-sm
                 "
               >
-                <Code className="w-6 h-6" />
+                <Code2 className="w-6 h-6" />
                 Projects
               </TabsTrigger>
               
@@ -535,4 +535,3 @@ const Portfolio = () => {
 };
 
 export default Portfolio;
-
