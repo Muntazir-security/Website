@@ -263,7 +263,6 @@ const Portfolio = () => {
             </TabsTrigger>
           </TabsList>
 
-          {/* Projects Content */}
           <TabsContent value="projects">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {projects.map((project, index) => (
@@ -330,7 +329,6 @@ const Portfolio = () => {
             </div>
           </TabsContent>
 
-          {/* Certificates Content */}
           <TabsContent value="certificates">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {certificates.map((cert, index) => (
@@ -357,23 +355,22 @@ const Portfolio = () => {
             </div>
           </TabsContent>
 
-          {/* Tech Stack Content */}
           <TabsContent value="tech-stack">
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-8 p-4">
               {techStack.map((tech, techIndex) => (
                 <div 
                   key={techIndex}
                   className="group relative"
-                  data-aos="fade-up"
-                  data-aos-delay={techIndex * 50}
+                  data-aos={techIndex % 3 === 0 ? "fade-up-right" : techIndex % 3 === 1 ? "fade-up" : "fade-up-left"}
+                  data-aos-duration={techIndex % 3 === 0 ? "1000" : techIndex % 3 === 1 ? "1200" : "1000"}
                 >
                   <div className="absolute -inset-0.5 bg-gradient-to-r from-[#4f52c9] to-[#8644c5] rounded-xl opacity-50 blur-md group-hover:opacity-90 transition-all duration-700" />
-                  <div className="relative flex flex-col items-center justify-center p-6 rounded-xl bg-black/20 backdrop-blur-xl border border-white/10 hover:border-white/20 transition-all duration-300">
-                    <div className="relative w-20 h-20 mb-4 group-hover:scale-110 transition-transform duration-300">
+                  <div className="relative flex flex-col items-center justify-center p-6 rounded-xl bg-black/20 backdrop-blur-xl border border-white/10 hover:border-white/20 transition-all duration-300 group-hover:transform group-hover:scale-[1.02]">
+                    <div className="relative w-16 h-16 mb-4 group-hover:scale-110 transition-transform duration-300">
                       <img 
                         src={tech.icon} 
                         alt={tech.name}
-                        className={`w-20 h-20 object-contain transition-all duration-300 group-hover:brightness-110 ${
+                        className={`w-16 h-16 object-contain transition-all duration-300 group-hover:brightness-110 ${
                           tech.icon.endsWith('.png') 
                             ? 'brightness-90 contrast-125 saturate-150'
                             : 'filter-none'
@@ -495,3 +492,4 @@ const Portfolio = () => {
 };
 
 export default Portfolio;
+
