@@ -36,7 +36,7 @@ const App = () => (
         <Toaster />
         <Sonner />
         <BrowserRouter>
-          <div className="min-h-screen bg-[#0B0B1E]">
+          <div className="min-h-screen bg-[#0B0B1E] overflow-y-auto">
             <ScrollToTop />
             <MainNav />
             <Routes>
