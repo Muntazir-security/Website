@@ -20,7 +20,9 @@ import {
   X,
   FileText,
   AlertCircle,
-  Lightbulb
+  Lightbulb,
+  ArrowLeft,
+  Circle
 } from "lucide-react";
 import AOS from "aos";
 import "aos/dist/aos.css";
