@@ -1,5 +1,5 @@
 import React, { useEffect, memo, useMemo } from "react"
-import { FileText, Code2, Award, Globe, ArrowUpRight, Sparkles } from "lucide-react"
+import { FileText, Code, Award, Globe, ArrowUpRight, Sparkles } from "lucide-react"
 import { LucideIcon } from "lucide-react"
 import { Link } from "react-router-dom"
 import AOS from 'aos'
@@ -7,8 +7,8 @@ import 'aos/dist/aos.css'
 import PageBackground from "@/components/shared/PageBackground"
 
 const Header = memo(() => (
-  <div className="text-center mb-6" data-aos="fade-down">
-    <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-[#6366f1] to-[#a855f7] mb-3">
+  <div className="text-center mb-8" data-aos="fade-down"> {/* Reduced mb-16 to mb-8 and removed pt-20 */}
+    <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-[#6366f1] to-[#a855f7] mb-4">
       About Me
     </h1>
     <p className="text-gray-400 max-w-2xl mx-auto flex items-center justify-center gap-2">
@@ -33,7 +33,7 @@ const ProfileImage = memo(() => (
       </div>
 
       <div className="relative">
-        <div className="w-52 h-52 sm:w-64 sm:h-64 rounded-full overflow-hidden shadow-[0_0_40px_rgba(120,119,198,0.3)] transform transition-all duration-700 group-hover:scale-105">
+        <div className="w-48 h-48 sm:w-56 sm:h-56 rounded-full overflow-hidden shadow-[0_0_40px_rgba(120,119,198,0.3)] transform transition-all duration-700 group-hover:scale-105">
           <div className="absolute inset-0 border-4 border-white/20 rounded-full z-20 transition-all duration-700 group-hover:border-white/40 group-hover:scale-105" />
           
           <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/40 z-10 transition-opacity duration-700 group-hover:opacity-0 hidden sm:block" />
@@ -70,15 +70,15 @@ interface StatCardProps {
 const StatCard = memo(({ icon: Icon, color, value, label, description, animation, link }: StatCardProps) => (
   <Link to={link} className="block">
     <div data-aos={animation} data-aos-duration={1300} className="relative group">
-      <div className="relative z-10 bg-gray-900/50 backdrop-blur-lg rounded-2xl p-5 border border-white/10 overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-2xl h-full flex flex-col justify-between">
+      <div className="relative z-10 bg-gray-900/50 backdrop-blur-lg rounded-2xl p-6 border border-white/10 overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-2xl h-full flex flex-col justify-between">
         <div className={`absolute -z-10 inset-0 bg-gradient-to-br ${color} opacity-10 group-hover:opacity-20 transition-opacity duration-300`}></div>
         
-        <div className="flex items-center justify-between mb-3">
-          <div className="w-14 h-14 rounded-full flex items-center justify-center bg-white/10 transition-transform group-hover:rotate-6">
-            <Icon className="w-7 h-7 text-white" />
+        <div className="flex items-center justify-between mb-4">
+          <div className="w-16 h-16 rounded-full flex items-center justify-center bg-white/10 transition-transform group-hover:rotate-6">
+            <Icon className="w-8 h-8 text-white" />
           </div>
           <span 
-            className="text-3xl font-bold text-white"
+            className="text-4xl font-bold text-white"
             data-aos="fade-up-left"
             data-aos-duration="1500"
             data-aos-anchor-placement="top-bottom"
@@ -88,9 +88,23 @@ const StatCard = memo(({ icon: Icon, color, value, label, description, animation
         </div>
 
         <div>
-          <p className="text-sm uppercase tracking-wider text-gray-300 mb-1">{label}</p>
+          <p 
+            className="text-sm uppercase tracking-wider text-gray-300 mb-2"
+            data-aos="fade-up"
+            data-aos-duration="800"
+            data-aos-anchor-placement="top-bottom"
+          >
+            {label}
+          </p>
           <div className="flex items-center justify-between">
-            <p className="text-xs text-gray-400">{description}</p>
+            <p 
+              className="text-xs text-gray-400"
+              data-aos="fade-up"
+              data-aos-duration="1000"
+              data-aos-anchor-placement="top-bottom"
+            >
+              {description}
+            </p>
             <ArrowUpRight className="w-4 h-4 text-white/50 group-hover:text-white transition-colors" />
           </div>
         </div>
@@ -140,7 +154,7 @@ const AboutPage = () => {
 
   const statsData = useMemo(() => [
     {
-      icon: Code2, // Changed from Code to Code2
+      icon: Code,
       color: "from-[#6366f1] to-[#a855f7]",
       value: totalProjects,
       label: "Total Projects",
@@ -170,11 +184,11 @@ const AboutPage = () => {
 
   return (
     <PageBackground className="min-h-screen">
-      <div className="container max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 h-screen flex flex-col justify-start pt-6">
+      <div className="container max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 h-screen flex flex-col justify-start pt-8"> {/* Added pt-8 and changed justify-center to justify-start */}
         <Header />
         
         <div className="w-full mx-auto relative">
-          <div className="flex flex-col-reverse lg:grid lg:grid-cols-[1.7fr_1fr] gap-6 lg:gap-8 items-center">
+          <div className="flex flex-col-reverse lg:grid lg:grid-cols-[2fr_1fr] gap-6 lg:gap-10 items-center">
             <div className="space-y-4 text-center lg:text-left">
               <h2 
                 className="text-2xl sm:text-3xl lg:text-4xl font-bold"
@@ -184,19 +198,22 @@ const AboutPage = () => {
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#6366f1] to-[#a855f7]">
                   Hello, I'm
                 </span>
-                <span className="block mt-1 text-gray-200">
+                <span 
+                  className="block mt-1 text-gray-200"
+                  data-aos="fade-right"
+                  data-aos-duration="1300"
+                >
                   Muntazir Mehdi
                 </span>
               </h2>
               
               <p 
-                className="text-sm sm:text-base lg:text-lg text-gray-400 leading-relaxed"
+                className="text-sm sm:text-base lg:text-lg text-gray-400 leading-relaxed text-justify"
                 data-aos="fade-right"
                 data-aos-duration="1500"
               >
-                A Cybersecurity Engineer specializing in digital security. With a Computer Science degree focused on Cybersecurity from APU, I excel in SOC analysis, vulnerability assessment, and penetration testing. My expertise includes SIEM implementation and threat detection, backed by eJPT and ICCA certifications. I combine technical knowledge with analytical thinking to create robust security solutions that stay ahead of emerging threats.
+                A Cybersecurity Engineer with a passion for securing digital environments. I hold a degree in Computer Science, specializing in Cybersecurity, from Asia Pacific University of Technology & Innovation. With hands-on experience in SOC analysis, vulnerability assessment, and penetration testing, I've developed a strong foundation in identifying and mitigating security risks. My expertise in SIEM implementation, threat detection, and security documentation is further strengthened by industry certifications, including eJPT and ICCA. I blend technical expertise with analytical thinking to build robust security solutions, always staying ahead of emerging threats to protect critical infrastructure.
               </p>
-
               <div className="flex flex-col lg:flex-row items-center lg:items-start gap-3 lg:gap-4">
                 <a 
                   href="/Syed Muntazir Mehdi CV.pdf" 
@@ -236,7 +253,7 @@ const AboutPage = () => {
                         <span className="bg-gradient-to-r from-gray-200 to-white bg-clip-text text-transparent font-medium z-10">
                           View Projects
                         </span>
-                        <Code2 className="w-4 h-4 text-gray-200 group-hover:rotate-45 transform transition-all duration-300 z-10" />
+                        <Code className="w-4 h-4 text-gray-200 group-hover:rotate-45 transform transition-all duration-300 z-10" />
                       </span>
                     </div>
                   </button>
@@ -247,7 +264,7 @@ const AboutPage = () => {
             <ProfileImage />
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-8">
             {statsData.map((stat) => (
               <StatCard key={stat.label} {...stat} />
             ))}
@@ -259,4 +276,3 @@ const AboutPage = () => {
 };
 
 export default AboutPage;
-
