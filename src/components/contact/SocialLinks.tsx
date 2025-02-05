@@ -16,7 +16,7 @@ const SocialLink = ({ icon, label, value, href, delay }: SocialLinkProps) => (
     target="_blank"
     rel="noopener noreferrer"
     className={cn(
-      "group flex flex-col items-center gap-3 p-3",
+      "group flex items-center gap-3 p-3",
       "bg-gradient-to-br from-white/[0.075] to-white/[0.035]",
       "backdrop-blur-xl border border-white/10 rounded-xl",
       "transition-all duration-500",
@@ -37,7 +37,7 @@ const SocialLink = ({ icon, label, value, href, delay }: SocialLinkProps) => (
     </div>
 
     {/* Text content */}
-    <div className="text-center">
+    <div>
       <p className="text-sm font-medium text-white group-hover:text-indigo-300 transition-colors duration-300 truncate">
         {value}
       </p>
