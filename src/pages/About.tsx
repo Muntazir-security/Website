@@ -1,5 +1,5 @@
 import React, { useEffect, memo, useMemo } from "react"
-import { FileText, Code2, Award, Globe, ArrowUpRight, Sparkles } from "lucide-react"
+import { FileText, Code, Award, Globe, ArrowUpRight, Sparkles } from "lucide-react"
 import { LucideIcon } from "lucide-react"
 import { Link } from "react-router-dom"
 import AOS from 'aos'
@@ -7,33 +7,33 @@ import 'aos/dist/aos.css'
 import PageBackground from "@/components/shared/PageBackground"
 
 const Header = memo(() => (
-  <div className="text-center mb-8 pt-8" data-aos="fade-down">
-    <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-[#6366f1] to-[#a855f7] mb-2">
+  <div className="text-center mb-16 pt-20" data-aos="fade-down">
+    <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-[#6366f1] to-[#a855f7] mb-4">
       About Me
     </h1>
-    <p className="text-gray-400 max-w-2xl mx-auto flex items-center justify-center gap-2 text-sm">
-      <Sparkles className="w-4 h-4 text-purple-400" />
+    <p className="text-gray-400 max-w-2xl mx-auto flex items-center justify-center gap-2">
+      <Sparkles className="w-5 h-5 text-purple-400" />
       Transforming vulnerabilities into robust security solutions
-      <Sparkles className="w-4 h-4 text-purple-400" />
+      <Sparkles className="w-5 h-5 text-purple-400" />
     </p>
   </div>
 ));
 
 const ProfileImage = memo(() => (
-  <div className="flex justify-end items-center sm:p-6 sm:py-0 sm:pb-0 p-0">
+  <div className="flex justify-end items-center sm:p-12 sm:py-0 sm:pb-0 p-0 py-2 pb-2">
     <div 
       className="relative group" 
       data-aos="fade-up"
       data-aos-duration="1000"
     >
-      <div className="absolute -inset-4 opacity-[25%] z-0 hidden sm:block">
+      <div className="absolute -inset-6 opacity-[25%] z-0 hidden sm:block">
         <div className="absolute inset-0 bg-gradient-to-r from-violet-600 via-indigo-500 to-purple-600 rounded-full blur-2xl animate-spin-slower" />
         <div className="absolute inset-0 bg-gradient-to-l from-fuchsia-500 via-rose-500 to-pink-600 rounded-full blur-2xl animate-pulse-slow opacity-50" />
         <div className="absolute inset-0 bg-gradient-to-t from-blue-600 via-cyan-500 to-teal-400 rounded-full blur-2xl animate-float opacity-50" />
       </div>
 
       <div className="relative">
-        <div className="w-48 h-48 sm:w-56 sm:h-56 rounded-full overflow-hidden shadow-[0_0_40px_rgba(120,119,198,0.3)] transform transition-all duration-700 group-hover:scale-105">
+        <div className="w-72 h-72 sm:w-80 sm:h-80 rounded-full overflow-hidden shadow-[0_0_40px_rgba(120,119,198,0.3)] transform transition-all duration-700 group-hover:scale-105">
           <div className="absolute inset-0 border-4 border-white/20 rounded-full z-20 transition-all duration-700 group-hover:border-white/40 group-hover:scale-105" />
           
           <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/40 z-10 transition-opacity duration-700 group-hover:opacity-0 hidden sm:block" />
@@ -70,15 +70,15 @@ interface StatCardProps {
 const StatCard = memo(({ icon: Icon, color, value, label, description, animation, link }: StatCardProps) => (
   <Link to={link} className="block">
     <div data-aos={animation} data-aos-duration={1300} className="relative group">
-      <div className="relative z-10 bg-gray-900/50 backdrop-blur-lg rounded-xl p-4 border border-white/10 overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-2xl h-full flex flex-col justify-between">
+      <div className="relative z-10 bg-gray-900/50 backdrop-blur-lg rounded-2xl p-6 border border-white/10 overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-2xl h-full flex flex-col justify-between">
         <div className={`absolute -z-10 inset-0 bg-gradient-to-br ${color} opacity-10 group-hover:opacity-20 transition-opacity duration-300`}></div>
         
-        <div className="flex items-center justify-between mb-2">
-          <div className="w-12 h-12 rounded-full flex items-center justify-center bg-white/10 transition-transform group-hover:rotate-6">
-            <Icon className="w-6 h-6 text-white" />
+        <div className="flex items-center justify-between mb-4">
+          <div className="w-16 h-16 rounded-full flex items-center justify-center bg-white/10 transition-transform group-hover:rotate-6">
+            <Icon className="w-8 h-8 text-white" />
           </div>
           <span 
-            className="text-3xl font-bold text-white"
+            className="text-4xl font-bold text-white"
             data-aos="fade-up-left"
             data-aos-duration="1500"
             data-aos-anchor-placement="top-bottom"
@@ -89,7 +89,7 @@ const StatCard = memo(({ icon: Icon, color, value, label, description, animation
 
         <div>
           <p 
-            className="text-xs uppercase tracking-wider text-gray-300 mb-1"
+            className="text-sm uppercase tracking-wider text-gray-300 mb-2"
             data-aos="fade-up"
             data-aos-duration="800"
             data-aos-anchor-placement="top-bottom"
@@ -154,7 +154,7 @@ const AboutPage = () => {
 
   const statsData = useMemo(() => [
     {
-      icon: Code2,
+      icon: Code,
       color: "from-[#6366f1] to-[#a855f7]",
       value: totalProjects,
       label: "Total Projects",
@@ -184,14 +184,14 @@ const AboutPage = () => {
 
   return (
     <PageBackground className="min-h-screen">
-      <div className="container max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 h-screen flex flex-col justify-center" id="About">
+      <div className="container max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8" id="About">
         <Header />
         
-        <div className="w-full mx-auto relative">
-          <div className="flex flex-col-reverse lg:grid lg:grid-cols-2 gap-6 lg:gap-10 items-center">
-            <div className="space-y-4 text-center lg:text-left lg:max-w-2xl">
+        <div className="w-full mx-auto pt-8 sm:pt-12 relative">
+          <div className="flex flex-col-reverse lg:grid lg:grid-cols-2 gap-10 lg:gap-20 items-center">
+            <div className="space-y-6 text-center lg:text-left lg:max-w-2xl">
               <h2 
-                className="text-2xl sm:text-3xl lg:text-4xl font-bold"
+                className="text-3xl sm:text-4xl lg:text-5xl font-bold"
                 data-aos="fade-right"
                 data-aos-duration="1000"
               >
@@ -199,7 +199,7 @@ const AboutPage = () => {
                   Hello, I'm
                 </span>
                 <span 
-                  className="block mt-1 text-gray-200"
+                  className="block mt-2 text-gray-200"
                   data-aos="fade-right"
                   data-aos-duration="1300"
                 >
@@ -208,13 +208,13 @@ const AboutPage = () => {
               </h2>
               
               <p 
-                className="text-sm sm:text-base lg:text-lg text-gray-400 leading-relaxed text-justify"
+                className="text-base sm:text-lg lg:text-xl text-gray-400 leading-relaxed text-justify pb-4 sm:pb-0"
                 data-aos="fade-right"
                 data-aos-duration="1500"
               >
-                A Cybersecurity Engineer with a passion for securing digital environments. I hold a degree in Computer Science, specializing in Cybersecurity, from Asia Pacific University of Technology & Innovation. With hands-on experience in SOC analysis, vulnerability assessment, and penetration testing, I've developed a strong foundation in identifying and mitigating security risks.
+                A Cybersecurity Engineer with a passion for securing digital environments. I hold a degree in Computer Science, specializing in Cybersecurity, from Asia Pacific University of Technology & Innovation. With hands-on experience in SOC analysis, vulnerability assessment, and penetration testing, I've developed a strong foundation in identifying and mitigating security risks. My expertise in SIEM implementation, threat detection, and security documentation is further strengthened by industry certifications, including eJPT and ICCA. I blend technical expertise with analytical thinking to build robust security solutions, always staying ahead of emerging threats to protect critical infrastructure. Whether I'm conducting vulnerability assessments or implementing defense strategies, my goal remains constant: creating resilient security systems that effectively safeguard digital environments.
               </p>
-              <div className="flex flex-col lg:flex-row items-center lg:items-start gap-3 lg:gap-4">
+              <div className="flex flex-col lg:flex-row items-center lg:items-start gap-4 lg:gap-6 w-full">
                 <a 
                   href="/Syed Muntazir Mehdi CV.pdf" 
                   download
@@ -226,7 +226,7 @@ const AboutPage = () => {
                     className="group relative w-full lg:w-[180px]"
                   >
                     <div className="absolute -inset-0.5 bg-gradient-to-r from-[#4f52c9] to-[#8644c5] rounded-xl opacity-50 blur-md group-hover:opacity-90 transition-all duration-700"></div>
-                    <div className="relative h-10 bg-[#030014] backdrop-blur-xl rounded-lg border border-white/10 leading-none overflow-hidden">
+                    <div className="relative h-12 bg-[#030014] backdrop-blur-xl rounded-lg border border-white/10 leading-none overflow-hidden">
                       <div className="absolute inset-0 scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-500 bg-gradient-to-r from-[#4f52c9]/20 to-[#8644c5]/20"></div>
                       <span className="absolute inset-0 flex items-center justify-center gap-2 text-sm group-hover:gap-3 transition-all duration-300">
                         <span className="bg-gradient-to-r from-gray-200 to-white bg-clip-text text-transparent font-medium z-10">
@@ -247,13 +247,13 @@ const AboutPage = () => {
                     className="group relative w-full lg:w-[180px]"
                   >
                     <div className="absolute -inset-0.5 bg-gradient-to-r from-[#4f52c9] to-[#8644c5] rounded-xl opacity-50 blur-md group-hover:opacity-90 transition-all duration-700"></div>
-                    <div className="relative h-10 bg-[#030014] backdrop-blur-xl rounded-lg border border-white/10 leading-none overflow-hidden">
+                    <div className="relative h-12 bg-[#030014] backdrop-blur-xl rounded-lg border border-white/10 leading-none overflow-hidden">
                       <div className="absolute inset-0 scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-500 bg-gradient-to-r from-[#4f52c9]/20 to-[#8644c5]/20"></div>
                       <span className="absolute inset-0 flex items-center justify-center gap-2 text-sm group-hover:gap-3 transition-all duration-300">
                         <span className="bg-gradient-to-r from-gray-200 to-white bg-clip-text text-transparent font-medium z-10">
                           View Projects
                         </span>
-                        <Code2 className="w-4 h-4 text-gray-200 group-hover:rotate-45 transform transition-all duration-300 z-10" />
+                        <Code className="w-4 h-4 text-gray-200 group-hover:rotate-45 transform transition-all duration-300 z-10" />
                       </span>
                     </div>
                   </button>
@@ -264,7 +264,7 @@ const AboutPage = () => {
             <ProfileImage />
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-16">
             {statsData.map((stat) => (
               <StatCard key={stat.label} {...stat} />
             ))}
