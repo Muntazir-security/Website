@@ -154,7 +154,7 @@ const AboutPage = () => {
 
   const statsData = useMemo(() => [
     {
-      icon: Code,
+      icon: Code2,
       color: "from-[#6366f1] to-[#a855f7]",
       value: totalProjects,
       label: "Total Projects",
