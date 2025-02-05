@@ -221,9 +221,11 @@ const Home = () => {
                 </div>
 
                 {/* Description */}
-                <p className="text-base md:text-lg text-gray-400 max-w-xl leading-relaxed font-light text-justify"
-                  data-aos="fade-up"
-                  data-aos-delay="1000">
+                <p 
+                  className="text-sm sm:text-base lg:text-lg text-gray-400 leading-relaxed text-justify"
+                  data-aos="fade-right"
+                  data-aos-duration="1500"
+                >
                   Hi, I'm a Cybersecurity Engineer with hands-on experience in SOC analysis, vulnerability assessment, and penetration testing. I specialize in identifying vulnerabilities and crafting robust defense strategies to protect digital environments from emerging threats.
                 </p>
 
