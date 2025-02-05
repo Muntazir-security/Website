@@ -16,9 +16,9 @@ const SocialLink = ({ icon, label, value, href, delay }: SocialLinkProps) => (
     target="_blank"
     rel="noopener noreferrer"
     className={cn(
-      "group flex flex-col items-center gap-4 p-4",
+      "group flex items-center gap-3 p-3",
       "bg-gradient-to-br from-white/[0.075] to-white/[0.035]",
-      "backdrop-blur-xl border border-white/10 rounded-2xl",
+      "backdrop-blur-xl border border-white/10 rounded-xl",
       "transition-all duration-500",
       "hover:border-white/20 hover:from-white/[0.1] hover:to-white/[0.05]",
       "hover:shadow-xl hover:shadow-indigo-500/10",
@@ -29,15 +29,15 @@ const SocialLink = ({ icon, label, value, href, delay }: SocialLinkProps) => (
   >
     {/* Icon container */}
     <div className="relative">
-      <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-indigo-500/10 to-purple-500/10 flex items-center justify-center group-hover:scale-110 transition-transform duration-500">
-        <div className="w-6 h-6 text-indigo-400 group-hover:text-indigo-300 transition-colors duration-300">
+      <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-indigo-500/10 to-purple-500/10 flex items-center justify-center group-hover:scale-110 transition-transform duration-500">
+        <div className="w-5 h-5 text-indigo-400 group-hover:text-indigo-300 transition-colors duration-300">
           {icon}
         </div>
       </div>
     </div>
 
     {/* Text content */}
-    <div className="text-center">
+    <div>
       <p className="text-sm font-medium text-white group-hover:text-indigo-300 transition-colors duration-300 truncate">
         {value}
       </p>
@@ -74,7 +74,7 @@ const SocialLinks = () => {
   ];
 
   return (
-    <div className="flex flex-col gap-4">
+    <div className="flex flex-col gap-3">
       {links.map((link) => (
         <SocialLink key={link.label} {...link} />
       ))}
