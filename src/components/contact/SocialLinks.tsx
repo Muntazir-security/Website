@@ -16,9 +16,9 @@ const SocialLink = ({ icon, label, value, href, delay }: SocialLinkProps) => (
     target="_blank"
     rel="noopener noreferrer"
     className={cn(
-      "group flex items-center gap-2 p-2",
+      "group flex items-center gap-3 p-3",
       "bg-gradient-to-br from-white/[0.075] to-white/[0.035]",
-      "backdrop-blur-xl border border-white/10 rounded-lg",
+      "backdrop-blur-xl border border-white/10 rounded-xl",
       "transition-all duration-500",
       "hover:border-white/20 hover:from-white/[0.1] hover:to-white/[0.05]",
       "hover:shadow-xl hover:shadow-indigo-500/10",
@@ -29,8 +29,8 @@ const SocialLink = ({ icon, label, value, href, delay }: SocialLinkProps) => (
   >
     {/* Icon container */}
     <div className="relative">
-      <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-indigo-500/10 to-purple-500/10 flex items-center justify-center group-hover:scale-110 transition-transform duration-500">
-        <div className="w-4 h-4 text-indigo-400 group-hover:text-indigo-300 transition-colors duration-300">
+      <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-indigo-500/10 to-purple-500/10 flex items-center justify-center group-hover:scale-110 transition-transform duration-500">
+        <div className="w-5 h-5 text-indigo-400 group-hover:text-indigo-300 transition-colors duration-300">
           {icon}
         </div>
       </div>
@@ -38,10 +38,10 @@ const SocialLink = ({ icon, label, value, href, delay }: SocialLinkProps) => (
 
     {/* Text content */}
     <div>
-      <p className="text-xs font-medium text-white group-hover:text-indigo-300 transition-colors duration-300 truncate">
+      <p className="text-sm font-medium text-white group-hover:text-indigo-300 transition-colors duration-300 truncate">
         {value}
       </p>
-      <p className="text-[10px] text-gray-400 group-hover:text-gray-300 transition-colors duration-300">
+      <p className="text-xs text-gray-400 group-hover:text-gray-300 transition-colors duration-300">
         {label}
       </p>
     </div>
@@ -74,7 +74,7 @@ const SocialLinks = () => {
   ];
 
   return (
-    <div className="flex flex-col gap-2">
+    <div className="flex flex-col gap-3">
       {links.map((link) => (
         <SocialLink key={link.label} {...link} />
       ))}
