@@ -7,7 +7,7 @@ import 'aos/dist/aos.css'
 import PageBackground from "@/components/shared/PageBackground"
 
 const Header = memo(() => (
-  <div className="text-center mb-16 pt-20" data-aos="fade-down">
+  <div className="text-center mb-8" data-aos="fade-down"> {/* Reduced mb-16 to mb-8 and removed pt-20 */}
     <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-[#6366f1] to-[#a855f7] mb-4">
       About Me
     </h1>
@@ -184,7 +184,7 @@ const AboutPage = () => {
 
   return (
     <PageBackground className="min-h-screen">
-      <div className="container max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 h-screen flex flex-col justify-center" id="About">
+      <div className="container max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 h-screen flex flex-col justify-start pt-8"> {/* Added pt-8 and changed justify-center to justify-start */}
         <Header />
         
         <div className="w-full mx-auto relative">
