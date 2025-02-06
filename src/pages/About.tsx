@@ -118,15 +118,15 @@ const AboutPage = () => {
     const storedProjects = JSON.parse(localStorage.getItem("projects") || "[]");
     const storedCertificates = JSON.parse(localStorage.getItem("certificates") || "[]");
     
-    const startDate = new Date("2022-05-01"); // Adjusted to reflect 2 years of experience
+    const startDate = new Date("2022-05-01");
     const today = new Date();
     const experience = today.getFullYear() - startDate.getFullYear() -
       (today < new Date(today.getFullYear(), startDate.getMonth(), startDate.getDate()) ? 1 : 0);
 
     return {
-      totalProjects: storedProjects.length || 8, // Updated to 8
-      totalCertificates: storedCertificates.length || 6, // Updated to 6
-      YearExperience: experience || 2 // Updated to 2
+      totalProjects: storedProjects.length || 8,
+      totalCertificates: storedCertificates.length || 6,
+      YearExperience: experience || 2
     };
   }, []);
 
@@ -184,7 +184,7 @@ const AboutPage = () => {
 
   return (
     <PageBackground className="min-h-screen">
-      <div className="container max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 h-screen flex flex-col justify-start pt-8"> {/* Added pt-8 and changed justify-center to justify-start */}
+      <div className="container max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 py-8 min-h-screen overflow-y-auto"> {/* Modified this line */}
         <Header />
         
         <div className="w-full mx-auto relative">
