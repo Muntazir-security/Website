@@ -188,8 +188,8 @@ const AboutPage = () => {
         <Header />
         
         <div className="w-full mx-auto relative">
-          <div className="flex flex-col-reverse lg:grid lg:grid-cols-[1.4fr_1fr] gap-6 lg:gap-10 items-center">
-            <div className="space-y-4 text-center lg:text-left max-w-[70%]">
+          <div className="flex flex-col-reverse lg:grid lg:grid-cols-[2fr_1fr] gap-6 lg:gap-10 items-center">
+            <div className="space-y-4 text-center lg:text-left max-w-[85%]">
               <h2 
                 className="text-2xl sm:text-3xl lg:text-4xl font-bold"
                 data-aos="fade-right"
@@ -208,7 +208,7 @@ const AboutPage = () => {
               </h2>
               
               <p 
-                className="text-sm sm:text-base lg:text-lg text-gray-400 leading-relaxed"
+                className="text-sm sm:text-base lg:text-lg text-gray-400 leading-relaxed text-justify"
                 data-aos="fade-right"
                 data-aos-duration="1500"
               >
