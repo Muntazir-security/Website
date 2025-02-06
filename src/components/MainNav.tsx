@@ -23,7 +23,7 @@ const MainNav = () => {
   };
 
   return (
-    <div className="fixed top-0 left-0 right-0 z-50 bg-[#0B0B1E] border-b border-white/10">
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-[#0B0B1E]/95 backdrop-blur-sm border-b border-white/10">
       <div className="max-w-[1280px] mx-auto px-6">
         <div className="flex h-16 items-center justify-between">
           {/* Logo */}
@@ -38,7 +38,8 @@ const MainNav = () => {
           {/* Mobile Menu Button */}
           <button
             onClick={toggleMenu}
-            className="md:hidden p-2 text-white/60 hover:text-white/90 transition-colors"
+            className="md:hidden p-2 text-white hover:text-white/90 transition-colors"
+            aria-label="Toggle menu"
           >
             {isMenuOpen ? (
               <X className="h-6 w-6" />
@@ -48,13 +49,13 @@ const MainNav = () => {
           </button>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center gap-6">
+          <div className="hidden md:flex items-center gap-6">
             <Link
               to="/home"
               className={`text-sm transition-all relative ${
                 location.pathname === "/home" 
                   ? "text-transparent bg-clip-text bg-gradient-to-r from-[#6366f1] to-[#a855f7] after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-full after:h-0.5 after:bg-gradient-to-r after:from-[#6366f1] after:to-[#a855f7]" 
-                  : "text-white/60 hover:text-white/90"
+                  : "text-white hover:text-white/90"
               }`}
             >
               Home
@@ -64,7 +65,7 @@ const MainNav = () => {
               className={`text-sm transition-all relative ${
                 location.pathname === "/about"
                   ? "text-transparent bg-clip-text bg-gradient-to-r from-[#6366f1] to-[#a855f7] after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-full after:h-0.5 after:bg-gradient-to-r after:from-[#6366f1] after:to-[#a855f7]"
-                  : "text-white/60 hover:text-white/90"
+                  : "text-white hover:text-white/90"
               }`}
             >
               About
@@ -74,7 +75,7 @@ const MainNav = () => {
               className={`text-sm transition-all relative ${
                 location.pathname === "/portfolio"
                   ? "text-transparent bg-clip-text bg-gradient-to-r from-[#6366f1] to-[#a855f7] after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-full after:h-0.5 after:bg-gradient-to-r after:from-[#6366f1] after:to-[#a855f7]"
-                  : "text-white/60 hover:text-white/90"
+                  : "text-white hover:text-white/90"
               }`}
             >
               Portfolio
@@ -84,25 +85,25 @@ const MainNav = () => {
               className={`text-sm transition-all relative ${
                 location.pathname === "/contact"
                   ? "text-transparent bg-clip-text bg-gradient-to-r from-[#6366f1] to-[#a855f7] after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-full after:h-0.5 after:bg-gradient-to-r after:from-[#6366f1] after:to-[#a855f7]"
-                  : "text-white/60 hover:text-white/90"
+                  : "text-white hover:text-white/90"
               }`}
             >
               Contact
             </Link>
-          </nav>
+          </div>
         </div>
 
         {/* Mobile Navigation Menu */}
         {isMenuOpen && (
-          <div className="md:hidden absolute left-0 right-0 top-16 bg-[#0B0B1E] border-b border-white/10">
-            <nav className="flex flex-col px-6 py-4 space-y-4">
+          <div className="md:hidden absolute left-0 right-0 top-16 bg-[#0B0B1E]/95 backdrop-blur-sm border-b border-white/10">
+            <div className="flex flex-col px-6 py-4 space-y-4">
               <Link
                 to="/home"
                 onClick={closeMenu}
-                className={`text-sm transition-all relative ${
+                className={`text-sm transition-colors ${
                   location.pathname === "/home" 
                     ? "text-transparent bg-clip-text bg-gradient-to-r from-[#6366f1] to-[#a855f7]" 
-                    : "text-white/60 hover:text-white/90"
+                    : "text-white hover:text-white/90"
                 }`}
               >
                 Home
@@ -110,10 +111,10 @@ const MainNav = () => {
               <Link
                 to="/about"
                 onClick={closeMenu}
-                className={`text-sm transition-all relative ${
+                className={`text-sm transition-colors ${
                   location.pathname === "/about"
                     ? "text-transparent bg-clip-text bg-gradient-to-r from-[#6366f1] to-[#a855f7]"
-                    : "text-white/60 hover:text-white/90"
+                    : "text-white hover:text-white/90"
                 }`}
               >
                 About
@@ -121,10 +122,10 @@ const MainNav = () => {
               <Link
                 to="/portfolio"
                 onClick={closeMenu}
-                className={`text-sm transition-all relative ${
+                className={`text-sm transition-colors ${
                   location.pathname === "/portfolio"
                     ? "text-transparent bg-clip-text bg-gradient-to-r from-[#6366f1] to-[#a855f7]"
-                    : "text-white/60 hover:text-white/90"
+                    : "text-white hover:text-white/90"
                 }`}
               >
                 Portfolio
@@ -132,19 +133,19 @@ const MainNav = () => {
               <Link
                 to="/contact"
                 onClick={closeMenu}
-                className={`text-sm transition-all relative ${
+                className={`text-sm transition-colors ${
                   location.pathname === "/contact"
                     ? "text-transparent bg-clip-text bg-gradient-to-r from-[#6366f1] to-[#a855f7]"
-                    : "text-white/60 hover:text-white/90"
+                    : "text-white hover:text-white/90"
                 }`}
               >
                 Contact
               </Link>
-            </nav>
+            </div>
           </div>
         )}
       </div>
-    </div>
+    </nav>
   );
 };
 
