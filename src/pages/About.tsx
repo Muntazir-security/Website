@@ -208,7 +208,7 @@ const AboutPage = () => {
               </h2>
               
               <p 
-                className="text-sm sm:text-base lg:text-lg text-gray-400 leading-relaxed text-justify"
+                className="text-sm sm:text-base lg:text-lg text-gray-400 leading-relaxed max-w-[800px]"
                 data-aos="fade-right"
                 data-aos-duration="1500"
               >
