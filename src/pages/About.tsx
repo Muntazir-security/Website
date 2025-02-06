@@ -184,12 +184,12 @@ const AboutPage = () => {
 
   return (
     <PageBackground className="min-h-screen">
-      <div className="container max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 py-8 min-h-screen overflow-y-auto">
+      <div className="container max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 py-8 min-h-screen overflow-y-auto"> {/* Modified this line */}
         <Header />
         
         <div className="w-full mx-auto relative">
           <div className="flex flex-col-reverse lg:grid lg:grid-cols-[2fr_1fr] gap-6 lg:gap-10 items-center">
-            <div className="space-y-4 text-center lg:text-left max-w-[85%]">
+            <div className="space-y-4 text-center lg:text-left">
               <h2 
                 className="text-2xl sm:text-3xl lg:text-4xl font-bold"
                 data-aos="fade-right"
