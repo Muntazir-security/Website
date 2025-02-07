@@ -1,3 +1,4 @@
+
 import React, { useEffect, memo, useMemo } from "react"
 import { FileText, Code, Award, Globe, ArrowUpRight, Sparkles } from "lucide-react"
 import { LucideIcon } from "lucide-react"
@@ -20,7 +21,7 @@ const Header = memo(() => (
 ));
 
 const ProfileImage = memo(() => (
-  <div className="flex justify-end items-center p-0">
+  <div className="flex justify-center lg:justify-center lg:translate-x-12 items-center p-0">
     <div 
       className="relative group" 
       data-aos="fade-up"
@@ -33,7 +34,7 @@ const ProfileImage = memo(() => (
       </div>
 
       <div className="relative">
-        <div className="w-48 h-48 sm:w-56 sm:h-56 rounded-full overflow-hidden shadow-[0_0_40px_rgba(120,119,198,0.3)] transform transition-all duration-700 group-hover:scale-105">
+        <div className="w-48 h-48 sm:w-64 sm:h-64 rounded-full overflow-hidden shadow-[0_0_40px_rgba(120,119,198,0.3)] transform transition-all duration-700 group-hover:scale-105">
           <div className="absolute inset-0 border-4 border-white/20 rounded-full z-20 transition-all duration-700 group-hover:border-white/40 group-hover:scale-105" />
           
           <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/40 z-10 transition-opacity duration-700 group-hover:opacity-0 hidden sm:block" />
@@ -184,12 +185,12 @@ const AboutPage = () => {
 
   return (
     <PageBackground className="min-h-screen">
-      <div className="container max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 py-8 min-h-screen overflow-y-auto"> {/* Modified this line */}
+      <div className="container max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 py-8 min-h-screen overflow-y-auto">
         <Header />
         
         <div className="w-full mx-auto relative">
-          <div className="flex flex-col-reverse lg:grid lg:grid-cols-[2fr_1fr] gap-6 lg:gap-10 items-center">
-            <div className="space-y-4 text-center lg:text-left">
+          <div className="flex flex-col-reverse lg:grid lg:grid-cols-[2.5fr_2fr] gap-6 lg:gap-12 items-center">
+            <div className="space-y-4 text-center lg:text-left max-w-3xl mx-auto lg:mx-0">
               <h2 
                 className="text-2xl sm:text-3xl lg:text-4xl font-bold"
                 data-aos="fade-right"
@@ -208,13 +209,13 @@ const AboutPage = () => {
               </h2>
               
               <p 
-                className="text-sm sm:text-base lg:text-lg text-gray-400 leading-relaxed text-justify max-w-[600px]"
+                className="text-sm sm:text-base lg:text-lg text-gray-400 leading-relaxed text-justify max-w-[600px] mb-16"
                 data-aos="fade-right"
                 data-aos-duration="1500"
               >
                 A Cybersecurity Engineer with a passion for securing digital environments. I hold a degree in Computer Science, specializing in Cybersecurity, from Asia Pacific University of Technology & Innovation. With hands-on experience in SOC analysis, vulnerability assessment, and penetration testing, I've developed a strong foundation in identifying and mitigating security risks. My expertise in SIEM implementation, threat detection, and security documentation is further strengthened by industry certifications, including eJPT and ICCA. I blend technical expertise with analytical thinking to build robust security solutions, always staying ahead of emerging threats to protect critical infrastructure.
               </p>
-              <div className="flex flex-col lg:flex-row items-center lg:items-start gap-3 lg:gap-4">
+              <div className="flex flex-col lg:flex-row items-center lg:items-start gap-4 lg:gap-6">
                 <a 
                   href="/Syed Muntazir Mehdi CV.pdf" 
                   download
@@ -264,7 +265,7 @@ const AboutPage = () => {
             <ProfileImage />
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-16 mb-12">
             {statsData.map((stat) => (
               <StatCard key={stat.label} {...stat} />
             ))}
