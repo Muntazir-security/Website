@@ -20,7 +20,7 @@ const Header = memo(() => (
 ));
 
 const ProfileImage = memo(() => (
-  <div className="flex justify-end items-center p-0">
+  <div className="flex justify-start items-center p-0"> {/* Changed justify-end to justify-start */}
     <div 
       className="relative group" 
       data-aos="fade-up"
@@ -184,11 +184,12 @@ const AboutPage = () => {
 
   return (
     <PageBackground className="min-h-screen">
-      <div className="container max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 py-8 min-h-screen overflow-y-auto"> {/* Modified this line */}
+      <div className="container max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 py-8 min-h-screen overflow-y-auto">
         <Header />
         
         <div className="w-full mx-auto relative">
-          <div className="flex flex-col-reverse lg:grid lg:grid-cols-[2fr_1fr] gap-6 lg:gap-10 items-center">
+          <div className="flex flex-col-reverse lg:grid lg:grid-cols-[1fr_2fr] gap-6 lg:gap-10 items-center"> {/* Changed grid columns ratio */}
+            <ProfileImage />
             <div className="space-y-4 text-center lg:text-left">
               <h2 
                 className="text-2xl sm:text-3xl lg:text-4xl font-bold"
@@ -260,8 +261,6 @@ const AboutPage = () => {
                 </Link>
               </div>
             </div>
-
-            <ProfileImage />
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-8">
