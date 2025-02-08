@@ -1,5 +1,6 @@
+
 import React, { useState, useEffect } from "react";
-import { Share2, User, Mail, MessageSquare, Send } from "lucide-react";
+import { Share2, User, Mail, MessageSquare, Send, ArrowRight } from "lucide-react";
 import SocialLinks from "@/components/contact/SocialLinks";
 import { useToast } from "@/components/ui/use-toast";
 import PageBackground from "@/components/shared/PageBackground";
@@ -45,8 +46,8 @@ const ContactPage = () => {
 
       if (response.ok) {
         toast({
-          title: "Message sent!",
-          description: "Thank you for your message. I'll get back to you soon.",
+          title: "Message sent successfully! 🎉",
+          description: "Thank you for reaching out. I'll get back to you soon.",
           duration: 3000,
         });
 
@@ -61,8 +62,8 @@ const ContactPage = () => {
     } catch (error) {
       toast({
         variant: "destructive",
-        title: "Error",
-        description: "Something went wrong. Please try again later.",
+        title: "Error sending message",
+        description: "Please try again later or use an alternative contact method.",
         duration: 3000,
       });
     } finally {
@@ -72,20 +73,19 @@ const ContactPage = () => {
 
   return (
     <PageBackground>
-      <div className="min-h-screen flex flex-col justify-center py-12 sm:px-6 lg:px-8">
-        <div className="text-center mb-12">
-          <h1 
-            className="text-4xl sm:text-5xl lg:text-6xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-[#6366f1] to-[#a855f7] mb-4"
-            data-aos="fade-down"
-          >
-            Contact Me
+      <div className="min-h-screen flex flex-col justify-center py-12 sm:px-6 lg:px-8 relative overflow-hidden">
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <div className="absolute top-1/4 -left-20 w-[500px] h-[500px] bg-[#6366f1]/5 rounded-full blur-3xl animate-pulse-slow" />
+          <div className="absolute bottom-1/4 -right-20 w-[500px] h-[500px] bg-[#a855f7]/5 rounded-full blur-3xl animate-pulse-slow" />
+        </div>
+
+        <div className="text-center mb-12" data-aos="fade-down">
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-[#6366f1] to-[#a855f7] mb-4">
+            Let's Connect
           </h1>
-          <p 
-            className="text-gray-400 max-w-2xl mx-auto"
-            data-aos="fade-up"
-            data-aos-delay="100"
-          >
-            Got a question? Send me a message, and I'll get back to you soon.
+          <p className="text-gray-400 max-w-2xl mx-auto flex items-center justify-center gap-2">
+            Have a question or want to work together? I'd love to hear from you.
+            <ArrowRight className="w-4 h-4 text-[#6366f1] animate-pulse" />
           </p>
         </div>
 
@@ -95,74 +95,81 @@ const ContactPage = () => {
             <div
               data-aos="fade-right"
               data-aos-duration="1000"
-              className="bg-black/20 backdrop-blur-xl rounded-3xl border border-white/10 p-8 shadow-xl"
+              className="relative group"
             >
-              <div className="flex justify-between items-start mb-8">
-                <div>
-                  <h2 className="text-3xl font-bold mb-2 text-transparent bg-clip-text bg-gradient-to-r from-[#6366f1] to-[#a855f7]">
-                    Get in Touch
-                  </h2>
-                  <p className="text-gray-400">
-                    Have something to discuss? Send me a message and let's talk.
-                  </p>
+              <div className="absolute inset-0 bg-gradient-to-r from-[#6366f1]/10 to-[#a855f7]/10 rounded-3xl blur-xl opacity-50 group-hover:opacity-75 transition-opacity duration-500" />
+              <div className="relative bg-black/20 backdrop-blur-xl rounded-3xl border border-white/10 p-8 shadow-xl overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-br from-white/[0.01] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                
+                <div className="relative">
+                  <div className="flex justify-between items-start mb-8">
+                    <div>
+                      <h2 className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#6366f1] to-[#a855f7] mb-2">
+                        Get in Touch
+                      </h2>
+                      <p className="text-gray-400">
+                        Fill out the form below and I'll get back to you soon.
+                      </p>
+                    </div>
+                    <Share2 className="w-8 h-8 text-[#6366f1] opacity-50 group-hover:opacity-100 transition-opacity duration-500" />
+                  </div>
+
+                  <form onSubmit={handleSubmit} className="space-y-6">
+                    <div className="relative group/input">
+                      <User className="absolute left-4 top-4 w-5 h-5 text-gray-400 group-focus-within/input:text-[#6366f1] transition-colors" />
+                      <input
+                        type="text"
+                        name="name"
+                        placeholder="Your Name"
+                        value={formData.name}
+                        onChange={handleChange}
+                        disabled={isSubmitting}
+                        className="w-full p-4 pl-12 bg-white/[0.03] rounded-xl border border-white/10 placeholder-gray-500 text-white focus:outline-none focus:ring-2 focus:ring-[#6366f1]/30 transition-all duration-300 hover:border-white/20 hover:bg-white/[0.05] disabled:opacity-50"
+                        required
+                      />
+                    </div>
+
+                    <div className="relative group/input">
+                      <Mail className="absolute left-4 top-4 w-5 h-5 text-gray-400 group-focus-within/input:text-[#6366f1] transition-colors" />
+                      <input
+                        type="email"
+                        name="email"
+                        placeholder="Your Email"
+                        value={formData.email}
+                        onChange={handleChange}
+                        disabled={isSubmitting}
+                        className="w-full p-4 pl-12 bg-white/[0.03] rounded-xl border border-white/10 placeholder-gray-500 text-white focus:outline-none focus:ring-2 focus:ring-[#6366f1]/30 transition-all duration-300 hover:border-white/20 hover:bg-white/[0.05] disabled:opacity-50"
+                        required
+                      />
+                    </div>
+
+                    <div className="relative group/input">
+                      <MessageSquare className="absolute left-4 top-4 w-5 h-5 text-gray-400 group-focus-within/input:text-[#6366f1] transition-colors" />
+                      <textarea
+                        name="message"
+                        placeholder="Your Message"
+                        value={formData.message}
+                        onChange={handleChange}
+                        disabled={isSubmitting}
+                        className="w-full resize-none p-4 pl-12 bg-white/[0.03] rounded-xl border border-white/10 placeholder-gray-500 text-white focus:outline-none focus:ring-2 focus:ring-[#6366f1]/30 transition-all duration-300 hover:border-white/20 hover:bg-white/[0.05] h-40 disabled:opacity-50"
+                        required
+                      />
+                    </div>
+
+                    <button
+                      type="submit"
+                      disabled={isSubmitting}
+                      className="relative w-full overflow-hidden group/button"
+                    >
+                      <div className="absolute inset-0 bg-gradient-to-r from-[#6366f1] to-[#a855f7] rounded-xl opacity-80 group-hover/button:opacity-100 transition-opacity duration-300" />
+                      <div className="relative px-6 py-4 rounded-xl flex items-center justify-center gap-2 text-white font-semibold transition-all duration-300 group-hover/button:gap-3 disabled:opacity-50 disabled:cursor-not-allowed">
+                        <Send className="w-5 h-5 transition-transform duration-300 group-hover/button:translate-x-1" />
+                        {isSubmitting ? 'Sending...' : 'Send Message'}
+                      </div>
+                    </button>
+                  </form>
                 </div>
-                <Share2 className="w-8 h-8 text-[#6366f1] opacity-50" />
               </div>
-
-              <form 
-                onSubmit={handleSubmit}
-                className="space-y-6"
-              >
-                <div className="relative group">
-                  <User className="absolute left-4 top-4 w-5 h-5 text-gray-400 group-focus-within:text-[#6366f1] transition-colors" />
-                  <input
-                    type="text"
-                    name="name"
-                    placeholder="Your Name"
-                    value={formData.name}
-                    onChange={handleChange}
-                    disabled={isSubmitting}
-                    className="w-full p-4 pl-12 bg-white/10 rounded-xl border border-white/20 placeholder-gray-500 text-white focus:outline-none focus:ring-2 focus:ring-[#6366f1]/30 transition-all duration-300 hover:border-[#6366f1]/30 disabled:opacity-50"
-                    required
-                  />
-                </div>
-
-                <div className="relative group">
-                  <Mail className="absolute left-4 top-4 w-5 h-5 text-gray-400 group-focus-within:text-[#6366f1] transition-colors" />
-                  <input
-                    type="email"
-                    name="email"
-                    placeholder="Your Email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    disabled={isSubmitting}
-                    className="w-full p-4 pl-12 bg-white/10 rounded-xl border border-white/20 placeholder-gray-500 text-white focus:outline-none focus:ring-2 focus:ring-[#6366f1]/30 transition-all duration-300 hover:border-[#6366f1]/30 disabled:opacity-50"
-                    required
-                  />
-                </div>
-
-                <div className="relative group">
-                  <MessageSquare className="absolute left-4 top-4 w-5 h-5 text-gray-400 group-focus-within:text-[#6366f1] transition-colors" />
-                  <textarea
-                    name="message"
-                    placeholder="Your Message"
-                    value={formData.message}
-                    onChange={handleChange}
-                    disabled={isSubmitting}
-                    className="w-full resize-none p-4 pl-12 bg-white/10 rounded-xl border border-white/20 placeholder-gray-500 text-white focus:outline-none focus:ring-2 focus:ring-[#6366f1]/30 transition-all duration-300 hover:border-[#6366f1]/30 h-40 disabled:opacity-50"
-                    required
-                  />
-                </div>
-
-                <button
-                  type="submit"
-                  disabled={isSubmitting}
-                  className="w-full bg-gradient-to-r from-[#6366f1] to-[#a855f7] text-white py-4 rounded-xl font-semibold transition-all duration-300 hover:scale-[1.02] hover:shadow-lg hover:shadow-[#6366f1]/20 active:scale-[0.98] flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
-                >
-                  <Send className="w-5 h-5" />
-                  {isSubmitting ? 'Sending...' : 'Send Message'}
-                </button>
-              </form>
             </div>
 
             {/* Social Links Section */}
@@ -171,14 +178,17 @@ const ContactPage = () => {
               data-aos-duration="1000"
               className="lg:sticky lg:top-24"
             >
-              <div className="bg-black/20 backdrop-blur-xl rounded-3xl border border-white/10 p-8 shadow-xl">
-                <h2 className="text-3xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-[#6366f1] to-[#a855f7]">
-                  Connect With Me
-                </h2>
-                <p className="text-gray-400 mb-8">
-                  Feel free to connect with me on social media or check out my work on various platforms.
-                </p>
-                <SocialLinks />
+              <div className="relative group">
+                <div className="absolute inset-0 bg-gradient-to-r from-[#6366f1]/10 to-[#a855f7]/10 rounded-3xl blur-xl opacity-50 group-hover:opacity-75 transition-opacity duration-500" />
+                <div className="relative bg-black/20 backdrop-blur-xl rounded-3xl border border-white/10 p-8 shadow-xl">
+                  <h2 className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#6366f1] to-[#a855f7] mb-6">
+                    Connect With Me
+                  </h2>
+                  <p className="text-gray-400 mb-8">
+                    Feel free to reach out through any of these platforms. I'll get back to you as soon as possible.
+                  </p>
+                  <SocialLinks />
+                </div>
               </div>
             </div>
           </div>
