@@ -352,7 +352,9 @@ const Portfolio = () => {
                   </div>
                   <CardContent className="p-6 flex flex-col justify-between flex-grow">
                     <h3 className="text-lg font-semibold text-white mb-1 line-clamp-2">{cert.title}</h3>
-                    <p className="text-gray-400 text-sm">{cert.issuer} • {cert.date}</p>
+                    <p className="text-gray-400 text-sm mt-1">
+                      {cert.issuer} • {cert.date}
+                    </p>
                   </CardContent>
                 </Card>
               ))}
