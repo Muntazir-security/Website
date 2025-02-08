@@ -228,6 +228,17 @@ const Portfolio = () => {
 
   const activeTab = searchParams.get('tab') || 'projects';
 
+  const navigateCertificate = (direction: 'prev' | 'next') => {
+    if (!selectedCertificate) return;
+    
+    const currentIndex = certificates.findIndex(cert => cert.image === selectedCertificate);
+    const newIndex = direction === 'prev'
+      ? (currentIndex > 0 ? currentIndex - 1 : certificates.length - 1)
+      : (currentIndex < certificates.length - 1 ? currentIndex + 1 : 0);
+    
+    setSelectedCertificate(certificates[newIndex].image);
+  };
+
   return (
     <PageBackground>
       <div className="max-w-7xl mx-auto relative">
@@ -338,23 +349,46 @@ const Portfolio = () => {
               {certificates.map((cert, index) => (
                 <Card 
                   key={index}
-                  className="bg-black/40 backdrop-blur-xl border border-white/10 overflow-hidden group hover:border-white/20 transition-all duration-300 cursor-pointer h-[320px] flex flex-col"
+                  className="group bg-black/40 backdrop-blur-xl border border-white/10 overflow-hidden 
+                    hover:border-white/20 transition-all duration-300 cursor-pointer flex flex-col"
                   data-aos="fade-up"
                   data-aos-delay={index * 100}
-                  onClick={() => setSelectedCertificate(cert.image)}
                 >
-                  <div className="aspect-video relative overflow-hidden">
+                  <div className="relative aspect-[4/3] overflow-hidden">
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/0 to-black/0 z-10" />
                     <img 
                       src={cert.image} 
                       alt={cert.title}
                       className="object-cover w-full h-full transform group-hover:scale-110 transition-transform duration-500"
                     />
+                    <div className="absolute top-4 right-4 z-20">
+                      <span className="px-3 py-1 rounded-full bg-[#6366f1]/20 border border-[#6366f1]/30 
+                        text-[#6366f1] text-xs font-medium backdrop-blur-xl">
+                        {cert.date}
+                      </span>
+                    </div>
                   </div>
+
                   <CardContent className="p-6 flex flex-col justify-between flex-grow">
-                    <h3 className="text-lg font-semibold text-white mb-1 line-clamp-2">{cert.title}</h3>
-                    <p className="text-gray-400 text-sm mt-1">
-                      {cert.issuer} • {cert.date}
-                    </p>
+                    <div>
+                      <h3 className="text-lg font-semibold text-white mb-2 line-clamp-2">
+                        {cert.title}
+                      </h3>
+                      <p className="text-gray-400 text-sm mb-4">
+                        {cert.issuer}
+                      </p>
+                    </div>
+
+                    <div className="flex gap-2">
+                      <Button 
+                        variant="ghost" 
+                        className="w-full text-[#6366f1] hover:text-[#a855f7] hover:bg-white/5"
+                        onClick={() => setSelectedCertificate(cert.image)}
+                      >
+                        <Award className="w-4 h-4 mr-2" />
+                        View Certificate
+                      </Button>
+                    </div>
                   </CardContent>
                 </Card>
               ))}
@@ -363,30 +397,44 @@ const Portfolio = () => {
 
           {/* Tech Stack Content */}
           <TabsContent value="tech-stack">
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-8 p-4">
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6 p-6">
               {techStack.map((tech, techIndex) => (
                 <div 
                   key={techIndex}
-                  className="group relative"
-                  data-aos="fade-up"
-                  data-aos-delay={techIndex * 50}
+                  className="group relative cursor-pointer"
+                  onMouseMove={(e) => {
+                    const rect = e.currentTarget.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    e.currentTarget.style.setProperty('--mouse-x', `${x}px`);
+                    e.currentTarget.style.setProperty('--mouse-y', `${y}px`);
+                  }}
                 >
-                  <div className="absolute -inset-0.5 bg-gradient-to-r from-[#4f52c9] to-[#8644c5] rounded-xl opacity-50 blur-md group-hover:opacity-90 transition-all duration-700" />
+                  <div className="absolute -inset-0.5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                    style={{
+                      background: `radial-gradient(circle at var(--mouse-x) var(--mouse-y), rgba(99, 102, 241, 0.15), transparent 100px)`
+                    }}
+                  />
                   <div className="relative flex flex-col items-center justify-center p-6 rounded-xl bg-black/20 backdrop-blur-xl border border-white/10 hover:border-white/20 transition-all duration-300">
-                    <div className="relative w-20 h-20 mb-4 group-hover:scale-110 transition-transform duration-300">
+                    <div className="relative w-20 h-20 mb-4">
+                      <div className="absolute inset-0 bg-gradient-to-b from-[#6366f1]/10 to-[#a855f7]/10 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                       <img 
                         src={tech.icon} 
                         alt={tech.name}
-                        className={`w-20 h-20 object-contain transition-all duration-300 group-hover:brightness-110 ${
+                        className={`w-20 h-20 object-contain transition-all duration-300 group-hover:scale-110 group-hover:brightness-110 ${
                           tech.icon.endsWith('.png') 
                             ? 'brightness-90 contrast-125 saturate-150'
                             : 'filter-none'
                         }`}
                       />
                     </div>
-                    <span className="text-gray-300 text-sm font-medium text-center group-hover:text-white transition-colors duration-300">
-                      {tech.name}
-                    </span>
+                    
+                    <div className="text-center">
+                      <span className="text-gray-300 text-sm font-medium group-hover:text-white transition-colors duration-300 relative">
+                        {tech.name}
+                        <span className="absolute -bottom-1 left-0 w-full h-0.5 bg-gradient-to-r from-[#6366f1] to-[#a855f7] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300" />
+                      </span>
+                    </div>
                   </div>
                 </div>
               ))}
@@ -486,12 +534,40 @@ const Portfolio = () => {
 
       {/* Certificate Dialog */}
       <Dialog open={!!selectedCertificate} onOpenChange={() => setSelectedCertificate(null)}>
-        <DialogContent className="max-w-4xl w-[90vw] h-[90vh] p-0">
-          <img 
-            src={selectedCertificate || ''} 
-            alt="Certificate"
-            className="w-full h-full object-contain"
-          />
+        <DialogContent className="max-w-[95vw] max-h-[95vh] w-fit h-fit p-6 bg-black/95">
+          <div className="relative flex items-center justify-center">
+            <DialogPrimitive.Close className="absolute -top-2 -right-2 z-50 rounded-full w-8 h-8 
+              flex items-center justify-center bg-black/50 hover:bg-black/70 transition-colors">
+              <X className="h-4 w-4 text-white" />
+            </DialogPrimitive.Close>
+
+            <div className="relative flex items-center justify-center">
+              <button 
+                className="absolute -left-12 p-2 rounded-full bg-black/50 hover:bg-black/70 
+                  transition-colors z-50"
+                onClick={() => navigateCertificate('prev')}
+              >
+                <ArrowLeft className="h-6 w-6 text-white" />
+              </button>
+              
+              <div className="relative">
+                <img 
+                  src={selectedCertificate || ''} 
+                  alt="Certificate"
+                  className="max-w-[85vw] max-h-[85vh] w-auto h-auto object-contain rounded-lg"
+                  loading="eager"
+                />
+              </div>
+              
+              <button 
+                className="absolute -right-12 p-2 rounded-full bg-black/50 hover:bg-black/70 
+                  transition-colors z-50"
+                onClick={() => navigateCertificate('next')}
+              >
+                <ArrowLeft className="h-6 w-6 text-white rotate-180" />
+              </button>
+            </div>
+          </div>
         </DialogContent>
       </Dialog>
     </PageBackground>
