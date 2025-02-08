@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect } from "react";
-import { Share2, User, Mail, MessageSquare, Send, ArrowRight } from "lucide-react";
+import { Share2, User, Mail, MessageSquare, Send, ArrowRight, Sparkles } from "lucide-react";
 import SocialLinks from "@/components/contact/SocialLinks";
 import { useToast } from "@/components/ui/use-toast";
 import PageBackground from "@/components/shared/PageBackground";
@@ -15,11 +15,20 @@ const ContactPage = () => {
     message: "",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 });
 
   useEffect(() => {
     AOS.init({
       once: false,
+      mirror: true,
     });
+
+    const handleMouseMove = (e: MouseEvent) => {
+      setCursorPosition({ x: e.clientX, y: e.clientY });
+    };
+
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => window.removeEventListener('mousemove', handleMouseMove);
   }, []);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -74,18 +83,35 @@ const ContactPage = () => {
   return (
     <PageBackground>
       <div className="min-h-screen flex flex-col justify-center py-12 sm:px-6 lg:px-8 relative overflow-hidden">
+        {/* Dynamic Gradient Orbs */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <div 
+            className="absolute w-[800px] h-[800px] rounded-full blur-3xl opacity-20 animate-pulse-slow"
+            style={{
+              background: `radial-gradient(circle at ${cursorPosition.x}px ${cursorPosition.y}px, rgba(99, 102, 241, 0.3), rgba(168, 85, 247, 0.2), transparent)`,
+              transform: `translate(${(cursorPosition.x / window.innerWidth - 0.5) * 50}px, ${(cursorPosition.y / window.innerHeight - 0.5) * 50}px)`,
+              transition: 'transform 0.3s ease-out',
+            }}
+          />
           <div className="absolute top-1/4 -left-20 w-[500px] h-[500px] bg-[#6366f1]/5 rounded-full blur-3xl animate-pulse-slow" />
           <div className="absolute bottom-1/4 -right-20 w-[500px] h-[500px] bg-[#a855f7]/5 rounded-full blur-3xl animate-pulse-slow" />
         </div>
 
         <div className="text-center mb-12" data-aos="fade-down">
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-[#6366f1] to-[#a855f7] mb-4">
-            Let's Connect
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold relative inline-block">
+            <span className="absolute -left-8 -top-8 text-[#6366f1] animate-pulse">
+              <Sparkles className="w-6 h-6" />
+            </span>
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#6366f1] via-[#8b5cf6] to-[#a855f7]">
+              Let's Connect
+            </span>
+            <span className="absolute -right-8 -bottom-8 text-[#a855f7] animate-pulse delay-300">
+              <Sparkles className="w-6 h-6" />
+            </span>
           </h1>
-          <p className="text-gray-400 max-w-2xl mx-auto flex items-center justify-center gap-2">
+          <p className="text-gray-400 max-w-2xl mx-auto flex items-center justify-center gap-2 mt-6">
             Have a question or want to work together? I'd love to hear from you.
-            <ArrowRight className="w-4 h-4 text-[#6366f1] animate-pulse" />
+            <ArrowRight className="w-4 h-4 text-[#6366f1] animate-bounce" />
           </p>
         </div>
 
@@ -99,7 +125,12 @@ const ContactPage = () => {
             >
               <div className="absolute inset-0 bg-gradient-to-r from-[#6366f1]/10 to-[#a855f7]/10 rounded-3xl blur-xl opacity-50 group-hover:opacity-75 transition-opacity duration-500" />
               <div className="relative bg-black/20 backdrop-blur-xl rounded-3xl border border-white/10 p-8 shadow-xl overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-br from-white/[0.01] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <div 
+                  className="absolute inset-0 bg-gradient-to-br from-white/[0.01] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                  style={{
+                    background: `radial-gradient(circle at ${cursorPosition.x}px ${cursorPosition.y}px, rgba(255,255,255,0.03), transparent 25%)`,
+                  }}
+                />
                 
                 <div className="relative">
                   <div className="flex justify-between items-start mb-8">
@@ -111,11 +142,11 @@ const ContactPage = () => {
                         Fill out the form below and I'll get back to you soon.
                       </p>
                     </div>
-                    <Share2 className="w-8 h-8 text-[#6366f1] opacity-50 group-hover:opacity-100 transition-opacity duration-500" />
+                    <Share2 className="w-8 h-8 text-[#6366f1] opacity-50 group-hover:opacity-100 transition-all duration-500 hover:rotate-12" />
                   </div>
 
                   <form onSubmit={handleSubmit} className="space-y-6">
-                    <div className="relative group/input">
+                    <div className="relative group/input transform transition-transform duration-300 hover:translate-x-1">
                       <User className="absolute left-4 top-4 w-5 h-5 text-gray-400 group-focus-within/input:text-[#6366f1] transition-colors" />
                       <input
                         type="text"
@@ -127,9 +158,10 @@ const ContactPage = () => {
                         className="w-full p-4 pl-12 bg-white/[0.03] rounded-xl border border-white/10 placeholder-gray-500 text-white focus:outline-none focus:ring-2 focus:ring-[#6366f1]/30 transition-all duration-300 hover:border-white/20 hover:bg-white/[0.05] disabled:opacity-50"
                         required
                       />
+                      <div className="absolute inset-0 border border-[#6366f1]/20 rounded-xl opacity-0 group-hover/input:opacity-100 transition-opacity duration-300" />
                     </div>
 
-                    <div className="relative group/input">
+                    <div className="relative group/input transform transition-transform duration-300 hover:translate-x-1">
                       <Mail className="absolute left-4 top-4 w-5 h-5 text-gray-400 group-focus-within/input:text-[#6366f1] transition-colors" />
                       <input
                         type="email"
@@ -141,9 +173,10 @@ const ContactPage = () => {
                         className="w-full p-4 pl-12 bg-white/[0.03] rounded-xl border border-white/10 placeholder-gray-500 text-white focus:outline-none focus:ring-2 focus:ring-[#6366f1]/30 transition-all duration-300 hover:border-white/20 hover:bg-white/[0.05] disabled:opacity-50"
                         required
                       />
+                      <div className="absolute inset-0 border border-[#6366f1]/20 rounded-xl opacity-0 group-hover/input:opacity-100 transition-opacity duration-300" />
                     </div>
 
-                    <div className="relative group/input">
+                    <div className="relative group/input transform transition-transform duration-300 hover:translate-x-1">
                       <MessageSquare className="absolute left-4 top-4 w-5 h-5 text-gray-400 group-focus-within/input:text-[#6366f1] transition-colors" />
                       <textarea
                         name="message"
@@ -154,6 +187,7 @@ const ContactPage = () => {
                         className="w-full resize-none p-4 pl-12 bg-white/[0.03] rounded-xl border border-white/10 placeholder-gray-500 text-white focus:outline-none focus:ring-2 focus:ring-[#6366f1]/30 transition-all duration-300 hover:border-white/20 hover:bg-white/[0.05] h-40 disabled:opacity-50"
                         required
                       />
+                      <div className="absolute inset-0 border border-[#6366f1]/20 rounded-xl opacity-0 group-hover/input:opacity-100 transition-opacity duration-300" />
                     </div>
 
                     <button
@@ -166,6 +200,7 @@ const ContactPage = () => {
                         <Send className="w-5 h-5 transition-transform duration-300 group-hover/button:translate-x-1" />
                         {isSubmitting ? 'Sending...' : 'Send Message'}
                       </div>
+                      <div className="absolute inset-0 -z-10 bg-gradient-to-r from-[#6366f1] to-[#a855f7] opacity-0 group-hover/button:opacity-20 blur-xl transition-opacity duration-300" />
                     </button>
                   </form>
                 </div>
