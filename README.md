@@ -1,69 +1,124 @@
-# Welcome to your Lovable project
 
-## Project info
+# Muntazir's Portfolio
 
-**URL**: https://lovable.dev/projects/6cb10e72-3d6d-461a-a70b-378a3533ac0c
+<div align="center">
+  <img src="public/og-image.png" alt="Portfolio Banner" width="100%" />
+  
+  ![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
+  ![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)
+  ![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
+  ![Vite](https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white)
+</div>
 
-## How can I edit this code?
+## 🌟 Overview
 
-There are several ways of editing your application.
+A modern, responsive portfolio website showcasing my professional work, skills, and experience. Built with cutting-edge technologies and designed with a focus on user experience and performance.
 
-**Use Lovable**
+## ✨ Features
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/6cb10e72-3d6d-461a-a70b-378a3533ac0c) and start prompting.
+- 🎨 Modern and clean design
+- 📱 Fully responsive layout
+- 🚀 Fast loading with Vite
+- 💻 Interactive UI components
+- 🌈 Dynamic animations and transitions
+- 🛠️ Built with TypeScript for type safety
 
-Changes made via Lovable will be committed automatically to this repo.
+## 🛠️ Tech Stack
 
-**Use your preferred IDE**
+- **Frontend Framework:** React
+- **Build Tool:** Vite
+- **Styling:** Tailwind CSS
+- **UI Components:** shadcn/ui
+- **Language:** TypeScript
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+## 🚀 Getting Started
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+### Prerequisites
 
-Follow these steps:
+- Node.js (v14 or higher)
+- npm or yarn
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+### Installation
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
+1. Clone the repository
+```bash
+git clone <repository-url>
 ```
 
-**Edit a file directly in GitHub**
+2. Navigate to the project directory
+```bash
+cd portfolio
+```
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+3. Install dependencies
+```bash
+npm install
+# or
+yarn
+```
 
-**Use GitHub Codespaces**
+4. Start the development server
+```bash
+npm run dev
+# or
+yarn dev
+```
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+The application will be available at `http://localhost:8080`
 
-## What technologies are used for this project?
+## 🌐 Deployment
 
-This project is built with .
+This project can be easily deployed using various platforms:
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+### Using Lovable
 
-## How can I deploy this project?
+1. Visit [Lovable Project](https://lovable.dev/projects/6cb10e72-3d6d-461a-a70b-378a3533ac0c)
+2. Click on Share -> Publish
 
-Simply open [Lovable](https://lovable.dev/projects/6cb10e72-3d6d-461a-a70b-378a3533ac0c) and click on Share -> Publish.
+### Custom Domain Deployment
 
-## I want to use a custom domain - is that possible?
+While Lovable doesn't currently support custom domains, you can deploy this project on Netlify:
 
-We don't support custom domains (yet). If you want to deploy your project under your own domain then we recommend using Netlify. Visit our docs for more details: [Custom domains](https://docs.lovable.dev/tips-tricks/custom-domain/)
+1. Fork this repository
+2. Connect your Netlify account
+3. Deploy with your custom domain
+
+For detailed instructions, visit our [Custom Domains Guide](https://docs.lovable.dev/tips-tricks/custom-domain/)
+
+## 💡 Development
+
+### Project Structure
+
+```
+src/
+├── components/     # Reusable UI components
+├── pages/         # Page components
+├── utils/         # Utility functions
+├── hooks/         # Custom React hooks
+└── App.tsx        # Main application component
+```
+
+### Key Features
+
+- **Type Safety**: Utilizing TypeScript for better development experience
+- **Component Library**: Built with shadcn/ui for consistent UI
+- **Responsive Design**: Fully responsive on all devices
+- **Performance**: Optimized for fast loading and smooth interactions
+
+## 📫 Contact
+
+Feel free to reach out if you have any questions or would like to connect!
+
+- LinkedIn: [Your LinkedIn]
+- Email: [Your Email]
+- Portfolio: [Your Portfolio URL]
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+---
+
+<div align="center">
+  Made with ❤️ using <a href="https://lovable.dev">Lovable</a>
+</div>
