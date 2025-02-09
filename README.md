@@ -70,11 +70,6 @@ The application will be available at `http://localhost:8080`
 
 This project can be easily deployed using various platforms:
 
-### Using Lovable
-
-1. Visit [Lovable Project](https://lovable.dev/projects/6cb10e72-3d6d-461a-a70b-378a3533ac0c)
-2. Click on Share -> Publish
-
 ### Custom Domain Deployment
 
 While Lovable doesn't currently support custom domains, you can deploy this project on Netlify:
@@ -82,8 +77,6 @@ While Lovable doesn't currently support custom domains, you can deploy this proj
 1. Fork this repository
 2. Connect your Netlify account
 3. Deploy with your custom domain
-
-For detailed instructions, visit our [Custom Domains Guide](https://docs.lovable.dev/tips-tricks/custom-domain/)
 
 ## 💡 Development
 
@@ -109,9 +102,9 @@ src/
 
 Feel free to reach out if you have any questions or would like to connect!
 
-- LinkedIn: [Your LinkedIn]
-- Email: [Your Email]
-- Portfolio: [Your Portfolio URL]
+- LinkedIn: muntazir-security
+- Email: info@muntazirmehdi.com
+- Portfolio: www.muntazirmehdi.com
 
 ## 📄 License
 
@@ -120,5 +113,5 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ---
 
 <div align="center">
-  Made with ❤️ using <a href="https://lovable.dev">Lovable</a>
+  Made with ❤️ 
 </div>
