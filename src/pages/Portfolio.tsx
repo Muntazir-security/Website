@@ -277,6 +277,51 @@ const Portfolio = () => {
             </TabsTrigger>
           </TabsList>
 
+          <TabsContent value="tech-stack">
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6 p-6">
+              {techStack.map((tech, techIndex) => (
+                <div 
+                  key={techIndex}
+                  className="group relative cursor-pointer"
+                  onMouseMove={(e) => {
+                    const rect = e.currentTarget.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    e.currentTarget.style.setProperty('--mouse-x', `${x}px`);
+                    e.currentTarget.style.setProperty('--mouse-y', `${y}px`);
+                  }}
+                >
+                  <div className="absolute -inset-0.5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                    style={{
+                      background: `radial-gradient(circle at var(--mouse-x) var(--mouse-y), rgba(99, 102, 241, 0.15), transparent 100px)`
+                    }}
+                  />
+                  <div className="relative flex flex-col items-center justify-center p-6 rounded-xl bg-black/20 backdrop-blur-xl border border-white/10 hover:border-white/20 transition-all duration-300">
+                    <div className="relative w-20 h-20 mb-4">
+                      <div className="absolute inset-0 bg-gradient-to-b from-[#6366f1]/10 to-[#a855f7]/10 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                      <img 
+                        src={tech.icon} 
+                        alt={tech.name}
+                        className={`w-20 h-20 object-contain transition-all duration-300 group-hover:scale-110 group-hover:brightness-110 ${
+                          tech.icon.endsWith('.png') 
+                            ? 'brightness-90 contrast-125 saturate-150'
+                            : 'filter-none'
+                        }`}
+                      />
+                    </div>
+                    
+                    <div className="text-center">
+                      <span className="text-gray-300 text-sm font-medium group-hover:text-white transition-colors duration-300 relative">
+                        {tech.name}
+                        <span className="absolute -bottom-1 left-0 w-full h-0.5 bg-gradient-to-r from-[#6366f1] to-[#a855f7] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300" />
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </TabsContent>
+
           <TabsContent value="projects">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 px-4">
               {projects.map((project, index) => (
@@ -391,51 +436,6 @@ const Portfolio = () => {
                     </div>
                   </CardContent>
                 </Card>
-              ))}
-            </div>
-          </TabsContent>
-
-          <TabsContent value="tech-stack">
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6 p-6">
-              {techStack.map((tech, techIndex) => (
-                <div 
-                  key={techIndex}
-                  className="group relative cursor-pointer"
-                  onMouseMove={(e) => {
-                    const rect = e.currentTarget.getBoundingClientRect();
-                    const x = e.clientX - rect.left;
-                    const y = e.clientY - rect.top;
-                    e.currentTarget.style.setProperty('--mouse-x', `${x}px`);
-                    e.currentTarget.style.setProperty('--mouse-y', `${y}px`);
-                  }}
-                >
-                  <div className="absolute -inset-0.5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                    style={{
-                      background: `radial-gradient(circle at var(--mouse-x) var(--mouse-y), rgba(99, 102, 241, 0.15), transparent 100px)`
-                    }}
-                  />
-                  <div className="relative flex flex-col items-center justify-center p-6 rounded-xl bg-black/20 backdrop-blur-xl border border-white/10 hover:border-white/20 transition-all duration-300">
-                    <div className="relative w-20 h-20 mb-4">
-                      <div className="absolute inset-0 bg-gradient-to-b from-[#6366f1]/10 to-[#a855f7]/10 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                      <img 
-                        src={tech.icon} 
-                        alt={tech.name}
-                        className={`w-20 h-20 object-contain transition-all duration-300 group-hover:scale-110 group-hover:brightness-110 ${
-                          tech.icon.endsWith('.png') 
-                            ? 'brightness-90 contrast-125 saturate-150'
-                            : 'filter-none'
-                        }`}
-                      />
-                    </div>
-                    
-                    <div className="text-center">
-                      <span className="text-gray-300 text-sm font-medium group-hover:text-white transition-colors duration-300 relative">
-                        {tech.name}
-                        <span className="absolute -bottom-1 left-0 w-full h-0.5 bg-gradient-to-r from-[#6366f1] to-[#a855f7] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300" />
-                      </span>
-                    </div>
-                  </div>
-                </div>
               ))}
             </div>
           </TabsContent>
