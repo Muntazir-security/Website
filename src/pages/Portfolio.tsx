@@ -29,6 +29,7 @@ import "aos/dist/aos.css";
 import { useSearchParams } from "react-router-dom";
 import { HoverCard } from "@/components/shared/HoverCard";
 import PageBackground from "@/components/shared/PageBackground";
+import TiltCard from "@/components/shared/TiltCard";
 import * as DialogPrimitive from "@radix-ui/react-dialog";
 
 const projects = [
@@ -276,74 +277,73 @@ const Portfolio = () => {
             </TabsTrigger>
           </TabsList>
 
-          {/* Projects Content */}
           <TabsContent value="projects">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {projects.map((project, index) => (
-                <Card 
-                  key={index}
-                  className="group bg-black/40 backdrop-blur-xl border border-white/10 overflow-hidden hover:border-white/20 transition-all duration-300 hover:shadow-lg hover:shadow-[#6366f1]/10 h-full flex flex-col"
-                  data-aos="fade-up"
-                  data-aos-delay={index * 100}
-                >
-                  <CardContent className="p-6 flex flex-col h-full">
-                    <div className="flex items-start gap-4 mb-6">
-                      <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#6366f1] to-[#a855f7] p-2.5 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                        <project.icon className="w-6 h-6 text-white" />
-                      </div>
-                      <div className="flex-1">
-                        <h3 className="text-xl font-semibold text-white mb-2 line-clamp-2">{project.title}</h3>
-                        <p className="text-gray-400 text-sm line-clamp-3">{project.description}</p>
-                      </div>
-                    </div>
-
-                    <div className="space-y-4 flex-grow">
-                      <div className="flex flex-wrap gap-2">
-                        {project.tech.slice(0, 3).map((tech, idx) => (
-                          <span 
-                            key={idx}
-                            className="text-xs px-2 py-1 rounded-full bg-white/5 text-gray-300 border border-white/10 hover:border-white/20 transition-colors duration-300"
-                          >
-                            {tech}
-                          </span>
-                        ))}
-                        {project.tech.length > 3 && (
-                          <span className="text-xs px-2 py-1 rounded-full bg-white/5 text-gray-300">
-                            +{project.tech.length - 3} more
-                          </span>
-                        )}
+                <TiltCard key={index}>
+                  <Card 
+                    className="group bg-black/40 backdrop-blur-xl border border-white/10 overflow-hidden hover:border-white/20 transition-all duration-300 hover:shadow-lg hover:shadow-[#6366f1]/10 h-full flex flex-col"
+                    data-aos="fade-up"
+                    data-aos-delay={index * 100}
+                  >
+                    <CardContent className="p-6 flex flex-col h-full">
+                      <div className="flex items-start gap-4 mb-6">
+                        <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#6366f1] to-[#a855f7] p-2.5 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                          <project.icon className="w-6 h-6 text-white" />
+                        </div>
+                        <div className="flex-1">
+                          <h3 className="text-xl font-semibold text-white mb-2 line-clamp-2">{project.title}</h3>
+                          <p className="text-gray-400 text-sm line-clamp-3">{project.description}</p>
+                        </div>
                       </div>
 
-                      <div className="space-y-2">
-                        <h4 className="text-sm font-medium text-white">Key Features:</h4>
-                        <ul className="space-y-1">
-                          {project.features.slice(0, 2).map((feature, idx) => (
-                            <li key={idx} className="text-xs text-gray-400 flex items-center gap-2">
-                              <ArrowRight className="w-3 h-3 text-[#6366f1] shrink-0" />
-                              <span className="line-clamp-1">{feature}</span>
-                            </li>
+                      <div className="space-y-4 flex-grow">
+                        <div className="flex flex-wrap gap-2">
+                          {project.tech.slice(0, 3).map((tech, idx) => (
+                            <span 
+                              key={idx}
+                              className="text-xs px-2 py-1 rounded-full bg-white/5 text-gray-300 border border-white/10 hover:border-white/20 transition-colors duration-300"
+                            >
+                              {tech}
+                            </span>
                           ))}
-                        </ul>
-                      </div>
-                    </div>
+                          {project.tech.length > 3 && (
+                            <span className="text-xs px-2 py-1 rounded-full bg-white/5 text-gray-300">
+                              +{project.tech.length - 3} more
+                            </span>
+                          )}
+                        </div>
 
-                    <div className="pt-4 mt-4 border-t border-white/5">
-                      <Button 
-                        variant="ghost" 
-                        className="w-full text-[#6366f1] hover:text-[#a855f7] hover:bg-white/5 group"
-                        onClick={() => setSelectedProject(project)}
-                      >
-                        <ExternalLink className="w-4 h-4 mr-2 transition-transform duration-300 group-hover:scale-110" />
-                        View Project Details
-                      </Button>
-                    </div>
-                  </CardContent>
-                </Card>
+                        <div className="space-y-2">
+                          <h4 className="text-sm font-medium text-white">Key Features:</h4>
+                          <ul className="space-y-1">
+                            {project.features.slice(0, 2).map((feature, idx) => (
+                              <li key={idx} className="text-xs text-gray-400 flex items-center gap-2">
+                                <ArrowRight className="w-3 h-3 text-[#6366f1] shrink-0" />
+                                <span className="line-clamp-1">{feature}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      </div>
+
+                      <div className="pt-4 mt-4 border-t border-white/5">
+                        <Button 
+                          variant="ghost" 
+                          className="w-full text-[#6366f1] hover:text-[#a855f7] hover:bg-white/5 group"
+                          onClick={() => setSelectedProject(project)}
+                        >
+                          <ExternalLink className="w-4 h-4 mr-2 transition-transform duration-300 group-hover:scale-110" />
+                          View Project Details
+                        </Button>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </TiltCard>
               ))}
             </div>
           </TabsContent>
 
-          {/* Certificates Content */}
           <TabsContent value="certificates">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {certificates.map((cert, index) => (
@@ -395,7 +395,6 @@ const Portfolio = () => {
             </div>
           </TabsContent>
 
-          {/* Tech Stack Content */}
           <TabsContent value="tech-stack">
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6 p-6">
               {techStack.map((tech, techIndex) => (
@@ -443,7 +442,6 @@ const Portfolio = () => {
         </Tabs>
       </div>
 
-      {/* Project Details Dialog - Updated Design */}
       <Dialog open={!!selectedProject} onOpenChange={() => setSelectedProject(null)}>
         <DialogContent className="max-w-4xl bg-[#0A0118]/95 backdrop-blur-xl border-white/10">
           <DialogHeader className="relative pb-6 border-b border-white/10">
@@ -532,7 +530,6 @@ const Portfolio = () => {
         </DialogContent>
       </Dialog>
 
-      {/* Certificate Dialog */}
       <Dialog open={!!selectedCertificate} onOpenChange={() => setSelectedCertificate(null)}>
         <DialogContent className="max-w-[95vw] max-h-[95vh] w-fit h-fit p-6 bg-black/95">
           <div className="relative flex items-center justify-center">
