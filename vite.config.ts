@@ -1,3 +1,4 @@
+
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react-swc";
 import path from "path";
@@ -16,7 +17,13 @@ export default defineConfig(({ mode }) => ({
   plugins: [
     react(),
     mode === 'development' &&
-    componentTagger(),
+    componentTagger({
+      enableEnhancedEditing: true, // Enable enhanced editing features
+      selectorOptions: {
+        enableHighlight: true,    // Enable element highlighting
+        highlightMode: 'overlay'  // Use overlay highlighting mode
+      }
+    }),
   ].filter(Boolean),
   resolve: {
     alias: {
