@@ -17,10 +17,16 @@ const Index = () => {
 
     return () => clearTimeout(timer);
   }, [navigate]);
+  
+  const handleSkip = () => {
+    console.log('Skip button clicked, navigating to home');
+    setShowWelcome(false);
+    navigate('/home');
+  };
 
   return (
     <div className="min-h-screen bg-[#030014]">
-      {showWelcome && <WelcomeScreen />}
+      {showWelcome && <WelcomeScreen onSkip={handleSkip} />}
     </div>
   );
 };

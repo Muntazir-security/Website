@@ -1,9 +1,13 @@
 
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Code2, Github, Globe, User } from 'lucide-react';
+import { Code2, Github, Globe, User, SkipForward } from 'lucide-react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+
+interface WelcomeScreenProps {
+  onSkip?: () => void;
+}
 
 const TypewriterEffect = ({ text }: { text: string }) => {
   const [displayText, setDisplayText] = useState('');
@@ -51,7 +55,7 @@ const IconButton = ({ Icon }: { Icon: React.ElementType }) => (
   </div>
 );
 
-const WelcomeScreen = () => {
+const WelcomeScreen: React.FC<WelcomeScreenProps> = ({ onSkip }) => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -99,6 +103,17 @@ const WelcomeScreen = () => {
           variants={containerVariants}
         >
           <BackgroundEffect />
+          
+          {/* Skip button */}
+          {onSkip && (
+            <button 
+              onClick={onSkip}
+              className="fixed top-6 right-6 z-50 flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-md hover:bg-white/20 transition-all duration-300 text-white/70 hover:text-white"
+            >
+              <span>Skip</span>
+              <SkipForward className="w-4 h-4" />
+            </button>
+          )}
           
           <div className="relative min-h-screen flex items-center justify-center px-4">
             <div className="w-full max-w-4xl mx-auto">
