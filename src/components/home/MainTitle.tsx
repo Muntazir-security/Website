@@ -18,8 +18,8 @@ const MainTitle = () => (
         </span>
       </div>
     </h1>
-    <p className="font-mono text-sm sm:text-base text-gray-400 tracking-wide">
-      Defending digital frontiers with expertise and innovation
+    <p className="font-mono text-sm sm:text-base text-gray-400 tracking-wide max-w-xl">
+      Defending digital frontiers with expertise and innovation. Specializing in threat detection, network security, and vulnerability assessment.
     </p>
   </div>
 );
