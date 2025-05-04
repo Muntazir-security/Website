@@ -1,4 +1,3 @@
-
 import type { Config } from "tailwindcss";
 
 export default {
@@ -19,11 +18,6 @@ export default {
       },
     },
     extend: {
-      fontFamily: {
-        sans: ['Manrope', 'system-ui', 'sans-serif'],
-        mono: ['"JetBrains Mono"', 'monospace'],
-        display: ['"Playfair Display"', 'serif'],
-      },
       colors: {
 				border: 'hsl(var(--border))',
 				input: 'hsl(var(--input))',
@@ -67,17 +61,7 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
-				},
-        // New cybersecurity-themed colors
-        cyber: {
-          'blue': '#0a192f',
-          'teal': '#64ffda',
-          'green': '#00ff9f',
-          'red': '#ff5370',
-          'orange': '#f78c6c',
-          'dark': '#0B0B1E',
-          'terminal': '#00ff00',
-        }
+				}
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -108,19 +92,6 @@ export default {
           "0%, 100%": { opacity: "1" },
           "50%": { opacity: "0.5" },
         },
-        // New animations
-        "glow": {
-          "0%, 100%": { 
-            textShadow: "0 0 5px rgba(100, 255, 218, 0.5), 0 0 10px rgba(100, 255, 218, 0.3)" 
-          },
-          "50%": { 
-            textShadow: "0 0 10px rgba(100, 255, 218, 0.8), 0 0 20px rgba(100, 255, 218, 0.5)" 
-          }
-        },
-        "terminal-cursor": {
-          "0%, 100%": { opacity: "1" },
-          "50%": { opacity: "0" }
-        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -129,30 +100,7 @@ export default {
         blink: "blink 1s step-end infinite",
         "spin-slower": "spin-slower 8s linear infinite",
         "pulse-slow": "pulse-slow 3s infinite",
-        // New animations
-        "glow": "glow 1.5s ease-in-out infinite",
-        "terminal-cursor": "terminal-cursor 1s step-end infinite",
       },
-      typography: {
-        DEFAULT: {
-          css: {
-            maxWidth: '65ch',
-            color: 'hsl(var(--foreground))',
-            h1: {
-              fontFamily: '"Playfair Display", serif',
-            },
-            h2: {
-              fontFamily: '"Playfair Display", serif',
-            },
-            h3: {
-              fontFamily: '"Playfair Display", serif',
-            },
-            h4: {
-              fontFamily: '"Playfair Display", serif',
-            },
-          }
-        }
-      }
     },
   },
   plugins: [require("tailwindcss-animate")],
