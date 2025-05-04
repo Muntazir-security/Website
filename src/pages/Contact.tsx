@@ -1,11 +1,12 @@
 
 import React, { useState, useEffect } from "react";
-import { Share2, User, Mail, MessageSquare, Send, ArrowRight } from "lucide-react";
+import { Share2, User, Mail, MessageSquare, Send, ArrowRight, TerminalSquare, Check } from "lucide-react";
 import SocialLinks from "@/components/contact/SocialLinks";
-import { useToast } from "@/components/ui/use-toast";
+import { useToast } from "@/hooks/use-toast";
 import PageBackground from "@/components/shared/PageBackground";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import { cn } from "@/lib/utils";
 
 const ContactPage = () => {
   const { toast } = useToast();
@@ -15,11 +16,27 @@ const ContactPage = () => {
     message: "",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [currentTime, setCurrentTime] = useState(new Date());
+  const [commandLineEffect, setCommandLineEffect] = useState(false);
+
+  // Update time every minute
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentTime(new Date());
+    }, 60000);
+    return () => clearInterval(timer);
+  }, []);
 
   useEffect(() => {
     AOS.init({
       once: false,
+      duration: 800,
     });
+  }, []);
+
+  // Trigger command line effect when component mounts
+  useEffect(() => {
+    setCommandLineEffect(true);
   }, []);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -46,8 +63,8 @@ const ContactPage = () => {
 
       if (response.ok) {
         toast({
-          title: "Message sent successfully! 🎉",
-          description: "Thank you for reaching out. I'll get back to you soon.",
+          title: "Message transmitted successfully! 🔒",
+          description: "Your message has been securely sent. Awaiting response.",
           duration: 3000,
         });
 
@@ -62,8 +79,8 @@ const ContactPage = () => {
     } catch (error) {
       toast({
         variant: "destructive",
-        title: "Error sending message",
-        description: "Please try again later or use an alternative contact method.",
+        title: "Transmission Error",
+        description: "Connection interrupted. Please try alternative channels or retry.",
         duration: 3000,
       });
     } finally {
@@ -72,86 +89,117 @@ const ContactPage = () => {
   };
 
   return (
-    <PageBackground>
-      <div className="min-h-screen flex flex-col justify-center py-12 sm:px-6 lg:px-8 relative overflow-hidden">
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute top-1/4 -left-20 w-[500px] h-[500px] bg-[#6366f1]/5 rounded-full blur-3xl animate-pulse-slow" />
-          <div className="absolute bottom-1/4 -right-20 w-[500px] h-[500px] bg-[#a855f7]/5 rounded-full blur-3xl animate-pulse-slow" />
-        </div>
+    <PageBackground className="py-20">
+      {/* Digital Command Center Hero */}
+      <div className="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+        <div className="text-center mb-8 relative" data-aos="fade-down">
+          <div className="absolute -top-4 left-1/2 -translate-x-1/2 flex items-center justify-center px-3 py-1 
+                        bg-black/30 border border-cyber-teal/30 rounded-full text-xs text-cyber-teal mb-2">
+            <div className="w-2 h-2 bg-cyber-teal rounded-full animate-pulse mr-2"></div>
+            <span className="font-mono tracking-wide">{currentTime.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}</span>
+          </div>
 
-        <div className="text-center mb-12" data-aos="fade-down">
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-[#6366f1] to-[#a855f7] mb-4">
-            Let's Connect
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-display font-bold text-gradient-cyber mb-4">
+            Secure Transmission
           </h1>
-          <p className="text-gray-400 max-w-2xl mx-auto flex items-center justify-center gap-2">
-            Have a question or want to work together? I'd love to hear from you.
-            <ArrowRight className="w-4 h-4 text-[#6366f1] animate-pulse" />
+          
+          <p className="text-gray-400 max-w-2xl mx-auto flex items-center justify-center gap-2 font-light">
+            <span className={`transition-opacity duration-1000 ${commandLineEffect ? 'opacity-100' : 'opacity-0'}`}>
+              Establish a secure connection to discuss cyber defense strategies and operations.
+            </span>
+            <span className="w-2 h-5 bg-cyber-teal animate-blink"></span>
           </p>
         </div>
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-8 items-start">
-            {/* Contact Form */}
-            <div
-              data-aos="fade-right"
-              data-aos-duration="1000"
-              className="relative group"
-            >
-              <div className="absolute inset-0 bg-gradient-to-r from-[#6366f1]/10 to-[#a855f7]/10 rounded-3xl blur-xl opacity-50 group-hover:opacity-75 transition-opacity duration-500" />
-              <div className="relative bg-black/20 backdrop-blur-xl rounded-3xl border border-white/10 p-8 shadow-xl overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-br from-white/[0.01] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+        <div className="grid lg:grid-cols-5 gap-8 items-start">
+          {/* Command Terminal - Contact Form */}
+          <div className="lg:col-span-3"
+            data-aos="fade-right"
+            data-aos-duration="1000"
+          >
+            <div className="terminal-container relative">
+              {/* Terminal header */}
+              <div className="bg-black/70 backdrop-blur-lg border border-cyber-teal/30 rounded-t-lg p-3 flex items-center">
+                <div className="flex gap-1.5 mr-4">
+                  <div className="w-3 h-3 rounded-full bg-red-500/70"></div>
+                  <div className="w-3 h-3 rounded-full bg-yellow-500/70"></div>
+                  <div className="w-3 h-3 rounded-full bg-green-500/70"></div>
+                </div>
+                <div className="flex-1 text-center">
+                  <span className="font-mono text-xs text-gray-400">secure-message.sh</span>
+                </div>
+                <div>
+                  <TerminalSquare className="w-4 h-4 text-cyber-teal/70" />
+                </div>
+              </div>
+              
+              {/* Terminal body */}
+              <div className="relative bg-black/50 backdrop-blur-xl border border-cyber-teal/20 border-t-0 rounded-b-lg p-6 overflow-hidden">
+                <div className="absolute inset-0 bg-grid-cyber-teal/5"></div>
                 
+                {/* Terminal content */}
                 <div className="relative">
-                  <div className="flex justify-between items-start mb-8">
-                    <div>
-                      <h2 className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#6366f1] to-[#a855f7] mb-2">
-                        Get in Touch
-                      </h2>
-                      <p className="text-gray-400">
-                        Fill out the form below and I'll get back to you soon.
-                      </p>
-                    </div>
-                    <Share2 className="w-8 h-8 text-[#6366f1] opacity-50 group-hover:opacity-100 transition-opacity duration-500" />
+                  <div className="mb-6">
+                    <div className="font-mono text-xs text-cyber-teal mb-1">> Initializing secure message protocol...</div>
+                    <div className="font-mono text-xs text-cyber-teal mb-3">> Ready to transmit. Enter credentials and message:</div>
                   </div>
 
-                  <form onSubmit={handleSubmit} className="space-y-6">
+                  <form onSubmit={handleSubmit} className="space-y-5">
                     <div className="relative group/input">
-                      <User className="absolute left-4 top-4 w-5 h-5 text-gray-400 group-focus-within/input:text-[#6366f1] transition-colors" />
+                      <div className="absolute left-0 top-4 h-5 pl-3 flex items-center pointer-events-none">
+                        <User className="w-4 h-4 text-cyber-teal/70" />
+                        <span className="ml-2 font-mono text-xs text-cyber-teal/80">user@</span>
+                      </div>
                       <input
                         type="text"
                         name="name"
-                        placeholder="Your Name"
+                        placeholder="Your Identity"
                         value={formData.name}
                         onChange={handleChange}
                         disabled={isSubmitting}
-                        className="w-full p-4 pl-12 bg-white/[0.03] rounded-xl border border-white/10 placeholder-gray-500 text-white focus:outline-none focus:ring-2 focus:ring-[#6366f1]/30 transition-all duration-300 hover:border-white/20 hover:bg-white/[0.05] disabled:opacity-50"
+                        className="w-full p-4 pl-24 bg-black/20 rounded-md border border-cyber-teal/30 
+                                placeholder-gray-500 text-white font-mono text-sm
+                                focus:outline-none focus:ring-1 focus:ring-cyber-teal focus:border-cyber-teal/50 
+                                transition-all duration-300 hover:border-cyber-teal/50 disabled:opacity-50"
                         required
                       />
                     </div>
 
                     <div className="relative group/input">
-                      <Mail className="absolute left-4 top-4 w-5 h-5 text-gray-400 group-focus-within/input:text-[#6366f1] transition-colors" />
+                      <div className="absolute left-0 top-4 h-5 pl-3 flex items-center pointer-events-none">
+                        <Mail className="w-4 h-4 text-cyber-teal/70" />
+                        <span className="ml-2 font-mono text-xs text-cyber-teal/80">email@</span>
+                      </div>
                       <input
                         type="email"
                         name="email"
-                        placeholder="Your Email"
+                        placeholder="Your Contact Node"
                         value={formData.email}
                         onChange={handleChange}
                         disabled={isSubmitting}
-                        className="w-full p-4 pl-12 bg-white/[0.03] rounded-xl border border-white/10 placeholder-gray-500 text-white focus:outline-none focus:ring-2 focus:ring-[#6366f1]/30 transition-all duration-300 hover:border-white/20 hover:bg-white/[0.05] disabled:opacity-50"
+                        className="w-full p-4 pl-24 bg-black/20 rounded-md border border-cyber-teal/30
+                                placeholder-gray-500 text-white font-mono text-sm
+                                focus:outline-none focus:ring-1 focus:ring-cyber-teal focus:border-cyber-teal/50
+                                transition-all duration-300 hover:border-cyber-teal/50 disabled:opacity-50"
                         required
                       />
                     </div>
 
                     <div className="relative group/input">
-                      <MessageSquare className="absolute left-4 top-4 w-5 h-5 text-gray-400 group-focus-within/input:text-[#6366f1] transition-colors" />
+                      <div className="absolute left-0 top-4 h-5 pl-3 flex items-center pointer-events-none">
+                        <MessageSquare className="w-4 h-4 text-cyber-teal/70" />
+                        <span className="ml-2 font-mono text-xs text-cyber-teal/80">msg@</span>
+                      </div>
                       <textarea
                         name="message"
-                        placeholder="Your Message"
+                        placeholder="Type your encrypted message here..."
                         value={formData.message}
                         onChange={handleChange}
                         disabled={isSubmitting}
-                        className="w-full resize-none p-4 pl-12 bg-white/[0.03] rounded-xl border border-white/10 placeholder-gray-500 text-white focus:outline-none focus:ring-2 focus:ring-[#6366f1]/30 transition-all duration-300 hover:border-white/20 hover:bg-white/[0.05] h-40 disabled:opacity-50"
+                        className="w-full resize-none p-4 pl-24 bg-black/20 rounded-md border border-cyber-teal/30
+                                placeholder-gray-500 text-white font-mono text-sm
+                                focus:outline-none focus:ring-1 focus:ring-cyber-teal focus:border-cyber-teal/50
+                                transition-all duration-300 hover:border-cyber-teal/50 h-40 disabled:opacity-50"
                         required
                       />
                     </div>
@@ -161,35 +209,74 @@ const ContactPage = () => {
                       disabled={isSubmitting}
                       className="relative w-full overflow-hidden group/button"
                     >
-                      <div className="absolute inset-0 bg-gradient-to-r from-[#6366f1] to-[#a855f7] rounded-xl opacity-80 group-hover/button:opacity-100 transition-opacity duration-300" />
-                      <div className="relative px-6 py-4 rounded-xl flex items-center justify-center gap-2 text-white font-semibold transition-all duration-300 group-hover/button:gap-3 disabled:opacity-50 disabled:cursor-not-allowed">
-                        <Send className="w-5 h-5 transition-transform duration-300 group-hover/button:translate-x-1" />
-                        {isSubmitting ? 'Sending...' : 'Send Message'}
+                      <div className="absolute inset-0 bg-cyber-teal/20 rounded-md opacity-80 group-hover/button:opacity-100 transition-opacity duration-300" />
+                      <div className="relative px-6 py-3 rounded-md flex items-center justify-center gap-2 
+                                text-cyber-teal font-mono text-sm font-medium tracking-wide
+                                transition-all duration-300 group-hover/button:gap-3 
+                                border border-cyber-teal/50 group-hover/button:border-cyber-teal
+                                disabled:opacity-50 disabled:cursor-not-allowed">
+                        <span className="font-mono">{isSubmitting ? 'TRANSMITTING...' : 'TRANSMIT MESSAGE'}</span>
+                        <Send className="w-4 h-4 transition-transform duration-300 group-hover/button:translate-x-1" />
                       </div>
                     </button>
                   </form>
+                  
+                  {/* Terminal decoration */}
+                  <div className="mt-6 font-mono text-xs text-cyber-teal/70 flex items-center">
+                    <span className="mr-2">></span>
+                    <span className="animate-blink">_</span>
+                  </div>
                 </div>
               </div>
             </div>
+          </div>
 
-            {/* Social Links Section */}
-            <div 
-              data-aos="fade-left"
-              data-aos-duration="1000"
-              className="lg:sticky lg:top-24"
-            >
-              <div className="relative group">
-                <div className="absolute inset-0 bg-gradient-to-r from-[#6366f1]/10 to-[#a855f7]/10 rounded-3xl blur-xl opacity-50 group-hover:opacity-75 transition-opacity duration-500" />
-                <div className="relative bg-black/20 backdrop-blur-xl rounded-3xl border border-white/10 p-8 shadow-xl">
-                  <h2 className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#6366f1] to-[#a855f7] mb-6">
-                    Connect With Me
-                  </h2>
-                  <p className="text-gray-400 mb-8">
-                    Feel free to reach out through any of these platforms. I'll get back to you as soon as possible.
-                  </p>
-                  <SocialLinks />
+          {/* Connection Status & Social Links */}
+          <div 
+            className="lg:col-span-2"
+            data-aos="fade-left"
+            data-aos-duration="1000"
+          >
+            {/* Connection Status */}
+            <div className="mb-8">
+              <div className="bg-black/50 backdrop-blur-xl border border-cyber-teal/20 rounded-lg p-5">
+                <h3 className="font-display text-xl mb-3 text-gradient-cyber">Connection Status</h3>
+                
+                <div className="space-y-3">
+                  {/* Online Status */}
+                  <div className="flex items-center justify-between p-3 bg-black/30 border border-cyber-teal/10 rounded-md">
+                    <span className="text-sm text-gray-300">Status</span>
+                    <div className="flex items-center">
+                      <span className="h-2 w-2 rounded-full bg-cyber-teal animate-pulse mr-2"></span>
+                      <span className="text-xs text-cyber-teal font-mono">ONLINE</span>
+                    </div>
+                  </div>
+                  
+                  {/* Response Time */}
+                  <div className="flex items-center justify-between p-3 bg-black/30 border border-cyber-teal/10 rounded-md">
+                    <span className="text-sm text-gray-300">Avg. Response</span>
+                    <span className="text-xs text-cyber-teal font-mono">~24 HOURS</span>
+                  </div>
+                  
+                  {/* Encryption */}
+                  <div className="flex items-center justify-between p-3 bg-black/30 border border-cyber-teal/10 rounded-md">
+                    <span className="text-sm text-gray-300">Encryption</span>
+                    <div className="flex items-center">
+                      <Check className="w-3 h-3 text-cyber-teal mr-1" />
+                      <span className="text-xs text-cyber-teal font-mono">ENABLED</span>
+                    </div>
+                  </div>
                 </div>
               </div>
+            </div>
+            
+            {/* Social Links Section */}
+            <div className="bg-black/50 backdrop-blur-xl border border-cyber-teal/20 rounded-lg p-5">
+              <h3 className="font-display text-xl mb-4 text-gradient-cyber">Communication Channels</h3>
+              <p className="text-sm text-gray-400 mb-4 font-light">
+                Alternative secure channels available for direct communication.
+              </p>
+              <SocialLinks />
             </div>
           </div>
         </div>

@@ -68,7 +68,7 @@ export default {
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
 				},
-        // New cybersecurity-themed colors
+        // Cybersecurity-themed colors
         cyber: {
           'blue': '#0a192f',
           'teal': '#64ffda',
@@ -121,6 +121,14 @@ export default {
           "0%, 100%": { opacity: "1" },
           "50%": { opacity: "0" }
         },
+        "data-flow": {
+          "0%": { transform: "translateY(-100%)" },
+          "100%": { transform: "translateY(100%)" }
+        },
+        "scan-line": {
+          "0%": { transform: "translateY(0%)" },
+          "100%": { transform: "translateY(100%)" }
+        }
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -132,6 +140,8 @@ export default {
         // New animations
         "glow": "glow 1.5s ease-in-out infinite",
         "terminal-cursor": "terminal-cursor 1s step-end infinite",
+        "data-flow": "data-flow 15s linear infinite",
+        "scan-line": "scan-line 3s ease-in-out infinite",
       },
       typography: {
         DEFAULT: {
@@ -152,7 +162,10 @@ export default {
             },
           }
         }
-      }
+      },
+      backgroundImage: {
+        'grid-cyber-teal': 'repeating-linear-gradient(to right, #64ffda1a 0px, #64ffda1a 1px, transparent 1px, transparent 20px), repeating-linear-gradient(to bottom, #64ffda1a 0px, #64ffda1a 1px, transparent 1px, transparent 20px)',
+      },
     },
   },
   plugins: [require("tailwindcss-animate")],
