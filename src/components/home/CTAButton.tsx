@@ -16,7 +16,7 @@ const CTAButton = ({ href, text, icon: Icon }: CTAButtonProps) => (
       <div className="relative h-11 bg-cyber-dark glassmorphism rounded-lg leading-none overflow-hidden">
         <div className="absolute inset-0 scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-500 bg-gradient-to-r from-cyber-teal/20 to-secondary/20"></div>
         <span className="absolute inset-0 flex items-center justify-center gap-2 text-sm group-hover:gap-3 transition-all duration-300">
-          <span className="text-gradient-cyber font-medium z-10">
+          <span className="text-gradient-cyber font-medium tracking-wide z-10">
             {text}
           </span>
           <Icon className={`w-4 h-4 text-cyber-teal ${text === "Contact" ? "group-hover:translate-x-1" : "group-hover:rotate-45"} transform transition-all duration-300 z-10`} />

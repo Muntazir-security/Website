@@ -20,8 +20,9 @@ export default {
     },
     extend: {
       fontFamily: {
-        sans: ['Manrope', 'sans-serif'],
+        sans: ['Manrope', 'system-ui', 'sans-serif'],
         mono: ['"JetBrains Mono"', 'monospace'],
+        display: ['"Playfair Display"', 'serif'],
       },
       colors: {
 				border: 'hsl(var(--border))',
@@ -132,6 +133,26 @@ export default {
         "glow": "glow 1.5s ease-in-out infinite",
         "terminal-cursor": "terminal-cursor 1s step-end infinite",
       },
+      typography: {
+        DEFAULT: {
+          css: {
+            maxWidth: '65ch',
+            color: 'hsl(var(--foreground))',
+            h1: {
+              fontFamily: '"Playfair Display", serif',
+            },
+            h2: {
+              fontFamily: '"Playfair Display", serif',
+            },
+            h3: {
+              fontFamily: '"Playfair Display", serif',
+            },
+            h4: {
+              fontFamily: '"Playfair Display", serif',
+            },
+          }
+        }
+      }
     },
   },
   plugins: [require("tailwindcss-animate")],

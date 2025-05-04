@@ -1,4 +1,6 @@
 
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400..900&family=Manrope:wght@200..800&family=JetBrains+Mono:wght@100..800&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -91,15 +93,21 @@
   }
 
   body {
-    @apply bg-background text-foreground font-sans;
+    @apply bg-background text-foreground;
+    font-feature-settings: "ss01", "ss02", "cv01", "cv02";
+    text-rendering: optimizeLegibility;
   }
   
   h1, h2, h3, h4, h5, h6 {
-    @apply font-sans font-bold tracking-tight;
+    @apply font-display font-bold tracking-tight;
   }
   
   code, pre, kbd {
     @apply font-mono;
+  }
+
+  p, li, input, textarea {
+    @apply font-sans;
   }
 }
 
@@ -127,5 +135,50 @@
   
   .cyber-glow {
     text-shadow: 0 0 5px theme('colors.cyber.teal'), 0 0 10px rgba(100, 255, 218, 0.5);
+  }
+
+  /* New typography utilities */
+  .leading-tight {
+    line-height: 1.1;
+  }
+
+  .leading-snug {
+    line-height: 1.3;
+  }
+
+  .leading-relaxed {
+    line-height: 1.7;
+  }
+  
+  .tracking-tighter {
+    letter-spacing: -0.03em;
+  }
+  
+  .tracking-tight {
+    letter-spacing: -0.01em;
+  }
+  
+  .tracking-wide {
+    letter-spacing: 0.02em;
+  }
+  
+  .font-light {
+    font-weight: 300;
+  }
+
+  .prose {
+    @apply max-w-prose mx-auto leading-relaxed;
+  }
+  
+  .prose p {
+    @apply mb-6;
+  }
+  
+  .prose h2 {
+    @apply text-2xl md:text-3xl mb-4 mt-10;
+  }
+  
+  .prose h3 {
+    @apply text-xl md:text-2xl mb-3 mt-8;
   }
 }
