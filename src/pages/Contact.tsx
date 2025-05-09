@@ -114,6 +114,11 @@ const ContactPage = () => {
                     <Share2 className="w-8 h-8 text-[#6366f1] opacity-50 group-hover:opacity-100 transition-opacity duration-500" />
                   </div>
 
+                  <div className="mb-6">
+                      <div className="font-mono text-xs text-cyber-teal mb-1">{`>`} Initializing secure message protocol...</div>
+                      <div className="font-mono text-xs text-cyber-teal mb-3">{`>`} Ready to transmit. Enter credentials and message:</div>
+                  </div>
+
                   <form onSubmit={handleSubmit} className="space-y-6">
                     <div className="relative group/input">
                       <User className="absolute left-4 top-4 w-5 h-5 text-gray-400 group-focus-within/input:text-[#6366f1] transition-colors" />
@@ -167,6 +172,12 @@ const ContactPage = () => {
                         {isSubmitting ? 'Sending...' : 'Send Message'}
                       </div>
                     </button>
+                    
+                    {/* Terminal decoration */}
+                    <div className="mt-6 font-mono text-xs text-cyber-teal/70 flex items-center">
+                      <span className="mr-2">{`>`}</span>
+                      <span className="animate-blink">_</span>
+                    </div>
                   </form>
                 </div>
               </div>
