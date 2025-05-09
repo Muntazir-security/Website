@@ -1,0 +1,81 @@
+
+import React, { useState, useEffect } from 'react';
+import { motion, useScroll, useTransform, useMotionValue } from 'framer-motion';
+
+interface ParallaxContainerProps {
+  children: React.ReactNode;
+  depth?: number;
+  className?: string;
+}
+
+const ParallaxContainer: React.FC<ParallaxContainerProps> = ({ 
+  children, 
+  depth = 0.2,
+  className = ""
+}) => {
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [windowSize, setWindowSize] = useState({
+    width: typeof window !== 'undefined' ? window.innerWidth : 0,
+    height: typeof window !== 'undefined' ? window.innerHeight : 0
+  });
+  
+  // For scroll parallax
+  const { scrollY } = useScroll();
+  const y = useTransform(scrollY, [0, 400], [0, -100 * depth]);
+  
+  // For mouse parallax
+  const x = useMotionValue(0);
+  const rotateX = useTransform(
+    mousePosition.y, 
+    [0, windowSize.height], 
+    [depth * 10, -depth * 10]
+  );
+  const rotateY = useTransform(
+    mousePosition.x, 
+    [0, windowSize.width], 
+    [-depth * 10, depth * 10]
+  );
+  
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      setMousePosition({ x: e.clientX, y: e.clientY });
+    };
+    
+    const handleResize = () => {
+      setWindowSize({
+        width: window.innerWidth,
+        height: window.innerHeight
+      });
+    };
+    
+    window.addEventListener('mousemove', handleMouseMove);
+    window.addEventListener('resize', handleResize);
+    
+    return () => {
+      window.removeEventListener('mousemove', handleMouseMove);
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+  
+  return (
+    <motion.div
+      className={className}
+      style={{ 
+        y,
+        x,
+        rotateX,
+        rotateY,
+        perspective: 1000,
+      }}
+      transition={{ 
+        type: "spring",
+        damping: 20,
+        stiffness: 100
+      }}
+    >
+      {children}
+    </motion.div>
+  );
+};
+
+export default ParallaxContainer;

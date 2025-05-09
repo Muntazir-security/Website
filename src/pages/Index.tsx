@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import WelcomeScreen from '../components/WelcomeScreen';
@@ -12,7 +13,7 @@ const Index = () => {
       console.log('Welcome screen timer complete, navigating to home');
       setShowWelcome(false);
       navigate('/home');
-    }, 4500); // 4.5 seconds
+    }, 8000); // Increased to 8 seconds to allow time for the animations
 
     return () => clearTimeout(timer);
   }, [navigate]);

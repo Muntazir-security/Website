@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -92,6 +93,26 @@ export default {
           "0%, 100%": { opacity: "1" },
           "50%": { opacity: "0.5" },
         },
+        // New animations
+        glitch: {
+          "0%": { transform: "translate(0)" },
+          "20%": { transform: "translate(-2px, 2px)" },
+          "40%": { transform: "translate(-2px, -2px)" },
+          "60%": { transform: "translate(2px, 2px)" },
+          "80%": { transform: "translate(2px, -2px)" },
+          "100%": { transform: "translate(0)" },
+        },
+        typewriter: {
+          to: { width: "100%" },
+        },
+        "cursor-blink": {
+          "0%, 100%": { opacity: "1" },
+          "50%": { opacity: "0" },
+        },
+        "data-stream": {
+          "0%": { transform: "translateY(-100%)" },
+          "100%": { transform: "translateY(100%)" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -100,6 +121,11 @@ export default {
         blink: "blink 1s step-end infinite",
         "spin-slower": "spin-slower 8s linear infinite",
         "pulse-slow": "pulse-slow 3s infinite",
+        // New animations
+        glitch: "glitch 0.5s ease infinite",
+        typewriter: "typewriter 2s steps(40) forwards",
+        "cursor-blink": "cursor-blink 1s infinite",
+        "data-stream": "data-stream 15s linear infinite",
       },
     },
   },
