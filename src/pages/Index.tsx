@@ -13,7 +13,7 @@ const Index = () => {
       console.log('Welcome screen timer complete, navigating to home');
       setShowWelcome(false);
       navigate('/home');
-    }, 8000); // Increased to 8 seconds to allow time for the animations
+    }, 10000); // Increased to 10 seconds to allow time for the animations
 
     return () => clearTimeout(timer);
   }, [navigate]);

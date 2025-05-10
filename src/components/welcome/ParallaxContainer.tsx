@@ -23,22 +23,21 @@ const ParallaxContainer: React.FC<ParallaxContainerProps> = ({
   const { scrollY } = useScroll();
   const y = useTransform(scrollY, [0, 400], [0, -100 * depth]);
   
-  // For mouse parallax
+  // For mouse parallax - use motion values for x, rotateX and rotateY
   const x = useMotionValue(0);
-  const rotateX = useTransform(
-    mousePosition.y, 
-    [0, windowSize.height], 
-    [depth * 10, -depth * 10]
-  );
-  const rotateY = useTransform(
-    mousePosition.x, 
-    [0, windowSize.width], 
-    [-depth * 10, depth * 10]
-  );
+  const rotateX = useMotionValue(0);
+  const rotateY = useMotionValue(0);
   
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
       setMousePosition({ x: e.clientX, y: e.clientY });
+      
+      // Calculate rotation based on mouse position
+      const rotX = ((e.clientY / windowSize.height) - 0.5) * depth * 10 * -1;
+      const rotY = ((e.clientX / windowSize.width) - 0.5) * depth * 10;
+      
+      rotateX.set(rotX);
+      rotateY.set(rotY);
     };
     
     const handleResize = () => {
@@ -55,7 +54,7 @@ const ParallaxContainer: React.FC<ParallaxContainerProps> = ({
       window.removeEventListener('mousemove', handleMouseMove);
       window.removeEventListener('resize', handleResize);
     };
-  }, []);
+  }, [depth, windowSize.height, windowSize.width, rotateX, rotateY]);
   
   return (
     <motion.div

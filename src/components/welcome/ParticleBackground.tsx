@@ -1,14 +1,14 @@
 
-import React, { useRef, useMemo } from 'react'
+import React, { useRef } from 'react'
 import { Canvas, useFrame } from '@react-three/fiber'
 import { Points, PointMaterial } from '@react-three/drei'
 import * as THREE from 'three'
 
 const ParticleField = ({ count = 1000 }) => {
-  const points = useRef();
+  const pointsRef = useRef<THREE.Points>(null);
   
   // Generate random particles in a sphere
-  const particles = useMemo(() => {
+  const particles = React.useMemo(() => {
     const positions = new Float32Array(count * 3);
     const colors = new Float32Array(count * 3);
     
@@ -37,14 +37,14 @@ const ParticleField = ({ count = 1000 }) => {
   
   // Animation: rotate the field slowly
   useFrame((state) => {
-    if (points.current) {
-      points.current.rotation.x = state.clock.getElapsedTime() * 0.05;
-      points.current.rotation.y = state.clock.getElapsedTime() * 0.03;
+    if (pointsRef.current) {
+      pointsRef.current.rotation.x = state.clock.getElapsedTime() * 0.05;
+      pointsRef.current.rotation.y = state.clock.getElapsedTime() * 0.03;
     }
   });
   
   return (
-    <Points ref={points} positions={particles.positions} colors={particles.colors} stride={3}>
+    <Points ref={pointsRef} positions={particles.positions} colors={particles.colors} stride={3}>
       <PointMaterial 
         transparent
         vertexColors
