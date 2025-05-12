@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from "react";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { Card, CardContent } from "@/components/ui/card";
@@ -155,42 +156,42 @@ const certificates = [
     title: "Red Hat System Administration I (RH124)",
     issuer: "Red Hat Training and Certification",
     date: "September 2024",
-    image: "/lovable-uploads/9c4d0b95-2f93-432a-9552-83b4e6a5259f.png",
+    image: "/lovable-uploads/RH124.png",
     verifyUrl: "#"
   },
   {
     title: "SOC Analyst Learning Path",
     issuer: "LetsDefend",
     date: "June 2024",
-    image: "/lovable-uploads/3a492309-ce9b-4907-a297-365e63e22d28.png",
+    image: "/lovable-uploads/SOC_Analyst_LetsDefend.png",
     verifyUrl: "#"
   },
   {
     title: "Junior Penetration Tester (eJPT)",
     issuer: "INE Security",
     date: "May 2024",
-    image: "/lovable-uploads/c266ac8b-521b-45aa-9cbb-f7390130b152.png",
+    image: "/lovable-uploads/eJPT.png",
     verifyUrl: "#"
   },
   {
     title: "INE Certified Cloud Associate (ICCA)",
     issuer: "INE",
     date: "May 2024",
-    image: "/lovable-uploads/99780b88-80d2-439b-9191-8a8efd5b5ecb.png",
+    image: "/lovable-uploads/ICCA.png",
     verifyUrl: "#"
   },
   {
     title: "Google Cybersecurity Certificate",
     issuer: "Google",
     date: "March 2024",
-    image: "/lovable-uploads/4392609e-6645-4ac6-86f7-2f403b085442.png",
+    image: "/lovable-uploads/Google_cert.png",
     verifyUrl: "https://coursera.org/verify/professional-cert/B2AKYMEB5GTU"
   },
   {
     title: "CCNAv7: Switching, Routing, and Wireless Essentials",
     issuer: "Cisco Networking Academy",
     date: "January 2023",
-    image: "/lovable-uploads/ce04fea6-5d73-4b47-b5f1-e6d5fa3519f5.png",
+    image: "/lovable-uploads/SRE_cert.png",
     verifyUrl: "#"
   }
 ];
