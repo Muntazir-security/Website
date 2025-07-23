@@ -7,28 +7,31 @@ import PageBackground from '@/components/shared/PageBackground';
 
 const ScrollablePage = () => {
   return (
-    <div className="min-h-screen bg-[#0B0B1E] overflow-hidden">
+    <div className="min-h-screen bg-[#0B0B1E]">
       {/* Smooth scroll CSS */}
       <style>{`
         html {
           scroll-behavior: smooth;
-          overflow: hidden;
+          overflow-x: hidden;
         }
         body {
-          overflow: hidden;
+          overflow-x: hidden;
         }
         * {
           box-sizing: border-box;
         }
-        .scrollable-container {
-          max-width: 100vw;
-          overflow-x: hidden;
-          overflow-y: auto;
+        /* Hide horizontal scrollbars but keep vertical scrolling */
+        ::-webkit-scrollbar {
+          width: 0px;
+          background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+          background: transparent;
         }
       `}</style>
       
       <PageBackground>
-        <div className="w-full max-w-none scrollable-container">
+        <div className="w-full max-w-none">
           <Home />
           <About />
           <Portfolio />
