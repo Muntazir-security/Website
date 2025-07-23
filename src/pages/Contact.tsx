@@ -72,8 +72,8 @@ const ContactPage = () => {
   };
 
   return (
-    <PageBackground>
-      <div className="min-h-screen flex flex-col justify-center py-12 sm:px-6 lg:px-8 relative overflow-hidden">
+    <section id="contact" className="min-h-screen w-full relative py-12 px-4 sm:px-6 lg:px-8">
+      <div className="min-h-screen flex flex-col justify-center relative overflow-hidden">
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <div className="absolute top-1/4 -left-20 w-[500px] h-[500px] bg-[#6366f1]/5 rounded-full blur-3xl animate-pulse-slow" />
           <div className="absolute bottom-1/4 -right-20 w-[500px] h-[500px] bg-[#a855f7]/5 rounded-full blur-3xl animate-pulse-slow" />
@@ -205,7 +205,7 @@ const ContactPage = () => {
           </div>
         </div>
       </div>
-    </PageBackground>
+    </section>
   );
 };
 

@@ -41,7 +41,7 @@ const ProfileImage = memo(() => (
           <div className="absolute inset-0 bg-gradient-to-t from-purple-500/20 via-transparent to-blue-500/20 z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-700 hidden sm:block" />
           
           <img
-            src="/lovable-uploads/e9cf7f8f-989a-495d-b3fc-40b115ced526.png"
+            src="/profile.png"
             alt="Profile"
             className="w-full h-full object-cover transition-all duration-700 group-hover:scale-110 group-hover:rotate-2"
             loading="lazy"
@@ -184,95 +184,95 @@ const AboutPage = () => {
   ], [totalProjects, totalCertificates, YearExperience]);
 
   return (
-    <PageBackground className="min-h-screen">
-      <div className="container max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 py-8 min-h-screen overflow-y-auto">
+    <section id="about" className="min-h-screen w-full relative py-12 px-4 sm:px-6 lg:px-8">
+      <div className="container max-w-7xl mx-auto py-8 min-h-screen overflow-y-auto">
         <Header />
         
         <div className="w-full mx-auto relative">
-          <div className="flex flex-col-reverse lg:grid lg:grid-cols-[2.5fr_2fr] gap-6 lg:gap-12 items-center">
-            <div className="space-y-4 text-center lg:text-left max-w-3xl mx-auto lg:mx-0">
-              <h2 
-                className="text-2xl sm:text-3xl lg:text-4xl font-bold"
-                data-aos="fade-right"
-                data-aos-duration="1000"
-              >
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#6366f1] to-[#a855f7]">
-                  Hello, I'm
-                </span>
-                <span 
-                  className="block mt-1 text-gray-200"
+            <div className="flex flex-col-reverse lg:grid lg:grid-cols-[2.5fr_2fr] gap-6 lg:gap-12 items-center">
+              <div className="space-y-4 text-center lg:text-left max-w-3xl mx-auto lg:mx-0">
+                <h2 
+                  className="text-2xl sm:text-3xl lg:text-4xl font-bold"
                   data-aos="fade-right"
-                  data-aos-duration="1300"
+                  data-aos-duration="1000"
                 >
-                  Muntazir Mehdi
-                </span>
-              </h2>
-              
-              <p 
-                className="text-sm sm:text-base lg:text-lg text-gray-400 leading-relaxed text-justify max-w-[600px] mb-16"
-                data-aos="fade-right"
-                data-aos-duration="1500"
-              >
-                A Cybersecurity Engineer with a passion for securing digital environments. I hold a degree in Computer Science, specializing in Cybersecurity, from Asia Pacific University of Technology & Innovation. With hands-on experience in SOC analysis, vulnerability assessment, and penetration testing, I've developed a strong foundation in identifying and mitigating security risks. My expertise in SIEM implementation, threat detection, and security documentation is further strengthened by industry certifications, including eJPT and ICCA. I blend technical expertise with analytical thinking to build robust security solutions, always staying ahead of emerging threats to protect critical infrastructure.
-              </p>
-              <div className="flex flex-col lg:flex-row items-center lg:items-start gap-4 lg:gap-6">
-                <a 
-                  href="/Syed Muntazir Mehdi CV.pdf" 
-                  download
-                  className="w-full lg:w-auto"
-                >
-                  <button 
-                    data-aos="fade-up"
-                    data-aos-duration="800"
-                    className="group relative w-full lg:w-[180px]"
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#6366f1] to-[#a855f7]">
+                    Hello, I'm
+                  </span>
+                  <span 
+                    className="block mt-1 text-gray-200"
+                    data-aos="fade-right"
+                    data-aos-duration="1300"
                   >
-                    <div className="absolute -inset-0.5 bg-gradient-to-r from-[#4f52c9] to-[#8644c5] rounded-xl opacity-50 blur-md group-hover:opacity-90 transition-all duration-700"></div>
-                    <div className="relative h-12 bg-[#030014] backdrop-blur-xl rounded-lg border border-white/10 leading-none overflow-hidden">
-                      <div className="absolute inset-0 scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-500 bg-gradient-to-r from-[#4f52c9]/20 to-[#8644c5]/20"></div>
-                      <span className="absolute inset-0 flex items-center justify-center gap-2 text-sm group-hover:gap-3 transition-all duration-300">
-                        <span className="bg-gradient-to-r from-gray-200 to-white bg-clip-text text-transparent font-medium z-10">
-                          Download CV
-                        </span>
-                        <FileText className="w-4 h-4 text-gray-200 group-hover:rotate-45 transform transition-all duration-300 z-10" />
-                      </span>
-                    </div>
-                  </button>
-                </a>
-                <Link 
-                  to="/portfolio?tab=projects" 
-                  className="w-full lg:w-auto"
+                    Muntazir Mehdi
+                  </span>
+                </h2>
+                
+                <p 
+                  className="text-sm sm:text-base lg:text-lg text-gray-400 leading-relaxed text-justify max-w-[600px] mb-16"
+                  data-aos="fade-right"
+                  data-aos-duration="1500"
                 >
-                  <button 
-                    data-aos="fade-up"
-                    data-aos-duration="1000"
-                    className="group relative w-full lg:w-[180px]"
+                  A Cybersecurity Engineer with a passion for securing digital environments. I hold a degree in Computer Science, specializing in Cybersecurity, from Asia Pacific University of Technology & Innovation. With hands-on experience in SOC analysis, vulnerability assessment, and penetration testing, I've developed a strong foundation in identifying and mitigating security risks. My expertise in SIEM implementation, threat detection, and security documentation is further strengthened by industry certifications, including eJPT and ICCA. I blend technical expertise with analytical thinking to build robust security solutions, always staying ahead of emerging threats to protect critical infrastructure.
+                </p>
+                <div className="flex flex-col lg:flex-row items-center lg:items-start gap-4 lg:gap-6">
+                  <a 
+                    href="/Syed Muntazir Mehdi CV.pdf" 
+                    download
+                    className="w-full lg:w-auto"
                   >
-                    <div className="absolute -inset-0.5 bg-gradient-to-r from-[#4f52c9] to-[#8644c5] rounded-xl opacity-50 blur-md group-hover:opacity-90 transition-all duration-700"></div>
-                    <div className="relative h-12 bg-[#030014] backdrop-blur-xl rounded-lg border border-white/10 leading-none overflow-hidden">
-                      <div className="absolute inset-0 scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-500 bg-gradient-to-r from-[#4f52c9]/20 to-[#8644c5]/20"></div>
-                      <span className="absolute inset-0 flex items-center justify-center gap-2 text-sm group-hover:gap-3 transition-all duration-300">
-                        <span className="bg-gradient-to-r from-gray-200 to-white bg-clip-text text-transparent font-medium z-10">
-                          View Projects
+                    <button 
+                      data-aos="fade-up"
+                      data-aos-duration="800"
+                      className="group relative w-full lg:w-[180px]"
+                    >
+                      <div className="absolute -inset-0.5 bg-gradient-to-r from-[#4f52c9] to-[#8644c5] rounded-xl opacity-50 blur-md group-hover:opacity-90 transition-all duration-700"></div>
+                      <div className="relative h-12 bg-[#030014] backdrop-blur-xl rounded-lg border border-white/10 leading-none overflow-hidden">
+                        <div className="absolute inset-0 scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-500 bg-gradient-to-r from-[#4f52c9]/20 to-[#8644c5]/20"></div>
+                        <span className="absolute inset-0 flex items-center justify-center gap-2 text-sm group-hover:gap-3 transition-all duration-300">
+                          <span className="bg-gradient-to-r from-gray-200 to-white bg-clip-text text-transparent font-medium z-10">
+                            Download CV
+                          </span>
+                          <FileText className="w-4 h-4 text-gray-200 group-hover:rotate-45 transform transition-all duration-300 z-10" />
                         </span>
-                        <Code className="w-4 h-4 text-gray-200 group-hover:rotate-45 transform transition-all duration-300 z-10" />
-                      </span>
-                    </div>
-                  </button>
-                </Link>
+                      </div>
+                    </button>
+                  </a>
+                  <Link 
+                    to="/portfolio?tab=projects" 
+                    className="w-full lg:w-auto"
+                  >
+                    <button 
+                      data-aos="fade-up"
+                      data-aos-duration="1000"
+                      className="group relative w-full lg:w-[180px]"
+                    >
+                      <div className="absolute -inset-0.5 bg-gradient-to-r from-[#4f52c9] to-[#8644c5] rounded-xl opacity-50 blur-md group-hover:opacity-90 transition-all duration-700"></div>
+                      <div className="relative h-12 bg-[#030014] backdrop-blur-xl rounded-lg border border-white/10 leading-none overflow-hidden">
+                        <div className="absolute inset-0 scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-500 bg-gradient-to-r from-[#4f52c9]/20 to-[#8644c5]/20"></div>
+                        <span className="absolute inset-0 flex items-center justify-center gap-2 text-sm group-hover:gap-3 transition-all duration-300">
+                          <span className="bg-gradient-to-r from-gray-200 to-white bg-clip-text text-transparent font-medium z-10">
+                            View Projects
+                          </span>
+                          <Code className="w-4 h-4 text-gray-200 group-hover:rotate-45 transform transition-all duration-300 z-10" />
+                        </span>
+                      </div>
+                    </button>
+                  </Link>
+                </div>
               </div>
+
+              <ProfileImage />
             </div>
 
-            <ProfileImage />
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-16 mb-12">
-            {statsData.map((stat) => (
-              <StatCard key={stat.label} {...stat} />
-            ))}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-16 mb-12">
+              {statsData.map((stat) => (
+                <StatCard key={stat.label} {...stat} />
+              ))}
+            </div>
           </div>
         </div>
-      </div>
-    </PageBackground>
+    </section>
   );
 };
 

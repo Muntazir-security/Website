@@ -201,11 +201,11 @@ const Home = () => {
   };
 
   return (
-    <PageBackground>
-      <div className="relative z-10">
-        <div className="container mx-auto px-[5%] sm:px-6 lg:px-[0%] min-h-screen">
-          <div className="flex flex-col lg:flex-row items-center justify-center h-screen md:justify-between gap-0 sm:gap-12 lg:gap-20">
-            <div className="w-full lg:w-1/2 space-y-6 sm:space-y-8 text-left lg:text-left order-1 lg:order-1 lg:mt-0"
+    <section id="home" className="min-h-screen w-full relative flex items-center">
+      <div className="relative z-10 w-full px-4 sm:px-6 lg:px-8">
+        <div className="container max-w-7xl mx-auto">
+          <div className="flex flex-col lg:flex-row items-center justify-center gap-8 sm:gap-12 lg:gap-20">
+            <div className="w-full lg:w-1/2 space-y-6 sm:space-y-8 text-center lg:text-left order-1 lg:order-1"
               data-aos="fade-right"
               data-aos-delay="200">
               <div className="space-y-4 sm:space-y-6">
@@ -213,7 +213,7 @@ const Home = () => {
                 <MainTitle />
 
                 {/* Typing Effect */}
-                <div className="h-8 flex items-center" data-aos="fade-up" data-aos-delay="800">
+                <div className="h-8 flex items-center justify-center lg:justify-start" data-aos="fade-up" data-aos-delay="800">
                   <span className="text-xl md:text-2xl bg-gradient-to-r from-gray-100 to-gray-300 bg-clip-text text-transparent font-light">
                     {text}
                   </span>
@@ -222,7 +222,7 @@ const Home = () => {
 
                 {/* Description */}
                 <p 
-                  className="text-sm sm:text-base lg:text-lg text-gray-400 leading-relaxed text-justify"
+                  className="text-sm sm:text-base lg:text-lg text-gray-400 leading-relaxed text-center lg:text-justify max-w-2xl mx-auto lg:mx-0"
                   data-aos="fade-right"
                   data-aos-duration="1500"
                 >
@@ -230,20 +230,20 @@ const Home = () => {
                 </p>
 
                 {/* Tech Stack */}
-                <div className="flex flex-wrap gap-3 justify-start" data-aos="fade-up" data-aos-delay="1200">
+                <div className="flex flex-wrap gap-3 justify-center lg:justify-start" data-aos="fade-up" data-aos-delay="1200">
                   {TECH_STACK.map((tech, index) => (
                     <TechStack key={index} tech={tech} />
                   ))}
                 </div>
 
                 {/* CTA Buttons */}
-                <div className="flex flex-row gap-3 w-full justify-start" data-aos="fade-up" data-aos-delay="1400">
+                <div className="flex flex-col sm:flex-row gap-3 w-full justify-center lg:justify-start items-center" data-aos="fade-up" data-aos-delay="1400">
                   <CTAButton href="/portfolio" text="View My Projects" icon={ExternalLink} />
                   <CTAButton href="/contact" text="Contact Me" icon={Mail} />
                 </div>
 
                 {/* Social Links */}
-                <div className="hidden sm:flex gap-4 justify-start" data-aos="fade-up" data-aos-delay="1600">
+                <div className="flex gap-4 justify-center lg:justify-start" data-aos="fade-up" data-aos-delay="1600">
                   {SOCIAL_LINKS.map((social, index) => (
                     <SocialLink key={index} {...social} />
                   ))}
@@ -252,7 +252,7 @@ const Home = () => {
             </div>
 
             {/* Right Column - Optimized Lottie Animation */}
-            <div className="w-full py-[10%] sm:py-0 lg:w-1/2 h-auto lg:h-[600px] xl:h-[750px] relative flex items-center justify-center order-2 lg:order-2 mt-8 lg:mt-0"
+            <div className="w-full lg:w-1/2 h-auto lg:h-[600px] xl:h-[750px] relative flex items-center justify-center order-2 lg:order-2"
               onMouseEnter={() => setIsHovering(true)}
               onMouseLeave={() => setIsHovering(false)}
               data-aos="fade-left"
@@ -282,7 +282,7 @@ const Home = () => {
           </div>
         </div>
       </div>
-    </PageBackground>
+    </section>
   );
 };
 

@@ -9,9 +9,9 @@ const Index = () => {
   useEffect(() => {
     console.log('Starting welcome screen timer');
     const timer = setTimeout(() => {
-      console.log('Welcome screen timer complete, navigating to home');
+      console.log('Welcome screen timer complete, navigating to main page');
       setShowWelcome(false);
-      navigate('/home');
+      navigate('/main');
     }, 4500); // 4.5 seconds
 
     return () => clearTimeout(timer);

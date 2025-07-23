@@ -11,6 +11,7 @@ import Home from "./pages/Home";
 import About from "./pages/About";
 import Portfolio from "./pages/Portfolio";
 import Contact from "./pages/Contact";
+import ScrollablePage from "./pages/ScrollablePage";
 
 const queryClient = new QueryClient();
 
@@ -25,10 +26,12 @@ const App = () => (
             <MainNav />
             <Routes>
               <Route path="/" element={<Index />} />
-              <Route path="/home" element={<Home />} />
-              <Route path="/about" element={<About />} />
-              <Route path="/portfolio" element={<Portfolio />} />
-              <Route path="/contact" element={<Contact />} />
+              <Route path="/main" element={<ScrollablePage />} />
+              {/* Keep original routes for backward compatibility */}
+              <Route path="/home" element={<ScrollablePage />} />
+              <Route path="/about" element={<ScrollablePage />} />
+              <Route path="/portfolio" element={<ScrollablePage />} />
+              <Route path="/contact" element={<ScrollablePage />} />
             </Routes>
             <Analytics />
           </div>
