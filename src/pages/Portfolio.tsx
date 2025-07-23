@@ -241,8 +241,8 @@ const Portfolio = () => {
   };
 
   return (
-    <section id="portfolio" className="min-h-screen w-full relative py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-7xl mx-auto relative">
+    <section id="portfolio" className="min-h-screen w-full relative py-12 px-4 sm:px-6 lg:px-8 overflow-hidden">
+      <div className="max-w-7xl mx-auto relative overflow-hidden">
         <div className="text-center mb-16 pt-20" data-aos="fade-down">
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-[#6366f1] to-[#a855f7] mb-4">
               Portfolio

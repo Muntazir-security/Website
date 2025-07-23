@@ -184,8 +184,8 @@ const AboutPage = () => {
   ], [totalProjects, totalCertificates, YearExperience]);
 
   return (
-    <section id="about" className="min-h-screen w-full relative py-12 px-4 sm:px-6 lg:px-8">
-      <div className="container max-w-7xl mx-auto py-8 min-h-screen overflow-y-auto">
+    <section id="about" className="min-h-screen w-full relative py-12 px-4 sm:px-6 lg:px-8 overflow-hidden">
+      <div className="container max-w-7xl mx-auto py-8 min-h-screen overflow-hidden">
         <Header />
         
         <div className="w-full mx-auto relative">
