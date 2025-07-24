@@ -1,240 +1,118 @@
 
-import React, { useState, useEffect } from "react";
-import { Share2, User, Mail, MessageSquare, Send, ArrowRight } from "lucide-react";
-import SocialLinks from "@/components/contact/SocialLinks";
-import { useToast } from "@/components/ui/use-toast";
-import PageBackground from "@/components/shared/PageBackground";
+import React, { useEffect } from "react";
+import { Mail, Github, Linkedin, Sparkles, ArrowUpRight } from "lucide-react";
 import AOS from "aos";
 import "aos/dist/aos.css";
 
 const ContactPage = () => {
-  const { toast } = useToast();
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    message: "",
-  });
-  const [isSubmitting, setIsSubmitting] = useState(false);
-
   useEffect(() => {
     AOS.init({
       once: false,
     });
   }, []);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
-  };
-
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-
-    try {
-      const response = await fetch("https://formsubmit.co/ajax/fe701d1f17341f778f44a54441a3c483", {
-        method: "POST",
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json'
-        },
-        body: JSON.stringify(formData)
-      });
-
-      if (response.ok) {
-        toast({
-          title: "Message sent successfully! 🎉",
-          description: "Thank you for reaching out. I'll get back to you soon.",
-          duration: 3000,
-        });
-
-        setFormData({
-          name: "",
-          email: "",
-          message: "",
-        });
-      } else {
-        throw new Error('Failed to send message');
-      }
-    } catch (error) {
-      toast({
-        variant: "destructive",
-        title: "Error sending message",
-        description: "Please try again later or use an alternative contact method.",
-        duration: 3000,
-      });
-    } finally {
-      setIsSubmitting(false);
+  const contactMethods = [
+    {
+      name: "Email",
+      href: "mailto:muntazirmehdi@outlook.com",
+      icon: Mail,
+      label: "muntazirmehdi@outlook.com",
+      accent: "text-blue-400"
+    },
+    {
+      name: "LinkedIn",
+      href: "https://www.linkedin.com/in/muntazir-security/",
+      icon: Linkedin,
+      label: "Professional networking",
+      accent: "text-blue-500"
+    },
+    {
+      name: "GitHub",
+      href: "https://github.com/muntazir-security",
+      icon: Github,
+      label: "Open source contributions",
+      accent: "text-gray-300"
     }
-  };
+  ];
 
   return (
-    <section id="contact" className="min-h-screen w-full relative py-12 px-4 sm:px-6 lg:px-8">
-      <div className="min-h-screen flex flex-col justify-center relative overflow-hidden">
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute top-1/4 -left-20 w-[500px] h-[500px] bg-[#6366f1]/5 rounded-full blur-3xl animate-pulse-slow" />
-          <div className="absolute bottom-1/4 -right-20 w-[500px] h-[500px] bg-[#a855f7]/5 rounded-full blur-3xl animate-pulse-slow" />
-        </div>
-
-        <div className="text-center mb-12" data-aos="fade-down">
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-[#6366f1] to-[#a855f7] mb-4">
-            Let's Connect
+    <section id="contact" className="min-h-screen w-full relative py-16 px-4 sm:px-6 lg:px-8">
+      <div className="container max-w-6xl mx-auto py-12 min-h-screen flex flex-col justify-center">
+        {/* Header */}
+        <div className="text-center mb-20" data-aos="fade-down">
+          <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-[#6366f1] to-[#a855f7] mb-6">
+            Get In Touch
           </h1>
-          <p className="text-gray-400 max-w-2xl mx-auto flex items-center justify-center gap-2">
-            Have a question or want to work together? I'd love to hear from you.
-            <ArrowRight className="w-4 h-4 text-[#6366f1] animate-pulse" />
+          <p className="text-xl text-gray-400 max-w-2xl mx-auto leading-relaxed">
+            Ready to discuss your next project? Choose your preferred way to connect.
           </p>
         </div>
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-8 items-stretch">
-            {/* Contact Form */}
-            <div
-              data-aos="fade-right"
-              data-aos-duration="1000"
-              className="relative group h-full"
-            >
-              <div className="absolute inset-0 bg-gradient-to-r from-[#6366f1]/10 to-[#a855f7]/10 rounded-3xl blur-xl opacity-50 group-hover:opacity-75 transition-opacity duration-500" />
-              <div className="relative bg-black/20 backdrop-blur-xl rounded-3xl border border-white/10 p-8 shadow-xl overflow-hidden h-full flex flex-col">
-                <div className="absolute inset-0 bg-gradient-to-br from-white/[0.01] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                
-                <div className="relative flex-1 flex flex-col">
-                  <div className="flex justify-between items-start mb-8">
-                    <div>
-                      <h2 className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#6366f1] to-[#a855f7] mb-2">
-                        Get in Touch
-                      </h2>
-                      <p className="text-gray-400">
-                        Fill out the form below and I'll get back to you soon.
-                      </p>
-                    </div>
-                    <Share2 className="w-8 h-8 text-[#6366f1] opacity-50 group-hover:opacity-100 transition-opacity duration-500" />
-                  </div>
-
-                  <div className="mb-6">
-                      <div className="font-mono text-xs text-cyber-teal mb-1">{`>`} Initializing secure message protocol...</div>
-                      <div className="font-mono text-xs text-cyber-teal mb-3">{`>`} Ready to transmit. Enter credentials and message:</div>
-                  </div>
-
-                  <form onSubmit={handleSubmit} className="space-y-6 flex-1 flex flex-col">
-                    <div className="space-y-6 flex-1">
-                      <div className="relative group/input">
-                        <User className="absolute left-4 top-4 w-5 h-5 text-gray-400 group-focus-within/input:text-[#6366f1] transition-colors" />
-                        <input
-                          type="text"
-                          name="name"
-                          placeholder="Your Name"
-                          value={formData.name}
-                          onChange={handleChange}
-                          disabled={isSubmitting}
-                          className="w-full p-4 pl-12 bg-white/[0.03] rounded-xl border border-white/10 placeholder-gray-500 text-white focus:outline-none focus:ring-2 focus:ring-[#6366f1]/30 transition-all duration-300 hover:border-white/20 hover:bg-white/[0.05] disabled:opacity-50"
-                          required
-                        />
-                      </div>
-
-                      <div className="relative group/input">
-                        <Mail className="absolute left-4 top-4 w-5 h-5 text-gray-400 group-focus-within/input:text-[#6366f1] transition-colors" />
-                        <input
-                          type="email"
-                          name="email"
-                          placeholder="Your Email"
-                          value={formData.email}
-                          onChange={handleChange}
-                          disabled={isSubmitting}
-                          className="w-full p-4 pl-12 bg-white/[0.03] rounded-xl border border-white/10 placeholder-gray-500 text-white focus:outline-none focus:ring-2 focus:ring-[#6366f1]/30 transition-all duration-300 hover:border-white/20 hover:bg-white/[0.05] disabled:opacity-50"
-                          required
-                        />
-                      </div>
-
-                      <div className="relative group/input flex-1">
-                        <MessageSquare className="absolute left-4 top-4 w-5 h-5 text-gray-400 group-focus-within/input:text-[#6366f1] transition-colors" />
-                        <textarea
-                          name="message"
-                          placeholder="Your Message"
-                          value={formData.message}
-                          onChange={handleChange}
-                          disabled={isSubmitting}
-                          className="w-full resize-none p-4 pl-12 bg-white/[0.03] rounded-xl border border-white/10 placeholder-gray-500 text-white focus:outline-none focus:ring-2 focus:ring-[#6366f1]/30 transition-all duration-300 hover:border-white/20 hover:bg-white/[0.05] min-h-[120px] disabled:opacity-50"
-                          required
-                        />
-                      </div>
-                    </div>
-
-                    <div className="mt-auto pt-6">
-                      <button
-                        type="submit"
-                        disabled={isSubmitting}
-                        className="relative w-full overflow-hidden group/button"
-                      >
-                        <div className="absolute inset-0 bg-gradient-to-r from-[#6366f1] to-[#a855f7] rounded-xl opacity-80 group-hover/button:opacity-100 transition-opacity duration-300" />
-                        <div className="relative px-6 py-4 rounded-xl flex items-center justify-center gap-2 text-white font-semibold transition-all duration-300 group-hover/button:gap-3 disabled:opacity-50 disabled:cursor-not-allowed">
-                          <Send className="w-5 h-5 transition-transform duration-300 group-hover/button:translate-x-1" />
-                          {isSubmitting ? 'Sending...' : 'Send Message'}
+        {/* Contact Methods */}
+        <div className="max-w-4xl mx-auto w-full">
+          <div className="grid md:grid-cols-3 gap-6 lg:gap-8">
+            {contactMethods.map((method, index) => (
+              <div
+                key={method.name}
+                className="group"
+                data-aos="fade-up"
+                data-aos-delay={index * 150}
+              >
+                <a
+                  href={method.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block relative bg-white/[0.02] backdrop-blur-sm rounded-2xl border border-white/[0.08] p-6 sm:p-8 hover:bg-white/[0.04] hover:border-white/[0.15] transition-all duration-300 group-hover:transform group-hover:scale-[1.02] shadow-lg hover:shadow-xl h-full"
+                >
+                  {/* Subtle background glow */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-[#6366f1]/[0.03] to-[#a855f7]/[0.03] rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                  
+                  <div className="relative z-10">
+                    {/* Icon */}
+                    <div className="flex justify-center mb-6">
+                      <div className="relative">
+                        <div className="p-4 bg-white/[0.05] rounded-xl group-hover:bg-white/[0.08] transition-all duration-300 border border-white/[0.08] group-hover:border-white/[0.15]">
+                          <method.icon className={`w-7 h-7 ${method.accent} group-hover:scale-110 transition-transform duration-300`} />
                         </div>
-                      </button>
-                      
-                      {/* Terminal decoration */}
-                      <div className="mt-6 font-mono text-xs text-cyber-teal/70 flex items-center">
-                        <span className="mr-2">{`>`}</span>
-                        <span className="animate-blink">_</span>
                       </div>
                     </div>
-                  </form>
-                </div>
-              </div>
-            </div>
 
-            {/* Social Links Section */}
-            <div 
-              data-aos="fade-left"
-              data-aos-duration="1000"
-              className="relative group h-full"
-            >
-              <div className="absolute inset-0 bg-gradient-to-r from-[#6366f1]/10 to-[#a855f7]/10 rounded-3xl blur-xl opacity-50 group-hover:opacity-75 transition-opacity duration-500" />
-              <div className="relative bg-black/20 backdrop-blur-xl rounded-3xl border border-white/10 p-8 shadow-xl h-full flex flex-col">
-                <div className="flex justify-between items-start mb-8">
-                  <div>
-                    <h2 className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#6366f1] to-[#a855f7] mb-2">
-                      Connect With Me
-                    </h2>
-                    <p className="text-gray-400">
-                      Feel free to reach out through any of these platforms.
-                    </p>
-                  </div>
-                  <Share2 className="w-8 h-8 text-[#6366f1] opacity-50 group-hover:opacity-100 transition-opacity duration-500" />
-                </div>
-                
-                <div className="flex-1 flex flex-col justify-center">
-                  <div className="mb-6">
-                    <div className="font-mono text-xs text-cyber-teal mb-1">{`>`} Scanning available communication channels...</div>
-                    <div className="font-mono text-xs text-cyber-teal mb-6">{`>`} Multiple secure endpoints detected:</div>
-                  </div>
-                  
-                  <div className="flex-1 flex flex-col justify-center">
-                    <SocialLinks />
-                  </div>
-                  
-                  <div className="mt-auto pt-6">
-                    <div className="bg-white/[0.03] rounded-xl border border-white/10 p-4">
-                      <p className="text-sm text-gray-400 mb-2">
-                        <strong className="text-white">Response Time:</strong> Usually within 24 hours
-                      </p>
-                      <p className="text-sm text-gray-400">
-                        <strong className="text-white">Best for:</strong> Quick questions, collaborations, or just saying hi!
+                    {/* Content */}
+                    <div className="text-center space-y-4">
+                      <h3 className="text-xl font-semibold text-white group-hover:text-white transition-colors duration-300">
+                        {method.name}
+                      </h3>
+                      <p className="text-gray-300 font-medium text-sm">
+                        {method.label}
                       </p>
                     </div>
-                    
-                    {/* Terminal decoration */}
-                    <div className="mt-6 font-mono text-xs text-cyber-teal/70 flex items-center">
-                      <span className="mr-2">{`>`}</span>
-                      <span className="animate-blink">_</span>
+
+                    {/* Subtle CTA indicator */}
+                    <div className="flex items-center justify-center mt-8 opacity-0 group-hover:opacity-100 transition-all duration-300">
+                      <div className="flex items-center text-xs text-gray-500 gap-1">
+                        <span>Connect</span>
+                        <ArrowUpRight className="w-3 h-3 transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-300" />
+                      </div>
                     </div>
                   </div>
-                </div>
+                </a>
               </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Footer Note */}
+        <div className="text-center mt-20" data-aos="fade-up" data-aos-delay="450">
+          <div className="max-w-xl mx-auto">
+            <div className="bg-white/[0.02] backdrop-blur-sm rounded-xl border border-white/[0.08] p-6">
+              <div className="flex items-center justify-center gap-3 mb-3">
+                <div className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse"></div>
+                <span className="text-white font-medium">Available for freelance work</span>
+              </div>
+              <p className="text-gray-400 text-sm leading-relaxed">
+                Currently accepting new cybersecurity projects and collaborations. 
+                I typically respond within 24 hours.
+              </p>
             </div>
           </div>
         </div>
