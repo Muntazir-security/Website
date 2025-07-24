@@ -219,6 +219,7 @@ const Portfolio = () => {
   const [searchParams] = useSearchParams();
   const [selectedCertificate, setSelectedCertificate] = useState<string | null>(null);
   const [selectedProject, setSelectedProject] = useState<typeof projects[0] | null>(null);
+  const [currentTab, setCurrentTab] = useState('projects');
   
   useEffect(() => {
     AOS.init({
@@ -227,7 +228,30 @@ const Portfolio = () => {
     });
   }, []);
 
-  const activeTab = searchParams.get('tab') || 'projects';
+  // Handle URL tab parameter and external navigation
+  useEffect(() => {
+    const urlTab = searchParams.get('tab');
+    if (urlTab && ['projects', 'certificates', 'tech-stack'].includes(urlTab)) {
+      setCurrentTab(urlTab);
+    }
+  }, [searchParams]);
+
+  // Listen for custom tab change events from other components
+  useEffect(() => {
+    const handleTabChange = (event: CustomEvent) => {
+      const targetTab = event.detail.tab;
+      if (['projects', 'certificates', 'tech-stack'].includes(targetTab)) {
+        setCurrentTab(targetTab);
+      }
+    };
+
+    window.addEventListener('portfolioTabChange', handleTabChange as EventListener);
+    return () => {
+      window.removeEventListener('portfolioTabChange', handleTabChange as EventListener);
+    };
+  }, []);
+
+  const activeTab = currentTab;
 
   const navigateCertificate = (direction: 'prev' | 'next') => {
     if (!selectedCertificate) return;
@@ -252,7 +276,7 @@ const Portfolio = () => {
             </p>
           </div>
 
-          <Tabs defaultValue={activeTab} className="space-y-8">
+          <Tabs value={activeTab} onValueChange={setCurrentTab} className="space-y-8">
             <TabsList className="grid w-full grid-cols-3 max-w-2xl mx-auto mb-12 bg-black/20 backdrop-blur-xl border border-white/10 p-1 rounded-2xl">
               <TabsTrigger 
                 value="projects"

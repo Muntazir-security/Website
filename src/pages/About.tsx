@@ -72,7 +72,34 @@ const StatCard = memo(({ icon: Icon, color, value, label, description, animation
   const navigate = useNavigate();
   
   const handleClick = () => {
-    navigate(link);
+    // Extract tab parameter from the link
+    const urlParams = new URLSearchParams(link.split('?')[1]);
+    const targetTab = urlParams.get('tab');
+    
+    // Navigate to main page first if not already there
+    const currentPath = window.location.pathname;
+    const scrollableRoutes = ['/main', '/home', '/about', '/portfolio', '/contact'];
+    
+    if (!scrollableRoutes.includes(currentPath)) {
+      navigate('/main');
+    }
+    
+    // Use setTimeout to ensure any navigation completes
+    setTimeout(() => {
+      // Scroll to portfolio section
+      const portfolioElement = document.getElementById('portfolio');
+      if (portfolioElement) {
+        portfolioElement.scrollIntoView({ behavior: 'smooth' });
+        
+        // Dispatch custom event to change portfolio tab
+        setTimeout(() => {
+          const event = new CustomEvent('portfolioTabChange', {
+            detail: { tab: targetTab }
+          });
+          window.dispatchEvent(event);
+        }, 600);
+      }
+    }, 100);
   };
 
   return (
