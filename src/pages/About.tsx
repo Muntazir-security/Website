@@ -2,7 +2,7 @@
 import React, { useEffect, memo, useMemo } from "react"
 import { FileText, Code, Award, Globe, ArrowUpRight, Sparkles } from "lucide-react"
 import { LucideIcon } from "lucide-react"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import AOS from 'aos'
 import 'aos/dist/aos.css'
 import PageBackground from "@/components/shared/PageBackground"
@@ -69,9 +69,10 @@ interface StatCardProps {
 }
 
 const StatCard = memo(({ icon: Icon, color, value, label, description, animation, link }: StatCardProps) => {
+  const navigate = useNavigate();
+  
   const handleClick = () => {
-    // Navigate to portfolio page with specific tab
-    window.location.href = link;
+    navigate(link);
   };
 
   return (
