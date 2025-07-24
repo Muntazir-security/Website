@@ -70,15 +70,8 @@ interface StatCardProps {
 
 const StatCard = memo(({ icon: Icon, color, value, label, description, animation, link }: StatCardProps) => {
   const handleClick = () => {
-    if (link.includes('#')) {
-      const sectionId = link.split('#')[1];
-      const element = document.getElementById(sectionId);
-      if (element) {
-        element.scrollIntoView({ behavior: 'smooth' });
-      }
-    } else {
-      window.location.href = link;
-    }
+    // Navigate to portfolio page with specific tab
+    window.location.href = link;
   };
 
   return (
@@ -91,7 +84,7 @@ const StatCard = memo(({ icon: Icon, color, value, label, description, animation
             <div className="w-16 h-16 rounded-full flex items-center justify-center bg-white/10 transition-transform group-hover:rotate-6">
               <Icon className="w-8 h-8 text-white" />
             </div>
-            <span 
+            <span
               className="text-4xl font-bold text-white"
               data-aos="fade-up-left"
               data-aos-duration="1500"
@@ -175,7 +168,7 @@ const AboutPage = () => {
       label: "Total Projects",
       description: "Innovative web solutions crafted",
       animation: "fade-right",
-      link: "#portfolio"
+      link: "/portfolio?tab=projects"
     },
     {
       icon: Award,
@@ -184,7 +177,7 @@ const AboutPage = () => {
       label: "Certificates",
       description: "Professional skills validated",
       animation: "fade-up",
-      link: "#portfolio"
+      link: "/portfolio?tab=certificates"
     },
     {
       icon: Globe,
@@ -193,7 +186,7 @@ const AboutPage = () => {
       label: "Years of Experience",
       description: "Continuous learning journey",
       animation: "fade-left",
-      link: "#portfolio"
+      link: "/portfolio?tab=tech-stack"
     },
   ], [totalProjects, totalCertificates, YearExperience]);
 
