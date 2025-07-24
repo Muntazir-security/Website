@@ -68,51 +68,65 @@ interface StatCardProps {
   link: string;
 }
 
-const StatCard = memo(({ icon: Icon, color, value, label, description, animation, link }: StatCardProps) => (
-  <Link to={link} className="block">
-    <div data-aos={animation} data-aos-duration={1300} className="relative group">
-      <div className="relative z-10 bg-gray-900/50 backdrop-blur-lg rounded-2xl p-6 border border-white/10 overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-2xl h-full flex flex-col justify-between">
-        <div className={`absolute -z-10 inset-0 bg-gradient-to-br ${color} opacity-10 group-hover:opacity-20 transition-opacity duration-300`}></div>
-        
-        <div className="flex items-center justify-between mb-4">
-          <div className="w-16 h-16 rounded-full flex items-center justify-center bg-white/10 transition-transform group-hover:rotate-6">
-            <Icon className="w-8 h-8 text-white" />
-          </div>
-          <span 
-            className="text-4xl font-bold text-white"
-            data-aos="fade-up-left"
-            data-aos-duration="1500"
-            data-aos-anchor-placement="top-bottom"
-          >
-            {value}
-          </span>
-        </div>
+const StatCard = memo(({ icon: Icon, color, value, label, description, animation, link }: StatCardProps) => {
+  const handleClick = () => {
+    if (link.includes('#')) {
+      const sectionId = link.split('#')[1];
+      const element = document.getElementById(sectionId);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    } else {
+      window.location.href = link;
+    }
+  };
 
-        <div>
-          <p 
-            className="text-sm uppercase tracking-wider text-gray-300 mb-2"
-            data-aos="fade-up"
-            data-aos-duration="800"
-            data-aos-anchor-placement="top-bottom"
-          >
-            {label}
-          </p>
-          <div className="flex items-center justify-between">
-            <p 
-              className="text-xs text-gray-400"
-              data-aos="fade-up"
-              data-aos-duration="1000"
+  return (
+    <div onClick={handleClick} className="block cursor-pointer">
+      <div data-aos={animation} data-aos-duration={1300} className="relative group">
+        <div className="relative z-10 bg-gray-900/50 backdrop-blur-lg rounded-2xl p-6 border border-white/10 overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-2xl h-full flex flex-col justify-between">
+          <div className={`absolute -z-10 inset-0 bg-gradient-to-br ${color} opacity-10 group-hover:opacity-20 transition-opacity duration-300`}></div>
+          
+          <div className="flex items-center justify-between mb-4">
+            <div className="w-16 h-16 rounded-full flex items-center justify-center bg-white/10 transition-transform group-hover:rotate-6">
+              <Icon className="w-8 h-8 text-white" />
+            </div>
+            <span 
+              className="text-4xl font-bold text-white"
+              data-aos="fade-up-left"
+              data-aos-duration="1500"
               data-aos-anchor-placement="top-bottom"
             >
-              {description}
+              {value}
+            </span>
+          </div>
+
+          <div>
+            <p 
+              className="text-sm uppercase tracking-wider text-gray-300 mb-2"
+              data-aos="fade-up"
+              data-aos-duration="800"
+              data-aos-anchor-placement="top-bottom"
+            >
+              {label}
             </p>
-            <ArrowUpRight className="w-4 h-4 text-white/50 group-hover:text-white transition-colors" />
+            <div className="flex items-center justify-between">
+              <p 
+                className="text-xs text-gray-400"
+                data-aos="fade-up"
+                data-aos-duration="1000"
+                data-aos-anchor-placement="top-bottom"
+              >
+                {description}
+              </p>
+              <ArrowUpRight className="w-4 h-4 text-white/50 group-hover:text-white transition-colors" />
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </Link>
-));
+  );
+});
 
 const AboutPage = () => {
   const { totalProjects, totalCertificates, YearExperience } = useMemo(() => {
@@ -161,7 +175,7 @@ const AboutPage = () => {
       label: "Total Projects",
       description: "Innovative web solutions crafted",
       animation: "fade-right",
-      link: "/portfolio?tab=projects"
+      link: "#portfolio"
     },
     {
       icon: Award,
@@ -170,7 +184,7 @@ const AboutPage = () => {
       label: "Certificates",
       description: "Professional skills validated",
       animation: "fade-up",
-      link: "/portfolio?tab=certificates"
+      link: "#portfolio"
     },
     {
       icon: Globe,
@@ -179,7 +193,7 @@ const AboutPage = () => {
       label: "Years of Experience",
       description: "Continuous learning journey",
       animation: "fade-left",
-      link: "/portfolio?tab=tech-stack"
+      link: "#portfolio"
     },
   ], [totalProjects, totalCertificates, YearExperience]);
 
@@ -238,27 +252,28 @@ const AboutPage = () => {
                       </div>
                     </button>
                   </a>
-                  <Link 
-                    to="/portfolio?tab=projects" 
-                    className="w-full lg:w-auto"
+                  <button 
+                    data-aos="fade-up"
+                    data-aos-duration="1000"
+                    className="group relative w-full lg:w-[180px]"
+                    onClick={() => {
+                      const element = document.getElementById('portfolio');
+                      if (element) {
+                        element.scrollIntoView({ behavior: 'smooth' });
+                      }
+                    }}
                   >
-                    <button 
-                      data-aos="fade-up"
-                      data-aos-duration="1000"
-                      className="group relative w-full lg:w-[180px]"
-                    >
-                      <div className="absolute -inset-0.5 bg-gradient-to-r from-[#4f52c9] to-[#8644c5] rounded-xl opacity-50 blur-md group-hover:opacity-90 transition-all duration-700"></div>
-                      <div className="relative h-12 bg-[#030014] backdrop-blur-xl rounded-lg border border-white/10 leading-none overflow-hidden">
-                        <div className="absolute inset-0 scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-500 bg-gradient-to-r from-[#4f52c9]/20 to-[#8644c5]/20"></div>
-                        <span className="absolute inset-0 flex items-center justify-center gap-2 text-sm group-hover:gap-3 transition-all duration-300">
-                          <span className="bg-gradient-to-r from-gray-200 to-white bg-clip-text text-transparent font-medium z-10">
-                            View Projects
-                          </span>
-                          <Code className="w-4 h-4 text-gray-200 group-hover:rotate-45 transform transition-all duration-300 z-10" />
+                    <div className="absolute -inset-0.5 bg-gradient-to-r from-[#4f52c9] to-[#8644c5] rounded-xl opacity-50 blur-md group-hover:opacity-90 transition-all duration-700"></div>
+                    <div className="relative h-12 bg-[#030014] backdrop-blur-xl rounded-lg border border-white/10 leading-none overflow-hidden">
+                      <div className="absolute inset-0 scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-500 bg-gradient-to-r from-[#4f52c9]/20 to-[#8644c5]/20"></div>
+                      <span className="absolute inset-0 flex items-center justify-center gap-2 text-sm group-hover:gap-3 transition-all duration-300">
+                        <span className="bg-gradient-to-r from-gray-200 to-white bg-clip-text text-transparent font-medium z-10">
+                          View Projects
                         </span>
-                      </div>
-                    </button>
-                  </Link>
+                        <Code className="w-4 h-4 text-gray-200 group-hover:rotate-45 transform transition-all duration-300 z-10" />
+                      </span>
+                    </div>
+                  </button>
                 </div>
               </div>
 

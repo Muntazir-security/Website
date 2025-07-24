@@ -238,8 +238,8 @@ const Home = () => {
 
                 {/* CTA Buttons */}
                 <div className="flex flex-col sm:flex-row gap-3 w-full justify-center lg:justify-start items-center" data-aos="fade-up" data-aos-delay="1400">
-                  <CTAButton href="/portfolio" text="View My Projects" icon={ExternalLink} />
-                  <CTAButton href="/contact" text="Contact Me" icon={Mail} />
+                  <CTAButton href="#portfolio" text="View My Projects" icon={ExternalLink} />
+                  <CTAButton href="#contact" text="Contact Me" icon={Mail} />
                 </div>
 
                 {/* Social Links */}
