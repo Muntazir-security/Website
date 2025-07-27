@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Code2, Github, Globe, User, Shield, Lock, Eye } from 'lucide-react';
+import { Code2, Github, Globe, User, Star } from 'lucide-react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 
@@ -29,76 +29,52 @@ const TypewriterEffect = ({ text }: { text: string }) => {
   );
 };
 
-const FloatingParticle = ({ delay }: { delay: number }) => (
-  <motion.div
-    className="absolute w-1 h-1 bg-gradient-to-r from-[#6366f1] to-[#a855f7] rounded-full opacity-40"
-    initial={{ 
-      x: Math.random() * window.innerWidth, 
-      y: window.innerHeight + 10,
-      scale: 0 
-    }}
-    animate={{ 
-      y: -10, 
-      scale: [0, 1, 0],
-      opacity: [0, 0.6, 0]
-    }}
-    transition={{ 
-      duration: 8, 
-      delay, 
-      repeat: Infinity,
-      ease: "easeOut"
-    }}
-  />
-);
-
 const BackgroundEffect = () => (
   <div className="absolute inset-0 overflow-hidden">
-    {/* Main gradient background matching the site */}
-    <div className="absolute inset-0 bg-gradient-to-br from-[#6366f1]/10 via-transparent to-[#a855f7]/10 animate-pulse" />
-    <div className="absolute inset-0 bg-gradient-to-tr from-[#6366f1]/5 via-transparent to-[#a855f7]/5 blur-3xl animate-float" />
+    {/* Subtle gradient background */}
+    <div className="absolute inset-0 bg-gradient-to-br from-[#6366f1]/5 via-transparent to-[#a855f7]/5" />
+    <div className="absolute inset-0 bg-gradient-to-tr from-[#6366f1]/3 via-transparent to-[#a855f7]/3 blur-3xl" />
     
-    {/* Floating particles */}
-    {Array.from({ length: 20 }).map((_, i) => (
-      <FloatingParticle key={i} delay={i * 0.4} />
-    ))}
-    
-    {/* Cybersecurity themed floating icons */}
+    {/* Minimal geometric shapes for elegance */}
     <motion.div 
-      className="absolute top-20 left-10 opacity-20"
-      animate={{ y: [-10, 10, -10] }}
+      className="absolute top-1/4 left-1/4 w-2 h-2 bg-gradient-to-r from-[#6366f1] to-[#a855f7] rounded-full opacity-20"
+      animate={{ 
+        scale: [1, 1.5, 1],
+        opacity: [0.2, 0.4, 0.2]
+      }}
       transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-    >
-      <Shield className="w-8 h-8 text-[#6366f1]" />
-    </motion.div>
+    />
     
     <motion.div 
-      className="absolute bottom-40 right-20 opacity-15"
-      animate={{ y: [10, -10, 10] }}
-      transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-    >
-      <Lock className="w-6 h-6 text-[#a855f7]" />
-    </motion.div>
-    
-    <motion.div 
-      className="absolute top-1/2 right-10 opacity-20"
-      animate={{ y: [-15, 15, -15] }}
+      className="absolute bottom-1/3 right-1/4 w-1 h-1 bg-gradient-to-r from-[#a855f7] to-[#6366f1] rounded-full opacity-30"
+      animate={{ 
+        scale: [1, 2, 1],
+        opacity: [0.3, 0.6, 0.3]
+      }}
       transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 2 }}
-    >
-      <Eye className="w-7 h-7 text-[#6366f1]" />
-    </motion.div>
+    />
+    
+    <motion.div 
+      className="absolute top-1/2 left-1/6 w-1.5 h-1.5 bg-white rounded-full opacity-10"
+      animate={{ 
+        scale: [1, 1.8, 1],
+        opacity: [0.1, 0.3, 0.1]
+      }}
+      transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+    />
   </div>
 );
 
 const IconButton = ({ Icon }: { Icon: React.ElementType }) => (
   <motion.div 
     className="relative group cursor-pointer"
-    whileHover={{ scale: 1.15, rotate: 5 }}
+    whileHover={{ scale: 1.1, rotate: 2 }}
     whileTap={{ scale: 0.95 }}
-    transition={{ duration: 0.2 }}
+    transition={{ duration: 0.3 }}
   >
-    <div className="absolute -inset-3 bg-gradient-to-r from-[#6366f1] to-[#a855f7] rounded-full blur-lg opacity-30 group-hover:opacity-60 transition-all duration-300" />
-    <div className="relative p-3 sm:p-4 bg-black/30 backdrop-blur-xl rounded-full border border-white/20 group-hover:border-white/40 transition-all duration-300">
-      <Icon className="w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 text-white group-hover:text-[#6366f1] transition-colors duration-300" />
+    <div className="absolute -inset-2 bg-gradient-to-r from-[#6366f1] to-[#a855f7] rounded-full blur-md opacity-20 group-hover:opacity-40 transition-all duration-300" />
+    <div className="relative p-3 sm:p-4 bg-black/20 backdrop-blur-xl rounded-full border border-white/10 group-hover:border-white/20 transition-all duration-300">
+      <Icon className="w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 text-white/80 group-hover:text-white transition-colors duration-300" />
     </div>
   </motion.div>
 );
@@ -192,7 +168,7 @@ const WelcomeScreen = () => {
                 className="flex justify-center gap-4 sm:gap-6 md:gap-10 mb-8 sm:mb-10 md:mb-16"
                 variants={childVariants}
               >
-                {[Shield, Code2, User, Github].map((Icon, index) => (
+                {[Star, Code2, User, Github].map((Icon, index) => (
                   <div key={index} data-aos="fade-down" data-aos-delay={index * 200}>
                     <IconButton Icon={Icon} />
                   </div>

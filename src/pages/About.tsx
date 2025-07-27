@@ -248,7 +248,9 @@ const AboutPage = () => {
                   data-aos="fade-right"
                   data-aos-duration="1500"
                 >
-                  A Cybersecurity Engineer with a passion for securing digital environments. I hold a degree in Computer Science, specializing in Cybersecurity, from Asia Pacific University of Technology & Innovation. With hands-on experience in SOC analysis, vulnerability assessment, and penetration testing, I've developed a strong foundation in identifying and mitigating security risks. My expertise in SIEM implementation, threat detection, and security documentation is further strengthened by industry certifications, including eJPT and ICCA. I blend technical expertise with analytical thinking to build robust security solutions, always staying ahead of emerging threats to protect critical infrastructure.
+                  With a dual-degree background from De Montfort University and Asia Pacific University, I bring a strong foundation in cybersecurity to every project. My experience in penetration testing and security analysis shapes my security-first approach to infrastructure development and management.
+                  <br /><br />
+                  I continuously strengthen my expertise through hands-on SOC operations, vulnerability assessments, and real-world threat hunting. Platforms like HackTheBox and TryHackMe help me stay sharp and up-to-date with advanced techniques.
                 </p>
                 <div className="flex flex-col lg:flex-row items-center lg:items-start gap-4 lg:gap-6">
                   <a 

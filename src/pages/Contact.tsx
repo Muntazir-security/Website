@@ -72,15 +72,15 @@ const ContactPage = () => {
                           <method.icon className={`w-6 h-6 ${method.accent} group-hover:scale-110 transition-transform duration-300`} />
                         </div>
                       </div>
-                    </div>
-
+                </div>
+                
                     {/* Content */}
                     <div className="flex flex-col items-center justify-center text-center h-full">
                       <h3 className="text-lg font-semibold text-white group-hover:text-white transition-colors duration-300">
                         {method.name}
                       </h3>
                     </div>
-
+                    
                     {/* Subtle CTA indicator removed for minimalism */}
                   </div>
                 </a>
