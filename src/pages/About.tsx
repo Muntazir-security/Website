@@ -248,9 +248,11 @@ const AboutPage = () => {
                   data-aos="fade-right"
                   data-aos-duration="1500"
                 >
-                  With a dual-degree background from De Montfort University and Asia Pacific University, I bring a strong foundation in cybersecurity to every project. My experience in penetration testing and security analysis shapes my security-first approach to infrastructure development and management.
+                  With a dual-degree background from De Montfort University and Asia Pacific University, I fuse a strong theoretical foundation with practical cybersecurity expertise gained through countless labs, red-team exercises, and real-world simulations.
                   <br /><br />
-                  I continuously strengthen my expertise through hands-on SOC operations, vulnerability assessments, and real-world threat hunting. Platforms like HackTheBox and TryHackMe help me stay sharp and up-to-date with advanced techniques.
+                  My growth is driven by hands-on SOC operations, vulnerability assessments, and proactive threat hunting. Platforms like HackTheBox and TryHackMe are my daily training ground—helping me stay ahead of emerging techniques and translate them into robust defence strategies.
+                  <br /><br />
+                  Whether architecting secure network infrastructures, automating detection logic, or dissecting exploit chains, I’m passionate about transforming complex security challenges into resilient, user-centric solutions that bridge the gap between security and engineering.
                 </p>
                 <div className="flex flex-col lg:flex-row items-center lg:items-start gap-4 lg:gap-6">
                   <a 
