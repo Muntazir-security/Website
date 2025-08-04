@@ -248,11 +248,10 @@ const AboutPage = () => {
                   data-aos="fade-right"
                   data-aos-duration="1500"
                 >
-                  With a dual-degree background from De Montfort University and Asia Pacific University, I fuse a strong theoretical foundation with practical cybersecurity expertise gained through countless labs, red-team exercises, and real-world simulations.
+                  As an IT Engineer at Neotek, I apply my cybersecurity expertise to infrastructure development and management. My background in penetration testing and security analysis allows me to approach engineering challenges with a security-first mindset, ensuring the systems I build are inherently secure.
                   <br /><br />
-                  My growth is driven by hands-on SOC operations, vulnerability assessments, and proactive threat hunting. Platforms like HackTheBox and TryHackMe are my daily training ground—helping me stay ahead of emerging techniques and translate them into robust defence strategies.
+                  My dual-degree background from De Montfort University and Asia Pacific University provided me with a strong theoretical foundation in cybersecurity, which I continue to strengthen through hands-on experience in SOC operations, vulnerability assessments, and real-world threat hunting. I stay sharp by continuously learning through platforms like HackTheBox & TryHackMe, where I practice advanced penetration testing techniques.
                   <br /><br />
-                  Whether architecting secure network infrastructures, automating detection logic, or dissecting exploit chains, I’m passionate about transforming complex security challenges into resilient, user-centric solutions that bridge the gap between security and engineering.
                 </p>
                 <div className="flex flex-col lg:flex-row items-center lg:items-start gap-4 lg:gap-6">
                   <a 

@@ -73,8 +73,8 @@ const TechStack = memo(({ tech }: { tech: string }) => {
   };
 
   return (
-    <div className="px-4 py-2 hidden sm:flex items-center rounded-full bg-white/5 backdrop-blur-sm border border-white/10 text-sm text-gray-300 hover:bg-white/10 transition-colors">
-      {React.cloneElement(getIcon(), { className: `w-6 h-6 mr-2 ${getIconColor()}` })}
+    <div className="px-3.5 py-2.5 hidden sm:flex items-center rounded-full bg-white/5 backdrop-blur-sm border border-white/10 text-sm text-gray-300 hover:bg-white/10 transition-colors whitespace-nowrap">
+      {React.cloneElement(getIcon(), { className: `w-5 h-5 mr-2 ${getIconColor()}` })}
       <span>{tech}</span>
     </div>
   );
@@ -204,11 +204,11 @@ const Home = () => {
                   data-aos="fade-right"
                   data-aos-duration="1500"
                 >
-                  Hi, I'm a Cybersecurity Engineer with hands-on experience in SOC analysis, vulnerability assessment, and penetration testing. I specialize in identifying vulnerabilities and crafting robust defense strategies to protect digital environments from emerging threats.
+                  As an IT Engineer at Neotek, my mission is to build the systems that drive business forward. My approach is grounded in a strong academic foundation from De Montfort University and sharpened by hands-on experience in penetration testing and security analysis. This allows me to see infrastructure through an attacker's eyes and engineer solutions that are not just functional, but fortified by design.
                 </p>
 
                 {/* Tech Stack */}
-                <div className="flex flex-wrap gap-3 justify-center lg:justify-start" data-aos="fade-up" data-aos-delay="1200">
+                <div className="flex gap-2 justify-center lg:justify-start overflow-x-auto" data-aos="fade-up" data-aos-delay="1200">
                   {TECH_STACK.map((tech, index) => (
                     <TechStack key={index} tech={tech} />
                   ))}
