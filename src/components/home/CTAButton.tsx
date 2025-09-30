@@ -15,27 +15,22 @@ const CTAButton = ({ href, text, icon: Icon }: CTAButtonProps) => {
   const handleClick = (e: React.MouseEvent) => {
     e.preventDefault();
     
-    // Routes that contain all sections in ScrollablePage
-    const scrollablePageRoutes = ['/main', '/home', '/about', '/portfolio', '/contact'];
-    
-    // If we're on a scrollable page and href contains a hash, scroll to section
-    if (scrollablePageRoutes.includes(location.pathname) && href.includes('#')) {
+    // Check if href contains a hash for section navigation
+    if (href.includes('#')) {
       const sectionId = href.split('#')[1];
       const element = document.getElementById(sectionId);
       if (element) {
         element.scrollIntoView({ behavior: 'smooth' });
+      } else {
+        // Section not found, likely need to navigate first
+        navigate('/main');
+        setTimeout(() => {
+          const el = document.getElementById(sectionId);
+          if (el) {
+            el.scrollIntoView({ behavior: 'smooth' });
+          }
+        }, 100);
       }
-    } else if (href.includes('#')) {
-      // If href contains hash but we're not on a scrollable page, navigate to main page first
-      navigate('/main');
-      // Use setTimeout to ensure navigation completes before scrolling
-      setTimeout(() => {
-        const sectionId = href.split('#')[1];
-        const element = document.getElementById(sectionId);
-        if (element) {
-          element.scrollIntoView({ behavior: 'smooth' });
-        }
-      }, 100);
     } else {
       // Navigate to the page
       navigate(href);

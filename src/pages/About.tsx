@@ -2,7 +2,6 @@
 import React, { useEffect, memo, useMemo } from "react"
 import { FileText, Code, Award, Globe, ArrowUpRight, Sparkles } from "lucide-react"
 import { LucideIcon } from "lucide-react"
-import { Link, useNavigate } from "react-router-dom"
 import AOS from 'aos'
 import 'aos/dist/aos.css'
 import PageBackground from "@/components/shared/PageBackground"
@@ -69,37 +68,24 @@ interface StatCardProps {
 }
 
 const StatCard = memo(({ icon: Icon, color, value, label, description, animation, link }: StatCardProps) => {
-  const navigate = useNavigate();
-  
   const handleClick = () => {
     // Extract tab parameter from the link
     const urlParams = new URLSearchParams(link.split('?')[1]);
     const targetTab = urlParams.get('tab');
     
-    // Navigate to main page first if not already there
-    const currentPath = window.location.pathname;
-    const scrollableRoutes = ['/main', '/home', '/about', '/portfolio', '/contact'];
-    
-    if (!scrollableRoutes.includes(currentPath)) {
-      navigate('/main');
+    // Scroll to portfolio section
+    const portfolioElement = document.getElementById('portfolio');
+    if (portfolioElement) {
+      portfolioElement.scrollIntoView({ behavior: 'smooth' });
+      
+      // Dispatch custom event to change portfolio tab after scroll starts
+      setTimeout(() => {
+        const event = new CustomEvent('portfolioTabChange', {
+          detail: { tab: targetTab }
+        });
+        window.dispatchEvent(event);
+      }, 300);
     }
-    
-    // Use setTimeout to ensure any navigation completes
-    setTimeout(() => {
-      // Scroll to portfolio section
-      const portfolioElement = document.getElementById('portfolio');
-      if (portfolioElement) {
-        portfolioElement.scrollIntoView({ behavior: 'smooth' });
-        
-        // Dispatch custom event to change portfolio tab
-        setTimeout(() => {
-          const event = new CustomEvent('portfolioTabChange', {
-            detail: { tab: targetTab }
-          });
-          window.dispatchEvent(event);
-        }, 600);
-      }
-    }, 100);
   };
 
   return (

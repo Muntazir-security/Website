@@ -238,19 +238,21 @@ const Portfolio = () => {
     });
   }, []);
 
-  // Handle URL tab parameter and external navigation
+  // Handle URL tab parameter for external links
   useEffect(() => {
     const urlTab = searchParams.get('tab');
     if (urlTab && ['projects', 'certificates', 'tech-stack'].includes(urlTab)) {
       setCurrentTab(urlTab);
+      // Clear the URL parameter after setting tab to avoid confusion
+      window.history.replaceState({}, '', window.location.pathname);
     }
   }, [searchParams]);
 
-  // Listen for custom tab change events from other components
+  // Listen for custom tab change events from other components (StatCards, etc.)
   useEffect(() => {
     const handleTabChange = (event: CustomEvent) => {
       const targetTab = event.detail.tab;
-      if (['projects', 'certificates', 'tech-stack'].includes(targetTab)) {
+      if (targetTab && ['projects', 'certificates', 'tech-stack'].includes(targetTab)) {
         setCurrentTab(targetTab);
       }
     };
